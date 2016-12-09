@@ -11,6 +11,8 @@ managed to cram the [Node.js](https://nodejs.org) runtime into the
 the flexibility of HTML and CSS with the ever expanding ecosystem of 
 over 380,000 Node modules. 
 
+<!--more-->
+
 What an amazing time to be alive! &#128588;
 
 I've been using Electron for almost six months now, and am loving it. As an
@@ -31,7 +33,7 @@ constraining yourself to it. You could easily write a website that only works in
 Chrome and get the same effect. With this in mind, let's move on to the more 
 tangible advantages._
 
-## Native Node.js Modules and ES6 Syntax
+## Node.js Modules and ES6 Syntax
 
 The Electron runtime includes the latest version of Node.js and Chromium.
 This means you can use the fancy new ES6 features without being at the mercy of 
@@ -117,7 +119,7 @@ more to end up with a fully-responsive layout like the one you see here.
 
 ![Insomnia Grid](/images/blog/insomnia-grid.png)
 
-## Access Desktop Features
+## Desktop Features
 
 There are a lot of awesome [Electron APIs](http://electron.atom.io/docs/api/) that
 can be used to do things that aren't yet possible inside a web browser. Here are 
