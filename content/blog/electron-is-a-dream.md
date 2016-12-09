@@ -44,17 +44,18 @@ demonstrate the combined Node and HTML environment.
 ```html
 <html>
 <head>
-<title>Electron File Demo</title>
+    <title>Electron File Demo</title>
 </head>
 <body>
 <script>
     // Write a file using ES6 and NodeJs
     const fs = require('fs');
     const path = require('path');
-    const {app} = require('electron');
-
-    const fullPath = path.join(app.getPath('desktop'), 'message.txt');
-    const message = 'Hello World!'
+    const electron = require('electron');
+    
+    const pathToDesktop = electron.remote.app.getPath('desktop');
+    const fullPath = path.join(pathToDesktop, 'message.txt');
+    const message = 'Hello World!';
 
     fs.writeFileSync(fullPath, message);
 </script>
