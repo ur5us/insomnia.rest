@@ -281,35 +281,54 @@ ul.ul--minor li:before {
 /* APP STUFF */
 /* ~~~~~~~~~ */
 
-.hidden-logged-out,
-.hidden-logged-in {
+.show-logged-out,
+.show-logged-in {
     opacity: 0;
     transition: opacity 0.2s ease;
 }
 
-.hidden-logged-in {
+.show-logged-in {
     display: none;
     transition: opacity 0.2s ease;
 }
 
-body[data-logged-in="yes"] .hidden-logged-in {
+body[data-logged-in="yes"] .show-logged-in {
     display: inherit;
     opacity: 1;
 }
 
-body[data-logged-in="yes"] .hidden-logged-out {
+body[data-logged-in="yes"] .show-logged-out {
     display: none;
     opacity: 0;
 }
 
-body[data-logged-in="no"] .hidden-logged-in {
+body[data-logged-in="no"] .show-logged-in {
     display: none;
     opacity: 0;
 }
 
-body[data-logged-in="no"] .hidden-logged-out {
+body[data-logged-in="no"] .show-logged-out {
     display: inherit;
     opacity: 1;
+}
+
+[data-hide-until-rendered="hide"] > * {
+    opacity: 0 !important;
+}
+
+[data-hide-until-rendered="show"] > * {
+    opacity: 1 !important;
+    transition: all 0.7s ease;
+}
+
+[data-hide-until-rendered="hide"]::before {
+    font-size: 3rem;
+    content: 'Loading...';
+    opacity: 0.2;
+    display: block;
+    margin: 4rem auto;
+    width: 100%;
+    text-align: center;
 }
 
 /* ~~~~~~~~~~~~~ */

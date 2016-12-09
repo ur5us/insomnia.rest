@@ -8,15 +8,21 @@ const isDev = process.env.NODE_ENV !== 'production';
 let plugins;
 let outputFile;
 let devtool;
+let env;
+let stripePubKey;
 
 if (isDev) {
   plugins = [new UglifyJsPlugin({minimize: true})];
   outputFile = `${libraryName}.js`;
   devtool = 'eval-source-map';
+  env = 'development';
+  stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
 } else {
   plugins = [];
   outputFile = `${libraryName}.js`;
   devtool = 'source-map';
+  env = 'production';
+  stripePubKey = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
 }
 
 export default {
@@ -49,5 +55,11 @@ export default {
     root: path.resolve('./src'),
     extensions: ['', '.js']
   },
-  plugins: plugins
+  plugins: [
+    ...plugins,
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env),
+      'process.env.STRIPE_PUB_KEY': JSON.stringify(),
+    })
+  ]
 };

@@ -129,7 +129,19 @@ export async function cancelAccount () {
 }
 
 export async function whoami () {
-  await util.get('/auth/whoami');
+  const key = `cache.whoami.${getCurrentSessionId()}`;
+
+  let data;
+  try {
+    data = JSON.parse(localStorage[key]);
+  } catch (err) {
+  }
+
+  if (!data) {
+    localStorage[key] = JSON.stringify(await util.get('/auth/whoami'));
+  }
+
+  return JSON.parse(localStorage[key]);
 }
 
 

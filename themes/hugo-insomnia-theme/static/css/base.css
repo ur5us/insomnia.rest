@@ -9,7 +9,7 @@ html, body {
 }
 
 main {
-    min-height: 50vh;
+    min-height: 25rem;
 }
 
 hr {
@@ -17,6 +17,52 @@ hr {
     border-bottom: 1px solid #eee;
     background: none;
     margin: 3rem 0;
+}
+
+/* ~~~~~~~~~~ */
+/* ANIMATIONS */
+/* ~~~~~~~~~~ */
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 /* ~~~~~~~~~~~~ */
@@ -356,7 +402,6 @@ pre > code {
     text-decoration: none;
     color: #fff;
 }
-
 
 /* ~~~~~ */
 /* FORMS */

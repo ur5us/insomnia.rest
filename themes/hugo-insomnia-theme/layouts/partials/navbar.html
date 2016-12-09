@@ -14,11 +14,11 @@
           {{ range .Site.Menus.main }}
           <li>
             {{ if eq .Identifier "signup" }}
-            <div class="hidden-logged-out">
+            <div class="show-logged-out">
               <a href="{{ .URL }}" class="button">{{ .Name }}</a>
             </div>
             {{ else if eq .Identifier "account" }}
-            <div class="hidden-logged-in">
+            <div class="show-logged-in">
               <a href="{{ .URL }}" class="button">{{ .Name }}</a>
             </div>
             {{ else }}
