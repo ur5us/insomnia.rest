@@ -2,11 +2,11 @@
 /* LINKS */
 /* ~~~~~ */
 
-a {
+a, .button {
     color: hsl(251, 85%, 66%);
 }
 
-a:hover {
+a:hover, .button:hover {
     color: hsl(251, 60%, 55%);
 }
 
@@ -233,6 +233,16 @@ img.jumbotron__icon {
     margin-bottom: 0.4rem;
 }
 
+/* ~~~~~~~ */
+/* NOTICES */
+/* ~~~~~~~ */
+
+.notice.info {
+    color: #222;
+    border-color: rgb(97, 71, 209);
+    background: rgba(97, 71, 209, 0.05);
+}
+
 /* ~~~~~ */
 /* LISTS */
 /* ~~~~~ */
@@ -267,6 +277,40 @@ ul.ul--minor li:before {
     content: '\01F484';
 }
 
+/* ~~~~~~~~~ */
+/* APP STUFF */
+/* ~~~~~~~~~ */
+
+.hidden-logged-out,
+.hidden-logged-in {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.hidden-logged-in {
+    display: none;
+    transition: opacity 0.2s ease;
+}
+
+body[data-logged-in="yes"] .hidden-logged-in {
+    display: inherit;
+    opacity: 1;
+}
+
+body[data-logged-in="yes"] .hidden-logged-out {
+    display: none;
+    opacity: 0;
+}
+
+body[data-logged-in="no"] .hidden-logged-in {
+    display: none;
+    opacity: 0;
+}
+
+body[data-logged-in="no"] .hidden-logged-out {
+    display: inherit;
+    opacity: 1;
+}
 
 /* ~~~~~~~~~~~~~ */
 /* MEDIA QUERIES */

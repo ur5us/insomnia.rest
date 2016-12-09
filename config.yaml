@@ -11,10 +11,6 @@ permalinks:
   documentation: /documentation/:slug
 menu:
   main:
-    - Name: "Pricing"
-      Identifier: "pricing"
-      URL: "/pricing/"
-      Weight: 20
     - Name: "Download"
       Identifier: "download"
       URL: "/download/"
@@ -26,11 +22,28 @@ menu:
     - Name: "Blog"
       Identifier: "blog"
       URL: "/blog/"
-      Weight: 40
+      Weight: 30
+    - Name: "Pricing"
+      Identifier: "pricing"
+      URL: "/pricing/"
+      Weight: 80
+    - Name: "Sign Up"
+      Identifier: "signup"
+      Pre: "button"
+      URL: "/app/signup/"
+      Weight: 100
+    - Name: "Account"
+      Identifier: "account"
+      Pre: "button"
+      URL: "/app/"
+      Weight: 100
   footer:
     - Name: "Licence"
       Identifier: "eula"
       URL: "/eula/"
+    - Name: "Blog"
+      Identifier: "blog"
+      URL: "blog"
     - Name: "Changelog"
       Identifier: "changelog"
       URL: "/changelog/"
@@ -69,10 +82,11 @@ params:
     - "main.css"
   scripts:
     - "main.js"
+    - "build/app.js"
   email: "support@insomnia.rest"
   pageNotFoundTitle: "Sorry, that page doesn't exist"
   shortName: "Insomnia"
-  bio: "Independant software developer"
+  bio: "Independent software developer"
   location: "Victoria BC, Canada"
   description: "A powerful REST API Client with cookie management, environment variables, code generation, and authentication for Mac, Window, and Linux"
   twitter: "GetInsomnia"
