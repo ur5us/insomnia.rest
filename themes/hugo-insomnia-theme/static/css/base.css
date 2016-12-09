@@ -65,7 +65,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
 }
 
 h3 {
@@ -449,6 +449,10 @@ pre > code {
 /* ~~~~~~~ */
 /* HELPERS */
 /* ~~~~~~~ */
+
+.text-xl {
+    font-size: 1.6rem;
+}
 
 .text-lg {
     font-size: 1.4rem;
