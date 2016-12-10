@@ -9,7 +9,7 @@ html, body {
 }
 
 main {
-    min-height: 25rem;
+    min-height: 28rem;
 }
 
 hr {
@@ -455,6 +455,11 @@ pre > code {
     border-radius: 3px;
     box-sizing: border-box;
     width: 100%;
+}
+
+.form-control input[type="radio"] {
+    display: inline-block;
+    width: auto;
 }
 
 .form-control.error input,

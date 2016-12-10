@@ -128,20 +128,13 @@ export async function cancelAccount () {
   await util.del('/api/billing/subscriptions');
 }
 
+let _whoamiCache = null;
 export async function whoami () {
-  const key = `cache.whoami.${getCurrentSessionId()}`;
-
-  let data;
-  try {
-    data = JSON.parse(localStorage[key]);
-  } catch (err) {
+  if (!_whoamiCache) {
+    _whoamiCache = await util.get('/auth/whoami');
   }
 
-  if (!data) {
-    localStorage[key] = JSON.stringify(await util.get('/auth/whoami'));
-  }
-
-  return JSON.parse(localStorage[key]);
+  return _whoamiCache;
 }
 
 

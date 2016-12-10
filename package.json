@@ -43,14 +43,10 @@
   },
   "dependencies": {
     "hkdf": "0.0.2",
-    "isomorphic-fetch": "^2.2.1",
-    "lie": "^3.1.0",
-    "node-forge": "^0.6.46",
     "json-loader": "^0.5.4",
-    "preact": "^7.1.0",
-    "preact-router": "^2.3.2",
-    "sjcl": "^1.0.6",
-    "srp": "git@github.com:getinsomnia/srp-js.git#6ebd8c3acfbcf69645e4c6e6f8f6b55138ff22c3"
+    "node-forge": "^0.6.46",
+    "srp": "git@github.com:getinsomnia/srp-js.git#6ebd8c3acfbcf69645e4c6e6f8f6b55138ff22c3",
+    "whatwg-fetch": "^2.0.1"
   },
   "babel": {
     "presets": [

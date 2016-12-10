@@ -1,5 +1,4 @@
 import HKDF from 'hkdf';
-import sjcl from 'sjcl';
 import srp from 'srp';
 import forge from 'node-forge';
 
@@ -329,26 +328,16 @@ async function _pbkdf2Passphrase (passphrase, salt) {
     const derivedKeyRaw = await window.crypto.subtle.deriveBits(algo, k, DEFAULT_BYTE_LENGTH * 8);
     return new Buffer(derivedKeyRaw).toString('hex');
   } else {
-    console.log('-- Using SJCL PBKDF2 --');
+    console.log('-- Using Forge PBKDF2 --');
 
-    const derivedKeyRaw = sjcl.misc.pbkdf2(
+    const derivedKeyRaw = forge.pkcs5.pbkdf2(
       passphrase,
-      sjcl.codec.hex.toBits(salt),
+      forge.util.hexToBytes(salt),
       DEFAULT_PBKDF2_ITERATIONS,
-      DEFAULT_BYTE_LENGTH * 8,
-      sjcl.hash.sha1
+      DEFAULT_BYTE_LENGTH,
+      forge.md.sha256.create()
     );
 
-    return sjcl.codec.hex.fromBits(derivedKeyRaw);
-
-    // NOTE: SJCL (above) is about 10x faster than Forge
-    // const derivedKeyRaw = forge.pkcs5.pbkdf2(
-    //   passphrase,
-    //   forge.util.hexToBytes(salt),
-    //   DEFAULT_PBKDF2_ITERATIONS,
-    //   DEFAULT_BYTE_LENGTH,
-    //   forge.md.sha256.create()
-    // );
-    // const derivedKey = forge.util.bytesToHex(derivedKeyRaw);
+    return forge.util.bytesToHex(derivedKeyRaw);
   }
 }

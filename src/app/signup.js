@@ -54,6 +54,11 @@ function serializeForm () {
 async function _handleSubmit (e) {
   e.preventDefault();
 
+  const button = this.querySelector('button[type="submit"]');
+  const buttonText = button.innerHTML;
+  button.innerHTML = '...';
+  button.setAttribute('disabled', 'disabled');
+
   if (step === 2) {
     const {firstName, lastName, email, password} = serializeForm();
     try {
@@ -62,6 +67,9 @@ async function _handleSubmit (e) {
     } catch (err) {
       alert(err.message);
       return;
+    } finally {
+      button.removeAttribute('disabled');
+      button.innerHTML = buttonText;
     }
   }
 

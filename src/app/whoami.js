@@ -7,13 +7,24 @@ export async function init () {
 
   const data = await session.whoami();
 
-  const els = document.querySelectorAll('[data-render="name"]');
-  for (const el of els) {
-    el.innerHTML = `${data.firstName} ${data.lastName}`;
-  }
+  _renderText('name', `${data.firstName} ${data.lastName}`);
+  _renderText('current-plan', data.planName);
 
   const els2 = document.querySelectorAll('[data-hide-until-rendered]');
   for (const el of els2) {
     el.setAttribute('data-hide-until-rendered', 'show');
   }
+}
+
+function _mapSelector (selector, fn) {
+  const els = document.querySelectorAll(selector);
+  for (const el of els) {
+    fn(el);
+  }
+}
+
+function _renderText (name, value) {
+  _mapSelector(`[data-render="${name}"]`, el => {
+    el.innerHTML = value;
+  });
 }

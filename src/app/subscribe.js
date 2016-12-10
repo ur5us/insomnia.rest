@@ -15,6 +15,13 @@ export function init (pathname) {
 
   document.querySelector('input[name="card-cvc"]')
     .addEventListener('input', _handleCvcChange);
+
+}
+
+let _cardTypeElement;
+function _setCardType (cardType) {
+  _cardTypeElement = _cardTypeElement || document.querySelector('#card-type');
+  _cardTypeElement.innerHTML = cardType ? `<span class="subtle">(${cardType})</span>` : '';
 }
 
 function _handleCvcChange (e) {
@@ -78,7 +85,9 @@ function _handleCardNumberChange (e) {
 
   // this.setState({cardType: cardType === 'Unknown' ? '' : cardType});
   if (cardType.toLowerCase() !== 'unknown') {
-    document.querySelector('#card-type').innerHTML = `(${cardType})`;
+    _setCardType(cardType);
+  } else {
+    _setCardType('');
   }
 
   // Only update number if it changed from the user's original to prevent cursor jump
@@ -97,16 +106,45 @@ function serializeForm () {
   return {
     name: document.querySelector('input[name="full-name"]').value,
     cardNumber: document.querySelector('input[name="card-number"]').value,
-    cardExpireMonth: document.querySelector('input[name="card-expire-month"]').value,
-    cardExpireYear: document.querySelector('input[name="card-expire-year"]').value,
+    cardExpireMonth: document.querySelector('select[name="card-expire-month"]').value,
+    cardExpireYear: document.querySelector('select[name="card-expire-year"]').value,
     cardSecurityCode: document.querySelector('input[name="card-cvc"]').value,
+    planId: document.querySelector('input[name="plan-id"]:checked').value,
   }
 }
 
 async function _handleSubmit (e) {
   e.preventDefault();
+
+  const button = this.querySelector('button[type="submit"]');
+  const buttonText = button.innerHTML;
+  button.innerHTML = '...';
+  button.setAttribute('disabled', 'disabled');
+
   const data = serializeForm();
-  console.log('SUBMIT', data);
-  // session.subscribe();
+
+  const params = {
+    name: data.name,
+    number: data.cardNumber.replace(/ /g, ''),
+    cvc: data.cardSecurityCode,
+    exp_month: parseInt(data.cardExpireMonth, 10),
+    exp_year: parseInt(data.cardExpireYear, 10),
+  };
+
+  Stripe.card.createToken(params, async (status, response) => {
+    if (status === 200) {
+      try {
+        await session.subscribe(response.id, data.planId);
+        window.location = '/app/'
+      } catch (err) {
+        console.error('Failed to subscribe', err);
+      }
+    } else {
+      console.error('Failed to subscribe', status);
+    }
+
+    button.removeAttribute('disabled');
+    button.innerHTML = buttonText;
+  });
 }
 

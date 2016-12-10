@@ -4,8 +4,9 @@ const modules = [
   require('./logout').init,
   require('./dashboard').init,
   require('./subscribe').init,
-  require('./helpers').init,
+  require('./session').init,
   require('./whoami').init,
+  require('./cancel').init,
 ];
 
 

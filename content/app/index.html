@@ -21,13 +21,19 @@ hideHeader: true
 </div>
 
 <div class="show-logged-in" data-hide-until-rendered="hide">
-  <h1>Manage Account</h1>
-  <p>Hello <span data-render="name"></span></p>
+  <h1>Hello <span data-render="name"></span>!</h1>
+  <p>
+    Your current plan is <code data-render="current-plan"></code>
+    <br>
+    <span class="small">
+    <a href="/app/subscribe">Change Plan</a>
+    &nbsp;|&nbsp;
+    <a href="#" data-action="cancel">Cancel Subscription</a>
+  </span>
+  </p>
   <div class="center">
     <hr>
     <a href="/app/logout">Sign Out</a>
-    &nbsp;|&nbsp;
-    <a href="/app/cancel">Close Account</a>
     &nbsp;|&nbsp;
     <a href="/documentation/support-and-feedback/">Contact Support</a>
   </div>

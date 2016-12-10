@@ -4,6 +4,21 @@ subtitle: Visa, MasterCard, or American Express
 ---
 
 <form style="margin:auto; max-width:28rem">
+  <div class="form-row center">
+    <div class="form-control">
+      <label>
+        <input type="radio" name="plan-id" checked value="plus-monthly-1">
+        Per Month ($5/mo)
+      </label>
+    </div>
+    <div class="form-control">
+      <label>
+        <input type="radio" name="plan-id" value="plus-yearly-1">
+        Per Year ($50/yr)
+      </label>
+    </div>
+  </div>
+  <br>
   <div class="form-control">
     <label>Full Name
       <input type="text" name="full-name" placeholder="Maria Garcia" autofocus required/>
@@ -67,10 +82,13 @@ subtitle: Visa, MasterCard, or American Express
     </div>
   </div>
 
-  <div class="form-control right">
-    <button type="submit" class="button">
-      Submit Card
-    </button>
+  <div class="form-row">
+    <a href="/app/">&lt; Manage Account</a>
+    <div class="form-control right">
+      <button type="submit" class="button">
+        Submit Card
+      </button>
+    </div>
   </div>
 </form>
 

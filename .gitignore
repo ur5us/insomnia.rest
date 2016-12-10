@@ -6,4 +6,4 @@ _hugo
 node_modules
 
 .DS_Store
-build
+static/javascript/build/*
