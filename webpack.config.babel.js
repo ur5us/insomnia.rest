@@ -14,13 +14,13 @@ let stripePubKey;
 if (isDev) {
   plugins = [];
   outputFile = `${libraryName}.js`;
-  devtool = 'source-map';
+  devtool = 'eval-source-map';
   env = 'development';
   stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
 } else {
   plugins = [new UglifyJsPlugin({minimize: true, sourceMap: false})];
   outputFile = `${libraryName}.js`;
-  devtool = null;
+  devtool = 'source-map';
   env = 'production';
   stripePubKey = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
 }

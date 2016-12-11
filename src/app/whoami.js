@@ -7,7 +7,7 @@ export async function init () {
 
   const data = await session.whoami();
 
-  _renderText('name', `${data.firstName} ${data.lastName}`);
+  _renderText('name', `${data.firstName} ${data.lastName}`.trim());
   _renderText('current-plan', data.planName);
 
   const els2 = document.querySelectorAll('[data-hide-until-rendered]');
