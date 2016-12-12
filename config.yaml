@@ -11,27 +11,27 @@ permalinks:
   documentation: /documentation/:slug
 menu:
   main:
-    - Name: "Download"
-      Identifier: "download"
-      URL: "/download/"
-      Weight: 0
-    - Name: "Docs"
-      Identifier: "docs"
-      URL: "/documentation/"
-      Weight: 10
-    - Name: "Blog"
-      Identifier: "blog"
-      URL: "/blog/"
-      Weight: 30
     - Name: "Pricing"
       Identifier: "pricing"
       URL: "/pricing/"
-      Weight: 80
-    - Name: "Sign Up"
-      Identifier: "signup"
-      Pre: "button"
-      URL: "/app/signup/"
-      Weight: 100
+      Weight: 2
+    - Name: "Docs"
+      Identifier: "docs"
+      URL: "/documentation/"
+      Weight: 1
+    - Name: "Download"
+      Identifier: "download"
+      URL: "/download/"
+      Weight: 3
+    - Name: "Download"
+      Identifier: "download"
+      URL: "/download/"
+      Weight: 4
+#    - Name: "Sign Up"
+#      Identifier: "signup"
+#      Pre: "button"
+#      URL: "/app/signup/"
+#      Weight: 100
     - Name: "Account"
       Identifier: "account"
       Pre: "button"
@@ -82,7 +82,8 @@ params:
     - "main.css"
   scripts:
     - "main.js"
-    - "build/app.js"
+    - "build/app.min.js"
+    - "lib/forge.min.js"
   email: "support@insomnia.rest"
   pageNotFoundTitle: "Sorry, that page doesn't exist"
   shortName: "Insomnia"

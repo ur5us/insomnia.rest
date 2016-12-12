@@ -1,25 +1,21 @@
 import webpack from 'webpack';
 import path from 'path';
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 const libraryName = 'app';
 const isDev = process.env.NODE_ENV !== 'production';
 
-let plugins;
 let outputFile;
 let devtool;
 let env;
 let stripePubKey;
 
 if (isDev) {
-  plugins = [];
-  outputFile = `${libraryName}.js`;
+  outputFile = `${libraryName}.min.js`;
   devtool = 'eval-source-map';
   env = 'development';
   stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
 } else {
-  plugins = [new UglifyJsPlugin({minimize: true, sourceMap: false})];
-  outputFile = `${libraryName}.js`;
+  outputFile = `${libraryName}.min.js`;
   devtool = 'source-map';
   env = 'production';
   stripePubKey = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
@@ -47,19 +43,18 @@ export default {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /(node_modules|bower_components|.*\.min\.js)/
+        exclude: /(node_modules|bower_components)/
       }
     ]
   },
   resolve: {
-    alias: {
-      'node-forge': './lib/forge.min.js'
-    },
     root: path.resolve('./src'),
     extensions: ['', '.js']
   },
+  externals: {
+    'node-forge': 'forge'
+  },
   plugins: [
-    ...plugins,
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
       'process.env.STRIPE_PUB_KEY': JSON.stringify(stripePubKey),

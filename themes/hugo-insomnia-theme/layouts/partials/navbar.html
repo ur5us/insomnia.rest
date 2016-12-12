@@ -12,7 +12,7 @@
         {{ if .Site.Menus.main }}
         <ul class="navbar__items">
           {{ range .Site.Menus.main }}
-          <li>
+          <li data-menu-item="{{ .Identifier }}">
             {{ if eq .Identifier "signup" }}
             <div class="show-logged-out">
               <a href="{{ .URL }}" class="button">{{ .Name }}</a>
