@@ -1,6 +1,6 @@
 ---
 date: 2016-12-06
-title: Month 5 – First Revenue
+title: Month 5 Recap – First Revenue
 slug: progress-report-2
 series: ["transparency"]
 tags: ["company", "progress"]
@@ -67,7 +67,7 @@ Fast forward two weeks later to today, and Insomnia is at **$30 monthly recurrin
 before launch, but the result somehow undercut those by less than half. Time to try 
 something else.
 
-## Version 4.0 – Out of Beta
+## Out of Beta with Version 4.0
 
 As mentioned previously, over **400 users have now reached out** via email. These conversations
 have provided me with an extraordinary amount of context, and led me to a sudden decision

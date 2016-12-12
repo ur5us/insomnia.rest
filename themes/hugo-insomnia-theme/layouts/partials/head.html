@@ -25,6 +25,8 @@
         "name": "{{ .Site.Title }}",
         "url": "{{ .Site.BaseURL }}"
     }
+
+
   </script>
   <script type="application/ld+json">
     {
@@ -38,6 +40,8 @@
         "https://plus.google.com/+{{ .Site.Params.googlePlus }}"
       ]
     }
+
+
   </script>
 
   {{ if eq .Section "changelog" }}
@@ -164,7 +168,7 @@
       } else {
         console.log('-- Google Analytics Disabled for ' + window.location.hostname + ' --');
         window.ga = function () {
-            console.log('GA', arguments);
+          console.log('GA', arguments);
         };
       }
     })();

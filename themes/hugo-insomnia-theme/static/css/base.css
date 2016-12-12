@@ -9,7 +9,7 @@ html, body {
 }
 
 main {
-    min-height: 50vh;
+    min-height: 28rem;
 }
 
 hr {
@@ -17,6 +17,52 @@ hr {
     border-bottom: 1px solid #eee;
     background: none;
     margin: 3rem 0;
+}
+
+/* ~~~~~~~~~~ */
+/* ANIMATIONS */
+/* ~~~~~~~~~~ */
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 /* ~~~~~~~~~~~~ */
@@ -30,6 +76,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.error {
+    color: #f13d2d;
 }
 
 a * {
@@ -219,7 +269,7 @@ header.header--big {
     padding: 3rem 0 2rem 0;
 }
 
-article .notice {
+.notice {
     display: block;
     border: 1px dashed #d0d0d0;
     padding: 1rem;
@@ -321,7 +371,7 @@ pre > code {
 .button {
     display: inline-block;
     text-align: center;
-    min-width: 4em;
+    min-width: 6em;
     box-sizing: border-box;
     padding: 0.5em 0.8em;
     margin: auto;
@@ -353,6 +403,99 @@ pre > code {
     color: #fff;
 }
 
+/* ~~~~~ */
+/* FORMS */
+/* ~~~~~ */
+
+.form-control {
+    font-size: 1.1rem;
+    border: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+}
+
+.form-row > * {
+    width: 100%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.form-row > p {
+    margin: 0;
+}
+
+.form-row > *:first-child {
+    margin-left: 0;
+}
+
+.form-row > *:last-child {
+    margin-right: 0;
+}
+
+.form-control label {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-control input {
+    font-size: 1rem;
+    display: block;
+    outline: 0;
+    border: 1px solid #ddd;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.form-control input[type="radio"] {
+    display: inline-block;
+    width: auto;
+}
+
+.form-control.error input,
+.form-control.error input:focus {
+    color: #ff3138;
+    border-color: inherit;
+}
+
+.form-control input:focus {
+    outline: 0;
+    border: 1px solid #aaa;
+}
+
+.form-control .button {
+    white-space: nowrap;
+    margin-top: 1rem;
+}
+
+.form-pair {
+    width: 100%;
+}
+
+.form-pair > .form-control {
+    width: 50%;
+    float: left;
+    display: inline-block;
+}
+
+.form-pair > .form-control:first-child {
+    padding-right: 0.5rem;
+}
+
+.form-pair > .form-control:last-child {
+    padding-left: 0.5rem;
+}
+
 /* ~~~~~~~ */
 /* HELPERS */
 /* ~~~~~~~ */
@@ -375,6 +518,10 @@ pre > code {
 
 .subtle {
     opacity: 0.7;
+}
+
+.hide {
+    display: none;
 }
 
 .small {
@@ -413,7 +560,7 @@ pre > code {
     color: #eee;
 }
 
-.dark, .dark * {
+.dark, .dark .button, .dark a, .dark * {
     color: #ccc;
 }
 
@@ -426,12 +573,9 @@ pre > code {
     background: #f5f5f5;
 }
 
-/* ~~~~~~ */
-/* NAVBAR */
-/* ~~~~~~ */
-
-.navbar {
-}
+/* ~~~~~~~ */
+/* NAV BAR */
+/* ~~~~~~~ */
 
 body.floating-navbar .navbar {
     position: absolute;
@@ -513,7 +657,7 @@ body.floating-navbar .navbar__icon img {
     display: inline-block;
 }
 
-.navbar__items li a {
+.navbar__items li > * {
     padding: 1rem;
 }
 

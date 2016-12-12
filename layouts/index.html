@@ -4,206 +4,204 @@
 {{ partial "navbar" . }}
 
 <div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 center">
-                <h1>
-                    A simple, beautiful, and
-                    <span class="jumbotron__undie">free</span>
-                    REST API client
-                </h1>
-                <h2 class="font-light">
-                    Mac, Windows, and Linux
-                </h2>
-                {{ partial "download-button" }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="jumbotron__img-container">
-                <img src="/images/screens/main.png" class="jumbotron__img"
-                     alt="Insomnia REST Client"/>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 center">
+        <h1>
+          Debug APIs like a <span class="jumbotron__undie">human</span>, not a robot
+        </h1>
+        <h2 class="font-light">
+          The most intuitive REST Client
+        </h2>
+        {{ partial "download-button" }}
+      </div>
     </div>
+    <div class="row">
+      <div class="jumbotron__img-container">
+        <img src="/images/screens/main.png" class="jumbotron__img"
+             alt="Insomnia REST Client"/>
+      </div>
+    </div>
+  </div>
 </div>
 
 <main role="main">
-    <section class="center no-margin padding-bottom padding-top">
-        <div class="container">
-            <h2>Speed up your API testing workflow</h2>
-            <br>
-            <div class="row">
-                <div class="col-4">
-                    <div class="img--promo">
-                        <img src="/images/screens/template.png" alt="Insomnia Request Templating">
-                    </div>
-                    <h3>Quickly create requests</h3>
-                    <p>
-                        Specify URL, payload, headers, and authorization all in one place. Then
-                        just hit send.
-                    </p>
-                </div>
-                <div class="col-4">
-                    <div class="img--promo">
-                        <img src="/images/screens/responses.png"
-                             alt="Insomnia Request Basic Authentication">
-                    </div>
-                    <h3>View detailed responses</h3>
-                    <p>
-                        Get all the details on every response. View status code, body,
-                        headers, cookies, and more!
-                    </p>
-                </div>
-                <div class="col-4">
-                    <div class="img--promo">
-                        <img src="/images/screens/drag.png" alt="Insomnia Request Organization">
-                    </div>
-                    <h3>Organize your workspace</h3>
-                    <p>
-                        Create workspaces or folders, drag-and-drop requests, and easily
-                        import and export your data.
-                    </p>
-                </div>
-            </div>
+  <section class="center no-margin padding-bottom padding-top">
+    <div class="container">
+      <h2>Speed up your API testing workflow</h2>
+      <br>
+      <div class="row">
+        <div class="col-4">
+          <div class="img--promo">
+            <img src="/images/screens/template.png" alt="Insomnia Request Templating">
+          </div>
+          <h3>Quickly create requests</h3>
+          <p>
+            Specify URL, payload, headers, and authorization all in one place. Then
+            just hit send.
+          </p>
         </div>
-    </section>
+        <div class="col-4">
+          <div class="img--promo">
+            <img src="/images/screens/responses.png"
+                 alt="Insomnia Request Basic Authentication">
+          </div>
+          <h3>View detailed responses</h3>
+          <p>
+            Get all the details on every response. View status code, body,
+            headers, cookies, and more!
+          </p>
+        </div>
+        <div class="col-4">
+          <div class="img--promo">
+            <img src="/images/screens/drag.png" alt="Insomnia Request Organization">
+          </div>
+          <h3>Organize your workspace</h3>
+          <p>
+            Create workspaces or folders, drag-and-drop requests, and easily
+            import and export your data.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="dark no-margin padding-bottom padding-top">
-        <div class="container center">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h2>Announcing Version 4.0!</h2>
-                    <p>
-                        Version 4.0 was rewritten from scratch with a new interface,
-                        many new features, and still free of charge! 4.0 also takes the
-                        leap from being a Chrome application to a standalone desktop app.
-                        <a href="{{ .Site.BaseURL }}documentation/migrate-from-chrome/"
-                           class="subtle">
-                            Upgrade Guide &raquo;
-                        </a>
-                    </p>
-                    <p>
-                        {{ partial "download-button" }}
-                    </p>
-                </div>
-                <div class="col-2"></div>
-            </div>
+  <section class="dark no-margin padding-bottom padding-top">
+    <div class="container center">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2>Announcing Version 4.0!</h2>
+          <p>
+            Version 4.0 was rewritten from scratch with a new interface,
+            many new features, and still free of charge! 4.0 also takes the
+            leap from being a Chrome application to a standalone desktop app.
+            <a href="{{ .Site.BaseURL }}documentation/migrate-from-chrome/"
+               class="subtle">
+              Upgrade Guide &raquo;
+            </a>
+          </p>
+          <p>
+            {{ partial "download-button" }}
+          </p>
         </div>
-    </section>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="light no-margin padding-bottom padding-top">
-        <div class="container center">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h2>Reuse variables across requests</h2>
-                    <p>
-                        Reuse common variables like API keys using environments. Define them
-                        globally or switch between sub-environments for a <strong>seamless
-                        development/production workflow</strong>.
-                        <a href="{{ .Site.BaseURL }}documentation/environment-variables/"
-                           class="no-wrap">
-                            Learn more &raquo;
-                        </a>
-                    </p>
-                    <img src="/images/screens/big/environments.png"
-                         alt="Insomnia REST Client Cookies">
-                </div>
-                <div class="col-2"></div>
-            </div>
+  <section class="light no-margin padding-bottom padding-top">
+    <div class="container center">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2>Reuse variables across requests</h2>
+          <p>
+            Reuse common variables like API keys using environments. Define them
+            globally or switch between sub-environments for a <strong>seamless
+            development/production workflow</strong>.
+            <a href="{{ .Site.BaseURL }}documentation/environment-variables/"
+               class="no-wrap">
+              Learn more &raquo;
+            </a>
+          </p>
+          <img src="/images/screens/big/environments.png"
+               alt="Insomnia REST Client Cookies">
         </div>
-    </section>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="no-margin padding-bottom padding-top">
-        <div class="container center">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h2>Generate boilerplate code</h2>
-                    <p>
-                        Generate code snippets for over <strong>thirty different
-                        language libraries</strong>,
-                        like NodeJS, Go, Swift, Python, Java, C, and others.
-                        <a href="{{ .Site.BaseURL }}documentation/code-snippets/" class="no-wrap">
-                            Learn more &raquo;
-                        </a>
-                    </p>
-                    <img src="/images/screens/big/code.png" alt="Insomnia REST Client Cookies">
-                </div>
-                <div class="col-2"></div>
-            </div>
+  <section class="no-margin padding-bottom padding-top">
+    <div class="container center">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2>Generate boilerplate code</h2>
+          <p>
+            Generate code snippets for over <strong>thirty different
+            language libraries</strong>,
+            like NodeJS, Go, Swift, Python, Java, C, and others.
+            <a href="{{ .Site.BaseURL }}documentation/code-snippets/" class="no-wrap">
+              Learn more &raquo;
+            </a>
+          </p>
+          <img src="/images/screens/big/code.png" alt="Insomnia REST Client Cookies">
         </div>
-    </section>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="light no-margin padding-bottom padding-top">
-        <div class="container center">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <h2>Work with cookie-based APIs</h2>
-                    <p>
-                        Easily view and manage cookies in a simple yet powerful interface. Cookies
-                        are <strong>automatically stored and sent</strong> with every request, just
-                        as you would expect.
-                        <a href="{{ .Site.BaseURL }}documentation/cookie-management/"
-                           class="no-wrap">
-                            Learn more &raquo;
-                        </a>
-                    </p>
-                    <img src="/images/screens/big/cookies.png" alt="Insomnia REST Client Cookies">
-                </div>
-                <div class="col-2"></div>
-            </div>
+  <section class="light no-margin padding-bottom padding-top">
+    <div class="container center">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2>Work with cookie-based APIs</h2>
+          <p>
+            Easily view and manage cookies in a simple yet powerful interface. Cookies
+            are <strong>automatically stored and sent</strong> with every request, just
+            as you would expect.
+            <a href="{{ .Site.BaseURL }}documentation/cookie-management/"
+               class="no-wrap">
+              Learn more &raquo;
+            </a>
+          </p>
+          <img src="/images/screens/big/cookies.png" alt="Insomnia REST Client Cookies">
         </div>
-    </section>
+        <div class="col-2"></div>
+      </div>
+    </div>
+  </section>
 
-    <section class="dark no-margin padding-bottom padding-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 center">
-                    <h2>Everything you need to work with your favourite APIs</h2>
-                    <p class="text-lg">
-                        Insomnia is <u>free</u>, but can be
-                        upgraded for cloud sync and team features.
-                    </p>
-                </div>
-            </div>
-            <div class="row feature-list">
-                <div class="col-6">
-                    <ul>
-                        <li>Mac, Windows and Linux</li>
-                        <li>Data import/export</li>
-                        <li>SSL Client Certs</li>
-                        <li>Response History</li>
-                        <li>JSONPath and XPath</li>
-                        <li>Preview rendered HTML</li>
-                        <li>Multipart Form</li>
-                        <li>Query parameter editor</li>
-                        <li>Configurable proxy</li>
-                    </ul>
-                </div>
-                <div class="col-6">
-                    <ul>
-                        <li>Nunjucks templating</li>
-                        <li>Filter requests</li>
-                        <li>Toggle SSL validation</li>
-                        <li>Keyboard shortcuts</li>
-                        <li>Configurable timeout</li>
-                        <li>HAR import</li>
-                        <li>Usable at almost all sizes</li>
-                        <li>Drag-n-drop organization</li>
-                        <li>Import from <code>curl</code></li>
-                    </ul>
-                </div>
-            </div>
-            <br><br>
-            <div class="center">
-                {{ partial "download-button" }}
-            </div>
-            <br>
+  <section class="dark no-margin padding-bottom padding-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 center">
+          <h2>Everything you need to work with your favourite APIs</h2>
+          <p class="text-lg">
+            Insomnia is <u>free</u>, but can be
+            upgraded for cloud sync and team features.
+          </p>
         </div>
-    </section>
+      </div>
+      <div class="row feature-list">
+        <div class="col-6">
+          <ul>
+            <li>Mac, Windows and Linux</li>
+            <li>Data import/export</li>
+            <li>SSL Client Certs</li>
+            <li>Response History</li>
+            <li>JSONPath and XPath</li>
+            <li>Preview rendered HTML</li>
+            <li>Multipart Form</li>
+            <li>Query parameter editor</li>
+            <li>Configurable proxy</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul>
+            <li>Nunjucks templating</li>
+            <li>Filter requests</li>
+            <li>Toggle SSL validation</li>
+            <li>Keyboard shortcuts</li>
+            <li>Configurable timeout</li>
+            <li>HAR import</li>
+            <li>Usable at almost all sizes</li>
+            <li>Drag-n-drop organization</li>
+            <li>Import from <code>curl</code></li>
+          </ul>
+        </div>
+      </div>
+      <br><br>
+      <div class="center">
+        {{ partial "download-button" }}
+      </div>
+      <br>
+    </div>
+  </section>
 </main>
 
 {{ partial "footer" . }}

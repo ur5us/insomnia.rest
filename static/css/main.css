@@ -2,11 +2,11 @@
 /* LINKS */
 /* ~~~~~ */
 
-a {
+a, .button {
     color: hsl(251, 85%, 66%);
 }
 
-a:hover {
+a:hover, .button:hover {
     color: hsl(251, 60%, 55%);
 }
 
@@ -233,6 +233,16 @@ img.jumbotron__icon {
     margin-bottom: 0.4rem;
 }
 
+/* ~~~~~~~ */
+/* NOTICES */
+/* ~~~~~~~ */
+
+.notice.info {
+    color: #222;
+    border-color: rgb(97, 71, 209);
+    background: rgba(97, 71, 209, 0.05);
+}
+
 /* ~~~~~ */
 /* LISTS */
 /* ~~~~~ */
@@ -267,6 +277,59 @@ ul.ul--minor li:before {
     content: '\01F484';
 }
 
+/* ~~~~~~~~~ */
+/* APP STUFF */
+/* ~~~~~~~~~ */
+
+.show-logged-out,
+.show-logged-in {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.show-logged-in {
+    display: none;
+    transition: opacity 0.2s ease;
+}
+
+body[data-logged-in="yes"] .show-logged-in {
+    display: inherit;
+    opacity: 1;
+}
+
+body[data-logged-in="yes"] .show-logged-out {
+    display: none;
+    opacity: 0;
+}
+
+body[data-logged-in="no"] .show-logged-in {
+    display: none;
+    opacity: 0;
+}
+
+body[data-logged-in="no"] .show-logged-out {
+    display: inherit;
+    opacity: 1;
+}
+
+[data-hide-until-rendered="hide"] > * {
+    opacity: 0 !important;
+}
+
+[data-hide-until-rendered="show"] > * {
+    opacity: 1 !important;
+    transition: all 0.7s ease;
+}
+
+[data-hide-until-rendered="hide"]::before {
+    font-size: 3rem;
+    content: 'Loading...';
+    opacity: 0.2;
+    display: block;
+    margin: 4rem auto;
+    width: 100%;
+    text-align: center;
+}
 
 /* ~~~~~~~~~~~~~ */
 /* MEDIA QUERIES */
@@ -283,7 +346,9 @@ ul.ul--minor li:before {
         margin-right: 0;
     }
 
-    .navbar__items li:nth-child(1) {
+    .navbar__items li[data-menu-item="download"],
+    .navbar__items li[data-menu-item="account"],
+    .navbar__items li[data-menu-item="signup"] {
         display: none;
     }
 }
@@ -291,6 +356,10 @@ ul.ul--minor li:before {
 @media only screen and (max-width: 45rem) {
     .docs-sidebar__entry--active::after {
         content: "↓";
+    }
+
+    .navbar__items li[data-menu-item="download"] {
+        display: none;
     }
 }
 

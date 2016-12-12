@@ -62,37 +62,27 @@ subTitle: "Stop wasting time in your terminal and `GET` some `REST`"
   <div class="col-3">
   </div>
   <div class="col-6">
-    <h2>Want more info?</h2>
+    <h2>Thanks for choosing Insomnia</h2>
     <p>
-      Click the link below to view the changelog for all previous versions.
+      Help out by spreading the word &#128522;
     </p>
-    <a href="/changelog" class="button">
-      Visit Changelog
+    <a title="Share on Twitter"
+       href="http://twitter.com/share?url=https://insomnia.rest&text=I+just+downloaded+Insomnia+REST+Client&via=GetInsomnia&"
+       onclick="window.open(this.href, 'twitter-share', 'width=800,height=600');return false;"
+       class="button--share button twitter">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <a title="Share on Facebook"
+       href="http://www.facebook.com/sharer/sharer.php?u=https://insomnia.rest&"
+       onclick="window.open(this.href, 'facebook-share', 'width=800,height=600');return false;"
+       class="button--share button facebook">
+      <i class="fa fa-facebook"></i>
     </a>
   </div>
 </div>
 
 <script>
   (function () {
-//    var u = null;
-//    if (window.location.hash === '#mac') {
-//      ga('send', 'event', 'Download', 'Mac', 'Auto');
-//      u = 'http://builds.insomnia.rest/downloads/mac/latest'
-//    } else if (window.location.hash === '#windows') {
-//      ga('send', 'event', 'Download', 'Windows', 'Auto');
-//      u = 'http://builds.insomnia.rest/downloads/windows/latest'
-//    } else if (window.location.hash === '#ubuntu') {
-//      ga('send', 'event', 'Download', 'Ubuntu', 'Auto');
-//      u = 'http://builds.insomnia.rest/downloads/ubuntu/latest
-//    }
-//
-//    if (u) {
-//      window.location.hash = '#';
-//      setTimeout(function () {
-//        window.location = u;
-//      }, 300);
-//    }
-
     var as = document.querySelectorAll('a[data-ga]');
     for (var i = 0; i < as.length; i++) {
       as[i].addEventListener('click', function (e) {

@@ -1,0 +1,40 @@
+---
+title: Welcome to Insomnia
+subtitle: Manage your Insomnia account
+hideHeader: true
+---
+
+<div class="show-logged-out">
+  <header class="container header--big">
+    <div class="row">
+      <div class="col-12">
+        <h1>You are not logged in</h1>
+        <p class="text-lg">Sign up or create an account</p>
+      </div>
+    </div>
+  </header>
+  <section class="center">
+    <a href="/app/login" class="button">Log In</a>
+    &nbsp;
+    <a href="/app/signup" class="button">Sign Up</a>
+  </section>
+</div>
+
+<div class="show-logged-in" data-hide-until-rendered="hide">
+  <h1>Hello <span data-render="name"></span>!</h1>
+  <p>
+    Your current plan is <code data-render="current-plan"></code>
+    <br>
+    <span class="small">
+    <a href="/app/subscribe">Change Plan</a>
+    &nbsp;|&nbsp;
+    <a href="#" data-action="cancel">Cancel Subscription</a>
+  </span>
+  </p>
+  <div class="center">
+    <hr>
+    <a href="/app/logout">Sign Out</a>
+    &nbsp;|&nbsp;
+    <a href="/documentation/support-and-feedback/">Contact Support</a>
+  </div>
+</div>
