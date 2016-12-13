@@ -14,11 +14,11 @@
           {{ range .Site.Menus.main }}
           <li data-menu-item="{{ .Identifier }}">
             {{ if eq .Identifier "signup" }}
-            <div class="show-logged-out">
-              <a href="{{ .URL }}" class="button">{{ .Name }}</a>
-            </div>
+            <a href="{{ .URL }}" class="show-logged-out">{{ .Name }}</a>
             {{ else if eq .Identifier "account" }}
-            <div class="show-logged-in">
+            <a href="{{ .URL }}" class="show-logged-in">{{ .Name }}</a>
+            {{ else if eq .Identifier "download" }}
+            <div>
               <a href="{{ .URL }}" class="button">{{ .Name }}</a>
             </div>
             {{ else }}

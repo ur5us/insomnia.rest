@@ -19,23 +19,27 @@ menu:
       Identifier: "docs"
       URL: "/documentation/"
       Weight: 1
+    - Name: "Blog"
+      Identifier: "blog"
+      URL: "/blog/"
+      Weight: 2
     - Name: "Download"
       Identifier: "download"
       URL: "/download/"
       Weight: 3
-    - Name: "Download"
-      Identifier: "download"
-      URL: "/download/"
-      Weight: 4
-#    - Name: "Sign Up"
-#      Identifier: "signup"
-#      Pre: "button"
-#      URL: "/app/signup/"
-#      Weight: 100
     - Name: "Account"
       Identifier: "account"
       Pre: "button"
       URL: "/app/"
+      Weight: 10
+    - Name: "Sign Up"
+      Identifier: "signup"
+      Pre: "button"
+      URL: "/app/signup/"
+      Weight: 10
+    - Name: "Download"
+      Identifier: "download"
+      URL: "/download/"
       Weight: 100
   footer:
     - Name: "Licence"

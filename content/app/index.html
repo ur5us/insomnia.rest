@@ -22,19 +22,19 @@ hideHeader: true
 
 <div class="show-logged-in" data-hide-until-rendered="hide">
   <h1>Hello <span data-render="name"></span>!</h1>
-  <p>
-    Your current plan is <code data-render="current-plan"></code>
-    <br>
-    <span class="small">
-    <a href="/app/subscribe">Change Plan</a>
-    &nbsp;|&nbsp;
-    <a href="#" data-action="cancel">Cancel Subscription</a>
-  </span>
-  </p>
-  <div class="center">
-    <hr>
-    <a href="/app/logout">Sign Out</a>
-    &nbsp;|&nbsp;
-    <a href="/documentation/support-and-feedback/">Contact Support</a>
-  </div>
+  <p>Your current plan is <code data-render="current-plan"></code></p>
+  <ul>
+    <!--<li>-->
+      <!--<a href="/app/teams">Manage Team</a>-->
+    <!--</li>-->
+    <li>
+      <a href="/app/subscribe">Change Plan</a>
+    </li>
+    <li>
+      <a href="#" data-action="cancel">Cancel Subscription</a>
+    </li>
+    <li>
+      <a href="/app/logout">Sign Out</a>
+    </li>
+  </ul>
 </div>

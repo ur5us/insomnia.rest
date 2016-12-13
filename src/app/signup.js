@@ -56,7 +56,7 @@ async function _handleSubmit (e) {
 
   const button = this.querySelector('button[type="submit"]');
   const buttonText = button.innerHTML;
-  button.innerHTML = '...';
+  button.innerHTML = 'Loading';
   button.setAttribute('disabled', 'disabled');
 
   if (step === 2) {
@@ -64,12 +64,12 @@ async function _handleSubmit (e) {
     try {
       await session.signup(firstName, lastName, email, password);
       window.location = '/app';
+      return;
     } catch (err) {
       alert(err.message);
-      return;
-    } finally {
       button.removeAttribute('disabled');
       button.innerHTML = buttonText;
+      return;
     }
   }
 

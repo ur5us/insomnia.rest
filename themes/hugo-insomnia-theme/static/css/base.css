@@ -19,6 +19,10 @@ hr {
     margin: 3rem 0;
 }
 
+hr.hr--skinny {
+    margin: 1.5rem 0;
+}
+
 /* ~~~~~~~~~~ */
 /* ANIMATIONS */
 /* ~~~~~~~~~~ */
@@ -388,9 +392,10 @@ pre > code {
     display: inline-block;
 }
 
+button[disabled],
 .button[disabled] {
     cursor: default;
-    opacity: 0.4;
+    opacity: 0.5;
 }
 
 .button:not([disabled]):hover {
@@ -476,6 +481,11 @@ pre > code {
 .form-control .button {
     white-space: nowrap;
     margin-top: 1rem;
+    padding: 0.3rem 1rem;
+}
+
+.form-control.form-control--no-label {
+    padding-top: 0.8rem;
 }
 
 .form-pair {
@@ -526,6 +536,10 @@ pre > code {
 
 .small {
     font-size: 0.85em;
+}
+
+.width--auto {
+    width: auto;
 }
 
 .no-margin {

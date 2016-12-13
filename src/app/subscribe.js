@@ -118,7 +118,7 @@ async function _handleSubmit (e) {
 
   const button = this.querySelector('button[type="submit"]');
   const buttonText = button.innerHTML;
-  button.innerHTML = '...';
+  button.innerHTML = 'Loading';
   button.setAttribute('disabled', 'disabled');
 
   const data = serializeForm();
@@ -135,7 +135,8 @@ async function _handleSubmit (e) {
     if (status === 200) {
       try {
         await session.subscribe(response.id, data.planId);
-        window.location = '/app/'
+        window.location = '/app/';
+        return;
       } catch (err) {
         console.error('Failed to subscribe', err);
       }

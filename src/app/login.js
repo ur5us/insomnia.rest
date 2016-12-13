@@ -10,7 +10,7 @@ export function init (pathname) {
 
     const button = this.querySelector('button[type="submit"]');
     const buttonText = button.innerHTML;
-    button.innerHTML = '...';
+    button.innerHTML = 'Loading';
     button.setAttribute('disabled', 'disabled');
 
     const email = document.querySelector('input[name="email"]').value;
@@ -18,14 +18,11 @@ export function init (pathname) {
 
     try {
       await session.login(email, password);
+      window.location = '/app';
     } catch (err) {
       alert(err.message);
-      return;
-    } finally {
       button.removeAttribute('disabled');
       button.innerHTML = buttonText;
     }
-
-    window.location = '/app';
   });
 }

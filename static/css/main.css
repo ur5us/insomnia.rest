@@ -195,6 +195,10 @@ img.jumbotron__icon {
     right: 0;
 }
 
+.pricing__column__footer .button {
+    width: 100%;
+}
+
 .pricing__column__body ul {
     padding-left: 1rem;
     margin: 0;
@@ -293,7 +297,7 @@ ul.ul--minor li:before {
 }
 
 body[data-logged-in="yes"] .show-logged-in {
-    display: inherit;
+    display: block;
     opacity: 1;
 }
 
@@ -308,7 +312,7 @@ body[data-logged-in="no"] .show-logged-in {
 }
 
 body[data-logged-in="no"] .show-logged-out {
-    display: inherit;
+    display: block;
     opacity: 1;
 }
 
