@@ -5,8 +5,7 @@ import * as util from './fetch';
 const NO_SESSION = '__NO_SESSION__';
 
 /** Create a new Account for the user */
-export async function signup (firstName, lastName, rawEmail, rawPassphrase) {
-
+export async function signup (firstName, lastName, rawEmail, rawPassphrase, loginAfter = false) {
   const email = _sanitizeEmail(rawEmail);
   const passphrase = _sanitizePassphrase(rawPassphrase);
 
@@ -38,12 +37,21 @@ export async function signup (firstName, lastName, rawEmail, rawPassphrase) {
   account.encPrivateKey = JSON.stringify(encPrivateJWKMessage);
   account.encSymmetricKey = JSON.stringify(encSymmetricJWKMessage);
 
-  return util.post('/auth/signup', account);
+  const signupData = await util.post('/auth/signup', account);
+
+  if (loginAfter) {
+    await login(rawEmail, rawPassphrase, authSecret);
+  }
+
+  return signupData;
 }
 
+export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase) {
+  return signup(firstName, lastName, rawEmail, rawPassphrase, true);
+}
 
 /** Create a new session for the user */
-export async function login (rawEmail, rawPassphrase) {
+export async function login (rawEmail, rawPassphrase, authSecret = null) {
 
   // ~~~~~~~~~~~~~~~ //
   // Sanitize Inputs //
@@ -57,7 +65,7 @@ export async function login (rawEmail, rawPassphrase) {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
   const {saltKey, saltAuth} = await util.post('/auth/login-s', {email});
-  const authSecret = await crypt.deriveKey(passphrase, email, saltKey);
+  authSecret = authSecret || await crypt.deriveKey(passphrase, email, saltKey);
   const secret1 = await crypt.srpGenKey();
   const c = new srp.Client(
     _getSrpParams(),
