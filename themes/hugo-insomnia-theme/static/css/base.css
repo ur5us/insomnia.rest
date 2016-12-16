@@ -276,7 +276,7 @@ header.header--big {
 .notice {
     display: block;
     border: 1px dashed #d0d0d0;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     text-align: center;
     color: #999;
     margin: 0;
@@ -536,6 +536,11 @@ button[disabled],
 
 .small {
     font-size: 0.85em;
+}
+
+.bold,
+.bold * {
+    font-weight: 600;
 }
 
 .width--auto {

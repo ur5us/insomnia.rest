@@ -30,14 +30,16 @@ class Team extends Component {
   };
 
   renderRow (account) {
+    const isCurrentUser = account.accountId === this.props.whoami.accountId;
     return (
-      <tr key={account.accountId}>
-        <td>{account.firstName} {account.lastName}</td>
+      <tr key={account.accountId} className={isCurrentUser ? 'bold' : ''}>
+        <td>
+          {account.firstName} {account.lastName}
+          {isCurrentUser ? ' (You)' : ''}
+          </td>
         <td>{account.email}</td>
         <td className="center">
-          {account.accountId === this.props.whoami.accountId ? (
-            null
-          ) : (
+          {isCurrentUser ? null : (
             <button onClick={e => this._handleDeleteTeamMember(account)}>
               <i className="fa fa-trash-o"/>
             </button>
