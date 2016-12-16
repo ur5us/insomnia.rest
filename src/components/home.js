@@ -11,10 +11,10 @@ class Home extends Component {
         <p>Your current plan is <code>{whoami.planName}</code></p>
         <ul>
           {/*<li>*/}
-            {/*<a href="/app/teams">Manage Team</a>*/}
+            {/*<a href="/app/team/">Manage Team</a>*/}
           {/*</li>*/}
           <li>
-            <a href="/app/subscribe">Change Plan</a>
+            <a href="/app/subscribe/">Change Plan</a>
           </li>
           <li>
             <CancelLink/>
@@ -29,7 +29,10 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  whoami: PropTypes.object.isRequired
+  whoami: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    planName: PropTypes.string.isRequired,
+  }).isRequired
 };
 
 export default Home;

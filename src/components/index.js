@@ -3,6 +3,7 @@ import Home from './home';
 import Login from './login';
 import SignUp from './signup';
 import Subscribe from './subscribe';
+import Team from './team';
 import * as session from '../session';
 
 class App extends Component {
@@ -40,6 +41,8 @@ class App extends Component {
         this.component = <Home whoami={whoami}/>
       } else if (path === '/app/subscribe/') {
         this.component = <Subscribe whoami={whoami}/>
+      } else if (path === '/app/team/') {
+        this.component = <Team whoami={whoami}/>
       }
 
       this.setState({loading: false});
