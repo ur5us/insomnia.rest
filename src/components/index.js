@@ -4,6 +4,7 @@ import Login from './login';
 import SignUp from './signup';
 import Subscribe from './subscribe';
 import Team from './team';
+import Teams from './teams';
 import * as session from '../session';
 
 class App extends Component {
@@ -29,20 +30,33 @@ class App extends Component {
     // Now, try to load the user's info
     (async () => {
       let whoami;
+
+      const whoamiTask = session.whoami();
+      const billingDetailsTask = session.billingDetails();
+      const teamsTask = session.listTeams();
+
       try {
-        whoami = await session.whoami();
+        whoami = await whoamiTask;
       } catch (err) {
         // If not logged in, redirect to login page
         window.location = '/app/login/';
         return;
       }
 
-      if (path === '/app/') {
-        this.component = <Home whoami={whoami}/>
-      } else if (path === '/app/subscribe/') {
-        this.component = <Subscribe whoami={whoami}/>
-      } else if (path === '/app/team/') {
-        this.component = <Team whoami={whoami}/>
+      const teams = await teamsTask;
+      let billingDetails;
+      try {
+        billingDetails = await billingDetailsTask;
+      } catch (err) {
+        // That's OK. That just means the account is Free
+      }
+
+      if (path.match(/^\/app\/$/)) {
+        this.component = <Home whoami={whoami} billingDetails={billingDetails}/>
+      } else if (path.match(/^\/app\/subscribe\/$/)) {
+        this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>
+      } else if (path.match(/^\/app\/teams\/$/)) {
+        this.component = <Teams whoami={whoami} billingDetails={billingDetails} teams={teams}/>
       }
 
       this.setState({loading: false});

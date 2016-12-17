@@ -86,6 +86,10 @@ a:hover {
     color: #f13d2d;
 }
 
+.success {
+    color: #50a253;
+}
+
 a * {
     color: inherit !important;
 }
@@ -279,8 +283,9 @@ header.header--big {
     padding: 1rem 1.5rem;
     text-align: center;
     color: #999;
-    margin: 0;
     border-radius: 0.25rem;
+    max-width: 35rem;
+    margin: 0 auto;
 }
 
 article header * {
@@ -382,7 +387,7 @@ pre > code {
     font-size: 1rem;
     background: transparent;
     border: 1px solid;
-    border-radius: 4px;
+    border-radius: 3px;
     cursor: pointer;
     outline: none;
     transition: all 0.2s ease;
@@ -390,6 +395,10 @@ pre > code {
 
 .button--inline {
     display: inline-block;
+}
+
+.button--compact {
+    padding: 0.25rem 0.8rem;
 }
 
 button[disabled],
@@ -451,7 +460,8 @@ button[disabled],
     font-size: 0.9rem;
 }
 
-.form-control input {
+.form-control input,
+.form-control select {
     font-size: 1rem;
     display: block;
     outline: 0;
@@ -460,6 +470,23 @@ button[disabled],
     border-radius: 3px;
     box-sizing: border-box;
     width: 100%;
+    background: #fafafa;
+}
+.form-control input,
+.form-control select,
+.form-control button {
+    height: 2.4rem;
+}
+
+.form-control input[type="checkbox"],
+.form-control input[type="radio"] {
+    margin-right: 0.5rem;
+    height: 1em;
+}
+
+.form-control select {
+    display: inline-block;
+    width: auto;
 }
 
 .form-control input[type="radio"] {
@@ -473,19 +500,18 @@ button[disabled],
     border-color: inherit;
 }
 
-.form-control input:focus {
+.form-control input:focus,
+.form-control select:focus {
     outline: 0;
     border: 1px solid #aaa;
+    background: #fff;
 }
 
-.form-control .button {
+.form-control > .button {
     white-space: nowrap;
-    margin-top: 1rem;
+    margin-top: 1.8rem;
     padding: 0.3rem 1rem;
-}
 
-.form-control.form-control--no-label {
-    padding-top: 0.8rem;
 }
 
 .form-pair {
@@ -534,13 +560,22 @@ button[disabled],
     display: none;
 }
 
+small,
 .small {
-    font-size: 0.85em;
+    font-size: 0.85em !important;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .bold,
 .bold * {
     font-weight: 600;
+}
+
+.wide {
+    width: 100% !important;
 }
 
 .width--auto {

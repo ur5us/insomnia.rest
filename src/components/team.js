@@ -49,9 +49,26 @@ class Team extends Component {
     )
   }
 
+  renderUpgradeToTeamMessage() {
+    return (
+      <p className="notice info">
+        Please <strong>upgrade to a team plan</strong> to access team features
+        <br/><br/>
+        <a href="/app/subscribe/#teams" className="button button--compact">
+          Upgrade to Teams
+        </a>
+      </p>
+    )
+  }
+
   render () {
     const {accounts} = this.state;
     const {whoami} = this.props;
+
+    if (!whoami.canManageTeams) {
+      return this.renderUpgradeToTeamMessage();
+    }
+
     return (
       <div>
         <table>
@@ -92,6 +109,7 @@ Team.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    canManageTeams: PropTypes.bool.isRequired,
   }).isRequired
 };
 

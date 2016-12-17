@@ -2,18 +2,44 @@ import React, {Component, PropTypes} from 'react';
 
 import * as session from '../session';
 
+const planTypeTeam = 'team';
+const planTypePlus = 'plus';
+const planCycleMonthly = 'monthly';
+const planCycleYearly = 'yearly';
+const minTeamSize = 3;
+const pricePerMember = 8;
+
+const planIdMap = {
+  'plus-monthly-1': [planTypePlus, planCycleMonthly, 1],
+  'plus-yearly-1': [planTypePlus, planCycleYearly, 1],
+  'team-monthly-1': [planTypeTeam, planCycleMonthly, 5],
+  'team-yearly-1': [planTypeTeam, planCycleYearly, 5],
+};
+
 class Subscribe extends Component {
-  state = {
-    loading: false,
-    planId: 'plus-monthly-1',
-    fullName: '',
-    cardNumber: '',
-    expireMonth: '01',
-    expireYear: '2018',
-    cvc: '',
-    zip: '',
-    error: '',
-  };
+  constructor (props) {
+    super(props);
+
+    const {billingDetails, whoami} = props;
+
+    const quantity = Math.max(minTeamSize, billingDetails ? billingDetails.subQuantity : 5);
+    const planDescription = window.location.hash === '#teams' ?
+      planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
+
+    this.state = {
+      loading: false,
+      planType: planDescription ? planDescription[0] : planTypePlus,
+      planCycle: planDescription ? planDescription[1] : planCycleMonthly,
+      quantity: quantity || 5,
+      fullName: '',
+      cardNumber: '',
+      expireMonth: '01',
+      expireYear: '2018',
+      cvc: '',
+      zip: '',
+      error: '',
+    };
+  }
 
   _handleCardNumberChange = e => {
     // Using timeout or else target.value will not have been updated yet
@@ -109,9 +135,13 @@ class Subscribe extends Component {
 
     Stripe.setPublishableKey(process.env.STRIPE_PUB_KEY);
     Stripe.card.createToken(params, async (status, response) => {
+      const teamSize = Math.max(minTeamSize, this.state.quantity);
+      const quantity = this.state.planType === planTypePlus ? 1 : teamSize;
+      const planId = `${this.state.planType}-${this.state.planCycle}-1`;
+
       if (status === 200) {
         try {
-          await session.subscribe(response.id, this.state.planId);
+          await session.subscribe(response.id, planId, quantity);
           window.location = '/app/';
           return;
         } catch (err) {
@@ -125,45 +155,96 @@ class Subscribe extends Component {
     });
   };
 
+  _calculatePrice (planType, planCycle, quantity) {
+    quantity = Math.max(quantity, minTeamSize);
+    const priceIndex = planCycle === planCycleMonthly ? 0 : 1;
+    const price = planType === planTypePlus ?
+      [5, 50] :
+      [pricePerMember * quantity, pricePerMember * 10 * quantity];
+
+    return price[priceIndex];
+  }
+
+  _getPlanDescription (planType, planCycle, quantity) {
+    const cycle = planCycle === planCycleMonthly ? 'month' : 'year';
+    const price = this._calculatePrice(planType, planCycle, quantity);
+
+    return `$${price} / ${cycle}`;
+  }
+
   render () {
     const {
       loading,
       error,
       cardType,
-      planId,
+      planType,
+      planCycle,
       expireMonth,
       expireYear,
+      quantity,
     } = this.state;
+
+    const {firstName, lastName} = this.props.whoami;
+    const fullName = `${firstName} ${lastName}`.trim();
 
     return (
       <form style={{margin: 'auto', maxWidth: '28rem'}} onSubmit={this._handleSubmit}>
+        <div className="form-control">
+          <label>Plan Type
+            <select className="wide"
+                    name="planType"
+                    defaultValue={planType}
+                    onChange={this._handleUpdateInput}>
+              <option value={planTypePlus}>Individual</option>
+              <option value={planTypeTeam}>Teams</option>
+            </select>
+          </label>
+        </div>
+        {planType === planTypeTeam ? (
+          <div className="form-control">
+            <label>Team Size
+              {" "}
+              <small>(billed for a minimum of {minTeamSize} members)</small>
+              <input type="number"
+                     defaultValue={quantity}
+                     onChange={this._handleUpdateInput}
+                     min="1"
+                     max="500"
+                     title="Number of Team Members"
+                     name="quantity"/>
+            </label>
+          </div>
+        ) : null}
         <div className="form-row center">
           <div className="form-control">
             <label>
               <input type="radio"
-                     name="planId"
-                     checked={planId === 'plus-monthly-1'}
+                     name="planCycle"
+                     checked={planCycle === planCycleMonthly}
                      onChange={this._handleUpdateInput}
-                     value="plus-monthly-1"/>
-              Per Month ($5/mo)
+                     value={planCycleMonthly}/>
+              {this._getPlanDescription(planType, planCycleMonthly, quantity)}
             </label>
           </div>
           <div className="form-control">
             <label>
               <input type="radio"
-                     name="planId"
+                     name="planCycle"
+                     checked={planCycle === planCycleYearly}
                      onChange={this._handleUpdateInput}
-                     value="plus-yearly-1"/>
-              Per Year ($50/yr)
+                     value={planCycleYearly}/>
+              {this._getPlanDescription(planType, planCycleYearly, quantity)}
             </label>
           </div>
         </div>
-        <br/>
+        <hr className="hr--skinny"/>
+        <h2 className="text-lg">Billing Information</h2>
         <div className="form-control">
           <label>Full Name
             <input type="text"
                    name="fullName"
                    placeholder="Maria Garcia"
+                   defaultValue={fullName}
                    autoFocus
                    onChange={this._handleUpdateInput}
                    required/>
@@ -253,14 +334,13 @@ class Subscribe extends Component {
 
         {error ? <small className="form-control error">** {error}</small> : null}
 
-        <div className="form-row">
-          <a href="/app/">&lt; Manage Account</a>
-          <div className="form-control right">
-            {loading ?
-              <button type="button" disabled className="button">Loading</button> :
-              <button type="submit" className="button">Subscribe</button>
-            }
-          </div>
+        <div className="form-control right">
+          {loading ?
+            <button type="button" disabled className="button">Subscribing...</button> :
+            <button type="submit" className="button">
+              Subscribe for {this._getPlanDescription(planType, planCycle, quantity)}
+            </button>
+          }
         </div>
 
         <hr className="hr--skinny"/>
@@ -272,6 +352,13 @@ class Subscribe extends Component {
   }
 }
 
-Subscribe.propTypes = {};
+Subscribe.propTypes = {
+  whoami: PropTypes.shape({
+    planId: PropTypes.string.isRequired,
+  }).isRequired,
+  billingDetails: PropTypes.shape({
+    subQuantity: PropTypes.number.isRequired,
+  })
+};
 
 export default Subscribe;
