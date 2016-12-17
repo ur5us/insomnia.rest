@@ -314,7 +314,7 @@ async function _pbkdf2Passphrase (passphrase, salt) {
       'raw',
       Buffer.from(passphrase, 'utf8'),
       {name: 'PBKDF2'},
-      true,
+      false,
       ['deriveBits']
     );
 

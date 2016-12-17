@@ -11,6 +11,48 @@ class App extends Component {
   state = {loading: true};
   component = null;
 
+  _handleReload = async () => {
+    let whoami;
+
+    const whoamiTask = session.whoami();
+    const billingDetailsTask = session.billingDetails();
+    const teamsTask = session.listTeams();
+
+    try {
+      whoami = await whoamiTask;
+    } catch (err) {
+      // If not logged in, redirect to login page
+      window.location = '/app/login/';
+      return;
+    }
+
+    const teams = await teamsTask;
+    let billingDetails;
+    try {
+      billingDetails = await billingDetailsTask;
+    } catch (err) {
+      // That's OK. That just means the account is Free
+    }
+
+    const path = window.location.pathname;
+    if (path.match(/^\/app\/$/)) {
+      this.component = <Home whoami={whoami} billingDetails={billingDetails}/>
+    } else if (path.match(/^\/app\/subscribe\/$/)) {
+      this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>
+    } else if (path.match(/^\/app\/teams\/$/)) {
+      this.component = (
+        <Teams
+          whoami={whoami}
+          billingDetails={billingDetails}
+          teams={teams}
+          handleReloadTeams={this._handleReload}
+        />
+      )
+    }
+
+    this.setState({loading: false});
+  };
+
   componentWillMount () {
     const {path} = this.props;
 
@@ -24,43 +66,9 @@ class App extends Component {
     // Show one of the above components
     if (this.component) {
       this.setState({loading: false});
-      return;
+    } else {
+      this._handleReload();
     }
-
-    // Now, try to load the user's info
-    (async () => {
-      let whoami;
-
-      const whoamiTask = session.whoami();
-      const billingDetailsTask = session.billingDetails();
-      const teamsTask = session.listTeams();
-
-      try {
-        whoami = await whoamiTask;
-      } catch (err) {
-        // If not logged in, redirect to login page
-        window.location = '/app/login/';
-        return;
-      }
-
-      const teams = await teamsTask;
-      let billingDetails;
-      try {
-        billingDetails = await billingDetailsTask;
-      } catch (err) {
-        // That's OK. That just means the account is Free
-      }
-
-      if (path.match(/^\/app\/$/)) {
-        this.component = <Home whoami={whoami} billingDetails={billingDetails}/>
-      } else if (path.match(/^\/app\/subscribe\/$/)) {
-        this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>
-      } else if (path.match(/^\/app\/teams\/$/)) {
-        this.component = <Teams whoami={whoami} billingDetails={billingDetails} teams={teams}/>
-      }
-
-      this.setState({loading: false});
-    })();
   }
 
   render () {

@@ -14,7 +14,7 @@ class Teams extends Component {
     }
 
     await session.leaveTeam(team.id);
-    window.location.reload();
+    this.props.handleReloadTeams();
   };
 
   _handleUpdateTeamName = e => {
@@ -25,7 +25,7 @@ class Teams extends Component {
     e.preventDefault();
     try {
       await session.addTeamMember(this._getOwnedTeam().id, this.state.newMemberEmail);
-      window.location.reload();
+      this.props.handleReloadTeams();
     } catch (err) {
       this.setState({error: err.message});
     }
@@ -88,7 +88,7 @@ class Teams extends Component {
           <form onSubmit={this._handleAddTeamMember}>
             <div className="form-row">
               <div className="form-control">
-                <label>Add Member by Email
+                <label>Add by Email
                   {" "}
                   <small>({membersRemaining} remaining)</small>
                   {" "}
@@ -137,7 +137,7 @@ class Teams extends Component {
     return (
       <div>
         <h2>Your Team</h2>
-        <p>Manage who is on your team.</p>
+        <p>Manage who is on <strong>{ownedTeam.name}</strong>.</p>
         {inner}
       </div>
     )
@@ -190,6 +190,7 @@ class Teams extends Component {
 }
 
 Teams.propTypes = {
+  handleReloadTeams: PropTypes.func.isRequired,
   whoami: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
