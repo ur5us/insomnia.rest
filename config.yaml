@@ -47,7 +47,7 @@ menu:
       URL: "/eula/"
     - Name: "Blog"
       Identifier: "blog"
-      URL: "blog"
+      URL: "/blog/"
     - Name: "Changelog"
       Identifier: "changelog"
       URL: "/changelog/"
