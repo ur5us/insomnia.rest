@@ -26,12 +26,15 @@ class Subscribe extends Component {
     const planDescription = window.location.hash === '#teams' ?
       planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
 
+    const fullName = `${whoami.firstName} ${whoami.lastName}`.trim();
+
     this.state = {
       loading: false,
       planType: planDescription ? planDescription[0] : planTypePlus,
       planCycle: planDescription ? planDescription[1] : planCycleMonthly,
       quantity: quantity || 5,
-      fullName: '',
+      useExistingBilling: !!billingDetails,
+      fullName: fullName,
       cardNumber: '',
       expireMonth: '01',
       expireYear: '2018',
@@ -113,7 +116,11 @@ class Subscribe extends Component {
   };
 
   _handleUpdateInput = e => {
-    this.setState({[e.target.name]: e.target.value, error: ''});
+    const value = e.target.type === 'checkbox' ?
+      e.target.checked :
+      e.target.value;
+
+    this.setState({[e.target.name]: value, error: ''});
   };
 
   _handleSubmit = async e => {
@@ -133,26 +140,33 @@ class Subscribe extends Component {
       params['address_zip'] = this.state.zip
     }
 
-    Stripe.setPublishableKey(process.env.STRIPE_PUB_KEY);
-    Stripe.card.createToken(params, async (status, response) => {
-      const teamSize = Math.max(minTeamSize, this.state.quantity);
-      const quantity = this.state.planType === planTypePlus ? 1 : teamSize;
-      const planId = `${this.state.planType}-${this.state.planCycle}-1`;
+    const teamSize = Math.max(minTeamSize, this.state.quantity);
+    const quantity = this.state.planType === planTypePlus ? 1 : teamSize;
+    const planId = `${this.state.planType}-${this.state.planCycle}-1`;
 
-      if (status === 200) {
-        try {
-          await session.subscribe(response.id, planId, quantity);
-          window.location = '/app/';
-          return;
-        } catch (err) {
-          this.setState({error: err.message});
-        }
-      } else {
-        this.setState({error: 'Payment failed unexpectedly. Please try again.'});
+    const finishBilling = async tokenId => {
+      try {
+        await session.subscribe(tokenId, planId, quantity);
+        window.location = '/app/';
+      } catch (err) {
+        this.setState({error: err.message});
       }
+    };
 
-      this.setState({loading: false});
-    });
+    if (this.state.useExistingBilling) {
+      finishBilling();
+    } else {
+      Stripe.setPublishableKey(process.env.STRIPE_PUB_KEY);
+      Stripe.card.createToken(params, async (status, response) => {
+        if (status === 200) {
+          await finishBilling(response.id);
+        } else {
+          this.setState({error: 'Payment failed unexpectedly. Please try again.'});
+        }
+
+        this.setState({loading: false});
+      });
+    }
   };
 
   _calculatePrice (planType, planCycle, quantity) {
@@ -182,21 +196,23 @@ class Subscribe extends Component {
       expireMonth,
       expireYear,
       quantity,
+      useExistingBilling,
+      fullName,
     } = this.state;
 
-    const {firstName, lastName} = this.props.whoami;
-    const fullName = `${firstName} ${lastName}`.trim();
+    const {billingDetails} = this.props;
 
     return (
-      <form style={{margin: 'auto', maxWidth: '28rem'}} onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit}>
         <div className="form-control">
           <label>Plan Type
             <select className="wide"
                     name="planType"
                     defaultValue={planType}
+                    autoFocus
                     onChange={this._handleUpdateInput}>
               <option value={planTypePlus}>Individual</option>
-              <option value={planTypeTeam}>Teams</option>
+              <option value={planTypeTeam}>Team</option>
             </select>
           </label>
         </div>
@@ -239,98 +255,115 @@ class Subscribe extends Component {
         </div>
         <hr className="hr--skinny"/>
         <h2 className="text-lg">Billing Information</h2>
-        <div className="form-control">
-          <label>Full Name
-            <input type="text"
-                   name="fullName"
-                   placeholder="Maria Garcia"
-                   defaultValue={fullName}
-                   autoFocus
-                   onChange={this._handleUpdateInput}
-                   required/>
-          </label>
-        </div>
-        <div className="form-control">
-          <label>Card Number {cardType ? `(${cardType})` : null}
-            <input type="text"
-                   name="cardNumber"
-                   placeholder="4012 0000 8888 1881"
-                   onChange={this._handleCardNumberChange}
-                   required/>
-          </label>
-        </div>
-        <div className="form-row">
+        {billingDetails ? (
           <div className="form-control">
-            <label>Expiration Date</label>
-            <br/>
-            <select name="expireMonth"
-                    title="expire month"
-                    defaultValue={expireMonth}
-                    onChange={this._handleUpdateInput}>
-              <option value="01">January</option>
-              <option value="02">February</option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            {" "}
-            <select name="expireYear"
-                    title="expire year"
-                    defaultValue={expireYear}
-                    onChange={this._handleUpdateInput}>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-              <option value="2031">2031</option>
-              <option value="2032">2032</option>
-              <option value="2033">2033</option>
-              <option value="2034">2034</option>
-              <option value="2035">2035</option>
-              <option value="2036">2036</option>
-              <option value="2037">2037</option>
-              <option value="2038">2038</option>
-              <option value="2039">2039</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label>Security Code (CVC)
-              <input type="text"
-                     name="cvc"
-                     placeholder="013"
+            <label>
+              <input type="checkbox"
+                     name="useExistingBilling"
                      onChange={this._handleUpdateInput}
-                     required/>
+                     defaultChecked={useExistingBilling}/>
+              Use existing billing info
             </label>
           </div>
-        </div>
+        ) : null}
 
-        <div className="form-control">
-          <label>Zip/Postal Code <span className="faint">(Optional)</span>
-            <input type="text"
-                   name="zip"
-                   placeholder="94301"
-                   onChange={this._handleUpdateInput}
-            />
-          </label>
-        </div>
+        {useExistingBilling ? (
+          <div></div>
+        ) : (
+          <div>
+            <div className="form-control">
+              <label>Full Name
+                <input type="text"
+                       name="fullName"
+                       placeholder="Maria Garcia"
+                       defaultValue={fullName}
+                       onChange={this._handleUpdateInput}
+                       required/>
+              </label>
+            </div>
+            <div className="form-control">
+              <label>Card Number {cardType ? `(${cardType})` : null}
+                <input type="text"
+                       name="cardNumber"
+                       placeholder="4012 0000 8888 1881"
+                       onChange={this._handleCardNumberChange}
+                       required/>
+              </label>
+            </div>
+            <div className="form-row">
+              <div className="form-control">
+                <label>Expiration Date</label>
+                <br/>
+                <select name="expireMonth"
+                        title="expire month"
+                        defaultValue={expireMonth}
+                        onChange={this._handleUpdateInput}>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                {" "}
+                <select name="expireYear"
+                        title="expire year"
+                        defaultValue={expireYear}
+                        onChange={this._handleUpdateInput}>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                  <option value="2031">2031</option>
+                  <option value="2032">2032</option>
+                  <option value="2033">2033</option>
+                  <option value="2034">2034</option>
+                  <option value="2035">2035</option>
+                  <option value="2036">2036</option>
+                  <option value="2037">2037</option>
+                  <option value="2038">2038</option>
+                  <option value="2039">2039</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label>Security Code (CVC)
+                  <input type="text"
+                         name="cvc"
+                         placeholder="013"
+                         onChange={this._handleUpdateInput}
+                         required/>
+                </label>
+              </div>
+            </div>
+
+            <div className="form-control">
+              <label>Zip/Postal Code <span className="faint">(Optional)</span>
+                <input type="text"
+                       name="zip"
+                       placeholder="94301"
+                       onChange={this._handleUpdateInput}
+                />
+              </label>
+            </div>
+          </div>
+        )}
 
         {error ? <small className="form-control error">** {error}</small> : null}
 

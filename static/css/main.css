@@ -285,6 +285,11 @@ ul.ul--minor li:before {
 /* APP STUFF */
 /* ~~~~~~~~~ */
 
+.app-container {
+    max-width: 30rem;
+    margin: auto;
+}
+
 .show-logged-out,
 .show-logged-in {
     opacity: 0;

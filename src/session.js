@@ -144,8 +144,20 @@ export function billingDetails () {
   return util.get('/api/billing/details');
 }
 
-export function addTeamMember (teamId, email) {
+export function inviteToTeam (teamId, email) {
   return util.post(`/api/teams/${teamId}/invite`, {email});
+}
+
+export function leaveTeam (teamId) {
+  return util.del(`/api/teams/${teamId}/leave`);
+}
+
+export function changeTeamName (teamId, name) {
+  return util.patch(`/api/teams/${teamId}`, {name});
+}
+
+export function removeFromTeam (teamId, accountId) {
+  return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
 }
 
 export function listTeams () {

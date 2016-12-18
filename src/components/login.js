@@ -31,7 +31,7 @@ class Login extends Component {
     const {loading, error} = this.state;
 
     return (
-      <form style={{margin: 'auto', maxWidth: '28rem'}} onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit}>
         <div className="form-control">
           <label>Email Address
             <input type="email"

@@ -163,7 +163,7 @@ class SignUp extends Component {
     }
 
     return (
-      <form style={{margin: 'auto', maxWidth: '28rem'}} onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit}>
         {inner}
       </form>
     )

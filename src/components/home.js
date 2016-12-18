@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import SignOutLink from './stuff/sign-out';
-import CancelLink from './stuff/cancel';
+import SignOutLink from './common/sign-out';
+import CancelLink from './common/cancel';
 
 class Home extends Component {
   renderNotice () {
@@ -20,6 +20,18 @@ class Home extends Component {
           </a>
         </p>
       )
+    } else if (billingDetails.subTrialing) {
+        const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
+        notice = (
+          <p className="notice info">
+            Your free trial ends on <strong>{trialEndDateString}</strong>
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Choose Plan
+            </a>
+          </p>
+        )
     } else if (billingDetails.subCancelled) {
       const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
       notice = (
@@ -62,13 +74,13 @@ class Home extends Component {
         </p>
         {(billingDetails && !billingDetails.subCancelled) ? (
           <p>
-            Your next bill is scheduled for <strong>{periodEnd}</strong> and will be
+            Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
             {" "}
             <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
             {billingDetails.subPercentOff ? (
               <span className="success bold">
                 {" "}
-                (with {billingDetails.subPercentOff}% discount!)
+                (after {billingDetails.subPercentOff}% discount)
               </span>
             ) : null}
             .
@@ -106,6 +118,7 @@ Home.propTypes = {
     description: PropTypes.string.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
     subTrialing: PropTypes.bool.isRequired,
+    subTrialEnd: PropTypes.number.isRequired,
     subCancelled: PropTypes.bool.isRequired,
     subPeriodEnd: PropTypes.number.isRequired,
     subPercentOff: PropTypes.number.isRequired,

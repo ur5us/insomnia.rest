@@ -3,7 +3,6 @@ import Home from './home';
 import Login from './login';
 import SignUp from './signup';
 import Subscribe from './subscribe';
-import Team from './team';
 import Teams from './teams';
 import * as session from '../session';
 
@@ -45,12 +44,16 @@ class App extends Component {
           whoami={whoami}
           billingDetails={billingDetails}
           teams={teams}
-          handleReloadTeams={this._handleReload}
+          handleReload={this._handleReload}
         />
       )
     }
 
-    this.setState({loading: false});
+    // Give some time for components waiting on this to finish to update their
+    // state before we refresh on them.
+    setTimeout(() => {
+      this.setState({loading: false});
+    }, 0)
   };
 
   componentWillMount () {
@@ -73,18 +76,24 @@ class App extends Component {
 
   render () {
     if (this.component) {
-      return this.component;
+      return (
+        <div className="app-container">
+          {this.component}
+        </div>
+      );
     }
 
     if (this.state.loading) {
       return (
-        <div className="center text-lg subtle">
-          Loading...
+        <div className="app-container">
+          <div className="center text-lg subtle">
+            Loading...
+          </div>
         </div>
       )
     } else {
       return (
-        <div>
+        <div className="app-container">
           Page Not Found
         </div>
       )
