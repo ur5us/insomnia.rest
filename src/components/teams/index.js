@@ -31,11 +31,13 @@ class Teams extends Component {
   };
 
   renderEditTeam () {
+
     const {whoami, billingDetails} = this.props;
     const ownedTeam = this._getOwnedTeam();
 
     let membersRemaining = 0;
-    if (billingDetails) {
+
+    if (billingDetails && ownedTeam) {
       membersRemaining = billingDetails.subQuantity - ownedTeam.accounts.length;
     }
 
@@ -53,7 +55,7 @@ class Teams extends Component {
           </p>
         </div>
       )
-    } else {
+    } else if (ownedTeam) {
       const {handleReload} = this.props;
 
       // Sort the accounts to put the user first. NOTE: We're making a copy since
@@ -100,6 +102,14 @@ class Teams extends Component {
             ))}
           </ul>
         </div>
+      )
+    } else {
+      // This should never happen...
+      inner = (
+        <p className="notice info">
+          Uh oh! Your account does not have a default team. Please
+          contact <strong>support@insomnia.rest</strong>
+        </p>
       )
     }
 
