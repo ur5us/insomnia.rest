@@ -18,6 +18,10 @@ export function post (path, obj) {
   return _fetch('POST', path, obj)
 }
 
+export function patch (path, obj) {
+  return _fetch('PATCH', path, obj)
+}
+
 export function get (path, sessionId = null) {
   return _fetch('GET', path, null, sessionId)
 }

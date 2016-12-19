@@ -2,18 +2,50 @@ import React, {Component, PropTypes} from 'react';
 
 import * as session from '../session';
 
+const planTypeTeam = 'team';
+const planTypePlus = 'plus';
+const planCycleMonthly = 'monthly';
+const planCycleYearly = 'yearly';
+const minTeamSize = 3;
+const pricePerMember = 8;
+
+const planIdMap = {
+  'plus-monthly-1': [planTypePlus, planCycleMonthly, 1],
+  'plus-yearly-1': [planTypePlus, planCycleYearly, 1],
+  'team-monthly-1': [planTypeTeam, planCycleMonthly, 5],
+  'team-yearly-1': [planTypeTeam, planCycleYearly, 5],
+};
+
 class Subscribe extends Component {
-  state = {
-    loading: false,
-    planId: 'plus-monthly-1',
-    fullName: '',
-    cardNumber: '',
-    expireMonth: '01',
-    expireYear: '2018',
-    cvc: '',
-    zip: '',
-    error: '',
-  };
+  constructor (props) {
+    super(props);
+
+    const {billingDetails, whoami} = props;
+
+    const quantity = Math.max(minTeamSize, billingDetails ? billingDetails.subQuantity : 5);
+
+    // Enable this again when teams are ready
+    // const planDescription = window.location.hash === '#teams' ?
+    //   planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
+    const planDescription = planIdMap['plus-monthly-1'];
+
+    const fullName = `${whoami.firstName} ${whoami.lastName}`.trim();
+
+    this.state = {
+      loading: false,
+      planType: planDescription ? planDescription[0] : planTypePlus,
+      planCycle: planDescription ? planDescription[1] : planCycleMonthly,
+      quantity: quantity || 5,
+      useExistingBilling: !!billingDetails,
+      fullName: fullName,
+      cardNumber: '',
+      expireMonth: '01',
+      expireYear: '2018',
+      cvc: '',
+      zip: '',
+      error: '',
+    };
+  }
 
   _handleCardNumberChange = e => {
     // Using timeout or else target.value will not have been updated yet
@@ -87,7 +119,11 @@ class Subscribe extends Component {
   };
 
   _handleUpdateInput = e => {
-    this.setState({[e.target.name]: e.target.value, error: ''});
+    const value = e.target.type === 'checkbox' ?
+      e.target.checked :
+      e.target.value;
+
+    this.setState({[e.target.name]: value, error: ''});
   };
 
   _handleSubmit = async e => {
@@ -107,160 +143,240 @@ class Subscribe extends Component {
       params['address_zip'] = this.state.zip
     }
 
-    Stripe.setPublishableKey(process.env.STRIPE_PUB_KEY);
-    Stripe.card.createToken(params, async (status, response) => {
-      if (status === 200) {
-        try {
-          await session.subscribe(response.id, this.state.planId);
-          window.location = '/app/';
-          return;
-        } catch (err) {
-          this.setState({error: err.message});
-        }
-      } else {
-        this.setState({error: 'Payment failed unexpectedly. Please try again.'});
-      }
+    const teamSize = Math.max(minTeamSize, this.state.quantity);
+    const quantity = this.state.planType === planTypePlus ? 1 : teamSize;
+    const planId = `${this.state.planType}-${this.state.planCycle}-1`;
 
-      this.setState({loading: false});
-    });
+    const finishBilling = async tokenId => {
+      try {
+        await session.subscribe(tokenId, planId, quantity);
+        window.location = '/app/';
+      } catch (err) {
+        this.setState({error: err.message});
+      }
+    };
+
+    if (this.state.useExistingBilling) {
+      finishBilling();
+    } else {
+      Stripe.setPublishableKey(process.env.STRIPE_PUB_KEY);
+      Stripe.card.createToken(params, async (status, response) => {
+        if (status === 200) {
+          await finishBilling(response.id);
+        } else {
+          this.setState({error: 'Payment failed unexpectedly. Please try again.'});
+        }
+
+        this.setState({loading: false});
+      });
+    }
   };
+
+  _calculatePrice (planType, planCycle, quantity) {
+    quantity = Math.max(quantity, minTeamSize);
+    const priceIndex = planCycle === planCycleMonthly ? 0 : 1;
+    const price = planType === planTypePlus ?
+      [5, 50] :
+      [pricePerMember * quantity, pricePerMember * 10 * quantity];
+
+    return price[priceIndex];
+  }
+
+  _getPlanDescription (planType, planCycle, quantity) {
+    const cycle = planCycle === planCycleMonthly ? 'month' : 'year';
+    const price = this._calculatePrice(planType, planCycle, quantity);
+
+    return `$${price} / ${cycle}`;
+  }
 
   render () {
     const {
       loading,
       error,
       cardType,
-      planId,
+      planType,
+      planCycle,
       expireMonth,
       expireYear,
+      quantity,
+      useExistingBilling,
+      fullName,
     } = this.state;
 
+    const {billingDetails} = this.props;
+
     return (
-      <form style={{margin: 'auto', maxWidth: '28rem'}} onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit}>
+        <div className="form-control">
+          <label>Plan Type
+            <select className="wide"
+                    name="planType"
+                    defaultValue={planType}
+                    autoFocus
+                    onChange={this._handleUpdateInput}>
+              <option value={planTypePlus}>Individual</option>
+              <option value={planTypeTeam} disabled>Team</option>
+            </select>
+          </label>
+        </div>
+        {planType === planTypeTeam ? (
+          <div className="form-control">
+            <label>Team Size
+              {" "}
+              <small>(billed for a minimum of {minTeamSize} members)</small>
+              <input type="number"
+                     defaultValue={quantity}
+                     onChange={this._handleUpdateInput}
+                     min="1"
+                     max="500"
+                     title="Number of Team Members"
+                     name="quantity"/>
+            </label>
+          </div>
+        ) : null}
         <div className="form-row center">
           <div className="form-control">
             <label>
               <input type="radio"
-                     name="planId"
-                     checked={planId === 'plus-monthly-1'}
+                     name="planCycle"
+                     checked={planCycle === planCycleMonthly}
                      onChange={this._handleUpdateInput}
-                     value="plus-monthly-1"/>
-              Per Month ($5/mo)
+                     value={planCycleMonthly}/>
+              {this._getPlanDescription(planType, planCycleMonthly, quantity)}
             </label>
           </div>
           <div className="form-control">
             <label>
               <input type="radio"
-                     name="planId"
+                     name="planCycle"
+                     checked={planCycle === planCycleYearly}
                      onChange={this._handleUpdateInput}
-                     value="plus-yearly-1"/>
-              Per Year ($50/yr)
+                     value={planCycleYearly}/>
+              {this._getPlanDescription(planType, planCycleYearly, quantity)}
             </label>
           </div>
         </div>
-        <br/>
-        <div className="form-control">
-          <label>Full Name
-            <input type="text"
-                   name="fullName"
-                   placeholder="Maria Garcia"
-                   autoFocus
-                   onChange={this._handleUpdateInput}
-                   required/>
-          </label>
-        </div>
-        <div className="form-control">
-          <label>Card Number {cardType ? `(${cardType})` : null}
-            <input type="text"
-                   name="cardNumber"
-                   placeholder="4012 0000 8888 1881"
-                   onChange={this._handleCardNumberChange}
-                   required/>
-          </label>
-        </div>
-        <div className="form-row">
+        <hr className="hr--skinny"/>
+        <h2 className="text-lg">Billing Information</h2>
+        {billingDetails ? (
           <div className="form-control">
-            <label>Expiration Date</label>
-            <br/>
-            <select name="expireMonth"
-                    title="expire month"
-                    defaultValue={expireMonth}
-                    onChange={this._handleUpdateInput}>
-              <option value="01">January</option>
-              <option value="02">February</option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            {" "}
-            <select name="expireYear"
-                    title="expire year"
-                    defaultValue={expireYear}
-                    onChange={this._handleUpdateInput}>
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-              <option value="2025">2025</option>
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-              <option value="2029">2029</option>
-              <option value="2030">2030</option>
-              <option value="2031">2031</option>
-              <option value="2032">2032</option>
-              <option value="2033">2033</option>
-              <option value="2034">2034</option>
-              <option value="2035">2035</option>
-              <option value="2036">2036</option>
-              <option value="2037">2037</option>
-              <option value="2038">2038</option>
-              <option value="2039">2039</option>
-            </select>
-          </div>
-          <div className="form-control">
-            <label>Security Code (CVC)
-              <input type="text"
-                     name="cvc"
-                     placeholder="013"
+            <label>
+              <input type="checkbox"
+                     name="useExistingBilling"
                      onChange={this._handleUpdateInput}
-                     required/>
+                     defaultChecked={useExistingBilling}/>
+              Use existing billing info
             </label>
           </div>
-        </div>
+        ) : null}
 
-        <div className="form-control">
-          <label>Zip/Postal Code <span className="faint">(Optional)</span>
-            <input type="text"
-                   name="zip"
-                   placeholder="94301"
-                   onChange={this._handleUpdateInput}
-            />
-          </label>
-        </div>
+        {useExistingBilling ? (
+          <div></div>
+        ) : (
+          <div>
+            <div className="form-control">
+              <label>Full Name
+                <input type="text"
+                       name="fullName"
+                       placeholder="Maria Garcia"
+                       defaultValue={fullName}
+                       onChange={this._handleUpdateInput}
+                       required/>
+              </label>
+            </div>
+            <div className="form-control">
+              <label>Card Number {cardType ? `(${cardType})` : null}
+                <input type="text"
+                       name="cardNumber"
+                       placeholder="4012 0000 8888 1881"
+                       onChange={this._handleCardNumberChange}
+                       required/>
+              </label>
+            </div>
+            <div className="form-row">
+              <div className="form-control">
+                <label>Expiration Date</label>
+                <br/>
+                <select name="expireMonth"
+                        title="expire month"
+                        defaultValue={expireMonth}
+                        onChange={this._handleUpdateInput}>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                {" "}
+                <select name="expireYear"
+                        title="expire year"
+                        defaultValue={expireYear}
+                        onChange={this._handleUpdateInput}>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                  <option value="2031">2031</option>
+                  <option value="2032">2032</option>
+                  <option value="2033">2033</option>
+                  <option value="2034">2034</option>
+                  <option value="2035">2035</option>
+                  <option value="2036">2036</option>
+                  <option value="2037">2037</option>
+                  <option value="2038">2038</option>
+                  <option value="2039">2039</option>
+                </select>
+              </div>
+              <div className="form-control">
+                <label>Security Code (CVC)
+                  <input type="text"
+                         name="cvc"
+                         placeholder="013"
+                         onChange={this._handleUpdateInput}
+                         required/>
+                </label>
+              </div>
+            </div>
+
+            <div className="form-control">
+              <label>Zip/Postal Code <span className="faint">(Optional)</span>
+                <input type="text"
+                       name="zip"
+                       placeholder="94301"
+                       onChange={this._handleUpdateInput}
+                />
+              </label>
+            </div>
+          </div>
+        )}
 
         {error ? <small className="form-control error">** {error}</small> : null}
 
-        <div className="form-row">
-          <a href="/app/">&lt; Manage Account</a>
-          <div className="form-control right">
-            {loading ?
-              <button type="button" disabled className="button">Loading</button> :
-              <button type="submit" className="button">Subscribe</button>
-            }
-          </div>
+        <div className="form-control right">
+          {loading ?
+            <button type="button" disabled className="button">Subscribing...</button> :
+            <button type="submit" className="button">
+              Subscribe for {this._getPlanDescription(planType, planCycle, quantity)}
+            </button>
+          }
         </div>
 
         <hr className="hr--skinny"/>
@@ -272,6 +388,13 @@ class Subscribe extends Component {
   }
 }
 
-Subscribe.propTypes = {};
+Subscribe.propTypes = {
+  whoami: PropTypes.shape({
+    planId: PropTypes.string.isRequired,
+  }).isRequired,
+  billingDetails: PropTypes.shape({
+    subQuantity: PropTypes.number.isRequired,
+  })
+};
 
 export default Subscribe;

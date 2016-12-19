@@ -1,10 +1,4 @@
 (function () {
-  if (localStorage && localStorage.currentSessionId) {
-    document.body.setAttribute('data-logged-in', 'yes');
-  } else {
-    document.body.setAttribute('data-logged-in', 'no');
-  }
-
   var els = document.querySelectorAll('.__download-link');
 
   var prefix = 'Download for ';

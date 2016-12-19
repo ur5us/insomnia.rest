@@ -32,11 +32,11 @@ menu:
       Pre: "button"
       URL: "/app/"
       Weight: 10
-#    - Name: "Sign Up"
-#      Identifier: "signup"
-#      Pre: "button"
-#      URL: "/app/signup/"
-#      Weight: 10
+    - Name: "Sign Up"
+      Identifier: "signup"
+      Pre: "button"
+      URL: "/app/signup/"
+      Weight: 10
     - Name: "Download"
       Identifier: "download"
       URL: "/download/"

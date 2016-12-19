@@ -102,10 +102,10 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
   localStorage.setItem('currentSessionId', sessionId);
 }
 
-export function subscribe (tokenId, planId) {
+export function subscribe (tokenId, planId, quantity) {
   return util.post('/api/billing/subscriptions', {
     token: tokenId,
-    quantity: 1,
+    quantity: quantity,
     plan: planId,
   });
 }
@@ -136,13 +136,32 @@ export async function cancelAccount () {
   await util.del('/api/billing/subscriptions');
 }
 
-let _whoamiCache = null;
 export async function whoami () {
-  if (!_whoamiCache) {
-    _whoamiCache = await util.get('/auth/whoami');
-  }
+  return util.get('/auth/whoami');
+}
 
-  return _whoamiCache;
+export function billingDetails () {
+  return util.get('/api/billing/details');
+}
+
+export function inviteToTeam (teamId, email) {
+  return util.post(`/api/teams/${teamId}/invite`, {email});
+}
+
+export function leaveTeam (teamId) {
+  return util.del(`/api/teams/${teamId}/leave`);
+}
+
+export function changeTeamName (teamId, name) {
+  return util.patch(`/api/teams/${teamId}`, {name});
+}
+
+export function removeFromTeam (teamId, accountId) {
+  return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
+}
+
+export function listTeams () {
+  return util.get('/api/teams');
 }
 
 
