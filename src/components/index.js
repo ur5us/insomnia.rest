@@ -20,7 +20,8 @@ class App extends Component {
     try {
       whoami = await whoamiTask;
     } catch (err) {
-      // If not logged in, redirect to login page
+      // If not logged in, logout and redirect to login page
+      await session.logout();
       window.location = '/app/login/';
       return;
     }

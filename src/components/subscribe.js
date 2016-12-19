@@ -23,8 +23,11 @@ class Subscribe extends Component {
     const {billingDetails, whoami} = props;
 
     const quantity = Math.max(minTeamSize, billingDetails ? billingDetails.subQuantity : 5);
-    const planDescription = window.location.hash === '#teams' ?
-      planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
+
+    // Enable this again when teams are ready
+    // const planDescription = window.location.hash === '#teams' ?
+    //   planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
+    const planDescription = planIdMap['plus-monthly-1'];
 
     const fullName = `${whoami.firstName} ${whoami.lastName}`.trim();
 
@@ -212,7 +215,7 @@ class Subscribe extends Component {
                     autoFocus
                     onChange={this._handleUpdateInput}>
               <option value={planTypePlus}>Individual</option>
-              <option value={planTypeTeam}>Team</option>
+              <option value={planTypeTeam} disabled>Team</option>
             </select>
           </label>
         </div>

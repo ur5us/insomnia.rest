@@ -14,7 +14,7 @@ who may be trying to do something similar.
 
 Since publishing the first recap ([First Four Months](/blog/progress-report-1/)) I've had a
 month to reflect on it, and have decided to apply a slightly different format this time.
-Stats can be interesting, but the are not very useful or descriptive on their own. So, this
+Stats can be interesting, but they are not very useful or descriptive on their own. So, this
 update will try to adhere to a more expository style. Let's get right into it then, shall we?
 
 <!--more-->

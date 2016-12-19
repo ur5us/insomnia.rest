@@ -21,17 +21,17 @@ class Home extends Component {
         </p>
       )
     } else if (billingDetails.subTrialing) {
-        const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
-        notice = (
-          <p className="notice info">
-            Your free trial ends on <strong>{trialEndDateString}</strong>
-            <br/>
-            <br/>
-            <a href="/app/subscribe/" className="button button--compact">
-              Choose Plan
-            </a>
-          </p>
-        )
+      const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
+      notice = (
+        <p className="notice info">
+          Your free trial ends on <strong>{trialEndDateString}</strong>
+          <br/>
+          <br/>
+          <a href="/app/subscribe/" className="button button--compact">
+            Choose Plan
+          </a>
+        </p>
+      )
     } else if (billingDetails.subCancelled) {
       const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
       notice = (
@@ -88,9 +88,11 @@ class Home extends Component {
         ) : null}
         <p>Here are some things you might want to do.</p>
         <ul>
-          <li>
-            <a href="/app/teams/">Manage Teams</a>
-          </li>
+          {whoami.canManageTeams ? (
+            <li>
+              <a href="/app/teams/">Manage Teams</a>
+            </li>
+          ) : null}
           <li>
             <a href="/app/subscribe/">Change Plan</a>
           </li>
@@ -113,6 +115,7 @@ Home.propTypes = {
     trialEnd: PropTypes.number.isRequired,
     isTrialing: PropTypes.bool.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
+    canManageTeams: PropTypes.bool.isRequired,
   }).isRequired,
   billingDetails: PropTypes.shape({
     description: PropTypes.string.isRequired,
