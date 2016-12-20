@@ -1,5 +1,6 @@
 ---
-title: "Insomnia End User License Agreement"
+title: End User License Agreement
+type: skinny
 ---
 
 ## 1. LICENSE
