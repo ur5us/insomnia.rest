@@ -17,7 +17,6 @@ class Teams extends Component {
   };
 
   renderEditTeam () {
-
     const {whoami, billingDetails} = this.props;
     const ownedTeam = this._getOwnedTeam();
 
@@ -178,6 +177,7 @@ Teams.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     ownerAccountId: PropTypes.string.isRequired,
+    accounts: PropTypes.arrayOf({}).isRequired,
   })).isRequired,
 };
 
