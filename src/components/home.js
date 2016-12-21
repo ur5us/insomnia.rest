@@ -25,11 +25,6 @@ class Home extends Component {
       notice = (
         <p className="notice info">
           Your free trial ends on <strong>{trialEndDateString}</strong>
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Choose Plan
-          </a>
         </p>
       )
     } else if (billingDetails.subCancelled) {
@@ -58,7 +53,7 @@ class Home extends Component {
 
   render () {
     const {whoami, billingDetails} = this.props;
-    const description = billingDetails ? billingDetails.description : 'hello';
+    const description = billingDetails && billingDetails.description;
 
     const total = billingDetails && billingDetails.subTotal;
     const discountAmount = billingDetails ? total * (billingDetails.subPercentOff / 100) : 0;
@@ -69,9 +64,7 @@ class Home extends Component {
       <div>
         {this.renderNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
-        <p>
-          You are subscribed to <strong>{description}</strong>!
-        </p>
+        {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
         {(billingDetails && !billingDetails.subCancelled) ? (
           <p>
             Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
@@ -94,7 +87,10 @@ class Home extends Component {
             </li>
           ) : null}
           <li>
-            <a href="/app/subscribe/">Change Plan</a>
+            <a href="/app/change-password/">Change Password</a>
+          </li>
+          <li>
+            <a href="/app/subscribe/">Update Subscription</a>
           </li>
           <li>
             <CancelLink/>

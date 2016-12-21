@@ -131,6 +131,19 @@ export function decryptAES (jwkOrKey, message) {
 }
 
 /**
+ * Decrypt and re-encrypt with new keys
+ *
+ * @param oldJwkOrKey
+ * @param newJwkOrKey
+ * @param message
+ * @returns {{iv, t, d, ad}}
+ */
+export function recryptAES (oldJwkOrKey, newJwkOrKey, message) {
+  const decrypted = decryptAES(oldJwkOrKey, message);
+  return encryptAES(newJwkOrKey, decrypted);
+}
+
+/**
  * Generate a random salt in hex
  *
  * @returns {string}

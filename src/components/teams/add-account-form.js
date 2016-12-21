@@ -44,7 +44,7 @@ class AddTeamAccountForm extends Component {
               {" "}
               <small>({membersRemaining} remaining)</small>
               {" "}
-              {error ? <small className="form-control error">({error})</small> : null}
+              {error ? <small className="error">({error})</small> : null}
               <input type="email"
                      placeholder="bobbyboucher@domain.com"
                      name="newMemberEmail"
@@ -52,7 +52,7 @@ class AddTeamAccountForm extends Component {
                      required/>
             </label>
           </div>
-          <div className="form-control width--auto">
+          <div className="form-control form-control--no-label width--auto">
             {loading ?
               <button type="button" disabled className="button">Creating...</button> :
               <button type="submit" className="button">Add</button>

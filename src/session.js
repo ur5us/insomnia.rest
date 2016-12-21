@@ -64,7 +64,7 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
   // Fetch Salt and Submit A To Server //
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
-  const {saltKey, saltAuth} = await util.post('/auth/login-s', {email});
+  const {saltKey, saltAuth} = await getAuthSalts(email);
   authSecret = authSecret || await crypt.deriveKey(passphrase, email, saltKey);
   const secret1 = await crypt.srpGenKey();
   const c = new srp.Client(
@@ -114,12 +114,6 @@ export function getCurrentSessionId () {
   return localStorage.getItem('currentSessionId') || NO_SESSION;
 }
 
-/** Check if we (think) we have a session */
-export function hasSessionId () {
-  return getCurrentSessionId() !== NO_SESSION;
-}
-
-/** Log out and delete session data */
 export async function logout () {
   try {
     await util.post('/auth/logout');
@@ -140,11 +134,70 @@ export async function whoami () {
   return util.get('/auth/whoami');
 }
 
-export function billingDetails () {
-  return util.get('/api/billing/details');
+export async function billingDetails () {
+  try {
+    return await util.get('/api/billing/details');
+  } catch (e) {
+    return null;
+  }
 }
 
-export function inviteToTeam (teamId, email) {
+export function getAuthSalts (email) {
+  return util.post('/auth/login-s', {email})
+}
+
+export async function changePassword (rawOldPassphrase, rawNewPassphrase) {
+  // Sanitize inputs
+  const oldPassphrase = _sanitizePassphrase(rawOldPassphrase);
+  const newPassphrase = _sanitizePassphrase(rawNewPassphrase);
+
+  // Fetch some things
+  const {email, saltEnc, encSymmetricKey} = await whoami();
+  const {saltKey, saltAuth} = await getAuthSalts(email);
+
+  // Generate some secrets for the user base'd on password
+  const oldSecret = await crypt.deriveKey(oldPassphrase, email, saltEnc);
+  const newSecret = await crypt.deriveKey(newPassphrase, email, saltEnc);
+  const oldAuthSecret = await crypt.deriveKey(oldPassphrase, email, saltKey);
+  const newAuthSecret = await crypt.deriveKey(newPassphrase, email, saltKey);
+
+  // Compute the verifier key and add it to the Account object
+  const oldVerifier = srp.computeVerifier(
+    _getSrpParams(),
+    Buffer.from(saltAuth, 'hex'),
+    Buffer.from(email, 'utf8'),
+    Buffer.from(oldAuthSecret, 'hex')
+  ).toString('hex');
+
+  const newVerifier = srp.computeVerifier(
+    _getSrpParams(),
+    Buffer.from(saltAuth, 'hex'),
+    Buffer.from(email, 'utf8'),
+    Buffer.from(newAuthSecret, 'hex')
+  ).toString('hex');
+
+  // Re-encrypt existing keys with new secret
+  const newEncSymmetricKeyJSON = crypt.recryptAES(oldSecret, newSecret, JSON.parse(encSymmetricKey));
+  const newEncSymmetricKey = JSON.stringify(newEncSymmetricKeyJSON);
+
+  return util.post(`/auth/change-password`, {
+    verifier: oldVerifier,
+    encSymmetricKey: encSymmetricKey,
+    newVerifier,
+    newEncSymmetricKey,
+  });
+}
+
+export async function inviteToTeam (teamId, email) {
+  // Get all ResourceGroups for the team
+  // const team = await getTeam(teamId);
+
+  // Decrypt each ResourceGroups symmetric key from AccountResourceGroupLink
+
+  // Encrypt symmetric keys with new member's public key
+
+  // Create new AccountResourceGroupLinks for new member
+
   return util.post(`/api/teams/${teamId}/invite`, {email});
 }
 

@@ -53,7 +53,7 @@ class UpdateTeamNameForm extends Component {
 
           {error ? <small className="form-control error">({error})</small> : null}
 
-          <div className="form-control width--auto">
+          <div className="form-control form-control--no-label width--auto">
             {loading ?
               <button type="button" className="button" disabled>Updating...</button> :
               <button type="submit" className="button">Update</button>}

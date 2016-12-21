@@ -67,6 +67,7 @@ async function _fetch (method, path, json, sessionId = null) {
   if (!response.ok) {
     const err = new Error(`Response ${response.status} for ${path}`);
     err.message = await response.text();
+    err.statusCode = response.status;
     throw err
   }
 

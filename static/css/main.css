@@ -18,7 +18,7 @@ a:hover, .button:hover {
     background: linear-gradient(165deg, #6e60cc 0%, #484389 100%);
     text-align: center;
     padding: 9rem 0 8rem 0;
-    margin-bottom: 8rem;
+    margin-bottom: 2rem;
 }
 
 .jumbotron *:not(.button) {
@@ -60,16 +60,17 @@ img.jumbotron__icon {
 }
 
 .jumbotron__img-container {
-    position: relative;
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
     height: 0;
-    max-width: 46rem;
+    max-width: 57rem;
     margin: auto;
 }
 
 .jumbotron__img {
     display: block;
     margin: auto;
-    position: relative;
     z-index: 1;
     border-radius: 0.2rem;
     box-shadow: 0 0 5rem rgba(0, 0, 0, 0.2);
@@ -344,12 +345,6 @@ body[data-logged-in="no"] .show-logged-out {
 /* MEDIA QUERIES */
 /* ~~~~~~~~~~~~~ */
 
-@media only screen and (min-width: 23rem) {
-    .jumbotron {
-        margin-bottom: 14rem;
-    }
-}
-
 @media only screen and (max-width: 33.75rem) {
     .navbar__items {
         margin-right: 0;
@@ -387,13 +382,19 @@ body[data-logged-in="no"] .show-logged-out {
     }
 }
 
+@media only screen and (min-width: 23rem) {
+    .jumbotron {
+        margin-bottom: 7rem;
+    }
+}
+
 @media only screen and (min-width: 33.75rem) {
     .img--promo {
         max-height: 12rem;
     }
 
     .jumbotron {
-        margin-bottom: 14rem;
+        margin-bottom: 12rem;
     }
 }
 
@@ -419,5 +420,13 @@ body[data-logged-in="no"] .show-logged-out {
 
     .jumbotron {
         margin-bottom: 19rem;
+    }
+
+    .jumbotron__img-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 0;
+        margin: auto;
     }
 }

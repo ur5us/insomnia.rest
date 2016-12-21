@@ -4,6 +4,7 @@ import Login from './login';
 import SignUp from './signup';
 import Subscribe from './subscribe';
 import Teams from './teams';
+import ChangePassword from './change-password';
 import * as session from '../session';
 
 class App extends Component {
@@ -17,28 +18,29 @@ class App extends Component {
     const billingDetailsTask = session.billingDetails();
     const teamsTask = session.listTeams();
 
+    // Fetch Account info
     try {
       whoami = await whoamiTask;
     } catch (err) {
       // If not logged in, logout and redirect to login page
-      await session.logout();
+      if (err.statusCode === 403) {
+        await session.logout();
+      }
       window.location = '/app/login/';
       return;
     }
 
+    // Fetch the things
     const teams = await teamsTask;
-    let billingDetails;
-    try {
-      billingDetails = await billingDetailsTask;
-    } catch (err) {
-      // That's OK. That just means the account is Free
-    }
+    const billingDetails = await billingDetailsTask;
 
     const path = window.location.pathname;
     if (path.match(/^\/app\/$/)) {
       this.component = <Home whoami={whoami} billingDetails={billingDetails}/>
     } else if (path.match(/^\/app\/subscribe\/$/)) {
       this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>
+    } else if (path.match(/^\/app\/change-password\/$/)) {
+      this.component = <ChangePassword whoami={whoami}/>
     } else if (path.match(/^\/app\/teams\/$/)) {
       this.component = (
         <Teams
@@ -77,27 +79,17 @@ class App extends Component {
 
   render () {
     if (this.component) {
-      return (
-        <div className="app-container">
-          {this.component}
-        </div>
-      );
+      return this.component;
     }
 
     if (this.state.loading) {
       return (
-        <div className="app-container">
-          <div className="center text-lg subtle">
-            Loading...
-          </div>
+        <div className="center text-lg subtle">
+          Loading...
         </div>
       )
     } else {
-      return (
-        <div className="app-container">
-          Page Not Found
-        </div>
-      )
+      return <div>Page Not Found</div>;
     }
   }
 }

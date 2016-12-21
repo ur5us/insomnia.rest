@@ -4,6 +4,7 @@ import * as session from '../session';
 class SignUp extends Component {
   state = {
     step: 1,
+    agreeToTerms: false,
     loading: false,
     firstName: '',
     lastName: '',
@@ -40,6 +41,11 @@ class SignUp extends Component {
       return;
     }
 
+    if (!this.state.agreeToTerms) {
+      alert('Please verify that you agree to the terms of service');
+      return;
+    }
+
     this.setState({loading: true});
 
     try {
@@ -51,6 +57,7 @@ class SignUp extends Component {
       );
       window.location = '/app/';
     } catch (err) {
+      console.error('Failed to sign up', err);
       this.setState({error: err.message, loading: false});
     }
   };
@@ -92,23 +99,25 @@ class SignUp extends Component {
           </label>
         </div>
         <div className="form-control">
-          <label>Password * <span className="subtle">(minimum 6 characters)</span>
+          <label>Password * <span className="subtle">(minimum 8 characters)</span>
             <input type="password"
                    name="password"
                    onChange={this._handleUpdateInput}
                    defaultValue={this.state.password}
                    placeholder="•••••••••••••"
-                   pattern=".{6,}"
+                   pattern=".{8,}"
                    required/>
           </label>
         </div>
-        {error ? <small className="form-control error">** {error}</small> : null}
-        <div className="form-row">
-          <span>or, <a href="/app/login">Log In</a></span>
+        {error ? <div className="form-control error">** {error}</div> : null}
+        <div className="form-row padding-top-sm">
+          <div className="form-control">
+            or, <a href="/app/login">Log In</a>
+          </div>
           <div className="form-control right">
             {loading ?
               <button type="button" disabled className="button">Loading</button> :
-              <button type="submit" className="button">Create Account</button>
+              <button type="submit" className="button">Proceed to Next Step</button>
             }
           </div>
         </div>
@@ -117,7 +126,7 @@ class SignUp extends Component {
   }
 
   renderStep2 () {
-    const {error, loading} = this.state;
+    const {error, loading, agreeToTerms} = this.state;
     return (
       <div key="step-2">
         <div className="form-control">
@@ -135,12 +144,26 @@ class SignUp extends Component {
                    placeholder="•••••••••••••"
                    defaultValue={this.state.passwordConfirm}
                    onChange={this._handleUpdatePasswordConfirm}
-                   autoFocus />
+                   autoFocus/>
+          </label>
+        </div>
+        <div className="form-control right">
+          <label>
+            <input type="checkbox"
+                   name="agreeToTerms"
+                   required
+                   defaultChecked={agreeToTerms}
+                   onChange={this._handleUpdateInput}/>
+            You have read &amp; agree to the
+            {" "}
+            <a href="https://insomnia.rest/terms/" target="_blank">Terms</a>
           </label>
         </div>
         {error ? <small className="form-control error">** {error}</small> : null}
-        <div className="form-row">
-          <a href="#" onClick={this._handleBack}>&lt; Back</a>
+        <div className="form-row padding-top-sm">
+          <div className="form-control">
+            <a href="#" onClick={this._handleBack}>&lt; Back</a>
+          </div>
           <div className="form-control right">
             {loading ?
               <button type="button" disabled className="button">Loading</button> :
@@ -165,6 +188,10 @@ class SignUp extends Component {
     return (
       <form onSubmit={this._handleSubmit}>
         {inner}
+        <hr/>
+        <div className="center">
+          <a href="/eula">Privacy Policy</a>
+        </div>
       </form>
     )
   }

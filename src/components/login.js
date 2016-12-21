@@ -52,8 +52,10 @@ class Login extends Component {
           </label>
         </div>
         {error ? <small className="form-control error">** {error}</small> : null}
-        <div className="form-row">
-          <span>Or, <a href="/app/signup">Sign Up</a></span>
+        <div className="form-row padding-top-sm">
+          <div className="form-control">
+            Or, <a href="/app/signup">Sign Up</a>
+          </div>
           <div className="form-control right">
             {loading ?
               <button type="button" disabled className="button">Loading</button> :

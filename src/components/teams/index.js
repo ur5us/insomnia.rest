@@ -11,20 +11,6 @@ class Teams extends Component {
     error: '',
   };
 
-  _handleAddTeamMember = async e => {
-    e.preventDefault();
-    try {
-      await session.inviteToTeam(this._getOwnedTeam().id, this.state.newMemberEmail);
-      this.props.handleReload();
-    } catch (err) {
-      this.setState({error: err.message});
-    }
-  };
-
-  _handleUpdateInput = e => {
-    this.setState({[e.target.name]: e.target.value, error: ''});
-  };
-
   _getOwnedTeam () {
     const {teams, whoami} = this.props;
     return teams.find(t => t.ownerAccountId === whoami.accountId);
@@ -78,29 +64,32 @@ class Teams extends Component {
             teamId={ownedTeam.id}
             membersRemaining={membersRemaining}
           />
-          <strong>Team Members</strong>
-          <ul>
-            {accounts.map(account => (
-              <li key={account.id}>
-                {account.firstName} {account.lastName}
-                {" "}
-                <small>({account.email})</small>
-                {" "}
-                {account.id !== whoami.accountId ? (
-                  <RemoveTeamAccountLink onRemove={this.props.handleReload}
-                                         teamId={ownedTeam.id}
-                                         teamName={ownedTeam.name}
-                                         className="small pull-right"
-                                         accountId={account.id}
-                                         accountName={`${account.firstName} ${account.lastName}`.trim()}>
-                    remove
-                  </RemoveTeamAccountLink>
-                ) : (
-                  <strong className="small pull-right">(you)</strong>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div className="form-control">
+            <label>Team Members
+              <ul>
+                {accounts.map(account => (
+                  <li key={account.id}>
+                    {account.firstName} {account.lastName}
+                    {" "}
+                    <small>({account.email})</small>
+                    {" "}
+                    {account.id !== whoami.accountId ? (
+                      <RemoveTeamAccountLink onRemove={this.props.handleReload}
+                                             teamId={ownedTeam.id}
+                                             teamName={ownedTeam.name}
+                                             className="small pull-right"
+                                             accountId={account.id}
+                                             accountName={`${account.firstName} ${account.lastName}`.trim()}>
+                        remove
+                      </RemoveTeamAccountLink>
+                    ) : (
+                      <strong className="small pull-right">(you)</strong>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </label>
+          </div>
         </div>
       )
     } else {
