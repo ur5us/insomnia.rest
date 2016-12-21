@@ -213,7 +213,7 @@ class Subscribe extends Component {
                     autoFocus
                     onChange={this._handleUpdateInput}>
               <option value={planTypePlus}>Individual</option>
-              <option value={planTypeTeam}>Teams</option>
+              <option value={planTypeTeam} disabled>Teams (Coming soon...)</option>
             </select>
           </label>
         </div>

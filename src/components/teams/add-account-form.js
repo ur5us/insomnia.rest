@@ -6,6 +6,7 @@ class AddTeamAccountForm extends Component {
     super(props);
 
     this.state = {
+      password: '',
       loading: false,
       newMemberEmail: '',
       error: '',
@@ -25,7 +26,7 @@ class AddTeamAccountForm extends Component {
     this.setState({loading: true});
 
     try {
-      await session.inviteToTeam(teamId, newMemberEmail);
+      await session.inviteToTeam(teamId, newMemberEmail, this.state.password);
       await onAdd();
       this.setState({loading: false});
     } catch (err) {
@@ -38,16 +39,24 @@ class AddTeamAccountForm extends Component {
     const {loading, error} = this.state;
     return (
       <form onSubmit={this._handleSubmit}>
+        <strong>{error ? <small className="error">({error})</small> : null}</strong>
         <div className="form-row">
           <div className="form-control">
             <label>Add by Email
               {" "}
               <small>({membersRemaining} remaining)</small>
-              {" "}
-              {error ? <small className="error">({error})</small> : null}
               <input type="email"
-                     placeholder="bobbyboucher@domain.com"
+                     placeholder="member@company.com"
                      name="newMemberEmail"
+                     onChange={this._handleUpdateInput}
+                     required/>
+            </label>
+          </div>
+          <div className="form-control">
+            <label>Your Password
+              <input type="password"
+                     placeholder="•••••••••••••"
+                     name="password"
                      onChange={this._handleUpdateInput}
                      required/>
             </label>

@@ -195,10 +195,16 @@ export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
   const {accountPublicKey, resourceGroupKeys, accountId} = inviteInstructions;
 
   // Compute keys necessary to invite the member
-  const passPhrase = _sanitizePassphrase('testing123' || rawPassphrase);
+  const passPhrase = _sanitizePassphrase(rawPassphrase);
   const {email, saltEnc, encPrivateKey, encSymmetricKey} = await whoami();
   const secret = await crypt.deriveKey(passPhrase, email, saltEnc);
-  const symmetricKey = crypt.decryptAES(secret, JSON.parse(encSymmetricKey));
+  let symmetricKey;
+  try {
+    symmetricKey = crypt.decryptAES(secret, JSON.parse(encSymmetricKey));
+  } catch (err) {
+    console.log('Failed to decrypt key', err.stack);
+    throw new Error('Invalid password');
+  }
   const privateKey = crypt.decryptAES(JSON.parse(symmetricKey), JSON.parse(encPrivateKey));
   const privateKeyJWK = JSON.parse(privateKey);
   const publicKeyJWK = JSON.parse(accountPublicKey);
