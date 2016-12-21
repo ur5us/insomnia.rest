@@ -54,7 +54,7 @@ class AddTeamAccountForm extends Component {
           </div>
           <div className="form-control form-control--no-label width--auto">
             {loading ?
-              <button type="button" disabled className="button">Creating...</button> :
+              <button type="button" disabled className="button">Inviting...</button> :
               <button type="submit" className="button">Add</button>
             }
           </div>

@@ -188,17 +188,36 @@ export async function changePassword (rawOldPassphrase, rawNewPassphrase) {
   });
 }
 
-export async function inviteToTeam (teamId, email) {
-  // Get all ResourceGroups for the team
-  // const team = await getTeam(teamId);
+export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
+  // Ask the server what we need to do to invite the member
+  const query = `?email=${encodeURIComponent(emailToInvite)}`;
+  const inviteInstructions = await util.get(`/api/teams/${teamId}/invite${query}`);
+  const {accountPublicKey, resourceGroupKeys, accountId} = inviteInstructions;
 
-  // Decrypt each ResourceGroups symmetric key from AccountResourceGroupLink
+  // Compute keys necessary to invite the member
+  const passPhrase = _sanitizePassphrase('testing123' || rawPassphrase);
+  const {email, saltEnc, encPrivateKey, encSymmetricKey} = await whoami();
+  const secret = await crypt.deriveKey(passPhrase, email, saltEnc);
+  const symmetricKey = crypt.decryptAES(secret, JSON.parse(encSymmetricKey));
+  const privateKey = crypt.decryptAES(JSON.parse(symmetricKey), JSON.parse(encPrivateKey));
+  const privateKeyJWK = JSON.parse(privateKey);
+  const publicKeyJWK = JSON.parse(accountPublicKey);
 
-  // Encrypt symmetric keys with new member's public key
+  // Build the invite data request
+  const newResourceGroupKeys = {};
+  for (const resourceGroupId of Object.keys(resourceGroupKeys)) {
+    newResourceGroupKeys[resourceGroupId] = crypt.recryptRSAWithJWK(
+      privateKeyJWK,
+      publicKeyJWK,
+      resourceGroupKeys[resourceGroupId]
+    );
+  }
 
-  // Create new AccountResourceGroupLinks for new member
-
-  return util.post(`/api/teams/${teamId}/invite`, {email});
+  // Actually invite the member
+  await util.post(`/api/teams/${teamId}/invite`, {
+    accountId,
+    resourceGroupKeys: newResourceGroupKeys,
+  });
 }
 
 export function leaveTeam (teamId) {
