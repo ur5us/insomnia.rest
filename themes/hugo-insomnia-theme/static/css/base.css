@@ -906,9 +906,13 @@ a.tags__tag:hover {
 /* TEMPLATE OVERRIDES */
 /* ~~~~~~~~~~~~~~~~~~ */
 
-body.template-blog main,
 body.template-skinny main {
     max-width: 58rem;
+    margin: auto;
+}
+
+body.template-blog main .container {
+    max-width: 44rem;
     margin: auto;
 }
 
