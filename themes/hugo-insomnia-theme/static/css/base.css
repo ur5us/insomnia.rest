@@ -908,12 +908,15 @@ a.tags__tag:hover {
 
 body.template-skinny main {
     max-width: 58rem;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+body.template-changelog main .container,
 body.template-blog main .container {
     max-width: 44rem;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body.template-blog article > header {

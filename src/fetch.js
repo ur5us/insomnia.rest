@@ -26,6 +26,7 @@ export function get (path, sessionId = null) {
   return _fetch('GET', path, null, sessionId)
 }
 
+/** Send an HTTP DELETE request */
 export function del (path, sessionId = null) {
   return _fetch('DELETE', path, null, sessionId)
 }
