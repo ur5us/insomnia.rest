@@ -190,8 +190,7 @@ export async function changePassword (rawOldPassphrase, rawNewPassphrase) {
 
 export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
   // Ask the server what we need to do to invite the member
-  const query = `?email=${encodeURIComponent(emailToInvite)}`;
-  const inviteInstructions = await util.get(`/api/teams/${teamId}/invite${query}`);
+  const inviteInstructions = await util.post(`/api/teams/${teamId}/invite-a`, {email: emailToInvite});
   const {accountPublicKey, resourceGroupKeys, accountId} = inviteInstructions;
 
   // Compute keys necessary to invite the member
@@ -220,7 +219,7 @@ export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
   }
 
   // Actually invite the member
-  await util.post(`/api/teams/${teamId}/invite`, {
+  await util.post(`/api/teams/${teamId}/invite-b`, {
     accountId,
     resourceGroupKeys: newResourceGroupKeys,
   });

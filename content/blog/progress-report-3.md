@@ -1,6 +1,6 @@
 ---
 date: 2017-01-01
-title: Month 6 Recap – $50 MRR
+title: Month 6 Recap – Happy New Year!
 slug: progress-report-3
 series: ["transparency"]
 tags: ["company", "progress"]
@@ -45,11 +45,10 @@ so this section is a new attempt at doing that. It's not very organized, but her
 list of noteworthy things that happened this month.
 
 - **WIN:** Got Insomnia featured on the [Electron home page](http://electron.atom.io/)
-- **WIN:** Someone donated $100!
-- **WIN:** Had a blog post [do well on Reddit](https://www.reddit.com/r/webdev/comments/5hf898/wrote_about_why_i_think_electron_is_a_web/)
 - **WIN:** Finished and deployed the [web interface](/app/) to manage Insomnia accounts
-- **WIN:** Was able to delete custom (buggy) DNS resolution code after figuring out how to do 
-it properly
+- **WIN:** Someone [donated](https://www.paypal.me/gschier) $100!
+- **WIN:** Had a blog post [do well on Reddit](https://www.reddit.com/r/webdev/comments/5hf898/wrote_about_why_i_think_electron_is_a_web/)
+- **WIN:** deleted custom (buggy) DNS resolution code after discovering the proper way to do it
 - **LOSS:** Didn't finish Teams on time
 - **LOSS:** Didn't hit any set goals
 
