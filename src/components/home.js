@@ -66,26 +66,24 @@ class Home extends Component {
         <p className="bold text-lg">Hi {whoami.firstName},</p>
         {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
         {(billingDetails && !billingDetails.subCancelled) ? (
-          <p>
-            Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
-            {" "}
-            <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
-            {billingDetails.subPercentOff ? (
-              <span className="success bold">
+            <p>
+              Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
+              {" "}
+              <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
+              {billingDetails.subPercentOff ? (
+                  <span className="success bold">
                 {" "}
-                (after {billingDetails.subPercentOff}% discount)
+                    (after {billingDetails.subPercentOff}% discount)
               </span>
-            ) : null}
-            .
-          </p>
-        ) : null}
+                ) : null}
+              .
+            </p>
+          ) : null}
         <p>Here are some things you might want to do.</p>
         <ul>
-          {whoami.canManageTeams ? (
-            <li>
-              <a href="/app/teams/">Manage Teams</a>
-            </li>
-          ) : null}
+          <li>
+            <a href="/app/teams/">Manage Teams</a>
+          </li>
           <li>
             <a href="/app/change-password/">Change Password</a>
           </li>

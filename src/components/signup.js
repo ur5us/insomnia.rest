@@ -154,7 +154,7 @@ class SignUp extends Component {
                    required
                    defaultChecked={agreeToTerms}
                    onChange={this._handleUpdateInput}/>
-            You have read &amp; agree to the
+            I agree to the
             {" "}
             <a href="https://insomnia.rest/terms/" target="_blank">Terms</a>
           </label>

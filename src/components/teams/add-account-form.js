@@ -46,7 +46,7 @@ class AddTeamAccountForm extends Component {
               {" "}
               <small>({membersRemaining} remaining)</small>
               <input type="email"
-                     placeholder="member@company.com"
+                     placeholder="amy@company.com"
                      name="newMemberEmail"
                      onChange={this._handleUpdateInput}
                      required/>
