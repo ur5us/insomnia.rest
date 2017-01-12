@@ -10,8 +10,9 @@ menu:
 In an effort to help cut down on feature request emails, here's a list some of
 the major things that are planned for completion over the next few months. 
 
-- Using data from response in the next request (scripting)
-- Team Sync and Collaboration
+- Request chaining and scripting
+- Plugin system
+- Windows authentication support
 
 This list may change at any time. If there's missing that you would like to 
 see, or something here that you would like to discuss, feel free to reach out!
