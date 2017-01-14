@@ -248,6 +248,10 @@ img.jumbotron__icon {
     background: rgba(97, 71, 209, 0.05);
 }
 
+.notice.info code {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
 /* ~~~~~ */
 /* LISTS */
 /* ~~~~~ */
