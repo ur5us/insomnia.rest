@@ -130,9 +130,9 @@ These are the possible resource types that can be imported/exported.
 ```json
 {
   "_type": "request_group",
-  "_id": "__REQUEST_GROUP_2__",
+  "_id": "__FOLDER_2__",
   "name": "New Folder",
-  "parentId": "__REQUEST_GROUP_1__",
+  "parentId": "__FOLDER_1__",
   "created": 1484090000356,
   "modified": 1484090000356,
   "metaSortKey": 1,
@@ -153,7 +153,7 @@ These are the possible resource types that can be imported/exported.
 {
   "_type": "request",
   "_id": "__REQUEST_1__",
-  "parentId": "__REQUEST_GROUP_2__",
+  "parentId": "__FOLDER_2__",
   "created": 1484090000356,
   "modified": 1484090000356,
   "name": "My Request",
@@ -210,13 +210,15 @@ These are the possible resource types that can be imported/exported.
         - `type`: Either `text` or `file`
         - `value`: Value of the parameter
         - `fileName`: File path of param 
-        - `disabled`: If `true`, parameter will act as though it does not exist
+        - `disabled`: If `true`, the entry will be ignored
 - `parameters[]`: Array of URL query parameters
     - `name`: Name of parameter
     - `value`: Value of parameter
+    - `disabled`: If `true`, the entry will be ignored
 - `headers[]`: Array of HTTP header objects
     - `name`: Name of parameter
     - `value`: Value of parameter
+    - `disabled`: If `true`, the entry will be ignored
 - `authentication{}`: HTTP authentication (currently only basic auth supported)
     - `username`: Username for HTTP Basic Auth
     - `password`: Password for HTTP Basic Auth
