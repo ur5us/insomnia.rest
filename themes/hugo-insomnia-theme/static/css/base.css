@@ -914,7 +914,12 @@ body.template-skinny main {
     margin-right: auto;
 }
 
+body.template-splash main h2 {
+    margin-top: 4rem;
+}
+
 body.template-changelog main .container,
+body.template-splash main .container,
 body.template-blog main .container {
     max-width: 44rem;
     margin-left: auto;
