@@ -29,6 +29,8 @@ formats like [HAR](http://www.softwareishard.com/blog/har-12-spec/),
   "resources": [{
     "_type": "request",
     "url": "https://google.com"
+  }, {
+    "...": "..."
   }]
 }
 ```
