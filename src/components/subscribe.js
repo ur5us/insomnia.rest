@@ -34,7 +34,7 @@ class Subscribe extends Component {
       planType: planDescription ? planDescription[0] : planTypePlus,
       planCycle: planDescription ? planDescription[1] : planCycleMonthly,
       quantity: quantity || 5,
-      useExistingBilling: !!billingDetails,
+      useExistingBilling: billingDetails && billingDetails.hasCard,
       fullName: fullName,
       cardNumber: '',
       expireMonth: '01',
@@ -258,7 +258,7 @@ class Subscribe extends Component {
         </div>
         <hr className="hr--skinny"/>
         <h2 className="text-lg">Billing Information</h2>
-        {billingDetails ? (
+        {billingDetails && billingDetails.hasCard ? (
             <div className="form-control">
               <label>
                 <input type="checkbox"
@@ -394,6 +394,7 @@ Subscribe.propTypes = {
   }).isRequired,
   billingDetails: PropTypes.shape({
     subQuantity: PropTypes.number.isRequired,
+    hasCard: PropTypes.number.isRequired,
   })
 };
 
