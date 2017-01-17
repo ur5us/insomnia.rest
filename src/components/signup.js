@@ -55,7 +55,11 @@ class SignUp extends Component {
         this.state.email,
         this.state.password,
       );
-      window.location = '/app/';
+
+      const nextUrl = localStorage.getItem('login.next') || '/app/';
+      localStorage.removeItem('login.next');
+
+      window.location = nextUrl;
     } catch (err) {
       console.error('Failed to sign up', err);
       this.setState({error: err.message, loading: false});

@@ -26,6 +26,8 @@ class App extends Component {
       if (err.statusCode === 403) {
         await session.logout();
       }
+
+      localStorage.setItem('login.next', window.location.href);
       window.location = '/app/login/';
       return;
     }

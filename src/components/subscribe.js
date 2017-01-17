@@ -212,7 +212,7 @@ class Subscribe extends Component {
                     defaultValue={planType}
                     autoFocus
                     onChange={this._handleUpdateInput}>
-              <option value={planTypePlus}>Individual</option>
+              <option value={planTypePlus}>Plus (Individual)</option>
               <option value={planTypeTeam}>Teams</option>
             </select>
           </label>
@@ -265,7 +265,7 @@ class Subscribe extends Component {
                        name="useExistingBilling"
                        onChange={this._handleUpdateInput}
                        defaultChecked={useExistingBilling}/>
-                Use existing billing info
+                Use card ending in <code>{billingDetails.lastFour}</code>
               </label>
             </div>
           ) : null}
@@ -394,7 +394,8 @@ Subscribe.propTypes = {
   }).isRequired,
   billingDetails: PropTypes.shape({
     subQuantity: PropTypes.number.isRequired,
-    hasCard: PropTypes.number.isRequired,
+    hasCard: PropTypes.bool.isRequired,
+    lastFour: PropTypes.string.isRequired,
   })
 };
 

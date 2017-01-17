@@ -177,7 +177,12 @@ Teams.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     ownerAccountId: PropTypes.string.isRequired,
-    accounts: PropTypes.arrayOf({}).isRequired,
+    accounts: PropTypes.arrayOf(PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })).isRequired,
   })).isRequired,
 };
 

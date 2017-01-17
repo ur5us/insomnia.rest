@@ -2,8 +2,6 @@ import srp from 'srp';
 import * as crypt from './crypt';
 import * as util from './fetch';
 
-const NO_SESSION = '__NO_SESSION__';
-
 /** Create a new Account for the user */
 export async function signup (firstName, lastName, rawEmail, rawPassphrase, loginAfter = false) {
   const email = _sanitizeEmail(rawEmail);
@@ -111,7 +109,7 @@ export function subscribe (tokenId, planId, quantity) {
 }
 
 export function getCurrentSessionId () {
-  return localStorage.getItem('currentSessionId') || NO_SESSION;
+  return localStorage.getItem('currentSessionId') || '';
 }
 
 export async function logout () {

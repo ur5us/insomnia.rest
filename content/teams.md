@@ -1,7 +1,7 @@
 ---
 title: Insomnia for Teams
 slug: teams
-subTitle: Create a team, and get in sync
+subTitle: Share API workspaces, stay in sync
 type: splash
 cta:
     text: Get Started with Teams
@@ -11,17 +11,17 @@ image:
     src: /images/screens/sharing.png
 ---
 
-## Collaborate on API workspaces
+## Collaborate on APIs
 
-Create a team, invite your coworkers, and share API workspaces. Any 
-changes made will be seamlessly and securely synced between all members, 
+Create a team, invite coworkers, and share API workspaces. Any 
+changes will seamlessly and securely sync between all members, 
 making collaboration a breeze.
 
-**Automatic or manual sync** &nbsp;&#128368;&nbsp; choose when to share
+**Automatic or manual sync** &#128368; choose when to share
 
-**End-to-end encryption** &nbsp;&#128272;&nbsp; know your data is safe
+**End-to-end encryption** &#128272; know your data is safe
 
-**Sync unlimited workspaces** &nbsp;&#128640;&nbsp; never worry about limits
+**No limits** &#128640; share unlimited API workspaces
 
 ---
 

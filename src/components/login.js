@@ -21,7 +21,11 @@ class Login extends Component {
 
     try {
       await session.login(this.state.email, this.state.password);
-      window.location = '/app';
+
+      const nextUrl = localStorage.getItem('login.next') || '/app/';
+      localStorage.removeItem('login.next');
+
+      window.location = nextUrl;
     } catch (err) {
       this.setState({error: err.message, loading: false});
     }
