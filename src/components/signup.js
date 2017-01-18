@@ -16,7 +16,8 @@ class SignUp extends Component {
   };
 
   _handleUpdateInput = e => {
-    this.setState({[e.target.name]: e.target.value, error: ''});
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    this.setState({[e.target.name]: value, error: ''});
   };
 
   _handleUpdatePasswordConfirm = e => {
@@ -55,7 +56,7 @@ class SignUp extends Component {
         this.state.lastName,
         this.state.email,
         this.state.password,
-        this.state.agreeToTerms,
+        this.state.agreeToEmails,
       );
 
       const nextUrl = localStorage.getItem('login.next') || '/app/';
@@ -156,8 +157,7 @@ class SignUp extends Component {
         <div className="form-control right">
           <label>
             <input type="checkbox"
-                   name="agreeToTerms"
-                   required
+                   name="agreeToEmails"
                    defaultChecked={agreeToEmails}
                    onChange={this._handleUpdateInput}/>
             Send occasional news via email
