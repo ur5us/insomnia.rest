@@ -5,6 +5,7 @@ class SignUp extends Component {
   state = {
     step: 1,
     agreeToTerms: false,
+    agreeToEmails: true,
     loading: false,
     firstName: '',
     lastName: '',
@@ -54,6 +55,7 @@ class SignUp extends Component {
         this.state.lastName,
         this.state.email,
         this.state.password,
+        this.state.agreeToTerms,
       );
 
       const nextUrl = localStorage.getItem('login.next') || '/app/';
@@ -112,7 +114,7 @@ class SignUp extends Component {
                    pattern=".{8,}"
                    required/>
           </label>
-        </div>
+        </div  >
         {error ? <div className="form-control error">** {error}</div> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
@@ -120,7 +122,7 @@ class SignUp extends Component {
           </div>
           <div className="form-control right">
             {loading ?
-              <button type="button" disabled className="button">Loading</button> :
+              <button type="button" disabled className="button">Proceeding...</button> :
               <button type="submit" className="button">Proceed to Next Step</button>
             }
           </div>
@@ -130,7 +132,7 @@ class SignUp extends Component {
   }
 
   renderStep2 () {
-    const {error, loading, agreeToTerms} = this.state;
+    const {error, loading, agreeToTerms, agreeToEmails} = this.state;
     return (
       <div key="step-2">
         <div className="form-control">
@@ -156,6 +158,16 @@ class SignUp extends Component {
             <input type="checkbox"
                    name="agreeToTerms"
                    required
+                   defaultChecked={agreeToEmails}
+                   onChange={this._handleUpdateInput}/>
+            Send occasional news via email
+          </label>
+        </div>
+        <div className="form-control right">
+          <label>
+            <input type="checkbox"
+                   name="agreeToTerms"
+                   required
                    defaultChecked={agreeToTerms}
                    onChange={this._handleUpdateInput}/>
             I agree to the
@@ -170,7 +182,7 @@ class SignUp extends Component {
           </div>
           <div className="form-control right">
             {loading ?
-              <button type="button" disabled className="button">Loading</button> :
+              <button type="button" disabled className="button">Creating Account...</button> :
               <button type="submit" className="button">Create Account</button>
             }
           </div>

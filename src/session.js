@@ -3,7 +3,7 @@ import * as crypt from './crypt';
 import * as util from './fetch';
 
 /** Create a new Account for the user */
-export async function signup (firstName, lastName, rawEmail, rawPassphrase, loginAfter = false) {
+export async function signup (firstName, lastName, rawEmail, rawPassphrase, emailsOk = true, loginAfter = false) {
   const email = _sanitizeEmail(rawEmail);
   const passphrase = _sanitizePassphrase(rawPassphrase);
 
@@ -34,6 +34,7 @@ export async function signup (firstName, lastName, rawEmail, rawPassphrase, logi
   account.publicKey = JSON.stringify(publicKey);
   account.encPrivateKey = JSON.stringify(encPrivateJWKMessage);
   account.encSymmetricKey = JSON.stringify(encSymmetricJWKMessage);
+  account.emailNewsletter = emailsOk;
 
   const signupData = await util.post('/auth/signup', account);
 
@@ -44,8 +45,8 @@ export async function signup (firstName, lastName, rawEmail, rawPassphrase, logi
   return signupData;
 }
 
-export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase) {
-  return signup(firstName, lastName, rawEmail, rawPassphrase, true);
+export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase, emailsOk) {
+  return signup(firstName, lastName, rawEmail, rawPassphrase, emailsOk, true);
 }
 
 /** Create a new session for the user */

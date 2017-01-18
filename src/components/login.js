@@ -62,7 +62,7 @@ class Login extends Component {
           </div>
           <div className="form-control right">
             {loading ?
-              <button type="button" disabled className="button">Loading</button> :
+              <button type="button" disabled className="button">Logging In...</button> :
               <button type="submit" className="button">Log In</button>
             }
           </div>
