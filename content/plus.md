@@ -15,6 +15,7 @@ image:
 
 Create an account, log in, and relax. With Plus, your application data will be automatically
 backed on the cloud and synced across all of your devices.
+<br><br>
 
 **Automatic or manual sync** &nbsp;&#128368;&nbsp; choose when to sync
 

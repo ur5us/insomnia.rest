@@ -11,11 +11,12 @@ image:
     src: /images/screens/sharing.png
 ---
 
-## Collaborate on APIs
+## Sync your API workspaces between team members
 
-Create a team, invite coworkers, and share API workspaces. Any 
-changes will seamlessly and securely sync between all members, 
+Create a team, invite coworkers, and stay in sync. Any 
+changes will seamlessly and securely transfer between all members, 
 making collaboration a breeze.
+<br><br>
 
 **Automatic or manual sync** &#128368; choose when to share
 
