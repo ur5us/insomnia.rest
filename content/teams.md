@@ -11,6 +11,31 @@ image:
     src: /images/screens/sharing.png
 ---
 
+<p class="notice info hide text-lg bold" id="phunt-yes">
+    Welcome ProductHunters!
+</p>
+
+<p class="notice info hide" id="phunt-no">
+    Check out Teams on <a href="https://www.producthunt.com/posts/insomnia-for-teams" target="_blank">
+    ProductHunt
+    </a>
+</p>
+
+<script>
+(function () {
+var el;
+
+if (window.location.href.indexOf('ref=producthunt') >= 0) {
+    el = document.querySelector('#phunt-yes');
+} else {
+    el = document.querySelector('#phunt-no');
+}
+
+el.className = el.className.replace('hide', '')
+
+})();
+</script>
+
 ## Collaborate on APIs with your team
 
 Create a team, invite coworkers, and stay in sync. Any 

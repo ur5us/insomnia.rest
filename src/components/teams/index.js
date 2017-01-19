@@ -24,10 +24,12 @@ class Teams extends Component {
 
     if (billingDetails && ownedTeam) {
       membersRemaining = billingDetails.subQuantity - ownedTeam.accounts.length;
+    } else if (whoami.isTrialing && ownedTeam) {
+      membersRemaining = 5 - ownedTeam.accounts.length;
     }
 
     let inner = null;
-    if (!whoami.canManageTeams) {
+    if (!whoami.isTrialing && !whoami.canManageTeams) {
       inner = (
         <div>
           <p>Manage who is on your team.</p>
