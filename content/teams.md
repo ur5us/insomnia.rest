@@ -11,7 +11,7 @@ image:
     src: /images/screens/sharing.png
 ---
 
-## Sync your API workspaces between team members
+## Collaborate on APIs with your team
 
 Create a team, invite coworkers, and stay in sync. Any 
 changes will seamlessly and securely transfer between all members, 

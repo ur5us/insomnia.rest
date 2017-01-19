@@ -82,6 +82,10 @@ a:hover {
     text-decoration: underline;
 }
 
+a[disabled]:hover {
+    text-decoration: none;
+}
+
 .error {
     color: #f13d2d;
 }
@@ -281,6 +285,10 @@ header.header--big {
     padding: 3rem 0 2rem 0;
 }
 
+/* ~~~~~~~ */
+/* NOTICES */
+/* ~~~~~~~ */
+
 .notice {
     display: block;
     border: 1px dashed #d0d0d0;
@@ -290,6 +298,22 @@ header.header--big {
     border-radius: 0.25rem;
     max-width: 35rem;
     margin: 2rem auto;
+}
+
+.notice code {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.notice.info {
+    color: #222;
+    border-color: rgb(97, 71, 209);
+    background: rgba(97, 71, 209, 0.05);
+}
+
+.notice.warn {
+    color: #222;
+    border-color: rgb(209, 141, 43);
+    background: rgba(223, 116, 10, 0.05);
 }
 
 article header * {

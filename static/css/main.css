@@ -238,20 +238,6 @@ img.jumbotron__icon {
     margin-bottom: 0.4rem;
 }
 
-/* ~~~~~~~ */
-/* NOTICES */
-/* ~~~~~~~ */
-
-.notice.info {
-    color: #222;
-    border-color: rgb(97, 71, 209);
-    background: rgba(97, 71, 209, 0.05);
-}
-
-.notice.info code {
-    background-color: rgba(0, 0, 0, 0.08);
-}
-
 /* ~~~~~ */
 /* LISTS */
 /* ~~~~~ */

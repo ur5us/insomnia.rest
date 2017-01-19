@@ -133,6 +133,10 @@ export async function whoami () {
   return util.get('/auth/whoami');
 }
 
+export async function verify () {
+  return util.post('/auth/verify');
+}
+
 export async function billingDetails () {
   try {
     return await util.get('/api/billing/details');

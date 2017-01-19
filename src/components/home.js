@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import SignOutLink from './common/sign-out';
 import CancelLink from './common/cancel';
+import VerifyButton from './common/reverify';
 
 class Home extends Component {
   renderNotice () {
@@ -51,6 +52,21 @@ class Home extends Component {
     return <div>{notice}<br/></div>;
   }
 
+  renderVerifiedNotice () {
+    if (this.props.whoami.isVerified) {
+      return null;
+    }
+
+    return (
+      <p className="notice warn">
+        Your email address <code>{this.props.whoami.email}</code> is not verified!
+        <br/>
+        <br/>
+        <VerifyButton className="button button--compact"/>
+      </p>
+    )
+  }
+
   render () {
     const {whoami, billingDetails} = this.props;
     const description = billingDetails && billingDetails.description;
@@ -62,6 +78,7 @@ class Home extends Component {
 
     return (
       <div>
+        {this.renderVerifiedNotice()}
         {this.renderNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
         {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
@@ -110,6 +127,7 @@ Home.propTypes = {
     isTrialing: PropTypes.bool.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
     canManageTeams: PropTypes.bool.isRequired,
+    isVerified: PropTypes.bool.isRequired,
   }).isRequired,
   billingDetails: PropTypes.shape({
     description: PropTypes.string.isRequired,

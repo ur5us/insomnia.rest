@@ -4,7 +4,7 @@ slug: plus
 subTitle: Your API workspaces, backed up and in sync
 type: splash
 cta:
-    text: Get Started with Plus
+    text: Sign Up for Teams
     href: /pricing/
 image: 
     alt: Insomnia plus 
@@ -13,15 +13,16 @@ image:
 
 ## Sync your API workspaces across devices
 
-Create an account, log in, and relax. With Plus, your application data will be automatically
-backed on the cloud and synced across all of your devices.
+Create an account, log in, and relax. With Plus, your application 
+data will be automatically backed on the cloud and synced across all 
+your devices.
 <br><br>
 
-**Automatic or manual sync** &nbsp;&#128368;&nbsp; choose when to sync
+**Automatic or manual sync** &#128368; choose when to sync
 
-**End-to-end encryption** &nbsp;&#128272;&nbsp; know your data is safe
+**End-to-end encryption** &#128272; know your data is safe
 
-**Sync unlimited data** &nbsp;&#128640;&nbsp; never worry about limits
+**Sync unlimited data** &#128640; never worry about limits
 
 ---
 
