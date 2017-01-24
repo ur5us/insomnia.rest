@@ -1,5 +1,5 @@
 <p class="subtle">
-  Thanks for spreading the word &#128522; &#128640;
+  Share this post &#128522; &#128640;
 </p>
 <div class="share-buttons">
 
@@ -13,13 +13,12 @@
   </a>
 
   <!-- Google Plus -->
-  <!--No Longer Works (Stupid Google) -->
-  <!--<a href="https://plus.google.com/share?url={{ .Permalink | safeURL }}"-->
-  <!--onclick="window.open(this.href, 'google-plus-share');return false;"-->
-  <!--title="Share on Google+"-->
-  <!--class="button&#45;&#45;share button google-plus">-->
-  <!--<i class="fa fa-google-plus"></i>-->
-  <!--</a>-->
+  <a href="https://plus.google.com/share?url={{ .Permalink | safeURL }}"
+     onclick="window.open(this.href, 'google-plus-share');return false;"
+     title="Share on Google+"
+     class="button--share button google-plus">
+    <i class="fa fa-google-plus"></i>
+  </a>
 
   <!-- Reddit (url, title) -->
   <a href="http://reddit.com/submit?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}"

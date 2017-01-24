@@ -1,7 +1,7 @@
 ---
 baseurl: "https://insomnia.rest/"
 languageCode: "en-us"
-copyright: "Floating Keyboard Software. Suite 219, 770 Fisgard St, Victoria BC, Canada"
+copyright: "Floating Keyboard Software, Victoria BC, Canada"
 title: "Insomnia REST Client"
 theme: "hugo-insomnia-theme"
 publishdir: "_hugo"

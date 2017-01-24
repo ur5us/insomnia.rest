@@ -3,7 +3,8 @@
 /* ~~~~~ */
 
 a, .button {
-    color: hsl(251, 85%, 66%);
+    color: hsl(251, 74%, 63%);
+    font-weight: 400 !important;
 }
 
 a:hover, .button:hover {

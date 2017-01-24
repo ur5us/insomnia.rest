@@ -830,8 +830,9 @@ body.floating-navbar .navbar__icon img {
     display: inline-block;
     color: #ffffff;
     outline: none;
-    margin: 0.5rem 0;
-    padding: 0.3rem 0.1rem;
+    margin: 0.5rem 0.1rem;
+    padding: 0.3rem 0;
+    min-width: 4.5rem;
 }
 
 .button--share.twitter {
