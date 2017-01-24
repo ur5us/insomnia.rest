@@ -59,7 +59,7 @@ class Home extends Component {
 
     return (
       <p className="notice warn">
-        Your email address <code>{this.props.whoami.email}</code> is not verified!
+        Your email address <code>{this.props.whoami.email}</code> is not yet verified
         <br/>
         <br/>
         <VerifyButton className="button button--compact"/>

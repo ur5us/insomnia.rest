@@ -51,7 +51,7 @@ class VerifyButton extends Component {
     } else {
       return (
         <a href="#" onClick={this._handleClick} {...this.props}>
-          Send Verification Email
+          Resend Verification Email
         </a>
       )
     }
