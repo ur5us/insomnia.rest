@@ -187,7 +187,7 @@ export function srpGenKey () {
  */
 export async function generateAES256Key () {
   const c = window.crypto;
-  const subtle = c ? c.subtle || c.webkitSubtle : null;
+  const subtle = c ? c.subtle : null;
 
   if (subtle) {
     console.log('-- Using Native AES Key Generation --');

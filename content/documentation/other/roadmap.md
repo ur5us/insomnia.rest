@@ -12,7 +12,8 @@ the major things that are planned for completion over the next few months.
 
 - Request chaining and scripting
 - Plugin system
-- Windows authentication support
+- Windows authentication support (NTLM)
+- More authentication types (OAuth)
 
 This list may change at any time. If there's missing that you would like to 
 see, or something here that you would like to discuss, feel free to reach out!

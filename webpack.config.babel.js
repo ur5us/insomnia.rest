@@ -11,7 +11,7 @@ let stripePubKey;
 
 if (isDev) {
   outputFile = `${libraryName}.min.js`;
-  devtool = 'eval-source-map';
+  devtool = 'source-map';
   env = 'development';
   stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
 } else {

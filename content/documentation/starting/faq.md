@@ -1,9 +1,9 @@
 ---
-title: "FAQ"
-slug: "faq"
+title: FAQ
+slug: faq
 menu:
     docs:
-        parent: "starting"
+        parent: starting
         weight: 1000
 ---
 
@@ -58,8 +58,10 @@ Insomnia is built using [Electron](http://electron.atom.io/),
 [ReactJS](https://facebook.github.io/react/), and 
 [NeDB](https://github.com/louischatriot/nedb).
 
+**How can I donate?**<br>
+Even though Insomnia has paid plans, a handful of people have emailed about 
+donations. You can donate via PayPal on my 
+[PayPal.me](https://www.paypal.me/gschier) page.
+
 **How many people work on Insomnia?**<br>
 Just [me](http://schier.co/) :)
-
-**Where is Insomnia based?**<br>
-Victoria, BC, Canada!
