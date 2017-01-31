@@ -48,3 +48,13 @@ _Note: you may need to set the package as executable from your command line._
 ```bash
 chmod +x insomnia.AppImage
 ```
+
+## Previous Versions
+
+To roll-back, you can download any version by replacing the desired version number 
+with the ones in these URLs. Keep in mind that this process is only intended for debugging
+and emergencies, as the app will try to update itself after it launches. 
+
+- Mac: https://downloads.insomnia.rest/mac/Insomnia-4.2.0.dmg
+- Windows: https://downloads.insomnia.rest/win/Insomnia+Setup+4.2.0.exe
+- Ubuntu: https://downloads.insomnia.rest/linux/insomnia_4.2.0_amd64.deb

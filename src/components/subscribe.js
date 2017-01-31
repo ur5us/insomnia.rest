@@ -383,6 +383,16 @@ class Subscribe extends Component {
         <p className="small subtle center">
           Payments secured by <a href="https://stripe.com" target="_blank">Stripe</a>
         </p>
+
+        <p className="center">
+          Or
+          <a href="/paypal/?ref=subscribe">
+            <img
+              src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+              alt="Check out with PayPal"
+              style={{maxWidth: '10rem'}}/>
+          </a>
+        </p>
       </form>
     )
   }

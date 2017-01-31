@@ -1,6 +1,6 @@
 ---
-title: "Templating"
-slug: "templating"
+title: Template Syntax
+slug: templating
 menu:
     docs:
         parent: "topics"
