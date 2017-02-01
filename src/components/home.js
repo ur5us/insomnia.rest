@@ -21,23 +21,23 @@ class Home extends Component {
           </a>
         </p>
       )
-    } else if (billingDetails.subTrialing) {
-      const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
-      notice = (
-        <p className="notice info">
-          Your free trial ends on <strong>{trialEndDateString}</strong>
-        </p>
-      )
     } else if (billingDetails.subCancelled) {
       const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
       notice = (
         <p className="notice info">
-          Your subscription will be <strong>Cancelled</strong> on <strong>{dateString}</strong>
+          Subscription <strong>Cancelled</strong> and will end <strong>{dateString}</strong>
           <br/>
           <br/>
           <a href="/app/subscribe/" className="button button--compact">
             Resubscribe
           </a>
+        </p>
+      )
+    } else if (billingDetails.subTrialing) {
+      const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
+      notice = (
+        <p className="notice info">
+          Your free trial ends on <strong>{trialEndDateString}</strong>
         </p>
       )
     } else if (billingDetails.isPaymentRequired) {
@@ -105,11 +105,17 @@ class Home extends Component {
             <a href="/app/change-password/">Change Password</a>
           </li>
           <li>
-            <a href="/app/subscribe/">Update Subscription</a>
+            {billingDetails ? (
+                <a href="/app/subscribe/">Change Subscription</a>
+              ) : (
+                <a href="/app/subscribe/">Choose Plan</a>
+              )}
           </li>
-          <li>
-            <CancelLink/>
-          </li>
+          {billingDetails ? (
+              <li>
+                <CancelLink/>
+              </li>
+            ) : null}
           <li>
             <SignOutLink/>
           </li>
