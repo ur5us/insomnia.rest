@@ -7,7 +7,7 @@ series: ["transparency"]
 tags: ["company", "progress"]
 ---
 
-TODO
+
 
 <!--more-->
 

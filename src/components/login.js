@@ -35,7 +35,7 @@ class Login extends Component {
     const {loading, error} = this.state;
 
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit} method="POST">
         <div className="form-control">
           <label>Email Address
             <input type="email"

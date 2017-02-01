@@ -202,7 +202,7 @@ class SignUp extends Component {
     }
 
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit} method="POST">
         {inner}
         <hr/>
         <div className="center">
