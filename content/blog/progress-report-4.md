@@ -1,6 +1,6 @@
 ---
 date: 2017-02-01
-title: Month 7 Recap – $100 MRR
+title: Month 7 Recap – $111 MRR
 slug: progress-report-4
 draft: true
 series: ["transparency"]
@@ -19,7 +19,10 @@ TODO
 
 ## Monthly Recurring Revenue
 
-TODO
+Subscription payments **$330**
+PayPal (alternate payment) **$50**
+Donations **$10**
+Total: **$390**
 
 ![Insomnia Monthly Recurring Revenue December 2016](/images/blog/mrr-7.png)
 
