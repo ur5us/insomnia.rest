@@ -17,9 +17,11 @@
             <p class="text-lg">{{ .Params.subtitle }}</p>
             {{ end }}
             <div class="meta">
-              <time datetime='{{ .Date.Format "02 January 2006" }}'>
-                {{ .Date.Format "02 January, 2006" }}
+              {{ if not .Date.IsZero }}
+              <time datetime='{{ .Date.Format "January 2, 2006" }}'>
+                {{ .Date.Format "January 2, 2006" }}
               </time>
+              {{ end }}
             </div>
           </div>
         </div>

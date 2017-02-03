@@ -18,6 +18,9 @@ Inspired by the last
 I decided to throw in a few more metrics into this post, making it longer than usual. Let me
 know if you like it more or less.
 
+_I also added a [Transparency Page](/transparency/) if you want to follow progress 
+throughout the month._
+
 ## January Overview
 
 As an attempt to provide more high-level context for how Insomnia is doing, I put together 
@@ -42,6 +45,8 @@ events that happened.
 - **WIN**: Dave Chaney [tweeted](https://twitter.com/davecheney/status/820937289370980352) about Insomnia
 - **WIN**: Added [New Relic](https://newrelic.com/) and fixed performance problems
 - **WIN**: Insomnia is being talked about more on Twitter
+- **WIN**: Launched app themes
+- **WIN**: Revised pricing page
 - **LOSS**: Spent too much time fighting with bugs
 - **LOSS**: No marketing efforts made
 
