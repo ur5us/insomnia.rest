@@ -37,3 +37,13 @@
   }
 })();
 
+(function () {
+  var els = document.querySelectorAll('iframe');
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    // Auto-size iframes
+    el.style.height = el.document['body'].offsetHeight + 'px';
+  }
+})();
+

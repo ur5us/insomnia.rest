@@ -1,6 +1,6 @@
 <footer class="footer">
   <section>
-    <p class="footer__social">
+    <p class="footer__menu">
       {{ if .Site.Params.twitter }}
       <a href="//twitter.com/{{ .Site.Params.twitter }}" target="_blank"
          title="Twitter">
@@ -30,7 +30,6 @@
       </a>
       {{ end }}
       {{ end }}
-
       {{ if .Site.Menus.footer }}
       {{ range .Site.Menus.footer }}
       <a href="{{ .URL }}">{{ .Name }}</a>

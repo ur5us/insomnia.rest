@@ -42,21 +42,29 @@ menu:
       URL: "/download/"
       Weight: 100
   footer:
-    - Name: "Licence"
-      Identifier: "eula"
-      URL: "/eula/"
-    - Name: "Terms"
-      Identifier: "terms"
-      URL: "/terms/"
-    - Name: "Blog"
-      Identifier: "blog"
-      URL: "/blog/"
-    - Name: "Changelog"
-      Identifier: "changelog"
-      URL: "/changelog/"
-    - Name: "Support"
-      Identifier: "support"
-      URL: "/documentation/support-and-feedback/"
+    - Name: Licence
+      Identifier: eula
+      URL: /eula/
+      weight: 0
+    - Name: Terms
+      Identifier: terms
+      URL: /terms/
+      weight: 1
+    - Name: Blog
+      Identifier: blog
+      URL: /blog/
+      weight: 2
+    - Name: Transparency
+      Identifier: transparency
+      URL: /transparency/
+      weight: 3
+    - Name: Changelog
+      Identifier: changelog
+      URL: /changelog/
+      weight: 4
+    - Name: Support
+      Identifier: support
+      URL: /documentation/support-and-feedback/
       weight: -1
   docs:
       - Name: ""

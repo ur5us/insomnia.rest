@@ -280,6 +280,13 @@ article img {
     margin: 2rem auto 3rem auto;
 }
 
+article iframe {
+    display: block;
+    border: 1px solid #eee;
+    margin: 2rem auto 3rem auto;
+    width: 100%;
+}
+
 header.header--big {
     text-align: center;
     padding: 3rem 0 2rem 0;
@@ -792,7 +799,7 @@ body.floating-navbar .navbar__icon img {
     text-decoration: none;
 }
 
-.footer__social a {
+.footer__menu a {
     margin: 0 1rem;
     font-size: 1rem;
 }

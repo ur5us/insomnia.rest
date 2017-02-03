@@ -1,121 +1,130 @@
 ---
-date: 2017-02-01
+date: 2017-02-03
 title: Month 7 Recap – $110 MRR
 slug: progress-report-4
-draft: true
 series: ["transparency"]
 tags: ["company", "progress"]
 ---
 
-[Last Month's Recap](/blog/progress-report-3) was fairly uneventful due to the huge drop in
-usage caused by the holiday season. Thankfully, usage is back up this month and things are
-looking great! Insomnia crossed last month's failed goal of $100 MRR and also surpassed 3,000
-daily active users.
+[Last Month's Recap](/blog/progress-report-3) was fairly uneventful due extremely low app usage
+during the holiday season. Thankfully, usage is back up this month and things are looking 
+great! Insomnia crossed last month's failed goal of **$100 MRR** and also **surpassed 3,000
+daily active users**.
 
 <!--more-->
 
-A lot of stuff happened in January, so this post is a bit longer than normal. 
+Inspired by the last 
+[Indie Hackers Month in Review](https://www.indiehackers.com/blog/month-in-review-2016-12), 
+I decided to throw in a few more metrics into this post, making it longer than usual. Let me
+know if you like it more or less.
 
-## Overview Metrics
+## January Overview
 
-Inspired by Courtland's [Monthly Review](https://www.indiehackers.com/blog/month-in-review-2016-12) 
-on the Indie Hackers blog, I decided to include more metrics this time. So, I put together a couple.
+As an attempt to provide more high-level context for how Insomnia is doing, I put together 
+a list of high-level metrics that I'll be covering from now on.
 
-To start off, here's an overview of some of this month's key metrics.
+| Metric                    | Value This Month | Change  | Reaction   |
+| ------------------------- | ---------------- | ------- | ---------- |
+| Active App Users          | 16,131           | +27%    | &#x1f600;  |        
+| New App Users             | 7,539            | +40%    | &#x1f600;  |
+| Monthly Recurring Revenue | $110             | +140%   | &#x1f600;  |
+| Recognized Revenue        | $390             | +25%    | &#x1f601;  |
+| New Trial Customers       | 146              | +200%   | &#x1f600;  |
+| New Paying Customers      | 11               | +57%    | &#x1f600;  |
+| Trial Conversion Rate     | 8%               | -2%     | &#x1f615;  |
 
-| Metric                    | Value This Month | Change        |
-| ------------------------- | ---------------- | ------------- |
-| Active App Users          | 16,131           | +27%          |
-| New App Users             | 7,539            | +40%          |
-| Monthly Recurring Revenue | $110             | +140%         |
-| Recognized Revenue        | $390             | +25%          |
-| New Trial Customers       | 146              | +200%         |
-| New Paying Customers      | 11               | +57%          |
-| Trial Conversion Rate     | 8%               | -2% &#x1f44e; | 
+I also decided to move the wins/losses section here too. Here are a few of the most notable
+events that happened.
 
-## App Usage 
+- **WIN**: Passed $100 MRR
+- **WIN**: First paying team on board
+- **WIN**: On deck for an Indie Hackers interview
+- **WIN**: Dave Chaney [tweeted](https://twitter.com/davecheney/status/820937289370980352) about Insomnia
+- **WIN**: Added [New Relic](https://newrelic.com/) and fixed performance problems
+- **WIN**: Insomnia is being talked about more on Twitter
+- **LOSS**: Spent too much time fighting with bugs
+- **LOSS**: No marketing efforts made
 
-App usage picked up a lot since the holiday season ended. This month's arbitrary notable 
-milestone was **crossing 3,000 daily active users**. That's a big number,
-right? Alright, enough jokes. Let's take a look at the daily active users graph.
+## App Usage Growth
+
+App usage picked up a lot since the holiday season ended. Insomnia **crossed 3,000 
+daily active users** – which is an arbitrary vanity metric – and it's awesome to see the 
+user base continue to grow organically with almost no PR and marketing efforts. With that being
+said, spending more effort on PR and marketing would probably go a long way.
+
+To give a more visual representation to this growth, here is the daily active users chart.
 
 ![Insomnia Daily Active Users December 2016](/images/blog/dau-7.png)
 
-You'll notice that Insomnia recovered nicely from the huge decrease in December usage. Insomnia
-is now well over 3000 daily active users, and it's growing quickly. The cause of this growth
-is partly due to being featured on the [Electron landing page](http://electron.atom.io/), but 
-it is mostly general growth. All traffic sources seem to be growing consistently 
-(social, search, word of mouth, referrals).
+## Revenue Growth
 
-## Revenue
+I've always shared MRR numbers in previous recaps, but have neglected to mention actual _recognized
+revenue_ (the money that hits the bank). In most subscription businesses these numbers 
+are fairly similar, but due to Insomnia's option of annual billing (instead of monthly),
+recognized revenue is much higher than MRR. Because of this, I'll start covering both numbers 
+from now on.
 
-In the previous recaps I've shared MRR numbers, but neglected to mention actual _recognized
-revenue_ (the money that hits the bank account). In most subscription models, these numbers 
-are fairly similar, but due to Insomnia's option to bill up-from annually (instead of monthly),
-recognized revenue is much higher. Because of this, I'll start covering both numbers in this
-and future recaps.
-
-Insomnia **earned $390 in January**, which is $280 more than the stated MRR. This is 
-because 45% of customers subscribed to annual billing (instead of monthly), meaning they pay
-up-front for the entire year, at a 16% discount. 
+Insomnia **earned $390 in January**, which is $280 (woah!) more than MRR. This is 
+because **45% of customers subscribe to annual billing**. This is huge when thinking
+about sustainability!
 
 If this high proportion of annual subscribers continues, it will greatly decrease the time it
-takes to become sustainable. So, if you're thinking of subscribing, save the 16% and help 
-kick-start Insomnia to sustainability. &#x1f60a;
+takes to become sustainable. So, if you're thinking of subscribing, save the 16% and choose the
+annual plan. &#x1f60a;
 
 Alright, enough talk about _actual_ revenue. Let's continue the monthly tradition of examining
-MRR growth. Here's an impressive hockey-stick-shaped chart showing MRR over the past few months.
+MRR growth. Here's an impressive hockey-stick-shaped chart for your viewing pleasure.
 
 ![Insomnia Monthly Recurring Revenue December 2016](/images/blog/mrr-7.png)
 
-MRR is now up to $110, which is **140% growth over last month**. While this number _is_ amazing, 
-it much higher than it should be. Assuming the target market does not change and the proportion
-of users who upgrade remains constant, then MRR growth should match the growth rate of the user
-base, which has been between 20-30% per month. So how does this affect the path to sustainability?
+MRR is now up to $110, which is **140% growth over last month**. Since the number of paying 
+customers is still extremely low (23), this growth rate doesn't really mean anything. It's actually
+about four times higher than it _should_ be.
 
-### Minimum Revenue Growth
+Assuming the user demographic doesn't change and the proportion of upgrading users remains 
+constant, MRR growth should match user base growth, which has historically been between 
+20-30% per month. MRR growth should eventually settle down to a similar rate.
 
-My MRR goal for Insomnia is $5000. Hitting this number would mean that I can sustain my current
-lifestyle, though that is still only about 60% of what I could make by getting a real job. In
-December's recap, I mentioned I would need to grow MRR by 50% for 12 months to reach that, but 
-that didn't take into account the extra runway that incoming revenue provides. So I wrote a small
-script to calculate some more accurate numbers.
+### Will Insomnia Succeed?
 
-Basically **the lowest growth rate Insomnia can have to eventually be profitable is 25%**. This
-would make the first derivative of my bank account positive 
+The MRR goal for sustainability is $5000. Hitting this number would mean being able to 
+sustain my current lifestyle. In December's recap I mentioned MRR 
+would need to grow 50% for 12 months to reach $5000, but that calculation didn't take into 
+account the added runway that incoming revenue would provide. So I wrote a small script to 
+calculate a more accurate projection.
 
-From observation, it seems like the abnormally high MRR growth rate might continue, but I 
-don't want to count on it. Assuming that MRR grows at the same rate as user growth does, 
-**Insomnia will reach the $5000 goal in 14 months**. That's not good because my runway is only
-10 months. However, As more revenue comes in, my runway stretches out.
+After running the numbers, **the lowest MRR growth that will eventually
+lead to sustainability is 25%**. This is currently less than the user base growth rate, which makes
+sustainability plausible. However, I would like to tread water with my whole head out of water, 
+instead of just my nose.
 
-After some calculations, the lowest growth rate that will let me surpass my runway is 25%. This
-assumes that I have $19,000 in the bank and have a burn of $2000 / month.
+## February Goals
 
-| Starting MRR | Min Growth |
-| ------------ | ---------- |
-| $110         | 25%        |
-| $200         | 20%        |
-| $500         | 10%        |
+I took some time last week to make a long-term roadmap. While I don't believe the resulting road map
+is useful, the process helped me pin down the highest priority items to work on next. Here's what
+I want to have done by the end of February.
 
-The previous graph shows that initial MRR makes a huge difference, meaning that it's really 
-important to push hard right away to increase conversion rates and grow the user base.
+- **$150 MRR** (50% growth)
+- **4,000 Daily Active Users**
+- Finish first version of plugin system
+- Contact 25 publications/blogs/sites for plugins PR 
+- Open-source the Insomnia networking backend
+- Add "offboarding" survey to better understand trial user churn
 
-### Technical Wins
+## Personal Feelings
 
-![New Relic](/images/blog/newrelic.png)
+I felt really good throughout most of January. The community around Insomnia is really beginning
+to evolve, which is both awesome and humbling. This has been my primary source of motivation.
 
-## This Month's Wins and Losses
-
-- **WIN**: Dave Chaney tweeted Insomnia
-- **WIN**: Queued up for an Indie Hackers interview
-- **WIN**: Passed $100 MRR
-- **WIN**: First paying team on board
-
-## Next Month Goals
-
-TODO
+Right now it feels like Insomnia is at a turning point. The app is now good enough to satisfy 
+most user's needs, and is stable enough to start building the next big thing. At this point,
+I'm also more confident than ever that – if I can improve customer conversion rates and 
+do more PR and marketing – Insomnia will be able to reach sustainability.
 
 ## Wrap Up
 
-TODO
+I hope you enjoyed reading January's recap. It takes about a day to write one of these, but the
+process helps me stay on track and keep focused on the end goal. I've also had a few conversations
+spawned from the things I've discussed, which is awesome to see.
+
+As always, let me know if you have any feedback or thoughts, and enjoy the app!
