@@ -4,7 +4,7 @@ slug: plus
 subTitle: Your API workspaces, backed up and in sync
 type: splash
 cta:
-    text: Sign Up for Teams
+    text: Start Free Trial
     href: /pricing/
 image: 
     alt: Insomnia plus 
@@ -32,5 +32,5 @@ Sign up to start a 14-day free trial (no credit card required).
 
 <p style="text-align:center">
 <br>
-<a class="button" href="/pricing/">Sign Up for Plus</a>
+<a class="button" href="/pricing/">Start Free Trial</a>
 </p>

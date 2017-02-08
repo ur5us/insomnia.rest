@@ -50,6 +50,16 @@ your application, new data (including workspaces) may have be created.<br>
  _Hint: You can check for newly created Workspaces in the main (top-left) 
  dropdown._
 
+**Where does the application store data?**<br>
+Insomnia stores data in Electron's [`appData`](https://github.com/electron/electron/blob/master/docs/api/app.md#appgetpathname)
+directory, which is differs depending on platform. The local database is distributed across
+files with the name `insomnia.${resourceName}.db`.
+
+- `%APPDATA%` on Windows
+- `$XDG_CONFIG_HOME` or `~/.config` on Linux
+- `~/Library/Application` Support on macOS
+
+
 
 ## Random Questions
 
