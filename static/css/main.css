@@ -51,7 +51,8 @@ img.jumbotron__icon {
 .jumbotron .button {
     color: #fff;
     border: 1px solid #fff;
-    margin: 3rem auto 5rem;
+    margin: 4rem auto 5rem;
+    font-size: 1.1em;
 }
 
 .jumbotron .button:hover {

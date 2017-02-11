@@ -396,6 +396,13 @@ pre > code {
     text-align: center;
 }
 
+.row-center-y {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 /* ~~~~~~~~~~ */
 /* PAGINATION */
 /* ~~~~~~~~~~ */
@@ -595,6 +602,10 @@ button[disabled],
 /* HELPERS */
 /* ~~~~~~~ */
 
+.text-xxl {
+    font-size: 1.8rem;
+}
+
 .text-xl {
     font-size: 1.6rem;
 }
@@ -604,11 +615,11 @@ button[disabled],
 }
 
 .text-md {
-    font-size: 1.0rem;
+    font-size: 1.1rem;
 }
 
 .text-sm {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .subtle {
@@ -653,12 +664,20 @@ small,
     padding-top: 3rem;
 }
 
+.padding-top-lg {
+    padding-top: 6rem;
+}
+
 .padding-top-sm {
     padding-top: 1.5rem;
 }
 
 .padding-bottom {
     padding-bottom: 3rem;
+}
+
+.padding-bottom-lg {
+    padding-bottom: 6rem;
 }
 
 .margin-top {
@@ -802,6 +821,10 @@ body.floating-navbar .navbar__icon img {
 .footer__menu a {
     margin: 0 1rem;
     font-size: 1rem;
+}
+
+.footer__menu {
+    margin-bottom: 3rem;
 }
 
 /* ~~~~~~~~ */

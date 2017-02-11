@@ -27,7 +27,6 @@
       el.innerHTML = prefix + platform;
     }
 
-
     if (location) {
       el.onclick = function (e) {
         e.preventDefault();

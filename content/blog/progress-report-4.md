@@ -6,7 +6,7 @@ series: ["transparency"]
 tags: ["company", "progress"]
 ---
 
-[Last Month's Recap](/blog/progress-report-3) was fairly uneventful due extremely low app usage
+[Last Month's Recap](/blog/progress-report-3) was fairly uneventful due to extremely low app usage
 during the holiday season. Thankfully, usage is back up this month and things are looking 
 great! Insomnia crossed last month's failed goal of **$100 MRR** and also **surpassed 3,000
 daily active users**.
@@ -100,7 +100,7 @@ calculate a more accurate projection.
 
 After running the numbers, **the lowest MRR growth that will eventually
 lead to sustainability is 25%**. This is currently less than the user base growth rate, which makes
-sustainability plausible. However, I would like to tread water with my whole head out of water, 
+sustainability plausible. However, I would prefer to tread with my whole head out of water, 
 instead of just my nose.
 
 ## February Goals
