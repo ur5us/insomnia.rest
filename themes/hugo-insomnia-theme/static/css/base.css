@@ -112,7 +112,7 @@ strong * {
     font-weight: 500;
 }
 
-p {
+p, ul, table {
     font-size: 1.1rem;
 }
 
@@ -603,11 +603,11 @@ button[disabled],
 /* ~~~~~~~ */
 
 .text-xxl {
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 
 .text-xl {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
 }
 
 .text-lg {
@@ -654,6 +654,10 @@ small,
 
 .no-margin {
     margin: 0;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
 }
 
 .no-wrap {
