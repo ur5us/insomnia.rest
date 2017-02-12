@@ -228,6 +228,7 @@ img.jumbotron__icon {
 .docs-sidebar__entry {
     padding: 0.2rem 0;
     display: block;
+    font-weight: normal;
 }
 
 .docs-sidebar__entry--active::after {

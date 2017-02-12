@@ -50,10 +50,10 @@ menu:
       Identifier: terms
       URL: /terms/
       weight: 1
-    - Name: Blog
-      Identifier: blog
-      URL: /blog/
-      weight: 2
+#    - Name: Blog
+#      Identifier: blog
+#      URL: /blog/
+#      weight: 2
     - Name: Teams
       Identifier: teams
       URL: /teams/
