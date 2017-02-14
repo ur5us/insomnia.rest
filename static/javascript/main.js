@@ -1,7 +1,6 @@
 (function () {
   var els = document.querySelectorAll('.__download-link');
 
-  var prefix = 'Download for ';
   var location = null;
   var platform = null;
 
@@ -19,12 +18,8 @@
   for (var i = 0; i < els.length; i++) {
     var el = els[i];
 
-    if (el.getAttribute('data-verbose')) {
-      prefix = 'Download Insomnia for ';
-    }
-
     if (platform) {
-      el.innerHTML = prefix + platform;
+      el.innerHTML = `Download the App`;
     }
 
     if (location) {
