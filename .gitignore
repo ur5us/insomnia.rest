@@ -4,6 +4,7 @@ _speedpack
 _hugo
 
 node_modules
+.npm-debug.log
 
 .DS_Store
 static/javascript/build/*

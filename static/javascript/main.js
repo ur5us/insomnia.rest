@@ -19,7 +19,7 @@
     var el = els[i];
 
     if (platform) {
-      el.innerHTML = `Download the App`;
+      el.innerHTML = 'Download the App';
     }
 
     if (location) {
