@@ -252,6 +252,10 @@ article.article--preview .article--preview__separator {
 }
 
 article.article--preview h1 {
+    font-size: 1.7rem;
+}
+
+article h1 {
     font-size: 1.9rem;
 }
 

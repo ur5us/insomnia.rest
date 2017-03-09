@@ -1,6 +1,6 @@
 ---
 date: 2017-02-03
-title: Month 7 Recap – $110 MRR
+title: January Recap – $110 MRR
 slug: progress-report-4
 series: ["transparency"]
 tags: ["company", "progress"]
@@ -59,7 +59,7 @@ said, spending more effort on PR and marketing would probably go a long way.
 
 To give a more visual representation to this growth, here is the daily active users chart.
 
-![Insomnia Daily Active Users December 2016](/images/blog/dau-7.png)
+![Insomnia Daily Active Users January 2017](/images/blog/dau-7.png)
 
 ## Revenue Growth
 
@@ -80,7 +80,7 @@ annual plan. &#x1f60a;
 Alright, enough talk about _actual_ revenue. Let's continue the monthly tradition of examining
 MRR growth. Here's an impressive hockey-stick-shaped chart for your viewing pleasure.
 
-![Insomnia Monthly Recurring Revenue December 2016](/images/blog/mrr-7.png)
+![Insomnia Monthly Recurring Revenue January 2017](/images/blog/mrr-7.png)
 
 MRR is now up to $110, which is **140% growth over last month**. Since the number of paying 
 customers is still extremely low (23), this growth rate doesn't really mean anything. It's actually

@@ -1,6 +1,6 @@
 ---
 date: 2017-01-01
-title: Month 6 Recap – Happy New Year!
+title: December Recap – Happy New Year!
 slug: progress-report-3
 series: ["transparency"]
 tags: ["company", "progress"]
