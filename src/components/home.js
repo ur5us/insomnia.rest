@@ -33,13 +33,6 @@ class Home extends Component {
           </a>
         </p>
       )
-    } else if (billingDetails.subTrialing) {
-      const trialEndDateString = (new Date(billingDetails.subTrialEnd * 1000)).toDateString();
-      notice = (
-        <p className="notice info">
-          Your free trial ends on <strong>{trialEndDateString}</strong>
-        </p>
-      )
     } else if (billingDetails.isPaymentRequired) {
       notice = (
         <p className="notice info">

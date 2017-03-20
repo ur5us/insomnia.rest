@@ -465,7 +465,7 @@ button[disabled],
 }
 
 .button--no-outline {
-    border: 0 !important;
+    border-color: transparent !important;
 }
 
 /* ~~~~~ */
@@ -973,6 +973,8 @@ a.tags__tag:hover {
 
 body.template-skinny main {
     max-width: 58rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body.template-wide main {

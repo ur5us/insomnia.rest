@@ -3,12 +3,12 @@
 /* ~~~~~ */
 
 a, .button {
-    color: hsl(251, 74%, 63%);
+    color: #745be6;
     font-weight: 400 !important;
 }
 
 a:hover, .button:hover {
-    color: hsl(251, 60%, 55%);
+    color: #6147d1;
 }
 
 /* ~~~~~~~~~ */
@@ -163,15 +163,17 @@ img.jumbotron__icon {
 
 .pricing__column {
     box-sizing: border-box;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #ddd;
     position: relative;
     padding-bottom: 5rem;
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .pricing__column__header {
     padding: 1rem 1.5rem;
-    background: #f8f8f8;
-    border-bottom: 1px solid #e5e5e5;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
 }
 
 .pricing__column__header h1 {
@@ -199,12 +201,75 @@ img.jumbotron__icon {
 
 .pricing__column__footer .button {
     width: 100%;
+    border-color: #aaa;
+    color: #777;
+}
+
+.pricing__column__footer .button:hover {
+    width: 100%;
+    border-color: #888;
+    background-color: #888;
+    color: #fff;
 }
 
 .pricing__column__body ul {
     padding-left: 1rem;
     margin: 0;
     display: block;
+}
+
+.pricing__column--best {
+    box-shadow: 0 0 2em rgba(91, 79, 169, 0.3);
+}
+
+.pricing__column--best, .pricing__column--best > .pricing__column__header {
+    border-color: #6a57d5;
+}
+
+.pricing__column--best > .pricing__column__header {
+    background: #6a57d5;
+}
+
+.pricing__column--best > .pricing__column__footer .button {
+    color: #6a57d5;
+    border-color: #6a57d5;
+}
+
+.pricing__column--best > .pricing__column__footer .button:hover {
+    color: #fff;
+    border-color: #6a57d5;
+    background-color: #6a57d5;
+}
+
+.pricing__column--best > .pricing__column__header h1 {
+    color: #fff;
+}
+
+.pricing__column--better {
+    box-shadow: 0 0 2em rgba(68, 68, 68, 0.3);
+}
+
+.pricing__column--better, .pricing__column--better > .pricing__column__header {
+    border-color: #555;
+}
+
+.pricing__column--better > .pricing__column__header {
+    background: #555;
+}
+
+.pricing__column--better > .pricing__column__footer .button {
+    color: #555;
+    border-color: #555;
+}
+
+.pricing__column--better > .pricing__column__footer .button:hover {
+    color: #fff;
+    border-color: #555;
+    background-color: #555;
+}
+
+.pricing__column--better > .pricing__column__header h1 {
+    color: #fff;
 }
 
 /* ~~~~~~~ */
