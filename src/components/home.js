@@ -74,6 +74,7 @@ class Home extends Component {
         {this.renderVerifiedNotice()}
         {this.renderNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
+        <p>Your email address is <code>{whoami.email}</code>.</p>
         {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
         {(billingDetails && !billingDetails.subCancelled) ? (
             <p>
@@ -98,17 +99,15 @@ class Home extends Component {
             <a href="/app/change-password/">Change Password</a>
           </li>
           <li>
-            {billingDetails ? (
-                <a href="/app/subscribe/">Change Subscription</a>
-              ) : (
-                <a href="/app/subscribe/">Choose Plan</a>
-              )}
+            <a href="/app/change-email/">Change Email</a>
           </li>
-          {billingDetails ? (
-              <li>
-                <CancelLink/>
-              </li>
-            ) : null}
+          <li>
+            {billingDetails
+              ? <a href="/app/subscribe/">Change Subscription</a>
+              : <a href="/app/subscribe/">Choose Plan</a>
+            }
+          </li>
+          {billingDetails ? <li><CancelLink/></li> : null}
           <li>
             <SignOutLink/>
           </li>

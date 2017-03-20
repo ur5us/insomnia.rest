@@ -5,6 +5,7 @@ import SignUp from './signup';
 import Subscribe from './subscribe';
 import Teams from './teams';
 import ChangePassword from './change-password';
+import ChangeEmail from './change-email';
 import * as session from '../session';
 
 class App extends Component {
@@ -43,6 +44,8 @@ class App extends Component {
       this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>
     } else if (path.match(/^\/app\/change-password\/$/)) {
       this.component = <ChangePassword whoami={whoami}/>
+    } else if (path.match(/^\/app\/change-email\/$/)) {
+      this.component = <ChangeEmail whoami={whoami}/>
     } else if (path.match(/^\/app\/teams\/$/)) {
       this.component = (
         <Teams

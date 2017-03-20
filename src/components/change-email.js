@@ -1,12 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../session';
 
-class ChangePassword extends Component {
+class ChangeEmail extends Component {
   state = {
     loading: false,
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
+    password: '',
+    newEmail: '',
     loginError: '',
     error: '',
   };
@@ -15,25 +14,14 @@ class ChangePassword extends Component {
     this.setState({[e.target.name]: e.target.value, error: ''});
   };
 
-  _handleUpdateConfirmPasswordInput = e => {
-    this._handleUpdateInput(e);
-
-    if (this.state.newPassword !== e.target.value) {
-      e.target.setCustomValidity('Passwords did not match');
-    } else {
-      e.target.setCustomValidity('');
-    }
-  };
-
   _handleSubmit = async e => {
     e.preventDefault();
 
     this.setState({loading: true});
-
     const {whoami} = this.props;
 
     try {
-      await session.login(whoami.email, this.state.oldPassword);
+      await session.login(whoami.email, this.state.password);
     } catch (err) {
       this.setState({loginError: err.message, error: '', loading: false});
       return;
@@ -41,13 +29,13 @@ class ChangePassword extends Component {
 
     try {
       await session.changePasswordAndEmail(
-        this.state.oldPassword,
-        this.state.newPassword,
-        whoami.email
+        this.state.password,
+        this.state.password,
+        this.state.newEmail
       );
       window.location = '/app/';
     } catch (err) {
-      console.error('Failed to update password', err.stack);
+      console.error('Failed to update email', err.stack);
       this.setState({error: err.message, loading: false});
     }
   };
@@ -57,32 +45,22 @@ class ChangePassword extends Component {
     return (
       <form onSubmit={this._handleSubmit}>
         <div className="form-control">
-          <label>Old Password {loginError ? <small className="error">({loginError})</small> : null}
+          <label>New Email
+            <input type="email"
+                   name="newEmail"
+                   required
+                   onChange={this._handleUpdateInput}
+                   placeholder="new@domain.com"/>
+          </label>
+        </div>
+        <div className="form-control">
+          <label>Confirm Password {loginError ? <small className="error">({loginError})</small> : null}
             <input type="password"
-                   name="oldPassword"
+                   name="password"
                    required
                    autoFocus
                    onChange={this._handleUpdateInput}
                    placeholder="••••••••••"/>
-          </label>
-        </div>
-        <div className="form-control">
-          <label>New Password <span className="subtle">(minimum 8 characters)</span>
-            <input type="password"
-                   pattern=".{8,}"
-                   name="newPassword"
-                   required
-                   onChange={this._handleUpdateInput}
-                   placeholder="•••••••••••••••"/>
-          </label>
-        </div>
-        <div className="form-control">
-          <label>Confirm New Password
-            <input type="password"
-                   name="confirmNewPassword"
-                   required
-                   onChange={this._handleUpdateConfirmPasswordInput}
-                   placeholder="•••••••••••••••"/>
           </label>
         </div>
         {error ? <div className="form-control error">** {error}</div> : null}
@@ -97,10 +75,10 @@ class ChangePassword extends Component {
   }
 }
 
-ChangePassword.propTypes = {
+ChangeEmail.propTypes = {
   whoami: PropTypes.shape({
     email: PropTypes.string.isRequired,
   }).isRequired
 };
 
-export default ChangePassword;
+export default ChangeEmail;

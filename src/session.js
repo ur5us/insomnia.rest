@@ -149,33 +149,34 @@ export function getAuthSalts (email) {
   return util.post('/auth/login-s', {email})
 }
 
-export async function changePassword (rawOldPassphrase, rawNewPassphrase) {
+export async function changePasswordAndEmail (rawOldPassphrase, rawNewPassphrase, rawNewEmail) {
   // Sanitize inputs
   const oldPassphrase = _sanitizePassphrase(rawOldPassphrase);
   const newPassphrase = _sanitizePassphrase(rawNewPassphrase);
+  const newEmail = _sanitizeEmail(rawNewEmail);
 
   // Fetch some things
-  const {email, saltEnc, encSymmetricKey} = await whoami();
-  const {saltKey, saltAuth} = await getAuthSalts(email);
+  const {email: oldEmail, saltEnc, encSymmetricKey} = await whoami();
+  const {saltKey, saltAuth} = await getAuthSalts(oldEmail);
 
   // Generate some secrets for the user base'd on password
-  const oldSecret = await crypt.deriveKey(oldPassphrase, email, saltEnc);
-  const newSecret = await crypt.deriveKey(newPassphrase, email, saltEnc);
-  const oldAuthSecret = await crypt.deriveKey(oldPassphrase, email, saltKey);
-  const newAuthSecret = await crypt.deriveKey(newPassphrase, email, saltKey);
+  const oldSecret = await crypt.deriveKey(oldPassphrase, oldEmail, saltEnc);
+  const newSecret = await crypt.deriveKey(newPassphrase, newEmail, saltEnc);
+  const oldAuthSecret = await crypt.deriveKey(oldPassphrase, oldEmail, saltKey);
+  const newAuthSecret = await crypt.deriveKey(newPassphrase, newEmail, saltKey);
 
   // Compute the verifier key and add it to the Account object
   const oldVerifier = srp.computeVerifier(
     _getSrpParams(),
     Buffer.from(saltAuth, 'hex'),
-    Buffer.from(email, 'utf8'),
+    Buffer.from(oldEmail, 'utf8'),
     Buffer.from(oldAuthSecret, 'hex')
   ).toString('hex');
 
   const newVerifier = srp.computeVerifier(
     _getSrpParams(),
     Buffer.from(saltAuth, 'hex'),
-    Buffer.from(email, 'utf8'),
+    Buffer.from(newEmail, 'utf8'),
     Buffer.from(newAuthSecret, 'hex')
   ).toString('hex');
 
@@ -185,6 +186,7 @@ export async function changePassword (rawOldPassphrase, rawNewPassphrase) {
 
   return util.post(`/auth/change-password`, {
     verifier: oldVerifier,
+    newEmail: newEmail,
     encSymmetricKey: encSymmetricKey,
     newVerifier,
     newEncSymmetricKey,
