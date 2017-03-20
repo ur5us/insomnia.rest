@@ -41,9 +41,11 @@ class ChangeEmail extends Component {
   };
 
   render () {
+    const {whoami} = this.props;
     const {error, loginError, loading} = this.state;
     return (
       <form onSubmit={this._handleSubmit}>
+        <p>Your current email is <code>{whoami.email}</code></p>
         <div className="form-control">
           <label>New Email
             <input type="email"
@@ -67,7 +69,7 @@ class ChangeEmail extends Component {
         <div className="form-control padding-top-sm right">
           {loading ?
             <button type="button" disabled className="button">Updating...</button> :
-            <button type="submit" className="button">Update Password</button>
+            <button type="submit" className="button">Update Email</button>
           }
         </div>
       </form>
