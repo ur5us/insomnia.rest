@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../../session';
+import {trackEvent} from '../../analytics';
 
 const STATE_DEFAULT = 'default';
 const STATE_LOADING = 'loading';
@@ -19,6 +20,7 @@ class VerifyButton extends Component {
 
     try {
       await session.verify();
+      trackEvent('Account', 'Resend Verification Email');
       this.setState({state: STATE_DONE});
     } catch (err) {
       this.setState({error: err.message})

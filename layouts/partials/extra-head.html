@@ -24,11 +24,9 @@
         a.src = g;
         m.parentNode.insertBefore(a, m)
       })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-      ga('create', 'UA-9837747-12', 'auto', 'InsomniaLegacy');
       ga('create', 'UA-86416787-1', 'auto');
+      ga('set', 'transport', 'beacon');
       ga('send', 'pageview');
-      ga('send', 'InsomniaLegacy.pageview');
     } else {
       console.log('-- Google Analytics Disabled for ' + window.location.hostname + ' --');
       window.ga = function () {

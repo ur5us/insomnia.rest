@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../../session';
+import {trackEvent} from '../../analytics';
 
 class UpdateTeamNameForm extends Component {
   constructor (props) {
@@ -27,8 +28,10 @@ class UpdateTeamNameForm extends Component {
     try {
       await session.changeTeamName(teamId, teamName);
       await onUpdate();
+      trackEvent('Teams', 'Update Name Success');
     } catch (err) {
       alert(`Failed to leave team: ${err.message}`);
+      trackEvent('Teams', 'Update Name Error');
     }
 
     this.setState({loading: false});

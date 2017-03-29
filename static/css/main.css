@@ -168,6 +168,7 @@ img.jumbotron__icon {
     padding-bottom: 5rem;
     border-radius: 3px;
     overflow: hidden;
+    transform: scale(0.9);
 }
 
 .pricing__column__header {
@@ -220,6 +221,7 @@ img.jumbotron__icon {
 
 .pricing__column--best {
     box-shadow: 0 0 2em rgba(91, 79, 169, 0.3);
+    transform: scale(1);
 }
 
 .pricing__column--best, .pricing__column--best > .pricing__column__header {
@@ -247,6 +249,7 @@ img.jumbotron__icon {
 
 .pricing__column--better {
     box-shadow: 0 0 2em rgba(68, 68, 68, 0.3);
+    transform: scale(0.95);
 }
 
 .pricing__column--better, .pricing__column--better > .pricing__column__header {

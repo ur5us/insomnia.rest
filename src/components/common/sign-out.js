@@ -1,10 +1,12 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import * as session from '../../session';
+import {trackEvent} from '../../analytics';
 
 class SignOutLink extends Component {
   _handleClick = async e => {
     e.preventDefault();
     await session.logout();
+    trackEvent('Logout', 'Success');
     window.location = '/app/logout/';
   };
 

@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class SignUp extends Component {
   state = {
@@ -63,9 +64,11 @@ class SignUp extends Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
+      trackEvent('Signup', 'Success');
     } catch (err) {
       console.error('Failed to sign up', err);
       this.setState({error: err.message, loading: false});
+      trackEvent('Signup', 'Error');
     }
   };
 

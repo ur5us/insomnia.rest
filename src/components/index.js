@@ -29,7 +29,7 @@ class App extends Component {
       }
 
       localStorage.setItem('login.next', window.location.href);
-      window.location = '/app/login/';
+      window.location = '/app/signup/';
       return;
     }
 

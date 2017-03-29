@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class Login extends Component {
   state = {
@@ -26,8 +27,10 @@ class Login extends Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
+      trackEvent('Login', 'Success');
     } catch (err) {
       this.setState({error: err.message, loading: false});
+      trackEvent('Login', 'Error');
     }
   };
 

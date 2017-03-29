@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../../session';
+import {trackEvent} from '../../analytics';
 
 class CancelLink extends Component {
   _handleClick = async e => {
@@ -11,10 +12,12 @@ class CancelLink extends Component {
     );
 
     if (!confirmed) {
+      trackEvent('Account', 'Cancel Cancelled');
       return;
     }
 
     await session.cancelAccount();
+    trackEvent('Account', 'Cancel');
     window.location.reload();
   };
 

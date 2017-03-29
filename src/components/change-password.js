@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class ChangePassword extends Component {
   state = {
@@ -36,6 +37,7 @@ class ChangePassword extends Component {
       await session.login(whoami.email, this.state.oldPassword);
     } catch (err) {
       this.setState({loginError: err.message, error: '', loading: false});
+      trackEvent('Change Password', 'Error Login');
       return;
     }
 
@@ -46,9 +48,11 @@ class ChangePassword extends Component {
         whoami.email
       );
       window.location = '/app/';
+      trackEvent('Change Password', 'Success');
     } catch (err) {
       console.error('Failed to update password', err.stack);
       this.setState({error: err.message, loading: false});
+      trackEvent('Change Password', 'Error');
     }
   };
 

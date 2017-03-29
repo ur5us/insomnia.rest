@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import * as session from '../../session';
+import {trackEvent} from '../../analytics';
 
 class AddTeamAccountForm extends Component {
   constructor (props) {
@@ -29,8 +30,10 @@ class AddTeamAccountForm extends Component {
       await session.inviteToTeam(teamId, newMemberEmail, this.state.password);
       await onAdd();
       this.setState({loading: false});
+      trackEvent('Teams', 'Add Member Success');
     } catch (err) {
       this.setState({error: err.message, loading: false});
+      trackEvent('Teams', 'Add Member Error');
     }
   };
 
