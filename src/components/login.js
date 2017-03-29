@@ -27,10 +27,10 @@ class Login extends Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
-      trackEvent('Login', 'Success');
+      trackEvent('Account', 'Login Success');
     } catch (err) {
       this.setState({error: err.message, loading: false});
-      trackEvent('Login', 'Error');
+      trackEvent('Account', 'Login Error');
     }
   };
 

@@ -6,7 +6,7 @@ class SignOutLink extends Component {
   _handleClick = async e => {
     e.preventDefault();
     await session.logout();
-    trackEvent('Logout', 'Success');
+    trackEvent('Account', 'Logout');
     window.location = '/app/logout/';
   };
 

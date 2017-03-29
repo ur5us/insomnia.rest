@@ -25,7 +25,7 @@ class ChangeEmail extends Component {
       await session.login(whoami.email, this.state.password);
     } catch (err) {
       this.setState({loginError: err.message, error: '', loading: false});
-      trackEvent('Change Email', 'Error Login');
+      trackEvent('Account', 'Change Email Error Logging In');
       return;
     }
 
@@ -36,11 +36,11 @@ class ChangeEmail extends Component {
         this.state.newEmail
       );
       window.location = '/app/';
-      trackEvent('Change Email', 'Success');
+      trackEvent('Account', 'Change Email Success');
     } catch (err) {
       console.error('Failed to update email', err.stack);
       this.setState({error: err.message, loading: false});
-      trackEvent('Change Email', 'Error');
+      trackEvent('Account', 'Change Email Error');
     }
   };
 

@@ -64,11 +64,11 @@ class SignUp extends Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
-      trackEvent('Signup', 'Success');
+      trackEvent('Account', 'Signup Success');
     } catch (err) {
       console.error('Failed to sign up', err);
       this.setState({error: err.message, loading: false});
-      trackEvent('Signup', 'Error');
+      trackEvent('Account', 'Signup Error');
     }
   };
 

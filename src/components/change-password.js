@@ -37,7 +37,7 @@ class ChangePassword extends Component {
       await session.login(whoami.email, this.state.oldPassword);
     } catch (err) {
       this.setState({loginError: err.message, error: '', loading: false});
-      trackEvent('Change Password', 'Error Login');
+      trackEvent('Account', 'Change Password Error Logging In');
       return;
     }
 
@@ -48,11 +48,11 @@ class ChangePassword extends Component {
         whoami.email
       );
       window.location = '/app/';
-      trackEvent('Change Password', 'Success');
+      trackEvent('Account', 'Change Password Success');
     } catch (err) {
       console.error('Failed to update password', err.stack);
       this.setState({error: err.message, loading: false});
-      trackEvent('Change Password', 'Error');
+      trackEvent('Account', 'Change Password Error');
     }
   };
 
