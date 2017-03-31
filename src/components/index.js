@@ -7,6 +7,7 @@ import Teams from './teams';
 import ChangePassword from './change-password';
 import ChangeEmail from './change-email';
 import * as session from '../session';
+import {setUserId} from '../analytics';
 
 class App extends Component {
   state = {loading: true};
@@ -32,6 +33,8 @@ class App extends Component {
       window.location = '/app/signup/';
       return;
     }
+
+    setUserId(whoami.accountId);
 
     // Fetch the things
     const teams = await teamsTask;

@@ -11,6 +11,7 @@ const DEFAULT_PBKDF2_ITERATIONS = 1E5; // 100,000
  * @param pass
  * @param email
  * @param salt
+ * @returns {Promise}
  */
 export async function deriveKey (pass, email, salt) {
   const combinedSalt = await _hkdfSalt(salt, email);
