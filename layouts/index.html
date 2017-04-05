@@ -49,9 +49,9 @@
         <div class="col-4 padding-top-lg">
           <div class="img--promo">
             <img src="/images/screens/responses.png"
-                 alt="Insomnia Request Basic Authentication">
+                 alt="Insomnia Response Details">
           </div>
-          <h3>View response details</h3>
+          <h3>See every detail</h3>
           <p>
             Get all the details on every response. View status code, body,
             headers, cookies, and more!
@@ -78,6 +78,9 @@
           <h2 class="text-xxl">Get more done, faster</h2>
           <p class="text-lg" style="max-width:35rem;margin:auto">
             Insomnia is more than <i>just</i> an HTTP client
+            <br>
+            <br>
+            {{ partial "download-button" }}
           </p>
         </div>
       </div>
@@ -158,6 +161,7 @@
       <div class="row feature-list">
         <div class="col-6">
           <ul>
+            <li>OAuth 2.0 Authentication</li>
             <li>Multipart form builder</li>
             <li>Query parameter builder</li>
             <li>SSL client certificates</li>
@@ -167,22 +171,23 @@
             <li>Rendered HTML preview</li>
             <li>Image and SVG preview</li>
             <li>Configurable proxy</li>
-            <li>Light and dark themes</li>
+            <li>Color themes</li>
             <li>Cloud sync and sharing</li>
           </ul>
         </div>
         <div class="col-6">
           <ul>
-            <li>Nunjucks templating</li>
             <li>Import from <code style="color:#333">curl</code></li>
+            <li>Digest, Basic, NTLM Auth</li>
+            <li>Nunjucks templating</li>
+            <li>Configurable timeout</li>
             <li>HAR import</li>
             <li>Request filtering</li>
             <li>Toggle SSL validation</li>
             <li>Keyboard shortcuts</li>
-            <li>Configurable timeout</li>
             <li>Usable at almost all sizes</li>
-            <li>Drag-n-drop organization</li>
             <li>Responsive interface</li>
+            <li>Redirect chain visualization</li>
             <li>Mac, Windows and Linux</li>
           </ul>
         </div>

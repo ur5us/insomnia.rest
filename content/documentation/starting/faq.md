@@ -38,8 +38,9 @@ how you use Insomnia, or sign up for a [paid plan](/pricing).
 At this time, that is not possible, but it's coming soon.
 
 **How can I temporarily disable Nunjucks template?**<br>
-Sometimes, it is necessary to want to send data that conflicts with the template
-engine. You can disable templating by wrapping the desired content in the
+You can disable templating of the request body via the request settings dialog 
+(accessed from the sidebar). For more control, you can also disable templating by 
+wrapping the desired content in the 
 [Nunjucks {% raw %} Tag](https://mozilla.github.io/nunjucks/templating.html#raw).
 
 **Why don't I see anything after importing a backup?**<br>
@@ -59,13 +60,12 @@ files with the name `insomnia.${resourceName}.db`.
 - `$XDG_CONFIG_HOME` or `~/.config` on Linux
 - `~/Library/Application` Support on macOS
 
-
-
 ## Random Questions
 
 **What technologies is Insomnia build with?**<br>
 Insomnia is built using [Electron](http://electron.atom.io/), 
 [ReactJS](https://facebook.github.io/react/), and 
+[libcurl](https://curl.haxx.se/libcurl/), and 
 [NeDB](https://github.com/louischatriot/nedb).
 
 **How can I donate?**<br>
