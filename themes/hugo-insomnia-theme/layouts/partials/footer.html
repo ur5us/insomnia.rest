@@ -23,8 +23,8 @@
       {{ end }}
 
       {{ if not .IsHome }}
-      {{ if .RSSlink }}
-      <a href="{{ .RSSlink }}" type="application/rss+xml" target="_blank"
+      {{ if .RSSLink }}
+      <a href="{{ .RSSLink }}" type="application/rss+xml" target="_blank"
          title="RSS">
         RSS
       </a>
@@ -38,7 +38,7 @@
     </p>
 
     <p class="text-sm">
-      &copy; {{.Now.Format "2006"}}
+      &copy; {{ now.Format "2006"}}
       <a href="{{ .Site.Params.copyrightURL }}" target="_blank">
         {{ .Site.Copyright }}
       </a>
