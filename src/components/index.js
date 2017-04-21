@@ -41,7 +41,7 @@ class App extends Component {
     const billingDetails = await billingDetailsTask;
 
     const path = window.location.pathname;
-    if (path.match(/^\/app\/$/)) {
+    if (path.match(/^\/app\/account\/$/)) {
       this.component = <Home whoami={whoami} billingDetails={billingDetails}/>
     } else if (path.match(/^\/app\/subscribe\/$/)) {
       this.component = <Subscribe whoami={whoami} billingDetails={billingDetails}/>

@@ -60,7 +60,7 @@ class SignUp extends Component {
         this.state.agreeToEmails,
       );
 
-      const nextUrl = localStorage.getItem('login.next') || '/app/';
+      const nextUrl = localStorage.getItem('login.next') || '/app/account/';
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;

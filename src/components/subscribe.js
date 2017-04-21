@@ -149,7 +149,7 @@ class Subscribe extends Component {
     const finishBilling = async tokenId => {
       try {
         await session.subscribe(tokenId, planId, quantity);
-        window.location = '/app/';
+        window.location = '/app/account/';
       } catch (err) {
         this.setState({error: err.message});
       }

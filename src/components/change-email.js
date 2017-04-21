@@ -35,7 +35,7 @@ class ChangeEmail extends Component {
         this.state.password,
         this.state.newEmail
       );
-      window.location = '/app/';
+      window.location = '/app/account/';
       trackEvent('Account', 'Change Email Success');
     } catch (err) {
       console.error('Failed to update email', err.stack);

@@ -30,7 +30,7 @@ menu:
     - Name: "Account"
       Identifier: "account"
       Pre: "button"
-      URL: "/app/"
+      URL: "/app/account/"
       Weight: 10
     - Name: "Sign Up"
       Identifier: "signup"

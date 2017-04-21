@@ -1,0 +1,68 @@
+{{ partial "head" . }}
+<body class="template-docs">
+
+{{ partial "navbar" . }}
+
+<main role="main">
+  <div class="container">
+    <div class="row">
+      {{ partial "docs-sidebar" . }}
+      <div class="col-8">
+        <article class="docs-main">
+          <header>
+            <h1>{{ .Title | title }}</h1>
+            {{ if isset .Params "subtitle" }}
+            <p class="text-lg">{{ .Params.subtitle | markdownify }}</p>
+            {{ end }}
+          </header>
+
+          <section class="content">
+            <p>
+              Welcome to the documentation for <a href="/">Insomnia</a>.
+              Insomnia is a beautiful cross-platform application for organizing, running, and
+              debugging HTTP requests.
+            </p>
+
+            <p>
+              <img alt="Screenshot of Insomnia HTTP Client" src="/images/docs/promo.png"/>
+            </p>
+
+            <p>
+              Here are a few useful links to get you started.
+            </p>
+
+            <ul>
+              <li>Stuck? <a href="/documentation/faq">Frequently Asked Questions</a></li>
+              <li>Upgrading from the Chrome app? <a href="/documentation/migrate-from-chrome">Upgrade Guide</a></li>
+              <li>Need more help? <a href="/documentation/support-and-feedback">Get in Touch</a></li>
+              <li>Curious about the product? <a href="/documentation/backstory">Backstory</a></li>
+            </ul>
+          </section>
+
+          {{ partial "contribution-notice" . }}
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <section class="dark no-margin padding-bottom padding-top">
+    <div class="container">
+      <div class="row center">
+        <div class="col-8">
+          <p class="no-margin" style="margin: 0.6rem;">
+            Want to talk more? Just reach out, I'd love to help!
+          </p>
+        </div>
+        <div class="col-4">
+          {{ partial "contact-button" . }}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+{{ partial "footer" . }}
+{{ partial "js" . }}
+
+</body>
+</html>

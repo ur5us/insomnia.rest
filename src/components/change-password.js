@@ -47,7 +47,7 @@ class ChangePassword extends Component {
         this.state.newPassword,
         whoami.email
       );
-      window.location = '/app/';
+      window.location = '/app/account/';
       trackEvent('Account', 'Change Password Success');
     } catch (err) {
       console.error('Failed to update password', err.stack);

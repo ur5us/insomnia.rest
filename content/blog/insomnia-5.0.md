@@ -94,7 +94,7 @@ to talk about it in this post._
 ## So Much More &#127813;&#127815;&#127817;&#127820;&#127827;
 
 There is so much more that didn't make it into this post that I know you'll love.
-If you're curious you can view the full [release notes](/changelog/5.0.0/), but here's
+If you're curious you can view the full [release notes](/changelog/5.0.1/), but here's
 a summary of the most notable ones missed:
 
   - Environment variables and template tags now highlighted throughout the app
