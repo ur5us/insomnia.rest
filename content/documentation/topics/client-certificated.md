@@ -11,7 +11,7 @@ APIs to as a way for the client to authenticate itself.
 
 ## Importing Certificates
 
-Insomnia supports `PFX`, `PKCS12`, and `PEM` certificates. To import a new certificate,
+Insomnia supports `PFX` (Mac), and `PEM` (Windows and Linux) certificates. To import a new certificate,
 open the Workspace Settings dialog – accessible from the top-left menu – and click on the
 Client Certificates tab. From here, you can add new certificates and view existing ones.
 
@@ -23,8 +23,8 @@ If you're familiar with client certificates, the only field needing explanation 
 the `Host` field.
 
 - `Host`: certificate will be sent when the host (and port if specified) matches 
-- `PFX`: certificate in `PFX` or `PKCS12` format
-- `CRT File` + `Key File`: certificate and key pair
+- `PFX`: certificate in `PFX` or `PKCS12` format (Only supported on Mac)
+- `CRT File` + `Key File`: certificate and key pair (only supported on Windows and Linux)
 - `Passphrase`: An optional passphrase for the certificate if required
 
 After importing a certificate, it will show up in the main certificates list. From here, it

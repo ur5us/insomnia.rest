@@ -45,17 +45,14 @@ class Home extends Component {
     return <div>{notice}<br/></div>;
   }
 
-  renderVerifiedNotice () {
-    if (this.props.whoami.isVerified) {
+  renderLoginNotice () {
+    if (this.props.whoami.appNumLaunches) {
       return null;
     }
 
     return (
-      <p className="notice warn">
-        Your email address <code>{this.props.whoami.email}</code> is not yet verified
-        <br/>
-        <br/>
-        <VerifyButton className="button button--compact"/>
+      <p className="notice info">
+        You may now sign in to the app 💻
       </p>
     )
   }
@@ -71,7 +68,7 @@ class Home extends Component {
 
     return (
       <div>
-        {this.renderVerifiedNotice()}
+        {this.renderLoginNotice()}
         {this.renderNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
         <p>Your email address is <code>{whoami.email}</code>.</p>
@@ -124,8 +121,9 @@ Home.propTypes = {
     trialEnd: PropTypes.number.isRequired,
     isTrialing: PropTypes.bool.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
-    canManageTeams: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
+    appNumLaunches: PropTypes.number.isRequired,
+    canManageTeams: PropTypes.bool.isRequired,
   }).isRequired,
   billingDetails: PropTypes.shape({
     description: PropTypes.string.isRequired,
