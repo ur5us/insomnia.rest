@@ -1,5 +1,5 @@
 ---
-date: 2016-10-30T11:39:42-07:00
+date: 2016-10-30
 title: Month 1-4 Recap – A Good Start
 slug: progress-report-1
 series: ["transparency"]

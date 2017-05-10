@@ -708,6 +708,10 @@ small,
     color: #ccc;
 }
 
+.dark a:hover {
+    color: #ddd;
+}
+
 .dark .button:hover {
     color: #333;
     background: #fff;
@@ -722,10 +726,8 @@ small,
 /* ~~~~~~~ */
 
 body.floating-navbar .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    float: left;
+    width: 100%;
 }
 
 body.floating-navbar .navbar a {
@@ -813,7 +815,6 @@ body.floating-navbar .navbar__icon img {
     text-align: center;
     background: linear-gradient(165deg, #6e60cc 0%, #484389 100%);
     overflow: auto;
-    padding: 2rem 0;
     align-self: flex-end;
 }
 
@@ -826,13 +827,15 @@ body.floating-navbar .navbar__icon img {
     text-decoration: none;
 }
 
-.footer__menu a {
-    margin: 0 1rem;
-    font-size: 1rem;
+.footer__menu {
+    max-width: 40rem;
+    margin: 0 auto 3rem auto;
 }
 
-.footer__menu {
-    margin-bottom: 3rem;
+.footer__menu a {
+    margin: 0.8rem 1rem;
+    font-size: 1rem;
+    display: inline-block;
 }
 
 /* ~~~~~~~~ */
@@ -980,7 +983,6 @@ body.template-skinny main {
 body.template-wide main {
     max-width: 100%;
 }
-
 
 body.template-splash main h2 {
     margin-top: 4rem;

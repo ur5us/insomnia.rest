@@ -42,38 +42,42 @@ menu:
       URL: "/download/"
       Weight: 100
   footer:
-    - Name: Licence
-      Identifier: eula
-      URL: /eula/
-      weight: 0
-    - Name: Terms
-      Identifier: terms
-      URL: /terms/
-      weight: 1
-#    - Name: Blog
-#      Identifier: blog
-#      URL: /blog/
-#      weight: 2
-    - Name: Teams
-      Identifier: teams
-      URL: /teams/
-      weight: 3
-    - Name: Plus
-      Identifier: plus
-      URL: /plus/
-      weight: 4
-    - Name: Transparency
-      Identifier: transparency
-      URL: /transparency/
-      weight: 5
-    - Name: Changelog
-      Identifier: changelog
-      URL: /changelog/
-      weight: 6
     - Name: Support
       Identifier: support
       URL: /documentation/support-and-feedback/
-      weight: -1
+      weight: 1
+    - Name: Open Source
+      Identifier: opensource
+      URL: https://github.com/getinsomnia
+      weight: 4
+    - Name: Blog
+      Identifier: blog
+      URL: /blog/
+      weight: 5
+    - Name: Transparency
+      Identifier: transparency
+      URL: /transparency/
+      weight: 6
+    - Name: Changelog
+      Identifier: changelog
+      URL: /changelog/
+      weight: 7
+    - Name: Teams
+      Identifier: teams
+      URL: /teams/
+      weight: 8
+    - Name: Plus
+      Identifier: plus
+      URL: /plus/
+      weight: 9
+    - Name: Licence
+      Identifier: eula
+      URL: /eula/
+      weight: 99
+    - Name: Terms
+      Identifier: terms
+      URL: /terms/
+      weight: 100
   docs:
       - Name: ""
         Identifier: "welcome"

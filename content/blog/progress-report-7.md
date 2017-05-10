@@ -1,6 +1,6 @@
 ---
 date: 2017-05-06
-title: April Recap – Yay
+title: April Recap – Burnout and Declining Growth 
 slug: progress-report-7
 series: ["transparency"]
 tags: ["company", "progress"]
