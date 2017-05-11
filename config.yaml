@@ -78,6 +78,10 @@ menu:
       Identifier: terms
       URL: /terms/
       weight: 100
+    - Name: Code of Conduct
+      Identifier: coc
+      URL: /code-of-conduct/
+      weight: 101
   docs:
       - Name: ""
         Identifier: "welcome"
