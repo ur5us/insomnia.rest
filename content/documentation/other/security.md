@@ -36,7 +36,7 @@ can gain access to your sensitive data. You can rest assured that your data is
 safe on your machine.
 
 **Encryption algorithms used?**<br>
-Add data is encrypted using randomly generated 256 bit symmetric keys for
+All data is encrypted using randomly generated 256 bit symmetric keys for
 use with AES-GCM-256 (Galois Counter Mode). 
 
 **Passwords cannot be reset**<br>
