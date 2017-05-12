@@ -1,9 +1,7 @@
 ---
-title: Code of Conduct
+title: Community Code of Conduct
 slug: code-of-conduct
 ---
-
-# Insomnia Code of Conduct
 
 Like the technical community as a whole, the Insomnia community is made up of a mixture 
 of professionals and volunteers from all over the world, working on every aspect of the 
@@ -41,8 +39,8 @@ please see our Reporting Guidelines
   excuse for poor behavior and poor manners. We might all experience some frustration 
   now and then, but we cannot allow that frustration to turn into a personal attack. 
   It’s important to remember that a community where people feel uncomfortable or 
-  threatened is not a productive one. Members of the Django community should be respectful 
-  when dealing with other members as well as with people outside the Django community.
+  threatened is not a productive one. Members of the Insomnia community should be respectful 
+  when dealing with other members as well as with people outside the Insomnia community.
 - **Be careful in the words that you choose.** We are a community of professionals, 
   and we conduct ourselves professionally. Be kind to others. Do not insult or put 
   down other participants. Harassment and other exclusionary behavior aren't acceptable. 
@@ -56,9 +54,9 @@ please see our Reporting Guidelines
   - Advocating for, or encouraging, any of the above behavior.
   - Repeated harassment of others. In general, if someone asks you to stop, then stop.
 - **When we disagree, try to understand why.** Disagreements, both social and technical, 
-happen all the time and Django is no exception. It is important that we resolve 
+happen all the time and Insomnia is no exception. It is important that we resolve 
 disagreements and differing views constructively. Remember that we’re different. The 
-strength of Django comes from its varied community, people from a wide range of backgrounds. 
+strength of Insomnia comes from its varied community, people from a wide range of backgrounds. 
 Different people have different perspectives on issues. Being unable to understand why 
 someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that it is human 
 to err and blaming each other doesn’t get us anywhere. Instead, focus on helping to resolve 
