@@ -1,6 +1,7 @@
 ---
 title: Community Code of Conduct
 slug: code-of-conduct
+type: skinny
 ---
 
 Like the technical community as a whole, the Insomnia community is made up of a mixture 
