@@ -1,17 +1,27 @@
 ---
-title: "Support and Feedback"
-slug: "support-and-feedback"
+title: Support and Feedback
+slug: support-and-feedback
 menu:
     docs:
-        parent: "other"
+        parent: other
         weight: 99
 ---
 
-Please report any bugs on the 
-[Insomnia GitHub Repository](https://github.com/getinsomnia/insomnia/issues).
+There are a number of ways you can reach out or get involved with the community.
+
+## Bug Reports and Issues
+
+General application bugs and issues should be submitted to the
+GitHub Repository. Please see the 
+[Contributing Guidelines](https://github.com/getinsomnia/insomnia/blob/develop/CONTRIBUTING.md)
+to get started.
+
+## Slack Group
+
+Have a quick question? Chatting on Slack is a great way to get answers from real 
+people. [Join Now](https://chat.insomnia.rest) to get started.
+
+## Email Support
 
 Any other feedback, questions, concerns can be sent to 
-[support@insomnia.rest](mailto:support@insomnia.rest). I get a lot of email, so 
-please bare with me as I respond as quickly as I can. 
-
-~ Gregory
+[support@insomnia.rest](mailto:support@insomnia.rest) and I will respond ASAP. 
