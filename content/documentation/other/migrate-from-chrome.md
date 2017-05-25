@@ -4,7 +4,7 @@ slug: "migrate-from-chrome"
 menu:
     docs:
         parent: "other"
-        weight: 2
+        weight: 1
 ---
 
 The previous [version 2.0](https://chrome.google.com/webstore/detail/insomnia-rest-client/gmodihnfibbjdecbanmpmbmeffnmloel) 

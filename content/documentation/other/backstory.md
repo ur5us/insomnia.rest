@@ -1,10 +1,10 @@
 ---
-title: "Backstory"
-slug: "backstory"
+title: Backstory
+slug: backstory
 menu: 
     docs:
-        parent: "other"
-        weight: 80
+        parent: other
+        weight: 800
 ---
 
 Development of Insomnia started in January of 2015. I was helping build the API platform for

@@ -6,6 +6,10 @@ menu:
         parent: "topics"
 ---
 
+<p class="notice warn">
+This is currently an experimental feature
+</p>
+
 [Client certificates](https://en.wikipedia.org/wiki/Client_certificate) are used by some
 APIs to as a way for the client to authenticate itself.
 

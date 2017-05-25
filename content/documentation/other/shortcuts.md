@@ -1,9 +1,10 @@
 ---
-title: "Keyboard Shortcuts"
-slug: "keyboard-shortcuts"
+title: Keyboard Shortcuts
+slug: keyboard-shortcuts
 menu:
     docs:
-        parent: "other"
+        parent: other
+        weight: 300
 ---
 
 _If you are a MacOS user, pretend `ctrl` is actually `cmd`_

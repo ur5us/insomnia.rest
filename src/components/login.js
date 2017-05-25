@@ -70,6 +70,10 @@ class Login extends Component {
             }
           </div>
         </div>
+        <hr className="hr--skinny"/>
+        <p className="center text-sm">
+          <a href="/documentation/forgot-password/" target="_blank">Forgot your password?</a>
+        </p>
       </form>
     )
   }

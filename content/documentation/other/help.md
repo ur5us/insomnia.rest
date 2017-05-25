@@ -3,7 +3,7 @@ title: "How You Can Help"
 slug: "how-you-can-help"
 menu:
     docs:
-        parent: "other"
+        parent: other
         weight: 50
 ---
 
