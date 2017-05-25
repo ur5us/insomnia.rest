@@ -1,6 +1,7 @@
 ---
-title: "How You Can Help"
-slug: "how-you-can-help"
+title: How You Can Help
+subTitle: Give back to the Insomnia community
+slug: how-you-can-help
 menu:
     docs:
         parent: other

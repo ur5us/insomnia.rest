@@ -1,6 +1,7 @@
 ---
-title: "Installation"
-slug: "installation"
+title: Installation
+subTitle: Install Insomnia no any platform
+slug: installation
 menu:
     docs:
         parent: "starting"

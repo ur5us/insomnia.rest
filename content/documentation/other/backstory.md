@@ -1,5 +1,6 @@
 ---
 title: Backstory
+subTitle: How Insomnia began
 slug: backstory
 menu: 
     docs:

@@ -1,6 +1,7 @@
 ---
-title: "Workspaces"
-slug: "workspaces"
+title: Workspaces
+subTitles: Divide your data into compartmentalized workspaces
+slug: workspaces
 menu:
     docs:
         parent: "topics"

@@ -1,5 +1,6 @@
 ---
 title: Security Overview
+subTitle: The nerdy details around sync and data encryption
 slug: security
 menu:
     docs:

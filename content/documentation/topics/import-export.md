@@ -1,6 +1,7 @@
 ---
-title: "Import/Export"
-slug: "import-export"
+title: Import/Export
+subTitle: Share your Insomnia projects with others
+slug: import-export
 menu:
     docs:
         parent: "topics"

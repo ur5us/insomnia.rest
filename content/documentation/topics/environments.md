@@ -1,6 +1,7 @@
 ---
-title: "Environment Variables"
-slug: "environment-variables"
+title: Environment Variables
+subTitle: Define and reuse common values across requests
+slug: environment-variables
 menu:
     docs:
         parent: "topics"

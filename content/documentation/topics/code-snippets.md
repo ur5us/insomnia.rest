@@ -1,9 +1,10 @@
 ---
-title: "Code Snippets"
-slug: "code-snippets"
+title: Code Generation
+subTitle: Generate code snippets for almost any language
+slug: code-snippets
 menu:
     docs:
-        parent: "topics"
+        parent: topics
         weight: -90
 ---
 

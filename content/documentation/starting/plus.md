@@ -1,6 +1,7 @@
 ---
-title: "Insomnia Plus"
-slug: "plus"
+title: Insomnia Plus
+subTitle: Get more out of Insomnia
+slug: plus
 menu:
     docs:
         parent: "starting"

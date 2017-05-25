@@ -1,6 +1,7 @@
 ---
-title: "Cookie Management"
-slug: "cookie-management"
+title: Cookie Management
+subTitle: Store and send cookies
+slug: cookie-management
 menu:
     docs:
         parent: "topics"

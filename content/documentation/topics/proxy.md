@@ -1,6 +1,7 @@
 ---
-title: "Proxy Requests"
-slug: "proxy"
+title: Proxy Requests
+subTitle: Setup a network proxy for requests
+slug: proxy
 menu:
     docs:
         parent: "topics"

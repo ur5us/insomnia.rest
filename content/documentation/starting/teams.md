@@ -1,6 +1,7 @@
 ---
-title: "Insomnia Teams"
-slug: "teams"
+title: Insomnia Teams
+subTitle: Collaborate with your team inside Insomnia
+slug: teams
 menu:
     docs:
         parent: "starting"

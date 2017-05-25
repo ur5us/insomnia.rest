@@ -1,9 +1,6 @@
 ---
 title: Template Syntax
 slug: templating
-menu:
-    docs:
-        parent: "topics"
 ---
 
 Within Insomnia, you can use the 

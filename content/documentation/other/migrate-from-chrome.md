@@ -1,9 +1,9 @@
 ---
-title: "Migrating from 2.0"
-slug: "migrate-from-chrome"
+title: Migrating from 2.0
+slug: migrate-from-chrome
 menu:
     docs:
-        parent: "other"
+        parent: other
         weight: 1
 ---
 

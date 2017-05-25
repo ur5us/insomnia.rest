@@ -1,5 +1,6 @@
 ---
 title: Forgot Password
+subTitle: Help recover or reset your password
 slug: forgot-password
 menu:
     docs:

@@ -1,5 +1,6 @@
 ---
 title: Client Certificates
+subTitle: Authenticate using SSL client certificates
 slug: client-certificates
 menu:
     docs:

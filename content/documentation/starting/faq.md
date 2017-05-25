@@ -1,5 +1,6 @@
 ---
 title: FAQ
+subTitle: Frequently Asked questions
 slug: faq
 menu:
     docs:

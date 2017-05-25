@@ -1,5 +1,6 @@
 ---
 title: Keyboard Shortcuts
+subTitle: Improve your efficiency with Insomnia
 slug: keyboard-shortcuts
 menu:
     docs:

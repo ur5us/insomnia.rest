@@ -1,5 +1,6 @@
 ---
 title: Support and Feedback
+subTitle: Get in touch
 slug: support-and-feedback
 menu:
     docs:

@@ -1,5 +1,6 @@
 ---
 title: Authentication
+subTitle: Basic, Digest, OAuth, and more
 slug: authentication
 menu:
     docs:

@@ -1,6 +1,7 @@
 ---
-title: "SSL Validation"
-slug: "ssl-validation"
+title: SSL Validation
+subTitle: Control the validation of certificates
+slug: ssl-validation
 menu:
     docs:
         parent: "topics"

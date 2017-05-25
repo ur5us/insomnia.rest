@@ -1,5 +1,6 @@
 ---
 title: Chaining Requests
+subTitle: Reference response values from other requests
 slug: request-chaining
 menu:
     docs:
@@ -17,6 +18,10 @@ Insomnia provides the ability to reference response values of other requests. Se
 <img title="Response tag hint" src="/images/docs/response-tag-hint.png" class="small" />
 
 Then, click the tag to select the request and specify the desired response attribute.
+
+<p class="notice info">
+<strong>Tip!</strong> Use this inside an environment to prevent duplicated effort
+</p>
 
 ![Request chaining dialog](/images/docs/response-tag.png)
 
