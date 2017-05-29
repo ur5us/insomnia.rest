@@ -4,8 +4,8 @@ subTitle: Basic, Digest, OAuth, and more
 slug: authentication
 menu:
     docs:
-        parent: "topics"
-        weight: -90
+        parent: topics
+        weight: -60
 ---
 
 Insomnia can automatically generate and send `Authorization` headers for the following
