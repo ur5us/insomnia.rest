@@ -50,6 +50,13 @@ _Note: you may need to set the package as executable from your command line._
 chmod +x insomnia.AppImage
 ```
 
+### Troubleshooting Notes
+
+Here are some issues that have caused problems for Linux users in the past
+
+- `/tmp` folder must allow execution
+- missing `libcurl` dependency
+
 ## Previous Versions
 
 To roll-back, you can download any version by replacing the desired version number 

@@ -46,6 +46,11 @@ account keys. If you lose your password there is no way to access your data,
 and there is nothing Insomnia can do to help apart from resetting your account. 
 You _can_ change your password but you need a copy of your old one to do so.
 
+**Unencrypted Fields**<br>
+By default, resources within the application are fully encrypted before being sent to the
+server. However, both `id` and `name` of each resource are attached in plaintext before
+uploading.
+
 **Local data is not encrypted on disk**<br>
 Insomnia currently stores application data on disk in raw form.
 E2EE only applies to data that is transmitted over the network. It is still 
