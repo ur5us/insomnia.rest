@@ -14,10 +14,11 @@ such as generating UUIDs or timestamps.
 
 Insomnia currently provides the following template tags.
 
-- **Now** – generate timestamps in various formats
-- **UUID** – generate a unique UUID
-- **Base64** – encode/decode values
-- **Response Value** – reference value from another responses
+- **Timestamp** – generate and format timestamps
+- **UUID** – generate UUIDs
+- **Base64** – encode/decode values in base64
+- **Request** – reference values from the current request
+- **Response** – reference value from another request's responses
 
 To insert a template tag, press `CTRL+Space` wherever 
 [environment variables](/documentation/environment-variables/) can be used.
