@@ -28,7 +28,7 @@ export default {
   ],
   devtool,
   output: {
-    path: path.resolve('./static/javascript/build'),
+    path: path.resolve('./site/static/javascript/build'),
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',

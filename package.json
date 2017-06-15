@@ -6,17 +6,17 @@
   "author": "Gregory Schier <gschier1990@gmail.com>",
   "licence": "MIT",
   "scripts": {
-    "task:changelog": "rm -rf ./content/changelog-json && cp -r ./content/changelog ./content/changelog-json",
+    "task:changelog": "rm -rf ./site/content/changelog-json && cp -r ./site/content/changelog ./site/content/changelog-json",
     "build:clean": "rm -rf _hugo _speedpack",
-    "build:generate": "npm run task:changelog && hugo --destination _hugo",
+    "build:generate": "npm run task:changelog && hugo --source site --destination $PWD/_hugo",
     "build:pack": "speedpack _hugo --output _speedpack",
     "build:app": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "build": "npm run build:clean && npm run build:app && npm run build:generate && npm run build:pack",
     "deploy": "npm run build && surge _speedpack",
     "dev:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
-    "dev:hugo": "hugo serve --buildDrafts --bind 0.0.0.0",
+    "dev:hugo": "hugo --source site serve --buildDrafts --bind 0.0.0.0",
     "dev": "npm run task:changelog && concurrently --kill-others \"npm run dev:hugo\" \"npm run dev:app\"",
-    "start:serve": "hugo serve --bind 0.0.0.0",
+    "start:serve": "hugo --source site serve --bind 0.0.0.0",
     "start": "npm run task:changelog && npm run start:serve"
   },
   "repository": {
