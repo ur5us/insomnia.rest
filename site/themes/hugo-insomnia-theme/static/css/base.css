@@ -352,14 +352,13 @@ code {
     border-radius: 0.2em;
     tab-size: 2;
     color: inherit;
-}
-
-code {
     white-space: nowrap;
 }
 
 pre code {
     white-space: pre;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 code, code * {
