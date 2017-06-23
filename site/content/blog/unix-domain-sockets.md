@@ -1,6 +1,6 @@
 ---
 date: 2017-06-20
-title: Introducing Unix Domain Sockets
+title: Introducing Unix Domain Socket Support
 slug: unix-domain-sockets
 tags: ["feature"]
 ---
