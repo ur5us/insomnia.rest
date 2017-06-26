@@ -1,5 +1,5 @@
 ---
-date: 2017-06-25
+date: 2017-06-23
 title: GitHub API Authentication using OAuth 2.0
 slug: oauth2-github-api
 tags: []
@@ -8,7 +8,7 @@ series: ["tutorial"]
 
 OAuth 2.0 has been a supported authentication scheme in Insomnia for some time now but – if
 you are new to OAuth – can still be quite complicated.
-This post explains walks through an example of using OAuth 2.0 to authenticate and create a 
+This post walks through an example using OAuth 2.0 to authenticate and create a 
 repository on GitHub using the [GitHub API](https://developer.github.com/v3/).
 
 <p class="notice info">
