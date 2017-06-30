@@ -33,7 +33,8 @@
 
 (function () {
   var changelogListItems = document.querySelectorAll('.changelog__list-item');
-  for (var item of changelogListItems) {
+  for (var i = 0; i < changelogListItems.length; i++) {
+    var item = changelogListItems[i];
     var match = item.innerHTML.match(/\(PR:(\d+)(:([^)]+))?\)/);
     if (match) {
       var prNumber = match[1];
