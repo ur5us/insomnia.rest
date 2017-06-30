@@ -9,19 +9,19 @@
 <ul class="ul--decorated">
   {{ if isset .Params "major" }}
   {{ range .Params.major }}
-  <li class="li--major">{{ . }}</li>
+  <li class="li--major changelog__list-item">{{ . }}</li>
   {{ end }}
   {{ end }}
 
   {{ if isset .Params "fixes" }}
   {{ range .Params.fixes }}
-  <li class="li--fix">{{ . }}</li>
+  <li class="li--fix changelog__list-item">{{ . }}</li>
   {{ end }}
   {{ end }}
 
   {{ if isset .Params "minor" }}
   {{ range .Params.minor }}
-  <li class="li--minor">{{ . }}</li>
+  <li class="li--minor changelog__list-item">{{ . }}</li>
   {{ end }}
   {{ end }}
 </ul>

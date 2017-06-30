@@ -30,3 +30,21 @@
     }
   }
 })();
+
+(function () {
+  var changelogListItems = document.querySelectorAll('.changelog__list-item');
+  for (var item of changelogListItems) {
+    var match = item.innerHTML.match(/\(PR:(\d+)(:([^)]+))?\)/);
+    if (match) {
+      var prNumber = match[1];
+      var user = match[3] || '';
+      var userString = (user ? ' by ' + user : '');
+      var anchor = document.createElement('a');
+      anchor.target = '_blank';
+      anchor.href = 'https://github.com/getinsomnia/insomnia/pull/' + prNumber;
+      anchor.innerHTML = '(#' + prNumber + userString + ')';
+      item.innerHTML = item.innerHTML.replace(match[0], '');
+      item.appendChild(anchor);
+    }
+  }
+})();

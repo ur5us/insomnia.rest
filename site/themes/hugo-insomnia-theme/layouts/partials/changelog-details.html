@@ -14,7 +14,7 @@
 <p><strong>Major Changes</strong></p>
 <ul class="ul--decorated ul--major">
   {{ range .Params.major }}
-  <li>{{ . }}</li>
+  <li class="changelog__list-item">{{ . }}</li>
   {{ end }}
 </ul>
 {{ end }}
@@ -23,7 +23,7 @@
 <p><strong>Bug Fixes</strong></p>
 <ul class="ul--decorated ul--fix">
   {{ range .Params.fixes }}
-  <li>{{ . }}</li>
+  <li class="changelog__list-item">{{ . }}</li>
   {{ end }}
 </ul>
 {{ end }}
@@ -32,7 +32,7 @@
 <p><strong>Minor Changes</strong></p>
 <ul class="ul--decorated ul--minor">
   {{ range .Params.minor }}
-  <li>{{ . }}</li>
+  <li class="changelog__list-item">{{ . }}</li>
   {{ end }}
 </ul>
 {{ end }}
