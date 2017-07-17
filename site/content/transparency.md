@@ -18,10 +18,10 @@ here as time goes on. If you have any suggestions for things you want to see, ju
 
 The following chart shows the number of weekly active users for the Insomnia desktop app. 
 
-<iframe height="300" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=787620209&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+![Weekly Active Users](https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=1228212532&format=image)
 
 <a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=787620209&amp;single=true&amp;widget=true&amp;headers=false" target="_blank">
-Open in new tab
+Open interactive chart
 </a>
 
 
@@ -29,8 +29,8 @@ Open in new tab
 
 The following chart shows the amount of monthly recurring revenue for all paid plans combined.
 
-<iframe height="300" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=644426801&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+![Weekly Active Users](https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=2111297713&format=image)
 
 <a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=644426801&amp;single=true&amp;widget=true&amp;headers=false" target="_blank">
-Open in new tab
+Open interactive chart
 </a>
