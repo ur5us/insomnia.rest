@@ -14,13 +14,13 @@ next attempt at sharing even more. It's fairly basic right now, but I plan to ad
 here as time goes on. If you have any suggestions for things you want to see, just 
 [send an email](/documentation/support-and-feedback/) and let me know.
 
-## Daily Active Users
+## Weekly Active Users
 
-The following chart shows the number of daily active users for the Insomnia desktop app. 
+The following chart shows the number of weekly active users for the Insomnia desktop app. 
 
-<iframe height="400" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=1401303279&amp;format=interactive"></iframe>
+<iframe height="300" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=787620209&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
-<a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=1401303279&amp;format=interactive" target="_blank">
+<a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=787620209&amp;single=true&amp;widget=true&amp;headers=false" target="_blank">
 Open in new tab
 </a>
 
@@ -29,8 +29,8 @@ Open in new tab
 
 The following chart shows the amount of monthly recurring revenue for all paid plans combined.
 
-<iframe height="400" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=1618096482&amp;format=interactive"></iframe>
+<iframe height="300" src="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=644426801&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
 
-<a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubchart?oid=1618096482&amp;format=interactive" target="_blank">
+<a href="https://docs.google.com/spreadsheets/d/1VisLOuV4X3h6T5hNCk60oVIP3s80x5AWJ3duygmkkWI/pubhtml?gid=644426801&amp;single=true&amp;widget=true&amp;headers=false" target="_blank">
 Open in new tab
 </a>
