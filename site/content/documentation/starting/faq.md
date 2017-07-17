@@ -59,7 +59,7 @@ files with the name `insomnia.${resourceName}.db`.
 
 - `%APPDATA%` on Windows
 - `$XDG_CONFIG_HOME` or `~/.config` on Linux
-- `~/Library/Application` Support on macOS
+- `~/Library/Application Support` on macOS
 
 ## Random Questions
 
