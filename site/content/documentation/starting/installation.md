@@ -1,6 +1,6 @@
 ---
 title: Installation
-subTitle: Install Insomnia no any platform
+subTitle: Install Insomnia on any platform
 slug: installation
 menu:
     docs:
