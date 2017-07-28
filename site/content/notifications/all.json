@@ -1,9 +1,1 @@
-{
-  "authorized": "https://api.insomnia.rest/notification",
-  "notification": {
-    "key": "any",
-    "message": "Hello!",
-    "cta": "hi",
-    "url": "url"
-  }
-}
+null
