@@ -191,6 +191,25 @@ class Subscribe extends Component {
     return `$${price} / ${cycle}`;
   }
 
+  renderBillingNotice () {
+    const {whoami, billingDetails} = this.props;
+
+    const trialEndDate = new Date(whoami.trialEnd * 1000);
+    const trialEndMillis = trialEndDate.getTime() - Date.now();
+    const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
+
+    if (!billingDetails && trialDays > 0) {
+      return (
+        <p className="notice info">
+          You still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
+          on your free trial
+        </p>
+      )
+    }
+
+    return null
+  }
+
   render () {
     const {
       loading,
@@ -209,6 +228,7 @@ class Subscribe extends Component {
 
     return (
       <form onSubmit={this._handleSubmit}>
+        {this.renderBillingNotice()}
         <div className="form-control">
           <label>Plan Type
             <select className="wide"

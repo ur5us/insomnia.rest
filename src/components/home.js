@@ -9,15 +9,27 @@ class Home extends Component {
 
     let notice = null;
 
-    if (!billingDetails) {
-      const trialEndDateString = (new Date(whoami.trialEnd * 1000)).toDateString();
+    const trialEndDate = new Date(whoami.trialEnd * 1000);
+    const trialEndMillis = trialEndDate.getTime() - Date.now();
+    const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
+    const isTrialOver = trialDays <= 0;
+
+    if (!billingDetails && !isTrialOver) {
       notice = (
         <p className="notice info">
-          Your free trial ends on <strong>{trialEndDateString}</strong>
+          You still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
+          on your free trial
+        </p>
+      )
+    } else if (isTrialOver || (billingDetails && billingDetails.isPaymentRequired)) {
+      notice = (
+        <p className="notice warn">
+          Your trial ended <strong>{-1 * trialDays}</strong> day{trialDays === 1 ? '' : 's'} ago.
+          Please subscribe to a plan to continue using your account.
           <br/>
           <br/>
           <a href="/app/subscribe/" className="button button--compact">
-            Choose Plan
+            Update Subscription
           </a>
         </p>
       )
@@ -31,13 +43,6 @@ class Home extends Component {
           <a href="/app/subscribe/" className="button button--compact">
             Resubscribe
           </a>
-        </p>
-      )
-    } else if (billingDetails.isPaymentRequired) {
-      notice = (
-        <p className="notice info">
-          <strong>Payment Required</strong>. Please subscribe to a plan to continue
-          using Insomnia.
         </p>
       )
     }
