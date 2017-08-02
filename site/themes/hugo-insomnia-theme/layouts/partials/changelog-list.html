@@ -1,4 +1,5 @@
 {{ range .Pages }}
+{{ if or (not (isset .Params "channel")) (eq .Params.channel "stable") }}
 <article class="article--preview container">
   <header class="row">
       <div class="col-12">
@@ -33,4 +34,5 @@
     </div>
   </section>
 </article>
+{{ end }}
 {{ end }}

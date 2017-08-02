@@ -21,7 +21,19 @@ class Home extends Component {
           on your free trial
         </p>
       )
-    } else if (isTrialOver || (billingDetails && billingDetails.isPaymentRequired)) {
+    } else if (billingDetails && billingDetails.isPaymentRequired) {
+      notice = (
+        <p className="notice info">
+          <strong>Payment Required</strong>. Please subscribe to a plan to continue
+          using Insomnia.
+          <br/>
+          <br/>
+          <a href="/app/subscribe/" className="button button--compact">
+            Update Subscription
+          </a>
+        </p>
+      )
+    } else if (!billingDetails && isTrialOver) {
       notice = (
         <p className="notice warn">
           Your trial ended <strong>{-1 * trialDays}</strong> day{trialDays === 1 ? '' : 's'} ago.
@@ -33,11 +45,22 @@ class Home extends Component {
           </a>
         </p>
       )
-    } else if (billingDetails.subCancelled) {
+    } else if (billingDetails.subCancelled && billingDetails.subPeriodEnd * 1000 > Date.now()) {
       const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
       notice = (
         <p className="notice info">
           Subscription <strong>Cancelled</strong> and will end <strong>{dateString}</strong>
+          <br/>
+          <br/>
+          <a href="/app/subscribe/" className="button button--compact">
+            Resubscribe
+          </a>
+        </p>
+      )
+    } else if (billingDetails.subCancelled) {
+      notice = (
+        <p className="notice info">
+          Your subscription is <strong>Cancelled</strong>
           <br/>
           <br/>
           <a href="/app/subscribe/" className="button button--compact">
