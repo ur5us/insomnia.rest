@@ -1,5 +1,5 @@
 ---
-baseurl: "/"
+baseurl: "https://insomnia.rest/"
 languageCode: "en-us"
 copyright: "Floating Keyboard Software, Victoria BC, Canada"
 title: "Insomnia REST Client"

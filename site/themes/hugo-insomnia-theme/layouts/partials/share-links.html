@@ -47,7 +47,7 @@
 
   <!-- LinkedIn -->
   <a
-    href="http://www.linkedin.com/shareArticle?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}&summary={{ .Summary | safeURL }}"
+    href="http://www.linkedin.com/shareArticle?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}"
     onclick="window.open(this.href, 'linkedin-share', 'width=800,height=600');return false;"
     title="Share on LinkedIn"
     class="button--share button linkedin">
@@ -55,7 +55,7 @@
   </a>
 
   <!-- Email -->
-  <a href="mailto:?subject={{ .Title | safeURL }}&body={{ .Summary | safeURL }}"
+  <a href="mailto:?subject={{ .Title | safeURL }}"
      target="_blank"
      title="Share via email"
      onclick="window.open(this.href, 'email-share', 'width=800,height=600');return false;"

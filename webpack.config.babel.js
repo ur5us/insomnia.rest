@@ -29,7 +29,6 @@ if (isDev) {
       }
     })
   ];
-  // extraPlugins = [];
 }
 
 export default {
@@ -59,6 +58,7 @@ export default {
     ]
   },
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
       'process.env.STRIPE_PUB_KEY': JSON.stringify(stripePubKey),
