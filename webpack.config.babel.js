@@ -8,23 +8,34 @@ let outputFile;
 let devtool;
 let env;
 let stripePubKey;
+let extraPlugins;
 
 if (isDev) {
   outputFile = `${libraryName}.min.js`;
   devtool = 'source-map';
   env = 'development';
   stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
+  extraPlugins = [];
 } else {
   outputFile = `${libraryName}.min.js`;
   devtool = 'source-map';
   env = 'production';
   stripePubKey = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
+  extraPlugins = [
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        // Don't mangle BigInteger because node-srp asserts it's type by name
+        except: ['BigInteger']
+      }
+    })
+  ];
+  // extraPlugins = [];
 }
 
 export default {
+  context: path.join(__dirname, './src'),
   entry: [
-    path.resolve('./src/index.js'),
-    'whatwg-fetch'
+    './index.js'
   ],
   devtool,
   output: {
@@ -35,29 +46,23 @@ export default {
     umdNamedDefine: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.json$/,
-        loader: 'json'
+        use: ['json-loader']
       },
       {
         test: /\.js$/,
-        loader: 'babel',
+        use: ['babel-loader'],
         exclude: /(node_modules|bower_components)/
       }
     ]
-  },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
-  },
-  externals: {
-    'node-forge': 'forge'
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),
       'process.env.STRIPE_PUB_KEY': JSON.stringify(stripePubKey),
-    })
+    }),
+    ...extraPlugins
   ]
 };

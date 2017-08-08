@@ -1,5 +1,5 @@
 ---
-baseurl: "https://insomnia.rest/"
+baseurl: "/"
 languageCode: "en-us"
 copyright: "Floating Keyboard Software, Victoria BC, Canada"
 title: "Insomnia REST Client"
@@ -113,8 +113,6 @@ params:
     - "main.css"
   scripts:
     - "main.js"
-    - "build/app.min.js"
-    - "lib/forge.min.js"
   email: "support@insomnia.rest"
   pageNotFoundTitle: "Sorry, that page doesn't exist"
   shortName: "Insomnia"

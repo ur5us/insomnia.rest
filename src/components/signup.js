@@ -122,7 +122,7 @@ class SignUp extends Component {
         {error ? <div className="form-control error">** {error}</div> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
-            or, <a href="/app/login">Log In</a>
+            or, <a href="/app/login/">Log In</a>
           </div>
           <div className="form-control right">
             {loading ?

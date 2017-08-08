@@ -6,13 +6,13 @@
 
   if (navigator.platform.toLowerCase().indexOf('mac') !== -1) {
     platform = 'Mac';
-    location = '/download#mac';
+    location = '/download/#mac';
   } else if (navigator.platform.toLowerCase().indexOf('win') !== -1) {
     platform = 'Windows';
-    location = '/download#windows';
+    location = '/download/#windows';
   } else if (navigator.platform.toLowerCase().indexOf('linux') !== -1) {
     platform = 'Linux';
-    location = '/download#ubuntu';
+    location = '/download/#ubuntu';
   }
 
   for (var i = 0; i < els.length; i++) {

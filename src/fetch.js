@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import 'whatwg-fetch';
 import {parse as urlParse} from 'url';
 import * as session from './session';
 import {version} from '../package.json';

@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import * as session from '../../session';
 import LeaveTeamLink from './leave-link';
 import RemoveTeamAccountLink from './remove-account-link';
 import UpdateTeamNameForm from './update-name-form';
