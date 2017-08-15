@@ -1,7 +1,7 @@
 ---
 title: Plugins
 subTitle: Extend Insomnia's core functionality
-slug: cookie-management
+slug: plugins
 menu:
     docs:
         parent: "topics"
@@ -20,11 +20,11 @@ the functionality of Insomnia.
 
 ## Index
 
-1. [Introduction](#introduction)
-2. [Template Tags](#template-tags)
-3. [Hooks](#hooks)
-    3.1. [Request Hooks](#request-hooks)
-    3.2. [Response Hooks](#respnose-hooks)
+- [Introduction](#introduction)
+- [Template Tags](#template-tags)
+- [Hooks](#hooks)
+  - [Request Hooks](#request-hooks)
+  - [Response Hooks](#respnose-hooks)
 
 ## Introduction
 

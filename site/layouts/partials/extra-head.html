@@ -3,6 +3,13 @@
   (function () {
     var disableGA = window.localStorage['disableGA'] ||
       window.location.hostname === 'localhost';
+
+    var s = window.location.search;
+    if (s.indexOf('state=') >= 0 && s.indexOf('code=') >= 0) {
+      // Disable GA for those using insomnia.rest for OAuth2 callback
+      disableGA = true;
+    }
+
     if (!disableGA) {
       (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
