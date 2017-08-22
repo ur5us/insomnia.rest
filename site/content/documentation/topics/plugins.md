@@ -21,10 +21,11 @@ the functionality of Insomnia.
 ## Index
 
 - [Introduction](#introduction)
+- [Create a Plugin](#create-a-plugin)
 - [Template Tags](#template-tags)
 - [Hooks](#hooks)
-  - [Request Hooks](#request-hooks)
-  - [Response Hooks](#respnose-hooks)
+  - [Request Hooks](#request-hook-api)
+  - [Response Hooks](#response-hook-api)
 
 ## Introduction
 
@@ -32,6 +33,54 @@ There are two general types of plugins that you can create for Insomnia. A plugi
 either add a custom _template tag_ for rendering custom
 values, or defined a _hook_ which can do things like intercept requests and responses to
 add custom behavior.
+
+## Create a Plugin
+
+A plugin is a [NodeJS Module](https://docs.npmjs.com/getting-started/creating-node-modules) that
+is placed in a specific directory that Insomnia knows about. 
+
+- **MacOS:** `~/Library/Application\ Support/Insomnia/plugins/`
+- **Windows:** `%APPDATA%\Insomnia\plugins\` 
+- **Linux:** `$XDG_CONFIG_HOME/Insomnia/plugins/` or `~/.config/Insomnia/plugins/`
+
+A plugin directory requires at least two files:
+
+```shell
+base64/             
+ ├── package.json   # Node module metadata
+ └── *.js           # One or more JavaScript files 
+```
+
+<p class="notice info">
+The <code>package.json</code> must contain an <code>insomnia</code> attribute to be
+identified as a plugin.
+</p>
+
+Take a look at the following file to see what a minimal `package.json` should look like.
+
+<details>
+<summary>Example: Plugin package.json file</summary>
+```js
+{
+  "name": "insomna-plugin-base64",  // Npm module name
+  "version": "1.0.0",               // Plugin version
+  "main": "plugin.js",              // Entry point
+  
+  /**
+   * Insomnia-specific metadata. Without this, Insomnia
+   * won't recognize the module as a plugin.
+   */
+  "insomnia": {                    
+    "name": "base64",      // Internal Insomnia plugin name
+    "description": "...",  // Plugin description
+  },
+  
+  // External dependencies are also supported
+  "dependencies": [],
+  "devDependencies": []
+}
+```
+</details>
 
 ## Template Tags
 
@@ -49,7 +98,6 @@ type TemplateTag = {
   description: string,
   run: (context: RenderContext, ...arg: Array<any>) => string,
   
-  // 
   args: Array<{
     displayName: string,
     description?: string,
@@ -72,6 +120,8 @@ type TemplateTag = {
 }
 ```
 
+<details>
+<summary>Example: Template tag to generate random number</summary>
 ```js
 /**
  * Example template tag that generates a random number 
@@ -100,6 +150,7 @@ module.exports.templateTags = [{
     }
 }];
 ```
+</details>
 
 ## Hooks
 
@@ -141,14 +192,19 @@ type RequestContext = {
 }
 ```
 
+<details>
+<summary>Example: Set Content-Type header on every POST request</summary>
 ```js
 // Request hook to set header on every request
 module.exports.requestHooks = [
   context => {
-    context.request.setHeader('Foo', 'bar');
+    if (context.request.getMethod().toUpperCase() === 'POST') {
+      context.request.setHeader('Content-Type', 'application/json');
+    }
   }
 ];
 ```
+</details>
 
 ## Response Hook API
 
@@ -164,6 +220,8 @@ getHeader (name: string): string | Array<string> | null
 hasHeader (name: string): boolean
 ```
 
+<details>
+<summary>Example: Save response to file</summary>
 ```js
 // Response hook to save responses to filesystem
 const fs = require('fs');
@@ -185,6 +243,7 @@ module.exports.responseHooks = [
   }
 ];
 ```
+</details>
 
 ### Hook Helpers
 

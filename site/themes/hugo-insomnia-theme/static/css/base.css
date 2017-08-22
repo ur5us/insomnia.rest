@@ -161,6 +161,25 @@ img {
     max-height: 60vh;
 }
 
+details summary {
+    user-select: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+details summary:focus {
+    outline: 0;
+}
+
+details {
+    border: 1px dashed #ccc;
+    padding: 0.5rem 1rem;
+}
+
+details *:last-child {
+    margin-bottom: 0;
+}
+
 section {
     margin: 3rem 0;
 }
