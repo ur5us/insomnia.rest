@@ -49,3 +49,19 @@
     }
   }
 })();
+
+(function () {
+  var headers = document.querySelectorAll([
+    'article h1[id]',
+    'article h2[id]',
+    'article h3[id]'
+  ].join(', '));
+  for (var i = 0; i < headers.length; i++) {
+    var h = headers[i];
+    h.style.cursor = 'pointer';
+
+    h.addEventListener('click', function (e) {
+      window.location.hash = '#' + e.target.getAttribute('id');
+    });
+  }
+})();
