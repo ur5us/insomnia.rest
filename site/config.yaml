@@ -112,7 +112,7 @@ params:
   stylesheets:
     - "main.css"
   scripts:
-    - "main.js"
+    - "build/main.min.js"
   email: "support@insomnia.rest"
   pageNotFoundTitle: "Sorry, that page doesn't exist"
   shortName: "Insomnia"

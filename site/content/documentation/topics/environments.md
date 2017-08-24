@@ -26,6 +26,10 @@ in one place. The environment is defined as JSON, and you can put whatever you w
 }
 ```
 
+<p class="notice warn">
+Variable names <strong>must only</strong> contain letters, numbers, and underscores
+</p>
+
 You can reference the environment in any request by using the
 [Nunjucks](https://mozilla.github.io/nunjucks/) template syntax.
 
@@ -47,7 +51,6 @@ You can reference the environment in any request by using the
   "locale": "{{ locales.english }}"
 }
 ```
-
 
 ## Managing Environments
 
@@ -78,3 +81,25 @@ for development and production.
 
 For more fine-grained control, you can override environment variables at the folder level. 
 You can access theses overrides from the folder dropdown in the sidebar.
+
+
+## Recursive Environments
+
+Environment variables can contain other environment variables. A common use case for this
+is building the base URL for a service:
+
+```json
+{
+  "base_url": "https://{{ host }}/api/{{ version }}"
+}
+```
+
+Then, these can be overridden in a sub environment, as needed:
+
+```json
+{
+  "host": "production.api.com",
+  "version": "1.3"
+}
+```
+

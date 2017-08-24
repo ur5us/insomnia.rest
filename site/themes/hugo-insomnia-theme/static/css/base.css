@@ -998,8 +998,9 @@ body.template-skinny main {
     margin-right: auto;
 }
 
-body.template-wide main {
-    max-width: 100%;
+body.template-wide .container {
+    max-width: 60rem;
+    width: 90%;
 }
 
 body.template-splash main h2 {
@@ -1019,9 +1020,6 @@ body.template-blog article > header {
 body.template-app main {
     max-width: 44rem;
     margin: auto;
-}
-
-body.template-docs .container {
 }
 
 /* ~~~~~~~~~~~~ */

@@ -13,17 +13,17 @@ This is currently an experimental feature
 </p>
 
 Insomnia provides the ability to reference response values of other requests. Select
-**Response Value** from the auto-completed tags.
+**Response ⇒ Body** from the auto-completed tags.
 
 <img title="Response tag hint" src="/images/docs/response-tag-hint.png" class="small" />
 
-Then, click the tag to select the request and specify the desired response attribute.
+Then, click the tag to select the request and specify the desired parameters.
+
+![Request chaining dialog](/images/docs/response-tag.png)
 
 <p class="notice info">
 <strong>Tip!</strong> Use this inside an environment to prevent duplicated effort
 </p>
-
-![Request chaining dialog](/images/docs/response-tag.png)
 
 ## Common Uses
 

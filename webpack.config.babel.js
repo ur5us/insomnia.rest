@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
 
-const libraryName = 'app';
 const isDev = process.env.NODE_ENV !== 'production';
 
 let outputFile;
@@ -11,13 +10,13 @@ let stripePubKey;
 let extraPlugins;
 
 if (isDev) {
-  outputFile = `${libraryName}.min.js`;
+  outputFile = `[name].min.js`;
   devtool = 'source-map';
   env = 'development';
   stripePubKey = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
   extraPlugins = [];
 } else {
-  outputFile = `${libraryName}.min.js`;
+  outputFile = `[name].min.js`;
   devtool = 'source-map';
   env = 'production';
   stripePubKey = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
@@ -33,14 +32,14 @@ if (isDev) {
 
 export default {
   context: path.join(__dirname, './src'),
-  entry: [
-    './index.js'
-  ],
+  entry: {
+    app: './index.js',
+    main: './main.js'
+  },
   devtool,
   output: {
     path: path.resolve('./site/static/javascript/build'),
     filename: outputFile,
-    library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

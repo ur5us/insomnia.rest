@@ -1,5 +1,5 @@
 {{ partial "head" . }}
-<body class="template-docs">
+<body class="template-wide">
 
 {{ partial "navbar" . }}
 
@@ -7,22 +7,20 @@
   <div class="container">
     <div class="row">
       {{ partial "docs-sidebar" . }}
-      <div class="col-8">
-        <article class="docs-main">
-          <header>
-            <h1>{{ .Title | title }}</h1>
-            {{ if isset .Params "subtitle" }}
-            <strong class="subtle">{{ .Params.subtitle | markdownify }}</strong>
-            {{ end }}
-          </header>
+      <article class="col-8 docs-content">
+        <header>
+          <h1>{{ .Title | title }}</h1>
+          {{ if isset .Params "subtitle" }}
+          <strong class="subtle">{{ .Params.subtitle | markdownify }}</strong>
+          {{ end }}
+        </header>
 
-          <section class="content">
-            {{ .Content }}
-          </section>
+        <section class="content">
+          {{ .Content }}
+        </section>
 
-          {{ partial "contribution-notice" . }}
-        </article>
-      </div>
+        {{ partial "contribution-notice" . }}
+      </article>
     </div>
   </div>
 

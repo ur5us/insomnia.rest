@@ -313,7 +313,7 @@ article h3[id]:hover::before {
 /* ~~~~~~~ */
 
 .docs-sidebar {
-    margin-left: 0;
+    max-width: 15rem;
 }
 
 .docs-sidebar ul {
@@ -323,11 +323,12 @@ article h3[id]:hover::before {
 
 .docs-sidebar li {
     list-style: none;
+    width: 100%;
 }
 
 .docs-sidebar__entry {
     padding: 0.2rem 0;
-    display: block;
+    display: inline-block;
     font-weight: normal;
 }
 
@@ -455,23 +456,28 @@ body[data-logged-in="no"] .show-logged-out {
         content: "↓";
     }
 
-    .navbar__items li[data-menu-item="download"] {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 58rem) {
     .docs-sidebar {
         border-bottom: 1px solid #eee;
         padding-bottom: 2rem;
+        max-width: none;
     }
 
     .docs-sidebar li {
         display: inline-block;
+        width: auto;
     }
 
-    .docs-sidebar__entry {
-        margin: 0 1rem
+    .docs-sidebar li {
+        margin-right: 0.5rem;
+    }
+
+    .docs-sidebar li:not(:last-child)::after {
+        margin-left: 0.5rem;
+        content: '|';
+    }
+
+    .navbar__items li[data-menu-item="download"] {
+        display: none;
     }
 }
 
