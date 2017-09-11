@@ -9,6 +9,7 @@ disqusShortname: "insomnia-rest"
 googleAnalytics: "UA-9837747-12"
 permalinks:
   documentation: /documentation/:slug
+  blog: /blog/:slug
 menu:
   main:
     - Name: "Pricing"

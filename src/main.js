@@ -1,8 +1,9 @@
 (function () {
-  var els = document.querySelectorAll('.__download-link');
+  // Handle download links
+  const els = document.querySelectorAll('.__download-link');
 
-  var location = null;
-  var platform = null;
+  let location = null;
+  let platform = null;
 
   if (navigator.platform.toLowerCase().indexOf('mac') !== -1) {
     platform = 'Mac';
@@ -15,8 +16,8 @@
     location = '/download/#ubuntu';
   }
 
-  for (var i = 0; i < els.length; i++) {
-    var el = els[i];
+  for (let i = 0; i < els.length; i++) {
+    const el = els[i];
 
     if (platform) {
       el.innerHTML = 'Download The App';
@@ -32,15 +33,16 @@
 })();
 
 (function () {
-  var changelogListItems = document.querySelectorAll('.changelog__list-item');
-  for (var i = 0; i < changelogListItems.length; i++) {
-    var item = changelogListItems[i];
-    var match = item.innerHTML.match(/\(PR:(\d+)(:([^)]+))?\)/);
+  // Style changelog list items
+  const changelogListItems = document.querySelectorAll('.changelog__list-item');
+  for (let i = 0; i < changelogListItems.length; i++) {
+    const item = changelogListItems[i];
+    const match = item.innerHTML.match(/\(PR:(\d+)(:([^)]+))?\)/);
     if (match) {
-      var prNumber = match[1];
-      var user = match[3] || '';
-      var userString = (user ? ' by ' + user : '');
-      var anchor = document.createElement('a');
+      const prNumber = match[1];
+      const user = match[3] || '';
+      const userString = (user ? ' by ' + user : '');
+      const anchor = document.createElement('a');
       anchor.target = '_blank';
       anchor.href = 'https://github.com/getinsomnia/insomnia/pull/' + prNumber;
       anchor.innerHTML = '(#' + prNumber + userString + ')';
@@ -51,17 +53,29 @@
 })();
 
 (function () {
-  var headers = document.querySelectorAll([
+  // Add linkable anchors
+  const headers = document.querySelectorAll([
     'article h1[id]',
     'article h2[id]',
     'article h3[id]'
   ].join(', '));
-  for (var i = 0; i < headers.length; i++) {
-    var h = headers[i];
+  for (let i = 0; i < headers.length; i++) {
+    const h = headers[i];
     h.style.cursor = 'pointer';
 
     h.addEventListener('click', function (e) {
       window.location.hash = '#' + e.target.getAttribute('id');
     });
+  }
+})();
+
+(function () {
+  // Replace images with links to images
+  for (const img of document.querySelectorAll('article img')) {
+    const a = document.createElement('a');
+    a.href = img.getAttribute('src');
+    a.target = '_blank';
+    img.parentNode.replaceChild(a, img);
+    a.appendChild(img);
   }
 })();

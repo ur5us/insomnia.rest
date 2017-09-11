@@ -132,6 +132,15 @@ article h3[id]:hover::before {
     content: ' ¶';
 }
 
+article a > img {
+    outline: 2px solid transparent;
+}
+
+article a > img:hover {
+    outline: 2px solid #eee;
+    transition: outline 200ms;
+}
+
 /* ~~~~~~~~~~~~~~ */
 /* DOWNLOADS PAGE */
 /* ~~~~~~~~~~~~~~ */
