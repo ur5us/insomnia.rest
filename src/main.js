@@ -75,6 +75,9 @@
     const a = document.createElement('a');
     a.href = img.getAttribute('src');
     a.target = '_blank';
+    if (!img.hasAttribute('title') && img.hasAttribute('alt')) {
+      img.setAttribute('title', img.getAttribute('alt'));
+    }
     img.parentNode.replaceChild(a, img);
     a.appendChild(img);
   }

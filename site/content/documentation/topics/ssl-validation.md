@@ -18,5 +18,5 @@ Error: Hostname/IP doesn't match certificate's altnames: "Host: schier.co. is no
 ```
 
 If you are testing on a local development server, or know that the certificate is invalid, you can 
-disable SSL validation in the settings by deselecting the "Disable SSL Validation" option.
+disable validation in the settings by deselecting the "Validate SSL Certificates" option.
 

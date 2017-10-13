@@ -22,6 +22,7 @@ the functionality of Insomnia.
 
 - [Introduction](#introduction)
 - [Create a Plugin](#create-a-plugin)
+- [Debugging](#debugging)
 - [Template Tags](#template-tags)
 - [Hooks](#hooks)
   - [Request Hooks](#request-hook-api)
@@ -81,6 +82,16 @@ Take a look at the following file to see what a minimal `package.json` should lo
 }
 ```
 </details>
+
+## Debugging
+
+Navigate to `View > Toggle DevTools` to open the Chrome Developer Tools. From here, you can
+debug Insomnia as you would any web project in Chrome.
+
+If you want to focus specifically on the plugin you are developing, you can find it from
+the Sources tab and/or filter the Console based on the plugin's file name.
+
+![Debug Plugins with DevTools](/images/docs/plugin-debug.png)
 
 ## Template Tags
 
