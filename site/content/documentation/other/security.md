@@ -166,13 +166,13 @@ that make having this many keys necessary.
 The ability for a user to change passwords is one reason that data is not
 directly encrypted using a password. If the user has large amounts of encrypted
 data, changing the password would mean decrypting and re-encrypting all data 
-with the new password. This would quickly become to slow with even medium sized
+with the new password. This would quickly become too slow with even medium sized
 amounts of data. 
 
 **Scenario 2 – Sharing a Resource Group**
 
 The ability to share Resource Groups is the reason that every Resource Group
-needs it's own key, and every account needs a public/private keypair to securely
+needs its own key, and every account needs a public/private keypair to securely
 share said key. Here's an example involving two users, Jan and Bob.
 
 For Jane to share a Resource Group with Bob, she must encrypt the Resource
