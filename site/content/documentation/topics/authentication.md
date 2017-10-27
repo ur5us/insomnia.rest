@@ -23,6 +23,6 @@ _Auth_ dropdown, then fill out the required fields.
 
 <img title="Authentication Selection Dropdown" src="/images/docs/authentication.png" class="small"/>
 
-When sending the request, Insomnia will automatically generate and set the `Authoriziation` header
+When sending the request, Insomnia will automatically generate and set the `Authorization` header
 needed. For more complex auth types like OAuth, the app may also prompt the user with a login
 form to obtain an OAuth token.
