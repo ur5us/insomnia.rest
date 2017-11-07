@@ -8,7 +8,6 @@ publishdir: "_hugo"
 disqusShortname: "insomnia-rest"
 googleAnalytics: "UA-9837747-12"
 permalinks:
-  documentation: /documentation/:slug
   blog: /blog/:slug
 menu:
   main:
@@ -18,7 +17,7 @@ menu:
       Weight: 2
     - Name: "Docs"
       Identifier: "docs"
-      URL: "/documentation/"
+      URL: "https://support.insomnia.rest"
       Weight: 1
     - Name: "Blog"
       Identifier: "blog"
