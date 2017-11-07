@@ -35,9 +35,6 @@ how you use Insomnia, or sign up for a [paid plan](/pricing).
 
 ## Technical Questions
 
-**How can I set an environment variable from a request?**<br>
-At this time, that is not possible, but it's coming soon.
-
 **How can I temporarily disable Nunjucks template?**<br>
 You can disable templating of the request body via the request settings dialog 
 (accessed from the sidebar). For more control, you can also disable templating by 
@@ -75,4 +72,4 @@ donations. You can donate via PayPal on my
 [PayPal.me](https://www.paypal.me/gschier) page.
 
 **How many people work on Insomnia?**<br>
-Just [me](http://schier.co/) :)
+Just [me](http://schier.co/), along with a few open source contributors.

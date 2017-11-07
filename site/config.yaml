@@ -45,7 +45,7 @@ menu:
   footer:
     - Name: Support
       Identifier: support
-      URL: /documentation/support-and-feedback/
+      URL: /support/
       weight: 1
     - Name: Open Source
       Identifier: opensource

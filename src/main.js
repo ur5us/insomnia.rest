@@ -82,3 +82,33 @@
     a.appendChild(img);
   }
 })();
+
+!function (e, o, n) {
+  window.HSCW = o;
+  window.HS = n;
+  n.beacon = n.beacon || {};
+  const t = n.beacon;
+  t.userConfig = {};
+  t.readyQueue = [];
+  t.config = function (e) {
+    this.userConfig = e
+  };
+  t.ready = function (e) {
+    this.readyQueue.push(e)
+  };
+  o.config = {
+    docs: {enabled: !0, baseUrl: "//insomnia.helpscoutdocs.com/"},
+    contact: {enabled: !0, formId: "a9f6c8aa-b1dd-11e7-b466-0ec85169275a"}
+  };
+  const r = e.getElementsByTagName("script")[0], c = e.createElement("script");
+  c.type = "text/javascript";
+  c.async = !0;
+  c.src = "https://djtflbt20bdde.cloudfront.net/";
+  r.parentNode.insertBefore(c, r);
+}(document, window.HSCW || {}, window.HS || {});
+
+HS.beacon.config({
+  color: '#6e60cc',
+  icon: 'message',
+  attachment: true,
+});
