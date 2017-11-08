@@ -10,7 +10,6 @@
 301   /documentation/schedule-a-request-on-a-set-interval.html         /documentation/
 301   /documentation/swig-templating-language.html                     /documentation/environment-variables/
 302   /documentation/export-spec/                                      /documentation/import-export/
-302   /documentation/export-spec                                       /documentation/import-export/
 301   /environments.html                                               /documentation/environment-variables/
 301   /feedback.html                                                   /documentation/support-and-feedback/
 301   /installation.html                                               /documentation/installation/
@@ -19,9 +18,6 @@
 301   /tags/announcement/support@insomnia.rest                         /documentation/support-and-feedback/
 301   /workspaces.html                                                 /documentation/workspaces/
 301   /index.xml                                                       /blog/index.xml
-301   /changelog/5.9.0/*                                               /changelog/5.9.2/
-301   /changelog/5.9.1/*                                               /changelog/5.9.2/
-301   /docs/                                                           /documentation/
 
 # Legacy Docs
 301   /documentation/support-and-feedback/*       /contact/
@@ -48,5 +44,6 @@
 301   /documentation/keyboard-shortcuts/*         https://support.insomnia.rest/article/59-keyboard-shortcuts
 301   /documentation/backstory/*                  https://support.insomnia.rest/article/60-backstory
 301   /documentation/*                            https://support.insomnia.rest
+301   /docs/*                                     https://support.insomnia.rest
 
 

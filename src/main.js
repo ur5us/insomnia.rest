@@ -1,3 +1,5 @@
+import * as session from './session';
+
 (function () {
   // Handle download links
   const els = document.querySelectorAll('.__download-link');
@@ -111,4 +113,25 @@ HS.beacon.config({
   color: '#6e60cc',
   icon: 'message',
   attachment: true,
+  poweredBy: false,
+  showSubject: true,
+  topics: [
+    {val: 'app', label: 'Desktop App'},
+    {val: 'bug report', label: 'Bug Report'},
+    {val: 'account', label: 'Plus or Teams Account'},
+    {val: 'question', label: 'Question'},
+    {val: 'plugin', label: 'Plugin Development'},
+    {val: 'other', label: 'Other'},
+  ]
+});
+
+HS.beacon.ready(async () => {
+  const data = await session.whoami();
+  HS.beacon.identify({
+    name: `${data.firstName} ${data.lastName || ''}`.trim(),
+    email: data.email,
+    // Custom
+    'Account ID': data.accountId,
+    'Plan Name': data.planName
+  });
 });
