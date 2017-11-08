@@ -1,6 +1,7 @@
 ---
 date: 2017-11-08
-title: Introducing OAuth 1.0 Support!
+title: OAuth 1.0 Support is Here!
+slug: introducing-oauth-1.0-support
 tags: ["feature"]
 ---
 
