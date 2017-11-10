@@ -115,6 +115,7 @@ HS.beacon.config({
   attachment: true,
   poweredBy: false,
   showSubject: true,
+  showContactFields: true,
   topics: [
     {val: 'app', label: 'Desktop App'},
     {val: 'bug report', label: 'Bug Report'},
