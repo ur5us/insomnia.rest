@@ -18,9 +18,10 @@
 301   /tags/announcement/support@insomnia.rest                         /documentation/support-and-feedback/
 301   /workspaces.html                                                 /documentation/workspaces/
 301   /index.xml                                                       /blog/index.xml
+301   /contact/                                                        /support/
 
 # Legacy Docs
-301   /documentation/support-and-feedback/*       /contact/
+301   /documentation/support-and-feedback/*       /support/
 301   /documentation/installation/*               https://support.insomnia.rest/article/23-installation
 301   /documentation/plus/*                       https://support.insomnia.rest/article/47-insomnia-plus
 301   /documentation/teams/*                      https://support.insomnia.rest/article/20-teams
