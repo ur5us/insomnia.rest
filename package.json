@@ -14,7 +14,7 @@
     "build": "npm run build:clean && npm run build:app && npm run build:generate && npm run build:pack",
     "deploy": "npm run build && surge _speedpack",
     "dev:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
-    "dev:hugo": "hugo --source site serve --buildDrafts --bind 0.0.0.0",
+    "dev:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
     "dev": "npm run task:changelog && concurrently --kill-others \"npm run dev:hugo\" \"npm run dev:app\"",
     "start:serve": "hugo --source site serve --bind 0.0.0.0",
     "start": "npm run task:changelog && npm run start:serve"
