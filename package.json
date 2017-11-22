@@ -7,12 +7,10 @@
   "licence": "MIT",
   "scripts": {
     "task:changelog": "rm -rf ./site/content/changelog-json && cp -r ./site/content/changelog ./site/content/changelog-json",
-    "build:clean": "rm -rf _hugo _speedpack",
+    "build:clean": "rm -rf _hugo",
     "build:generate": "npm run task:changelog && hugo --source site --destination $PWD/_hugo",
-    "build:pack": "speedpack _hugo --output _speedpack",
     "build:app": "NODE_ENV=production webpack --config webpack.config.babel.js",
-    "build": "npm run build:clean && npm run build:app && npm run build:generate && npm run build:pack",
-    "deploy": "npm run build && surge _speedpack",
+    "build": "npm run build:clean && npm run build:app && npm run build:generate",
     "dev:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "dev:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
     "dev": "npm run task:changelog && concurrently --kill-others \"npm run dev:hugo\" \"npm run dev:app\"",
@@ -38,8 +36,6 @@
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.1.0",
     "json-loader": "^0.5.7",
-    "speedpack": "^0.2.0",
-    "surge": "^0.18.0",
     "webpack": "^3.5.1"
   },
   "dependencies": {
