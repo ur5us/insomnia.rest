@@ -70,10 +70,6 @@ menu:
       Identifier: plus
       URL: /plus/
       weight: 9
-    - Name: Licence
-      Identifier: eula
-      URL: /eula/
-      weight: 99
     - Name: Terms
       Identifier: terms
       URL: /terms/

@@ -209,7 +209,7 @@ class SignUp extends Component {
         {inner}
         <hr/>
         <div className="center">
-          <a href="/eula">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
         </div>
       </form>
     )
