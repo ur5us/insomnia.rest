@@ -1,7 +1,6 @@
 [build]
-  base    = "site"
   publish = "_hugo"
-  command = "npm install && npm run build"
+  command = "npm run build"
 
 [context.production.environment]
     HUGO_VERSION = "0.30"
