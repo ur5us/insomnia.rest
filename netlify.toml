@@ -1,5 +1,5 @@
 [build]
-  publish = "_hugo"
+  publish = "_speedpack"
   command = "npm run build"
 
 [context.production.environment]
