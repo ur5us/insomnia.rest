@@ -66,7 +66,7 @@ Curl into Insomnia would have taken a lot more work.
 ## OAuth 2.0, Digest, and NTLM Authentication &#128272;
 
 OAuth 2.0 is an extremely popular authentication mechanism, meaning Insomnia can now 
-easily interact with many popular APIs like Github, Dropbox, Facebook, and Google. Simply
+easily interact with many popular APIs like GitHub, Dropbox, Facebook, and Google. Simply
 fill out a few OAuth 2.0 parameters and Insomnia will take care of user authentication,
 generation of the `Authorization` header, and renewing refresh tokens when needed.
 
