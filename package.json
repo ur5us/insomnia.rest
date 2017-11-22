@@ -47,7 +47,7 @@
     "node-forge": "^0.7.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "srp": "git@github.com:getinsomnia/srp-js.git#6ebd8c3acfbcf69645e4c6e6f8f6b55138ff22c3",
+    "srp-js": "^0.2.0",
     "whatwg-fetch": "^2.0.1"
   },
   "babel": {

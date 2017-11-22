@@ -74,11 +74,7 @@ async function _fetch (method, path, json, sessionId = null) {
 }
 
 function _getUrl (path) {
-  if (isDev()) {
-    return `http://localhost:8000${path}`;
-  } else {
-    return `https://api.insomnia.rest${path}`;
-  }
+  return `https://api.insomnia.rest${path}`;
 }
 
 function _notifyCommandListeners (uri) {

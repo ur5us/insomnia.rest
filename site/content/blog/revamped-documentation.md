@@ -52,9 +52,10 @@ that same day!
 
 ## Wrap-Up
 
-It's been less than a week since the new documentation website has been live but it's already
-having a positive effect. The reduced editing friction has already improved the quality of 
-articles and I already have a growing list of new articles that need creating. 
+It's been less than a week since the new [Documentation Website](https://support.insomnia.rest) 
+has been live but it's already having a positive effect. The reduced editing friction has 
+already improved the quality of articles and I already have a growing list of new articles 
+that need creating. 
 
 I hope you all enjoy the new and improved documentation site and please feel free to reach out
 with any feedback or questions you may have!

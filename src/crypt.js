@@ -1,5 +1,5 @@
 import HKDF from 'hkdf';
-import srp from 'srp';
+import srp from 'srp-js';
 import forge from 'node-forge';
 
 const DEFAULT_BYTE_LENGTH = 32;
