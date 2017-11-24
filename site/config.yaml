@@ -42,7 +42,7 @@ menu:
       URL: "/download/"
       Weight: 100
   footer:
-    - Name: Support
+    - Name: Contact
       Identifier: support
       URL: /support/
       weight: 1
