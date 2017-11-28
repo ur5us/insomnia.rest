@@ -20,6 +20,7 @@
 /index.xml                                                       /blog/index.xml
 /contact/                                                        /support/
 /eula/                                                           https://github.com/getinsomnia/insomnia/blob/master/LICENSE
+/license/                                                        https://github.com/getinsomnia/insomnia/blob/master/LICENSE
 
 # Updated Changelogs
 /changelog/5.12.0/                                               /changelog/5.12.1/
