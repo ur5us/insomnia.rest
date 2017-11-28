@@ -8,7 +8,7 @@
     {{ range $c := getJSON "https://api.github.com/repos/getinsomnia/insomnia/contributors" }}
     <a href="{{ $c.html_url}}"
        class="github-contributors__avatar"
-       title="{{ $c.login }}"
+       title="{{ $c.contributions }} contribution{{ if ne $c.contributions 1.0 }}s{{ end }} from @{{ $c.login }}"
        target="_blank"
        data-bg="{{ $c.avatar_url }}&s=40">&nbsp;</a>
     {{ end }}
