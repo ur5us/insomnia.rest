@@ -13,7 +13,7 @@
     "build": "rm -rf _hugo && npm run build:app && npm run build:generate && npm run build:pack",
     "start:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "start:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
-    "start": "npm run task:changelog && concurrently --kill-others \"npm run dev:hugo\" \"npm run dev:app\""
+    "start": "npm run build:changelog && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\""
   },
   "repository": {
     "type": "git",
