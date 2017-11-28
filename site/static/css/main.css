@@ -351,6 +351,36 @@ article a > img:hover {
     margin-bottom: 0.4rem;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~ */
+/* GITHUB CONTRIBUTORS */
+/* ~~~~~~~~~~~~~~~~~~~ */
+
+
+.github-contributors * {
+    /*color: #555;*/
+}
+
+.github-contributors__users {
+    padding: 0 2rem;
+    max-width: 40rem;
+    margin: 1rem auto;
+}
+
+.github-contributors__users a {
+    overflow: hidden;
+}
+
+.github-contributors__avatar {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 1.9rem;
+    height: 1.9rem;
+    margin: 0 0.1rem;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-size: contain;
+}
+
 /* ~~~~~ */
 /* LISTS */
 /* ~~~~~ */

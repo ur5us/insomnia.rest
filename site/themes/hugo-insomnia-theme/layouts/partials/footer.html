@@ -1,4 +1,5 @@
 <footer class="footer">
+  {{ partial "extra-footer" }}
   <section>
     <p class="footer__menu">
       {{ if .Site.Params.twitter }}
@@ -36,7 +37,6 @@
       {{ end }}
       {{ end }}
     </p>
-
     <p class="text-sm">
       &copy; {{ now.Format "2006"}}
       <a href="{{ .Site.Params.copyrightURL }}" target="_blank">

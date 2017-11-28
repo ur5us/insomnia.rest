@@ -1,0 +1,26 @@
+<section class="dark github-contributors">
+  <div>
+    Thanks to all
+    <a href="https://github.com/getinsomnia/insomnia/graphs/contributors">contributors</a>
+    <span style="color:#fff">🎉👏</span>
+  </div>
+  <div class="github-contributors__users">
+    {{ range $c := getJSON "https://api.github.com/repos/getinsomnia/insomnia/contributors" }}
+    <a href="{{ $c.html_url}}"
+       class="github-contributors__avatar"
+       title="{{ $c.login }}"
+       target="_blank"
+       data-bg="{{ $c.avatar_url }}&s=40">&nbsp;</a>
+    {{ end }}
+  </div>
+  <script>
+    (function () {
+      // Lazy-load contributor images
+      window.onload = function () {
+        for (var el of document.querySelectorAll('.github-contributors__avatar')) {
+          el.style.backgroundImage = 'url(' + el.getAttribute('data-bg') + ')';
+        }
+      }
+    })();
+  </script>
+</section>

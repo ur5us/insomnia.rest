@@ -13,9 +13,9 @@ the repository and install the app.
 <!--more-->
 
 ```bash
-# Add to sources.list
+# Add to sources
 echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
-    | sudo tee -a /etc/apt/sources.list
+    | sudo tee -a /etc/apt/sources.list.d/insomnia.list
 
 # Add public key used to verify code signature
 wget --quiet -O - https://insomnia.rest/keys/debian-public.key.asc \

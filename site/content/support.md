@@ -26,9 +26,9 @@ people. [Join Now](https://chat.insomnia.rest) to get started.
 Any other feedback, questions, concerns can be sent to 
 [support@insomnia.rest](mailto:support@insomnia.rest) and I will respond ASAP. 
 
-<p class="notice">
-Please do not send bug reports or feature requests via email. It benefits everyone if these
+<p class="notice info">
+Please avoid sending bug reports or feature requests via email. It benefits everyone if these
 are submitted to the 
-[GitHub Repository](https://github.com/getinsomnia/insomnia/blob/develop/CONTRIBUTING.md)
+<a href="https://github.com/getinsomnia/insomnia/blob/develop/CONTRIBUTING.md">GitHub Repository</a>
 instead.
 </p>

@@ -836,6 +836,12 @@ body.floating-navbar .navbar__icon img {
     align-self: flex-end;
 }
 
+.footer section {
+    margin: 0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
 .footer * {
     color: rgba(255, 255, 255, 0.6);
 }
@@ -847,7 +853,7 @@ body.floating-navbar .navbar__icon img {
 
 .footer__menu {
     max-width: 40rem;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto;
 }
 
 .footer__menu a {

@@ -46,14 +46,6 @@ menu:
       Identifier: support
       URL: /support/
       weight: 1
-    - Name: Open Source
-      Identifier: opensource
-      URL: https://github.com/getinsomnia
-      weight: 4
-    - Name: Blog
-      Identifier: blog
-      URL: /blog/
-      weight: 5
     - Name: Transparency
       Identifier: transparency
       URL: /transparency/
@@ -62,14 +54,6 @@ menu:
       Identifier: changelog
       URL: /changelog/
       weight: 7
-    - Name: Teams
-      Identifier: teams
-      URL: /teams/
-      weight: 8
-    - Name: Plus
-      Identifier: plus
-      URL: /plus/
-      weight: 9
     - Name: Terms
       Identifier: terms
       URL: /terms/
@@ -78,10 +62,6 @@ menu:
       Identifier: license
       URL: /license/
       weight: 100
-    - Name: Code of Conduct
-      Identifier: coc
-      URL: /code-of-conduct/
-      weight: 101
   docs:
       - Name: ""
         Identifier: "welcome"
@@ -119,8 +99,6 @@ params:
   bio: "Independent software developer"
   location: "Victoria BC, Canada"
   description: "A powerful REST API Client with cookie management, environment variables, code generation, and authentication for Mac, Window, and Linux"
-  twitter: "GetInsomnia"
-  googlePlus: "InsomniaRest"
   keepReadingStr: "Read More"
 pygmentsCodeFences: true
 pygmentsStyle: "monokai"
