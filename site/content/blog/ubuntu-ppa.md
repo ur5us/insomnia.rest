@@ -10,6 +10,8 @@ official PPA on Ubuntu-based operating systems. Follow these
 [simple instructions](https://support.insomnia.rest/article/23-installation#ubuntu) to add
 the repository and install the app. 
 
+<!--more-->
+
 ```bash
 # Add to sources.list
 echo "deb https://dl.bintray.com/getinsomnia/Insomnia /" \
