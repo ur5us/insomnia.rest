@@ -21,6 +21,9 @@
 /contact/                                                        /support/
 /eula/                                                           https://github.com/getinsomnia/insomnia/blob/master/LICENSE
 
+# Updated Changelogs
+/changelog/5.12.0/                                               /changelog/5.12.1/
+
 # Legacy Docs
 /documentation/support-and-feedback/*       /support/
 /documentation/installation/*               https://support.insomnia.rest/article/23-installation
