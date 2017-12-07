@@ -462,6 +462,12 @@ pre > code {
     padding: 0.25rem 0.8rem;
 }
 
+.button--super-compact {
+    padding: 0.05rem 0.8rem;
+    font-size: 0.8em;
+    min-width: 2rem;
+}
+
 button[disabled],
 .button[disabled] {
     cursor: default;

@@ -3,6 +3,7 @@ import Home from './home';
 import Login from './login';
 import SignUp from './signup';
 import Subscribe from './subscribe';
+import Invoices from './invoices';
 import Teams from './teams';
 import ChangePassword from './change-password';
 import ChangeEmail from './change-email';
@@ -49,6 +50,8 @@ class App extends Component {
       this.component = <ChangePassword whoami={whoami}/>
     } else if (path.match(/^\/app\/change-email\/$/)) {
       this.component = <ChangeEmail whoami={whoami}/>
+    } else if (path.match(/^\/app\/invoices\/$/)) {
+      this.component = <Invoices whoami={whoami}/>
     } else if (path.match(/^\/app\/teams\/$/)) {
       this.component = (
         <Teams

@@ -127,6 +127,9 @@ class Home extends Component {
             <a href="/app/change-email/">Change Email</a>
           </li>
           <li>
+            <a href="/app/invoices/">Invoices</a>
+          </li>
+          <li>
             {billingDetails
               ? <a href="/app/subscribe/">Change Subscription</a>
               : <a href="/app/subscribe/">Choose Plan</a>

@@ -3,7 +3,14 @@ import * as crypt from './crypt';
 import * as util from './fetch';
 
 /** Create a new Account for the user */
-export async function signup (firstName, lastName, rawEmail, rawPassphrase, emailsOk = true, loginAfter = false) {
+export async function signup (
+  firstName,
+  lastName,
+  rawEmail,
+  rawPassphrase,
+  emailsOk = true,
+  loginAfter = false
+) {
   const email = _sanitizeEmail(rawEmail);
   const passphrase = _sanitizePassphrase(rawPassphrase);
 
@@ -131,6 +138,14 @@ export async function cancelAccount () {
 
 export async function whoami () {
   return util.get('/auth/whoami');
+}
+
+export async function invoices () {
+  return util.get('/api/billing/invoices');
+}
+
+export async function getInvoice (invoiceId) {
+  return util.get('/api/billing/invoices/' + invoiceId);
 }
 
 export async function verify () {

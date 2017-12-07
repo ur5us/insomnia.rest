@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "hkdf": "0.0.2",
+    "moment": "^2.19.3",
     "node-forge": "^0.7.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",

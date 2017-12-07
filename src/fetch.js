@@ -26,6 +26,10 @@ export function get (path, sessionId = null) {
   return _fetch('GET', path, null, sessionId)
 }
 
+export function to (path) {
+  window.location = _getUrl(path);
+}
+
 /** Send an HTTP DELETE request */
 export function del (path, sessionId = null) {
   return _fetch('DELETE', path, null, sessionId)
@@ -73,7 +77,7 @@ async function _fetch (method, path, json, sessionId = null) {
   }
 }
 
-function _getUrl (path) {
+export function _getUrl (path) {
   return `https://api.insomnia.rest${path}`;
 }
 
