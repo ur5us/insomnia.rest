@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
 import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class Invoices extends Component {
   state = {
@@ -14,6 +15,7 @@ class Invoices extends Component {
 
   _handleDownloadInvoice = async invoiceId => {
     const {downloadLink} = await session.getInvoice(invoiceId);
+    trackEvent('Account', 'Invoice Download');
     window.location = downloadLink;
   };
 
@@ -57,10 +59,12 @@ class Invoices extends Component {
                 }
               </td>
               <td>
-                <button className="button button--super-compact"
-                        onClick={() => this._handleDownloadInvoice(invoice.id)}>
-                  Download
-                </button>
+                {invoice.paid ? (
+                  <button className="button button--super-compact"
+                          onClick={() => this._handleDownloadInvoice(invoice.id)}>
+                    Download
+                  </button>
+                ) : null}
               </td>
             </tr>
           );
