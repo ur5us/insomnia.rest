@@ -111,11 +111,14 @@ import * as session from './session';
 
 HS.beacon.config({
   color: '#6e60cc',
-  icon: 'message',
+  icon: 'search',
   attachment: true,
   poweredBy: false,
   showSubject: true,
   showContactFields: true,
+  translation: {
+    searchLabel: 'Search the documentation'
+  },
   topics: [
     {val: 'app', label: 'Desktop App'},
     {val: 'bug report', label: 'Bug Report'},
