@@ -30,7 +30,7 @@ class UpdateTeamNameForm extends Component {
       await onUpdate();
       trackEvent('Teams', 'Update Name Success');
     } catch (err) {
-      alert(`Failed to leave team: ${err.message}`);
+      alert(`Failed to update team: ${err.message}`);
       trackEvent('Teams', 'Update Name Error');
     }
 

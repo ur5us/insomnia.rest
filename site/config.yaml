@@ -11,32 +11,33 @@ permalinks:
   blog: /blog/:slug
 menu:
   main:
-    - Name: "Pricing"
-      Identifier: "pricing"
-      URL: "/pricing/"
-      Weight: 2
     - Name: "Docs"
       Identifier: "docs"
       URL: "https://support.insomnia.rest"
       Weight: 1
+    - Name: "Pricing"
+      Identifier: "pricing"
+      URL: "/pricing/"
+      Weight: 2
     - Name: "Blog"
       Identifier: "blog"
       URL: "/blog/"
-      Weight: 2
-    - Name: "Download"
-      Identifier: "download"
-      URL: "/download/"
       Weight: 3
+    - Name: "GitHub"
+      Identifier: "github"
+      Pre: "button"
+      URL: "https://github.com/getinsomnia/insomnia"
+      Weight: 4
     - Name: "Account"
       Identifier: "account"
       Pre: "button"
       URL: "/app/account/"
-      Weight: 10
+      Weight: 5
     - Name: "Sign Up"
       Identifier: "signup"
       Pre: "button"
       URL: "/app/signup/"
-      Weight: 10
+      Weight: 99
     - Name: "Download"
       Identifier: "download"
       URL: "/download/"
@@ -63,18 +64,18 @@ menu:
       URL: /license/
       weight: 100
   docs:
-      - Name: ""
-        Identifier: "welcome"
-        Weight: 0
-      - Name: "Getting Started"
-        Identifier: "starting"
-        Weight: 1
-      - Name: "Help Topics"
-        Identifier: "topics"
-        Weight: 2
-      - Name: "Other"
-        Identifier: "other"
-        Weight: 3
+    - Name: ""
+      Identifier: "welcome"
+      Weight: 0
+    - Name: "Getting Started"
+      Identifier: "starting"
+      Weight: 1
+    - Name: "Help Topics"
+      Identifier: "topics"
+      Weight: 2
+    - Name: "Other"
+      Identifier: "other"
+      Weight: 3
 author:
   name: "Gregory Schier"
   image: "me.jpg"

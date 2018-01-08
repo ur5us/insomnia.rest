@@ -483,6 +483,7 @@ body[data-logged-in="no"] .show-logged-out {
         margin-right: 0;
     }
 
+    .navbar__items li[data-menu-item="github"],
     .navbar__items li[data-menu-item="download"],
     .navbar__items li[data-menu-item="account"],
     .navbar__items li[data-menu-item="signup"] {
@@ -515,7 +516,14 @@ body[data-logged-in="no"] .show-logged-out {
         content: '|';
     }
 
+    .navbar__items li[data-menu-item="account"],
     .navbar__items li[data-menu-item="download"] {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 60rem) {
+    .navbar__items li[data-menu-item="github"] {
         display: none;
     }
 }

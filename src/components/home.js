@@ -17,8 +17,13 @@ class Home extends Component {
     if (!billingDetails && !isTrialOver) {
       notice = (
         <p className="notice info">
-          You still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
+          ou still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
           on your free trial
+          <br/>
+          <br/>
+          <a href="/app/subscribe/" className="button button--compact">
+            Select a Plan
+          </a>
         </p>
       )
     } else if (billingDetails && billingDetails.isPaymentRequired) {
@@ -118,6 +123,12 @@ class Home extends Component {
         <p>Here are some things you might want to do.</p>
         <ul>
           <li>
+            {billingDetails
+              ? <a href="/app/subscribe/">Change Subscription</a>
+              : <a href="/app/subscribe/">Choose Plan</a>
+            }
+          </li>
+          <li>
             <a href="/app/teams/">Manage Teams</a>
           </li>
           <li>
@@ -128,12 +139,6 @@ class Home extends Component {
           </li>
           <li>
             <a href="/app/invoices/">Invoices</a>
-          </li>
-          <li>
-            {billingDetails
-              ? <a href="/app/subscribe/">Change Subscription</a>
-              : <a href="/app/subscribe/">Choose Plan</a>
-            }
           </li>
           {billingDetails ? <li><CancelLink/></li> : null}
           <li>

@@ -79,7 +79,7 @@ async function _fetch (method, path, json, sessionId = null) {
 
 export function _getUrl (path) {
   if (isDev()) {
-    return `http://localhost:8000${path}`;
+    return `http://localhost:8001${path}`;
   } else {
     return `https://api.insomnia.rest${path}`;
   }
