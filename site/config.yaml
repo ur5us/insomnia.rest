@@ -63,19 +63,6 @@ menu:
       Identifier: license
       URL: /license/
       weight: 100
-  docs:
-    - Name: ""
-      Identifier: "welcome"
-      Weight: 0
-    - Name: "Getting Started"
-      Identifier: "starting"
-      Weight: 1
-    - Name: "Help Topics"
-      Identifier: "topics"
-      Weight: 2
-    - Name: "Other"
-      Identifier: "other"
-      Weight: 3
 author:
   name: "Gregory Schier"
   image: "me.jpg"
