@@ -12,67 +12,74 @@ class Home extends Component {
     const trialEndDate = new Date(whoami.trialEnd * 1000);
     const trialEndMillis = trialEndDate.getTime() - Date.now();
     const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
+    const isTrialing = whoami.isTrialing;
     const isTrialOver = trialDays <= 0;
+    const isPremium = whoami.isPremium;
 
-    if (!billingDetails && !isTrialOver) {
-      notice = (
-        <p className="notice info">
-          ou still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
-          on your free trial
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Select a Plan
-          </a>
-        </p>
-      )
-    } else if (billingDetails && billingDetails.isPaymentRequired) {
-      notice = (
-        <p className="notice info">
-          <strong>Payment Required</strong>. Please subscribe to a plan to continue
-          using Insomnia.
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Update Subscription
-          </a>
-        </p>
-      )
-    } else if (!billingDetails && isTrialOver) {
-      notice = (
-        <p className="notice warn">
-          Your trial ended <strong>{-1 * trialDays}</strong> day{trialDays === 1 ? '' : 's'} ago.
-          Please subscribe to a plan to continue using your account.
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Update Subscription
-          </a>
-        </p>
-      )
-    } else if (billingDetails.subCancelled && billingDetails.subPeriodEnd * 1000 > Date.now()) {
-      const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
-      notice = (
-        <p className="notice info">
-          Subscription <strong>Cancelled</strong> and will end <strong>{dateString}</strong>
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Resubscribe
-          </a>
-        </p>
-      )
-    } else if (billingDetails.subCancelled) {
-      notice = (
-        <p className="notice info">
-          Your subscription is <strong>Cancelled</strong>
-          <br/>
-          <br/>
-          <a href="/app/subscribe/" className="button button--compact">
-            Resubscribe
-          </a>
-        </p>
-      )
+    if (billingDetails) {
+      // Credit card entered but needs to pay
+      if (billingDetails.isPaymentRequired) {
+        notice = (
+          <p className="notice info">
+            <strong>Payment Required</strong>. Please subscribe to a plan to continue
+            using Insomnia.
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Update Subscription
+            </a>
+          </p>
+        )
+      } else if (billingDetails.subCancelled && billingDetails.subPeriodEnd * 1000 > Date.now()) {
+        const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
+        notice = (
+          <p className="notice info">
+            Subscription <strong>Cancelled</strong> and will end <strong>{dateString}</strong>
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Resubscribe
+            </a>
+          </p>
+        )
+      } else if (billingDetails.subCancelled) {
+        notice = (
+          <p className="notice info">
+            Your subscription is <strong>Cancelled</strong>
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Resubscribe
+            </a>
+          </p>
+        )
+      }
+    } else {
+      if (isTrialing && !isTrialOver) {
+        notice = (
+          <p className="notice info">
+            You still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
+            on your free trial
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Select a Plan
+            </a>
+          </p>
+        )
+      } else if (!isPremium && isTrialOver) {
+        notice = (
+          <p className="notice warn">
+            Your trial ended <strong>{-1 * trialDays}</strong> day{trialDays === 1 ? '' : 's'} ago.
+            Please subscribe to a plan to continue using your account.
+            <br/>
+            <br/>
+            <a href="/app/subscribe/" className="button button--compact">
+              Update Subscription
+            </a>
+          </p>
+        )
+      }
     }
 
     return <div>{notice}<br/></div>;
@@ -107,19 +114,19 @@ class Home extends Component {
         <p>Your email address is <code>{whoami.email}</code>.</p>
         {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
         {(billingDetails && !billingDetails.subCancelled) ? (
-            <p>
-              Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
-              {" "}
-              <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
-              {billingDetails.subPercentOff ? (
-                  <span className="success bold">
+          <p>
+            Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
+            {" "}
+            <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
+            {billingDetails.subPercentOff ? (
+              <span className="success bold">
                 {" "}
-                    (after {billingDetails.subPercentOff}% discount)
+                (after {billingDetails.subPercentOff}% discount)
               </span>
-                ) : null}
-              .
-            </p>
-          ) : null}
+            ) : null}
+            .
+          </p>
+        ) : null}
         <p>Here are some things you might want to do.</p>
         <ul>
           <li>
@@ -158,6 +165,7 @@ Home.propTypes = {
     isTrialing: PropTypes.bool.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     appNumLaunches: PropTypes.number.isRequired,
     canManageTeams: PropTypes.bool.isRequired,
   }).isRequired,
