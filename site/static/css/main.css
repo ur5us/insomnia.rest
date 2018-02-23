@@ -481,6 +481,7 @@ body[data-logged-in="no"] .show-logged-out {
 @media only screen and (max-width: 33.75rem) {
     .navbar__items {
         margin-right: 0;
+        padding-left: 0;
     }
 
     .navbar__items li[data-menu-item="github"],
