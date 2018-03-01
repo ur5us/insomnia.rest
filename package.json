@@ -7,7 +7,7 @@
   "licence": "MIT",
   "scripts": {
     "build:changelog": "rm -rf ./site/content/changelog-json && cp -r ./site/content/changelog ./site/content/changelog-json",
-    "build:generate": "npm run build:changelog && hugo --source site --destination $PWD/_hugo",
+    "build:generate": "npm run build:changelog && hugo --buildFuture --source site --destination $PWD/_hugo",
     "build:pack": "rm -rf _speedpack && speedpack _hugo --output _speedpack",
     "build:app": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "build": "rm -rf _hugo && npm run build:app && npm run build:generate && npm run build:pack",
