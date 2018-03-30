@@ -221,6 +221,9 @@ type: skinny
                     prefix = '$';
                     suffix = 'k';
                     value = Math.round(value / 1000);
+                  } else if (type === 'percent') {
+                    suffix = '%';
+                    value = value / 100;
                   }
 
                   return prefix + addCommas(value) + suffix;
@@ -242,7 +245,7 @@ type: skinny
       color: 'blue'
     }]);
 
-    drawMetric('churn', 'bar', '', [{
+    drawMetric('churn', 'bar', 'percent', [{
       key: 'user_churn',
       label: 'User Churn',
       color: 'orange'
