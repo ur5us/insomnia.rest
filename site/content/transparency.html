@@ -17,8 +17,6 @@ type: skinny
 <script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'></script>
 <script src='/baremetrics.js'></script>
 
-<h2>Summary</h2>
-
 <style>
   .stats__row {
     overflow: auto;
@@ -27,11 +25,13 @@ type: skinny
   .stats__row {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .stats__stat {
-    margin-right: 1em;
-    width: 100%;
+    margin: 0.5em;
+    flex-grow: 1;
+    width: auto;
     display: inline-block;
     box-sizing: border-box;
     float: left;
@@ -54,8 +54,14 @@ type: skinny
   }
 </style>
 
+<h2>Summary</h2>
+
 <div class="stats">
   <div class="stats__row">
+    <div class="stats__stat" id="stat-new_customers" data-color="green">
+      <h2>Total Customers</h2>
+      <div>...</div>
+    </div>
     <div class="stats__stat" id="stat-net_revenue" data-color="blue" data-type="money">
       <h2>Total Revenue</h2>
       <div>...</div>
@@ -64,20 +70,15 @@ type: skinny
       <h2>Current MRR</h2>
       <div>...</div>
     </div>
-    <div class="stats__stat" id="stat-new_customers" data-color="green">
-      <h2>Total Customers</h2>
-      <div>...</div>
-    </div>
   </div>
+</div>
+<div>
+  <small>**All revenue numbers are in Canadian dollars</small>
 </div>
 
 <br>
 <h2>Revenue</h2>
-
 <canvas id='chart-money'></canvas>
-<div>
-  <small>**All revenue numbers are in Canadian dollars</small>
-</div>
 
 <br>
 <h2>Customers</h2>
@@ -91,13 +92,14 @@ type: skinny
   (function () {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const colors = {
-      green: [80, 220, 0],
-      blue: [28, 144, 255],
-      red: [255, 0, 20],
+      green: [60, 190, 0],
+      blue: [20, 150, 255],
+      red: [255, 0, 0],
       orange: [255, 180, 40],
-      pink: [255, 180, 255],
-      purple: [200, 80, 255]
+      pink: [255, 120, 240],
+      purple: [180, 20, 240]
     };
+    const pageWidth = document.body.getBoundingClientRect().width;
 
     function printDate (yearMonthDay) {
       const parts = yearMonthDay.split(/[-/]/);
@@ -108,7 +110,12 @@ type: skinny
     }
 
     function isFirstOfMonth (yearMonthDay) {
-      return yearMonthDay.split(/[-/]/)[2] === '01';
+      const parts = yearMonthDay.split(/[-/]/);
+      const isFirstDay = parts[2] === '01';
+      if (isFirstDay && pageWidth < 500) {
+        return parseInt(parts[1], 10) % 2 === 0;
+      }
+      return isFirstDay;
     }
 
     function formatMoney (cents) {
@@ -163,8 +170,8 @@ type: skinny
       el.querySelector('div').innerHTML = type === 'money'
         ? '$' + addCommas(formatMoney(totals[key]).toFixed(2))
         : addCommas(totals[key]);
-      el.style.backgroundColor = getColor(color, 0.03);
-      el.style.borderColor = getColor(color, 0.6);
+      el.style.backgroundColor = getColor(color, 0.05);
+      el.style.borderColor = getColor(color, 0.7);
     }
 
     function getColor (name, alpha) {
@@ -173,7 +180,14 @@ type: skinny
     }
 
     function drawMetric (id, chartType, type, datasets) {
-      new Chart(document.getElementById('chart-' + id).getContext('2d'), {
+      const canv = document.getElementById('chart-' + id);
+
+      // Doesn't matter what these widths are. ChartJS will resize
+      // to fit container while maintaining the aspect ratio.
+      canv.width = 5;
+      canv.height = Math.max(pageWidth < 5 ? 5 : 3);
+
+      new Chart(canv.getContext('2d'), {
         type: chartType || 'bar',
         data: {
           labels: metrics.map(item => item.label),
@@ -195,7 +209,7 @@ type: skinny
             xAxes: [{
               barPercentage: 0.9,
               categoryPercentage: 0.8,
-              ticks: {autoSkip: document.body.getBoundingClientRect().width < 500}
+              ticks: {autoSkip: false}
             }],
             yAxes: [{
               ticks: {
