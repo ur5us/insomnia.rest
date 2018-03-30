@@ -5,14 +5,85 @@ slug: transparency
 type: skinny
 ---
 
+<p>
+  The purpose of this page is to give back to the indie hacker community by sharing
+  the details of Insomnia's progress over time.
+  There's also an
+  <a href="https://www.indiehackers.com/product/insomnia">Indie Hackers Interview</a>
+  covering process from taking Insomnia from a side project to a revenue-generating product if
+  you'd like to know more.
+</p>
 
 <script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'></script>
 <script src='/baremetrics.js'></script>
 
+<h2>Summary</h2>
+
+<style>
+  .stats__row {
+    overflow: auto;
+  }
+
+  .stats__row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .stats__stat {
+    margin-right: 1em;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    border: 1px solid green;
+    border-radius: 3px;
+    padding: 1em;
+  }
+
+  .stats__stat > * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .stats__stat > h2 {
+    font-size: 1.2em;
+  }
+
+  .stats__stat > div {
+    font-size: 1.7em;
+  }
+</style>
+
+<div class="stats">
+  <div class="stats__row">
+    <div class="stats__stat" id="stat-net_revenue" data-color="blue" data-type="money">
+      <h2>Total Revenue</h2>
+      <div>...</div>
+    </div>
+    <div class="stats__stat" id="stat-mrr" data-color="purple" data-type="money">
+      <h2>Current MRR</h2>
+      <div>...</div>
+    </div>
+    <div class="stats__stat" id="stat-new_customers" data-color="green">
+      <h2>Total Customers</h2>
+      <div>...</div>
+    </div>
+  </div>
+</div>
+
+<br>
 <h2>Revenue</h2>
+
 <canvas id='chart-money'></canvas>
+<div>
+  <small>**All revenue numbers are in Canadian dollars</small>
+</div>
+
+<br>
 <h2>Customers</h2>
 <canvas id='chart-customers'></canvas>
+
+<br>
 <h2>Churn</h2>
 <canvas id='chart-churn'></canvas>
 
@@ -44,30 +115,64 @@ type: skinny
       return cents / 100;
     }
 
-    function drawMetric (id, chartType, type, datasets) {
-      const metrics = [];
-      let current = null;
-      for (let i = 0; i < window.metrics.metrics.length; i++) {
-        const item = window.metrics.metrics[i];
-        if (isFirstOfMonth(item.human_date)) {
-          current && metrics.push(current);
-          current = {
-            new_customers: 0,
-            net_revenue: 0,
-            label: printDate(item.human_date)
-          };
-        }
-        current.net_revenue += item.net_revenue;
-        current.new_customers += item.new_customers;
-        current.mrr = item.mrr;
-        current.active_customers = item.active_customers;
-        current.user_churn = item.user_churn;
-        current.revenue_churn = item.revenue_churn;
+    function addCommas (number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    const metrics = [];
+    const totals = {
+      mrr: 0,
+      new_customers: 0,
+      net_revenue: 0
+    };
+    let current = null;
+    for (let i = 0; i < window.metrics.metrics.length; i++) {
+      const item = window.metrics.metrics[i];
+      if (isFirstOfMonth(item.human_date)) {
+        current && metrics.push(current);
+        current = {
+          new_customers: 0,
+          net_revenue: 0,
+          label: printDate(item.human_date)
+        };
       }
-      metrics.push(current);
 
+      // Update monthly
+      current.net_revenue += item.net_revenue;
+      current.new_customers += item.new_customers;
+      current.mrr = item.mrr;
+      current.active_customers = item.active_customers;
+      current.user_churn = item.user_churn;
+      current.revenue_churn = item.revenue_churn;
 
-      console.log('METRICS', metrics);
+      // Update totals
+      totals.mrr = item.mrr;
+      totals.net_revenue += item.net_revenue;
+      totals.new_customers += item.new_customers;
+    }
+    metrics.push(current);
+
+    for (const key of Object.keys(totals)) {
+      const el = document.querySelector('#stat-' + key);
+      if (!el) {
+        continue;
+      }
+
+      const type = el.getAttribute('data-type');
+      const color = el.getAttribute('data-color');
+      el.querySelector('div').innerHTML = type === 'money'
+        ? '$' + addCommas(formatMoney(totals[key]).toFixed(2))
+        : addCommas(totals[key]);
+      el.style.backgroundColor = getColor(color, 0.03);
+      el.style.borderColor = getColor(color, 0.6);
+    }
+
+    function getColor (name, alpha) {
+      const color = colors[name] || [100, 200, 130];
+      return 'rgba(' + color.join(',') + ',' + (alpha || 1) + ')';
+    }
+
+    function drawMetric (id, chartType, type, datasets) {
       new Chart(document.getElementById('chart-' + id).getContext('2d'), {
         type: chartType || 'bar',
         data: {
@@ -83,19 +188,28 @@ type: skinny
           }))
         },
         options: {
+          layout: {
+            padding: 0
+          },
           scales: {
             xAxes: [{
               barPercentage: 0.9,
               categoryPercentage: 0.8,
-              ticks: {autoSkip: false}
+              ticks: {autoSkip: document.body.getBoundingClientRect().width < 500}
             }],
             yAxes: [{
               ticks: {
                 beginAtZero: true,
                 callback: function (value) {
-                  return type === 'money'
-                    ? '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                    : value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  let suffix = '';
+                  let prefix = '';
+                  if (type === 'money' && value >= 1000) {
+                    prefix = '$';
+                    suffix = 'k';
+                    value = Math.round(value / 1000);
+                  }
+
+                  return prefix + addCommas(value) + suffix;
                 }
               }
             }]
