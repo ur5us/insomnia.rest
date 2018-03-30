@@ -6,14 +6,15 @@
   "author": "Gregory Schier <gschier1990@gmail.com>",
   "licence": "MIT",
   "scripts": {
+    "build:metrics": "node scripts/fetch-metrics.js \"$PWD/site/content/baremetrics.js\"",
     "build:changelog": "rm -rf ./site/content/changelog-json && cp -r ./site/content/changelog ./site/content/changelog-json",
-    "build:generate": "npm run build:changelog && hugo --buildFuture --source site --destination $PWD/_hugo",
+    "build:generate": "npm run build:metrics && npm run build:changelog && hugo --buildFuture --source site --destination $PWD/_hugo",
     "build:pack": "rm -rf _speedpack && speedpack _hugo --output _speedpack",
     "build:app": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "build": "rm -rf _hugo && npm run build:app && npm run build:generate && npm run build:pack",
     "start:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "start:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
-    "start": "npm run build:changelog && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\""
+    "start": "npm run build:changelog && npm run build:metrics && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\""
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "node-forge": "^0.7.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "request": "^2.85.0",
     "srp-js": "^0.2.0",
     "whatwg-fetch": "^2.0.1"
   },
