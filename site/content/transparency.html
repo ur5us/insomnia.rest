@@ -67,7 +67,9 @@ type: skinny
           labels: metrics.map(item => item.label),
           datasets: datasets.map(set => ({
             label: set.label,
-            data: metrics.map(item => formatMoney(item[set.key])),
+            data: metrics.map(
+              item => type === 'money' ? formatMoney(item[set.key]) : item[set.key]
+            ),
             backgroundColor: 'rgba(' + colors[set.color].join(',') + ',0.7)',
             borderColor: 'rgb(' + colors[set.color].join(',') + ')',
             borderWidth: 0
