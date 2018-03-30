@@ -46,18 +46,25 @@ type: skinny
 
     function drawMetric (id, chartType, type, datasets) {
       const metrics = [];
-      let current = {};
+      let current = null;
       for (let i = 0; i < window.metrics.metrics.length; i++) {
         const item = window.metrics.metrics[i];
         if (isFirstOfMonth(item.human_date)) {
-          current = JSON.parse(JSON.stringify(item));
-          metrics.push(current);
-          current.label = printDate(item.human_date);
-        } else {
-          current.net_revenue += item.net_revenue;
-          current.new_customers += item.new_customers;
+          current && metrics.push(current);
+          current = {
+            new_customers: 0,
+            net_revenue: 0,
+            label: printDate(item.human_date)
+          };
         }
+        current.net_revenue += item.net_revenue;
+        current.new_customers += item.new_customers;
+        current.mrr = item.mrr;
+        current.active_customers = item.active_customers;
+        current.user_churn = item.user_churn;
+        current.revenue_churn = item.revenue_churn;
       }
+      metrics.push(current);
 
 
       console.log('METRICS', metrics);
