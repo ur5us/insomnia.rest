@@ -145,7 +145,7 @@
       green: [60, 190, 0],
       blue: [20, 150, 255],
       red: [255, 0, 0],
-      orange: [255, 130, 40],
+      orange: [240, 120, 20],
       pink: [255, 120, 240],
       purple: [180, 20, 240],
       gray: [220, 200, 210]
@@ -216,6 +216,8 @@
       current.active_customers = item.active_customers;
       current.user_churn = item.user_churn;
       current.revenue_churn = item.revenue_churn;
+      current.ltv = item.ltv;
+      current.arpu = item.arpu;
 
       // Fixed totals
       totals.mrr = item.mrr;
@@ -394,17 +396,15 @@
     drawMetric('money', 'line', 'money', [{
       key: 'mrr',
       label: 'MRR',
-      color: 'green'
+      color: 'blue'
     }, {
       key: 'net_revenue',
       label: 'Net Revenue',
-      color: 'blue'
-    }]);
-
-    drawMetric('churn', 'line', 'percent', [{
-      key: 'revenue_churn',
-      label: 'Revenue Churn',
-      color: 'red'
+      color: 'green'
+    }, {
+      key: 'ltv',
+      label: 'Lifetime Value',
+      color: 'purple'
     }]);
 
     drawMetric('customers', 'line', '', [{
@@ -415,6 +415,12 @@
       key: 'cancellations',
       label: 'Cancelled',
       color: 'red'
+    }]);
+
+    drawMetric('churn', 'line', 'percent', [{
+      key: 'revenue_churn',
+      label: 'Revenue Churn',
+      color: 'orange'
     }]);
 
     drawPlansPie('plans', 'money', [{
