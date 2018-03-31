@@ -113,17 +113,17 @@
           <p>The following pie chart shows the MRR distribution between plans.</p>
           <canvas id='chart-plans'></canvas>
 
-          <br><br>
+          <br>
           <h2>Revenue &#128176;</h2>
           <p>The following bar chart shows various revenue metrics since Insomnia's beginnings.</p>
           <canvas id='chart-money'></canvas>
 
-          <br><br>
+          <br>
           <h2>Customers &#128188;</h2>
           <p>The following bar chart shows customer growth over time.</p>
           <canvas id='chart-customers'></canvas>
 
-          <br><br>
+          <br>
           <h2>Churn &#9760;</h2>
           <p>The following bar chart shows how many customers leave Insomnia.</p>
           <canvas id='chart-churn'></canvas>
@@ -287,7 +287,7 @@
       // Doesn't matter what these widths are. ChartJS will resize
       // to fit container while maintaining the aspect ratio.
       canv.width = 5;
-      canv.height = Math.max(pageWidth < 5 ? 5 : 3);
+      canv.height = Math.max(pageWidth < 500 ? 5 : 3);
 
       new Chart(canv.getContext('2d'), {
         type: chartType || 'bar',
@@ -339,7 +339,7 @@
       // Doesn't matter what these widths are. ChartJS will resize
       // to fit container while maintaining the aspect ratio.
       canv.width = 5;
-      canv.height = Math.max(pageWidth < 5 ? 5 : 3);
+      canv.height = Math.max(pageWidth < 500 ? 4 : 2);
 
       new Chart(canv.getContext('2d'), {
         type: 'pie',
@@ -367,7 +367,8 @@
           }]
         },
         options: {
-          cutoutPercentage: 40,
+          cutoutPercentage: 50,
+          animation: {duration: 0},
           tooltips: {
             callbacks: {
               title: function (info, data) {
