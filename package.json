@@ -12,6 +12,7 @@
     "build:pack": "rm -rf _speedpack && speedpack _hugo --output _speedpack",
     "build:app": "NODE_ENV=production webpack --config webpack.config.babel.js",
     "build": "rm -rf _hugo && npm run build:app && npm run build:generate && npm run build:pack",
+    "start:functions": "netlify-lambda serve ./functions",
     "start:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "start:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
     "start": "npm run build:changelog && npm run build:metrics && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\""
@@ -22,10 +23,9 @@
   },
   "homepage": "https://github.com/getinsomnia/website#readme",
   "devDependencies": {
-    "babel": "6.3.13",
-    "babel-core": "6.1.18",
+    "babel": "^6.23.0",
     "babel-eslint": "5.0.0",
-    "babel-loader": "6.1.0",
+    "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "0.1.2",
     "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
@@ -35,6 +35,7 @@
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.1.0",
     "json-loader": "^0.5.7",
+    "netlify-lambda": "^0.3.0",
     "speedpack": "^0.2.0",
     "webpack": "^3.5.1"
   },
@@ -47,18 +48,5 @@
     "request": "^2.85.0",
     "srp-js": "^0.2.0",
     "whatwg-fetch": "^2.0.1"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
-    ],
-    "plugins": [
-      "transform-object-rest-spread",
-      "transform-class-properties",
-      "add-module-exports",
-      "transform-regenerator",
-      "transform-runtime"
-    ]
   }
 }
