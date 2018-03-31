@@ -278,7 +278,8 @@
 
     function getColor (name, alpha) {
       const color = colors[name] || [100, 200, 130];
-      return 'rgba(' + color.join(',') + ',' + (alpha || 1) + ')';
+      const a = typeof alpha === 'number' ? alpha : 1;
+      return 'rgba(' + color.join(',') + ',' + a + ')';
     }
 
     function drawMetric (id, chartType, type, datasets) {
@@ -298,9 +299,14 @@
             data: metrics.map(
               item => type === 'money' ? formatMoney(item[set.key]) : item[set.key]
             ),
-            backgroundColor: 'rgba(' + colors[set.color].join(',') + ',0.7)',
-            borderColor: 'rgb(' + colors[set.color].join(',') + ')',
-            borderWidth: 0
+            backgroundColor: getColor(set.color, chartType === 'line' ? 0.1 : 0.7),
+            borderColor: getColor(set.color, chartType === 'line' ? 0.8 : 0.3),
+            pointBackgroundColor: getColor(set.color, 0.7),
+            pointHoverBackgroundColor: getColor(set.color, 0.3),
+            pointHoverBorderColor: getColor(set.color, 0.7),
+            pointRadius: 2,
+            borderWidth: 1,
+            pointBorderColor: 'transparent'
           }))
         },
         options: {
@@ -316,8 +322,8 @@
           },
           scales: {
             xAxes: [{
-              barPercentage: 0.9,
-              categoryPercentage: 0.8,
+              barPercentage: 1,
+              categoryPercentage: 0.5,
               ticks: {autoSkip: pageWidth < 500}
             }],
             yAxes: [{
@@ -385,11 +391,7 @@
       });
     }
 
-    drawMetric('money', 'bar', 'money', [{
-      key: 'fees',
-      label: 'Fees',
-      color: 'orange'
-    }, {
+    drawMetric('money', 'line', 'money', [{
       key: 'mrr',
       label: 'MRR',
       color: 'green'
@@ -409,18 +411,14 @@
       color: 'red'
     }]);
 
-    drawMetric('customers', 'bar', '', [{
-      key: 'cancellations',
-      label: 'Cancelled',
-      color: 'red'
-    }, {
+    drawMetric('customers', 'line', '', [{
       key: 'new_customers',
       label: 'New',
       color: 'pink'
     }, {
-      key: 'active_customers',
-      label: 'Active',
-      color: 'purple'
+      key: 'cancellations',
+      label: 'Cancelled',
+      color: 'red'
     }]);
 
     drawPlansPie('plans', 'money', [{
