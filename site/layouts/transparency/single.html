@@ -1,0 +1,349 @@
+{{ partial "head" . }}
+<body class="template-skinny">
+<style>
+  .stats__row {
+    overflow: auto;
+  }
+
+  .stats__row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .stats__stat {
+    margin: 0.5em;
+    flex: 1;
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1em;
+  }
+
+  .stats__stat > * {
+    padding: 0;
+    margin: 0;
+  }
+
+  .stats__stat > h2 {
+    font-size: 1.2em;
+    white-space: nowrap;
+  }
+
+  .stats__stat > div {
+    font-size: 1.7em;
+  }
+</style>
+
+{{ partial "fontawesome" }}
+
+{{ partial "navbar" . }}
+
+<main role="main">
+  <article>
+    {{ if not .Params.hideheader }}
+    <header class="container header--big">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ .Title }}</h1>
+          {{ if isset .Params "subtitle" }}
+          <p class="text-lg">{{ .Params.subtitle | markdownify }}</p>
+          {{ end }}
+        </div>
+      </div>
+    </header>
+    {{ end }}
+
+    <section class="content container">
+      <div class="row">
+        <div class="col-12">
+          {{ .Content }}
+          <div class="stats">
+            <div class="stats__row">
+              <div class="stats__stat" id="stat-new_customers" data-color="purple" data-type="number">
+                <h2>All Customers</h2>
+                <div>...</div>
+              </div>
+            </div>
+            <div class="stats__row">
+              <div class="stats__stat" id="stat-net_revenue" data-color="green" data-type="money">
+                <h2>All Revenue</h2>
+                <div>...</div>
+              </div>
+              <div class="stats__stat" id="stat-mrr" data-color="green" data-type="money">
+                <h2>MRR</h2>
+                <div>...</div>
+              </div>
+              <div class="stats__stat" id="stat-ltv" data-color="green" data-type="money">
+                <h2>LTV</h2>
+                <div>...</div>
+              </div>
+              <div class="stats__stat" id="stat-arpu" data-color="green" data-type="money">
+                <h2>ARPU</h2>
+                <div>...</div>
+              </div>
+            </div>
+            <div class="stats__row">
+              {{ $stats := getJSON "https://api.github.com/repos/getinsomnia/insomnia" }}
+              {{ $contributors := getJSON "https://api.github.com/repos/getinsomnia/insomnia/contributors" }}
+              <div class="stats__stat" data-color="blue">
+                <h2>Contributors</h2>
+                <div>{{ len $contributors }}</div>
+              </div>
+              <div class="stats__stat" data-color="blue">
+                <h2>Issues</h2>
+                <div>{{ $stats.open_issues }}</div>
+              </div>
+              <div class="stats__stat" data-color="blue">
+                <h2>Stars &#9734;</h2>
+                <div>{{ $stats.stargazers_count }}</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <small>**All revenue numbers are in Canadian dollars</small>
+          </div>
+
+          <br>
+          <h2>Revenue &#128176;</h2>
+          <canvas id='chart-money'></canvas>
+
+          <br>
+          <h2>Customers &#128188;</h2>
+          <canvas id='chart-customers'></canvas>
+
+          <br>
+          <h2>Churn &#9760;</h2>
+          <canvas id='chart-churn'></canvas>
+        </div>
+      </div>
+    </section>
+  </article>
+</main>
+
+{{ partial "footer" . }}
+{{ partial "js" . }}
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'></script>
+<script src='/baremetrics.js'></script>
+<script>
+  (function () {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const colors = {
+      green: [60, 190, 0],
+      blue: [20, 150, 255],
+      red: [255, 0, 0],
+      orange: [255, 180, 40],
+      pink: [255, 120, 240],
+      purple: [180, 20, 240],
+      gray: [220, 200, 210]
+    };
+    const pageWidth = document.body.getBoundingClientRect().width;
+
+    function printDate (yearMonthDay) {
+      const parts = yearMonthDay.split(/[-/]/);
+      const year = parts[0];
+      const month = months[parts[1] - 1];
+      const day = parts[2];
+      return month + ' ' + day + ', ' + year;
+    }
+
+    function isFirstOfMonth (yearMonthDay) {
+      return yearMonthDay.match(/\d{4}-\d{2}-01/);
+    }
+
+    function formatMoney (cents) {
+      return cents / 100;
+    }
+
+    function formatLabel (type, value, small) {
+      let suffix = '';
+      let prefix = '';
+      if (type === 'money' && value >= 1000 && small) {
+        prefix = '$';
+        suffix = 'k';
+        value = Math.round(value / 1000);
+      } else if (type === 'money') {
+        prefix = '$';
+      } else if (type === 'percent') {
+        suffix = '%';
+        value = value / 100;
+      }
+
+      return prefix + addCommas(value) + suffix;
+    }
+
+    function addCommas (number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    const metrics = [];
+    const totals = {
+      mrr: 0,
+      new_customers: 0,
+      net_revenue: 0,
+      fees: 0,
+      cancellations: 0
+    };
+    let current = null;
+    for (let i = 0; i < window.metrics.metrics.length; i++) {
+      const item = window.metrics.metrics[i];
+      if (isFirstOfMonth(item.human_date)) {
+        current && metrics.push(current);
+        current = {
+          new_customers: 0,
+          net_revenue: 0,
+          fees: 0,
+          cancellations: 0,
+          label: printDate(item.human_date)
+        };
+      }
+
+      // Fixed values
+      current.mrr = item.mrr;
+      current.active_customers = item.active_customers;
+      current.user_churn = item.user_churn;
+      current.revenue_churn = item.revenue_churn;
+
+      // Fixed totals
+      totals.mrr = item.mrr;
+      totals.ltv = item.ltv;
+      totals.arpu = item.arpu;
+
+      // Update monthly
+      current.net_revenue += item.net_revenue;
+      current.new_customers += item.new_customers;
+      current.cancellations += item.cancellations;
+      current.fees += item.fees;
+
+      // Update totals
+      totals.net_revenue += item.net_revenue;
+      totals.new_customers += item.new_customers;
+      totals.cancellations += item.cancellations;
+      totals.fees += item.fees;
+    }
+    metrics.push(current);
+
+    // Populate all stats boxes
+    for (const key of Object.keys(totals)) {
+      const el = document.querySelector('#stat-' + key);
+      if (!el) {
+        continue;
+      }
+
+      const type = el.getAttribute('data-type');
+      if (type === 'money') {
+        el.querySelector('div').innerHTML = '$' + addCommas(formatMoney(totals[key]).toFixed(0));
+      } else {
+        el.querySelector('div').innerHTML = addCommas(totals[key]);
+      }
+    }
+
+    // Set color of stats boxes
+    for (const el of document.querySelectorAll('.stats__stat')) {
+      const color = el.getAttribute('data-color');
+      el.style.backgroundColor = getColor(color, 0.05);
+      el.style.borderColor = getColor(color, 0.7);
+    }
+
+    function getColor (name, alpha) {
+      const color = colors[name] || [100, 200, 130];
+      return 'rgba(' + color.join(',') + ',' + (alpha || 1) + ')';
+    }
+
+    function drawMetric (id, chartType, type, datasets) {
+      const canv = document.getElementById('chart-' + id);
+
+      // Doesn't matter what these widths are. ChartJS will resize
+      // to fit container while maintaining the aspect ratio.
+      canv.width = 5;
+      canv.height = Math.max(pageWidth < 5 ? 5 : 3);
+
+      new Chart(canv.getContext('2d'), {
+        type: chartType || 'bar',
+        data: {
+          labels: metrics.map(item => item.label),
+          datasets: datasets.map(set => ({
+            label: set.label,
+            data: metrics.map(
+              item => type === 'money' ? formatMoney(item[set.key]) : item[set.key]
+            ),
+            backgroundColor: 'rgba(' + colors[set.color].join(',') + ',0.7)',
+            borderColor: 'rgb(' + colors[set.color].join(',') + ')',
+            borderWidth: 0
+          }))
+        },
+        options: {
+          layout: {
+            padding: 0
+          },
+          tooltips: {
+            callbacks: {
+              label: function (info) {
+                return formatLabel(type, info.yLabel)
+              }
+            }
+          },
+          scales: {
+            xAxes: [{
+              barPercentage: 0.9,
+              categoryPercentage: 0.8,
+              ticks: {autoSkip: pageWidth < 500}
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                callback: function (value) {
+                  return formatLabel(type, value, true);
+                }
+              }
+            }]
+          }
+        }
+      });
+    }
+
+    drawMetric('money', 'bar', 'money', [{
+      key: 'fees',
+      label: 'Fees',
+      color: 'orange'
+    }, {
+      key: 'mrr',
+      label: 'MRR',
+      color: 'green'
+    }, {
+      key: 'net_revenue',
+      label: 'Net Revenue',
+      color: 'blue'
+    }]);
+
+    drawMetric('churn', 'bar', 'percent', [{
+      key: 'user_churn',
+      label: 'User Churn',
+      color: 'orange'
+    }, {
+      key: 'revenue_churn',
+      label: 'Revenue Churn',
+      color: 'red'
+    }]);
+
+    drawMetric('customers', 'bar', '', [{
+      key: 'cancellations',
+      label: 'Cancelled',
+      color: 'red'
+    }, {
+      key: 'new_customers',
+      label: 'New',
+      color: 'pink'
+    }, {
+      key: 'active_customers',
+      label: 'Active',
+      color: 'purple'
+    }]);
+  })();
+</script>
+
+</body>
+</html>
