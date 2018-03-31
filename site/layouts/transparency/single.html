@@ -62,7 +62,8 @@
           {{ .Content }}
           <div class="stats">
             <div class="stats__row">
-              <div class="stats__stat" id="stat-new_customers" data-color="purple" data-type="number">
+              <div class="stats__stat" id="stat-new_customers" data-color="purple"
+                   data-type="number">
                 <h2>All Customers</h2>
                 <div>...</div>
               </div>
@@ -87,7 +88,8 @@
             </div>
             <div class="stats__row">
               {{ $stats := getJSON "https://api.github.com/repos/getinsomnia/insomnia" }}
-              {{ $contributors := getJSON "https://api.github.com/repos/getinsomnia/insomnia/contributors" }}
+              {{ $u := "https://api.github.com/repos/getinsomnia/insomnia/contributors" }}
+              {{ $contributors := getJSON $u }}
               <div class="stats__stat" data-color="blue">
                 <h2>Contributors</h2>
                 <div>{{ len $contributors }}</div>
@@ -107,15 +109,23 @@
           </div>
 
           <br>
+          <h2>Plan Distribution</h2>
+          <p>The following pie chart shows the MRR distribution between plans.</p>
+          <canvas id='chart-plans'></canvas>
+
+          <br><br>
           <h2>Revenue &#128176;</h2>
+          <p>The following bar chart shows various revenue metrics since Insomnia's beginnings.</p>
           <canvas id='chart-money'></canvas>
 
-          <br>
+          <br><br>
           <h2>Customers &#128188;</h2>
+          <p>The following bar chart shows customer growth over time.</p>
           <canvas id='chart-customers'></canvas>
 
-          <br>
+          <br><br>
           <h2>Churn &#9760;</h2>
+          <p>The following bar chart shows how many customers leave Insomnia.</p>
           <canvas id='chart-churn'></canvas>
         </div>
       </div>
@@ -187,9 +197,9 @@
       fees: 0,
       cancellations: 0
     };
+
     let current = null;
-    for (let i = 0; i < window.metrics.metrics.length; i++) {
-      const item = window.metrics.metrics[i];
+    for (const item of window.__metrics.metrics) {
       if (isFirstOfMonth(item.human_date)) {
         current && metrics.push(current);
         current = {
@@ -225,6 +235,24 @@
       totals.fees += item.fees;
     }
     metrics.push(current);
+
+    // Populate plan data
+    const plans = {
+      plus: {monthly: 0, yearly: 0},
+      team: {monthly: 0, yearly: 0}
+    };
+
+    for (const item of window.__metrics.plans.metrics) {
+      if (item.plan.oid.includes('plus-monthly')) {
+        plans.plus.monthly += item.value;
+      } else if (item.plan.oid.includes('team-monthly')) {
+        plans.team.monthly += item.value;
+      } else if (item.plan.oid.includes('plus-yearly')) {
+        plans.plus.yearly += item.value;
+      } else if (item.plan.oid.includes('team-yearly')) {
+        plans.team.yearly += item.value;
+      }
+    }
 
     // Populate all stats boxes
     for (const key of Object.keys(totals)) {
@@ -276,11 +304,11 @@
           }))
         },
         options: {
-          layout: {
-            padding: 0
-          },
           tooltips: {
             callbacks: {
+              title: function (info, bar) {
+                return bar.datasets[info[0].datasetIndex].label;
+              },
               label: function (info) {
                 return formatLabel(type, info.yLabel)
               }
@@ -300,6 +328,57 @@
                 }
               }
             }]
+          }
+        }
+      });
+    }
+
+    function drawPlansPie (id) {
+      const canv = document.getElementById('chart-' + id);
+
+      // Doesn't matter what these widths are. ChartJS will resize
+      // to fit container while maintaining the aspect ratio.
+      canv.width = 5;
+      canv.height = Math.max(pageWidth < 5 ? 5 : 3);
+
+      new Chart(canv.getContext('2d'), {
+        type: 'pie',
+        data: {
+          labels: [
+            'Plus / Mo',
+            'Plus / Yr',
+            'Teams / Mo',
+            'Teams / Yr'
+          ],
+          datasets: [{
+            data: [
+              formatMoney(plans.plus.monthly),
+              formatMoney(plans.plus.yearly),
+              formatMoney(plans.team.monthly),
+              formatMoney(plans.team.yearly),
+            ],
+            backgroundColor: [
+              getColor('purple', 0.6),
+              getColor('purple', 0.4),
+              getColor('blue', 0.6),
+              getColor('blue', 0.4),
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          cutoutPercentage: 40,
+          tooltips: {
+            callbacks: {
+              title: function (info, data) {
+                let v = 'Insomnia ' + data.labels[info[0].index];
+                v = v.replace('/ Mo', 'Monthly').replace('/ Yr', 'Annually');
+                return v;
+              },
+              label: function (info, data) {
+                return formatLabel('money', data.datasets[0].data[info.index]);
+              }
+            }
           }
         }
       });
@@ -342,6 +421,12 @@
       label: 'Active',
       color: 'purple'
     }]);
+
+    drawPlansPie('plans', 'money', [{
+      key: 'mrr',
+      label: 'Plus',
+      color: 'purple'
+    }])
   })();
 </script>
 

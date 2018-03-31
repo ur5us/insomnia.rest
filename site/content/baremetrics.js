@@ -1,4 +1,4 @@
-window.metrics = {
+window.__metrics = {
 	"metrics": [
 		{
 			"human_date": "2016-12-01",
@@ -12591,14 +12591,14 @@ window.metrics = {
 			"active_subscriptions": 344,
 			"add_on_mrr": 0,
 			"arpu": 1816,
-			"arr": 7495896,
+			"arr": 7496040,
 			"cancellations": 0,
 			"coupons": 0,
 			"downgrades": 0,
 			"failed_charges": 0,
 			"fees": 887,
-			"ltv": 36245,
-			"mrr": 624658,
+			"ltv": 36246,
+			"mrr": 624670,
 			"net_revenue": 21185,
 			"new_customers": 1,
 			"new_subscriptions": 1,
@@ -12609,6 +12609,140 @@ window.metrics = {
 			"trial_conversions": 0,
 			"upgrades": 1,
 			"user_churn": 501
+		},
+		{
+			"human_date": "2018-03-31",
+			"date": 1522454400,
+			"active_customers": 344,
+			"active_subscriptions": 344,
+			"add_on_mrr": 0,
+			"arpu": 1816,
+			"arr": 7496400,
+			"cancellations": 0,
+			"coupons": 0,
+			"downgrades": 0,
+			"failed_charges": 0,
+			"fees": 116,
+			"ltv": 42331,
+			"mrr": 624700,
+			"net_revenue": 1932,
+			"new_customers": 0,
+			"new_subscriptions": 0,
+			"other_revenue": 0,
+			"reactivations": 0,
+			"refunds": 0,
+			"revenue_churn": 368,
+			"trial_conversions": 0,
+			"upgrades": 0,
+			"user_churn": 429
 		}
-	]
+	],
+	"plans": {
+		"metrics": [
+			{
+				"date": 1522454400,
+				"human_date": "2018-03-31",
+				"value": 94887,
+				"plan": {
+					"oid": "plus-monthly-1",
+					"source_id": "5TbxCFhqvf1LN9",
+					"source": "stripe",
+					"name": "Insomnia Plus (Monthly)",
+					"interval": "month",
+					"interval_count": 1,
+					"trial_duration": null,
+					"trial_duration_unit": null,
+					"created": 1497802325,
+					"active": true,
+					"setup_fees": 0,
+					"amounts": [
+						{
+							"currency": "USD",
+							"symbol": "$",
+							"symbol_right": false,
+							"amount": 500
+						}
+					]
+				}
+			},
+			{
+				"date": 1522454400,
+				"human_date": "2018-03-31",
+				"value": 55351,
+				"plan": {
+					"oid": "plus-yearly-1",
+					"source_id": "5TbxCFhqvf1LN9",
+					"source": "stripe",
+					"name": "Insomnia Plus (Yearly)",
+					"interval": "year",
+					"interval_count": 1,
+					"trial_duration": null,
+					"trial_duration_unit": null,
+					"created": 1497802316,
+					"active": true,
+					"setup_fees": 0,
+					"amounts": [
+						{
+							"currency": "USD",
+							"symbol": "$",
+							"symbol_right": false,
+							"amount": 5000
+						}
+					]
+				}
+			},
+			{
+				"date": 1522454400,
+				"human_date": "2018-03-31",
+				"value": 335809,
+				"plan": {
+					"oid": "team-monthly-1",
+					"source_id": "5TbxCFhqvf1LN9",
+					"source": "stripe",
+					"name": "Insomnia Teams (Monthly)",
+					"interval": "month",
+					"interval_count": 1,
+					"trial_duration": null,
+					"trial_duration_unit": null,
+					"created": 1497802302,
+					"active": true,
+					"setup_fees": 0,
+					"amounts": [
+						{
+							"currency": "USD",
+							"symbol": "$",
+							"symbol_right": false,
+							"amount": 800
+						}
+					]
+				}
+			},
+			{
+				"date": 1522454400,
+				"human_date": "2018-03-31",
+				"value": 138653,
+				"plan": {
+					"oid": "team-yearly-1",
+					"source_id": "5TbxCFhqvf1LN9",
+					"source": "stripe",
+					"name": "Insomnia Teams (Yearly)",
+					"interval": "year",
+					"interval_count": 1,
+					"trial_duration": null,
+					"trial_duration_unit": null,
+					"created": 1497802334,
+					"active": true,
+					"setup_fees": 0,
+					"amounts": [
+						{
+							"currency": "USD",
+							"symbol": "$",
+							"symbol_right": false,
+							"amount": 8000
+						}
+					]
+				}
+			}
+		]
+	}
 }

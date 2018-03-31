@@ -12,13 +12,17 @@ if (!pathname) {
 
 (async function run () {
   const baremetricsData = await fetchBaremetrics();
-  const gaData = await fetchGA();
-  // fs.writeFileSync(pathname, `window.metrics = ${formattedBody}`);
+  const planData = await fetchPlans();
+  const body = JSON.stringify({
+    metrics: baremetricsData.metrics,
+    plans: planData
+  }, null, '\t');
+  fs.writeFileSync(pathname, `window.__metrics = ${body}`);
+  console.log('Wrote metrics to ' + pathname);
 })();
 
 function fetchBaremetrics () {
   return new Promise((resolve, reject) => {
-
     const d = new Date();
     const endDate = [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()].map(n => (
       n.toString().length === 1 ? `0${n}` : n.toString()
@@ -41,6 +45,26 @@ function fetchBaremetrics () {
   })
 }
 
-function fetchGA () {
+function fetchPlans () {
+  return new Promise((resolve, reject) => {
+    const d = new Date();
+    const endDate = [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()].map(n => (
+      n.toString().length === 1 ? `0${n}` : n.toString()
+    )).join('-');
 
+    const options = {
+      method: 'GET',
+      url: 'https://api.baremetrics.com/v1/metrics/mrr/plans',
+      qs: {start_date: endDate, end_date: endDate},
+      headers: {'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}`}
+    };
+
+    request(options, function (err, response, body) {
+      if (response.statusCode !== 200) {
+        return reject(new Error('Plans request failed: ' + response.body));
+      }
+
+      resolve(JSON.parse(body));
+    });
+  });
 }
