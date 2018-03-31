@@ -145,7 +145,7 @@
       green: [60, 190, 0],
       blue: [20, 150, 255],
       red: [255, 0, 0],
-      orange: [255, 180, 40],
+      orange: [255, 130, 40],
       pink: [255, 120, 240],
       purple: [180, 20, 240],
       gray: [220, 200, 210]
@@ -299,8 +299,8 @@
             data: metrics.map(
               item => type === 'money' ? formatMoney(item[set.key]) : item[set.key]
             ),
-            backgroundColor: getColor(set.color, chartType === 'line' ? 0.1 : 0.7),
-            borderColor: getColor(set.color, chartType === 'line' ? 0.8 : 0.3),
+            backgroundColor: getColor(set.color, chartType === 'line' ? 0.05 : 0.7),
+            borderColor: getColor(set.color, chartType === 'line' ? 0.9 : 0),
             pointBackgroundColor: getColor(set.color, 0.7),
             pointHoverBackgroundColor: getColor(set.color, 0.3),
             pointHoverBorderColor: getColor(set.color, 0.7),
@@ -323,7 +323,7 @@
           scales: {
             xAxes: [{
               barPercentage: 1,
-              categoryPercentage: 0.5,
+              categoryPercentage: 0.75,
               ticks: {autoSkip: pageWidth < 500}
             }],
             yAxes: [{
@@ -401,11 +401,7 @@
       color: 'blue'
     }]);
 
-    drawMetric('churn', 'bar', 'percent', [{
-      key: 'user_churn',
-      label: 'User Churn',
-      color: 'orange'
-    }, {
+    drawMetric('churn', 'line', 'percent', [{
       key: 'revenue_churn',
       label: 'Revenue Churn',
       color: 'red'
