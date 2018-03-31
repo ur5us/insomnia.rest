@@ -1,5 +1,5 @@
 [build]
-    functions = "functions"
+    functions = "_functions"
     publish = "_speedpack"
     command = "npm run build"
 

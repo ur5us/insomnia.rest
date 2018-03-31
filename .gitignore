@@ -2,6 +2,7 @@
 .idea
 _speedpack
 _hugo
+_functions
 
 node_modules
 .npm-debug.log
