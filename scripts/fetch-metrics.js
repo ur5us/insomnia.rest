@@ -7,10 +7,8 @@ const pathname = process.argv[2];
 /** Returns last day of last month in YYYY-MM-DD format */
 function endDate () {
   const d = new Date();
-  d.setDate(1); // Reset to first of the month
-  d.setUTCHours(0, 0, 0, 0); // Beginning of day
-  d.setTime(d.getTime() - 1); // Subtract one to get to prev month
-  return [d.getUTCFullYear(), d.getUTCMonth() + 1, 1].map(n => (
+  d.setUTCDate(-1); // Reset to last day of last month
+  return [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()].map(n => (
     n.toString().length === 1 ? `0${n}` : n.toString()
   )).join('-');
 }
@@ -57,7 +55,7 @@ function fetchPlans () {
     const options = {
       method: 'GET',
       url: 'https://api.baremetrics.com/v1/metrics/mrr/plans',
-      qs: {start_date: endDate, end_date: endDate()},
+      qs: {start_date: endDate(), end_date: endDate()},
       headers: {'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}`}
     };
 

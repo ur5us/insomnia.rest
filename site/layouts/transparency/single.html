@@ -60,6 +60,7 @@
       <div class="row">
         <div class="col-12">
           {{ .Content }}
+          <h2>Summary</h2>
           <div class="stats">
             <div class="stats__row">
               <div class="stats__stat" id="stat-new_customers" data-color="purple"
@@ -255,6 +256,9 @@
         plans.team.yearly += item.value;
       }
     }
+
+    console.log('METRICS', metrics);
+    console.log('PLANS', plans);
 
     // Populate all stats boxes
     for (const key of Object.keys(totals)) {
