@@ -10,16 +10,16 @@ export default ({data: {markdownRemark: {frontmatter, html}}}) => (
           <div className="row">
             <div className="col-12">
               <h1>{frontmatter.title}</h1>
-              {/*{{if isset.Params "subtitle"}}*/}
-              {/*<p className="text-lg">{{.Params.subtitle}}</p>*/}
-              {/*{{end}}*/}
-              <div className="meta">
-                {/*{{if not.Date.IsZero}}*/}
-                <time dateTime='{{ .Date.Format "January 2, 2006" }}'>
-                  {frontmatter.date}
-                </time>
-                {/*{{end}}*/}
-              </div>
+              {frontmatter.subtitle && (
+                <p className="text-lg">{frontmatter.subtitle}</p>
+              )}
+              {frontmatter.date && (
+                <div className="meta">
+                  <time dateTime={frontmatter.date}>
+                    {frontmatter.date}
+                  </time>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@ export default ({data: {markdownRemark: {frontmatter, html}}}) => (
             <div className="col-12">
               <p className="notice">
                 This post is part of the&nbsp;
-                <a href="{{ $.Site.BaseURL }}series/{{ index . 0 | urlize }}">
+                <a href={`/series/${frontmatter.series[0]}`}>
                   {frontmatter.series[0]}
                 </a> series
               </p>

@@ -2,30 +2,45 @@ import React from 'react';
 import {links} from '../config';
 import Link from './link';
 
-const DownloadButton = ({children}) => {
-  children = children || 'Get the App';
-
-  let href = links.download;
-  let platform = null;
-
-  if (navigator.platform.toLowerCase().indexOf('mac') !== -1) {
-    platform = 'Mac';
-    href = '/download/#mac';
-  } else if (navigator.platform.toLowerCase().indexOf('win') !== -1) {
-    platform = 'Windows';
-    href = '/download/#windows';
-  } else if (navigator.platform.toLowerCase().indexOf('linux') !== -1) {
-    platform = 'Linux';
-    href = '/download/#ubuntu';
+class DownloadButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      platform: '__UNSET__'
+    };
   }
 
-  const message = children ? children : `Download for ${platform}`;
+  componentDidMount() {
+    this.setState({
+      platform: navigator.platform.toLowerCase()
+    });
+  }
 
-  return (
-    <Link to={href} className="button">
-      {message}
-    </Link>
-  );
-};
+  render() {
+    const {platform} = this.state;
+
+    let href = links.download;
+
+    let platformName = 'Desktop';
+    if (platform.indexOf('mac') !== -1) {
+      platformName = 'Mac';
+      href = '/download/#mac';
+    } else if (platform.indexOf('win') !== -1) {
+      platformName = 'Windows';
+      href = '/download/#windows';
+    } else if (platform.indexOf('linux') !== -1) {
+      platformName = 'Linux';
+      href = '/download/#ubuntu';
+    }
+
+    const message = this.props.children || `Download for ${platformName}`;
+
+    return (
+      <Link to={href} className="button">
+        {message}
+      </Link>
+    );
+  }
+}
 
 export default DownloadButton

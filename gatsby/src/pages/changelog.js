@@ -1,14 +1,16 @@
 import React from 'react';
 import Link from '../components/link';
-import BlogPostLink from '../components/blog-post-link';
 import {links} from '../config';
+import ChangelogLink from "../components/changelog-link";
+import ChangelogListItem from "../components/changelog-list-item";
+import DownloadButton from "../components/download-button";
 
 export default ({data: {allFile: {edges}}}) => (
   <React.Fragment>
     <header className="container header--big">
       <div className="row">
         <div className="col-12">
-          <h1>Welcome to the Blog!</h1>
+          <h1>Insomnia Changelog</h1>
           <p>
             <a href={links.rss}
                className="button"
@@ -31,29 +33,47 @@ export default ({data: {allFile: {edges}}}) => (
         <article key={frontmatter.slug} className="article--preview container">
           <header className="row">
             <div className="col-12">
-              <BlogPostLink frontmatter={frontmatter}>
-                <h1>{frontmatter.title}</h1>
-              </BlogPostLink>
+              <ChangelogLink frontmatter={frontmatter}>
+                <h1>Insomnia v{frontmatter.slug}</h1>
+              </ChangelogLink>
               <div className="meta">
                 <time dateTime={frontmatter.date}>
                   {frontmatter.date}
                 </time>
-                {frontmatter.series && frontmatter.series[0] && (
-                  <React.Fragment>
-                    &nbsp;–&nbsp;
-                    <Link to={`/series/${frontmatter.series[0]}`}
-                          title={`This post is part of the ${frontmatter.series[0]} series`}>
-                      {frontmatter.series[0]}
-                    </Link>
-                  </React.Fragment>
-                )}
               </div>
             </div>
           </header>
           <section>
             <div className="row">
               <div className="col-12 article--preview__content">
-                <p>{excerpt}</p>
+                <p>{excerpt || `Version ${frontmatter.slug} is here!`}</p>
+                {frontmatter.major && (
+                  <ul className="ul--decorated">
+                    {frontmatter.major.map(c => (
+                      <li key={c} className="li--major">
+                        <ChangelogListItem text={c}/>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {frontmatter.minor && (
+                  <ul className="ul--decorated">
+                    {frontmatter.minor.map(c => (
+                      <li key={c} className="li--minor">
+                        <ChangelogListItem text={c}/>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {frontmatter.fixes && (
+                  <ul className="ul--decorated">
+                    {frontmatter.fixes.map(c => (
+                      <li key={c} className="li--fix">
+                        <ChangelogListItem text={c}/>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
             <div className="row article--preview__footer">
@@ -65,9 +85,9 @@ export default ({data: {allFile: {edges}}}) => (
                 ))}
               </div>
               <div className="col-4 article--preview__read-more">
-                <BlogPostLink frontmatter={frontmatter}>
+                <ChangelogLink frontmatter={frontmatter}>
                   Continue Reading &raquo;
-                </BlogPostLink>
+                </ChangelogLink>
               </div>
             </div>
             <div className="row">
@@ -80,18 +100,22 @@ export default ({data: {allFile: {edges}}}) => (
 );
 
 export const pageQuery = graphql`
-  query BlogIndexQuery {
-    allFile(filter: {sourceInstanceName: {eq: "blog"}}) {
+  query ChangelogIndexQuery {
+    allFile(filter: {sourceInstanceName: {eq: "changelog"}}) {
       edges {
         node {
           childMarkdownRemark {
             excerpt(pruneLength: 240)
             frontmatter {
               date(formatString: "MMMM DD, YYYY")
-              tags
-              series
+              date_iso: date
               slug
-              title
+              major
+						  minor
+				  		fixes
+				  		slug
+				  		link
+				  		summary
             }
           }
         }

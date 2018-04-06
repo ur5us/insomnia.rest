@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const path = require('path');
 
 module.exports.onCreateNode = ({node, boundActionCreators}) => {
@@ -6,6 +5,7 @@ module.exports.onCreateNode = ({node, boundActionCreators}) => {
 
   // Add slug to Node so we can query on it
   if (node.internal.type === 'MarkdownRemark') {
+    // console.log('__NODE', node);
     createNodeField({
       node,
       name: 'slug',
@@ -17,39 +17,66 @@ module.exports.onCreateNode = ({node, boundActionCreators}) => {
 module.exports.createPages = async function (data) {
   const {graphql, boundActionCreators} = data;
   const {createPage} = boundActionCreators;
-  const blogPost = path.resolve('./src/templates/blog.js');
+  const templateBlogPost = path.resolve('./src/templates/blog.js');
+  const templateChangelog = path.resolve('./src/templates/changelog.js');
+  const templatePage = path.resolve('./src/templates/page.js');
 
   const result = await graphql(`
     {
-      allMarkdownRemark {
+      allFile(filter: {sourceInstanceName: {regex: "/blog|changelog|page/"}}) {
         edges {
           node {
-            frontmatter {
-              date(formatString: "MMMM DD, YYYY")
-              series
-              tags
-              title
-              slug
+            sourceInstanceName
+            childMarkdownRemark {
+              frontmatter {
+                date(formatString: "MMMM DD, YYYY")
+                date_iso: date
+                slug
+                series
+                tags
+                title
+                major
+                minor
+                fixes
+                link
+                summary
+              }
             }
           }
         }
       }
     }
   `);
+
   if (result.errors) {
     console.log('ERROR:', JSON.stringify(result.errors, null, 2));
     process.exit(1);
   }
 
   // Create blog posts pages.
-  for (const edge of result.data.allMarkdownRemark.edges) {
-    // console.log('__NODE', edge);
+  for (const edge of result.data.allFile.edges) {
+    const {frontmatter} = edge.node.childMarkdownRemark;
+    let urlPath;
+    let template = templatePage;
+    if (edge.node.sourceInstanceName === 'blog') {
+      urlPath = `/blog/${frontmatter.slug}`;
+      template = templateBlogPost;
+    } else if (edge.node.sourceInstanceName === 'changelog') {
+      urlPath = `/changelog/${frontmatter.slug}`;
+      template = templateChangelog;
+    } else if (edge.node.sourceInstanceName === 'page') {
+      urlPath = `/${frontmatter.slug}`;
+      template = templatePage;
+    }
+
+    // console.log('Added page', urlPath, frontmatter.title);
+
     createPage({
-      path: `/blog/${edge.node.frontmatter.slug}`,
-      component: blogPost,
+      path: frontmatter.url || urlPath,
+      component: template,
       context: {
         // So we can use the $slug variable in GraphQL queries
-        slug: edge.node.frontmatter.slug
+        slug: frontmatter.slug || ''
       },
     })
   }

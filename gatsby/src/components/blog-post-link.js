@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from './link';
 
-const BlogPostLink = ({post}) => (
-  <Link to={`/blog/${post.frontmatter.slug}`}>
-    {post.frontmatter.title} ({post.frontmatter.date})
+const BlogPostLink = ({children, frontmatter}) => (
+  <Link to={`/blog/${frontmatter.slug}`}>
+    {children || frontmatter.title}
   </Link>
 );
 

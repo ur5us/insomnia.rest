@@ -56,6 +56,6 @@ export const menus = {
   }, {
     name: 'License',
     key: 'license',
-    url: '/license',
+    url: 'https://github.com/getinsomnia/insomnia/blob/develop/LICENSE'
   }]
 };
