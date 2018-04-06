@@ -15,7 +15,7 @@ class Footer extends React.Component {
               <Link key={item.key} to={item.url}>{item.name}</Link>
             ))}
           </p>
-          <p className="text-sm">
+          <p className="text-sm footer__copy">
             &copy; {new Date().getUTCFullYear()}&nbsp;
             <Link to={site.copyrightURL} target="_blank">
               {site.copyright}

@@ -165,7 +165,9 @@ class Subscribe extends Component {
           await finishBilling(response.id);
           trackEvent('Subscribe', 'New Billing Success', `${planId} x ${quantity}`);
         } else {
-          this.setState({error: 'Payment failed unexpectedly. Please try again.'});
+          console.log("HELLO", response);
+          const msg = response.error ? response.error.message : 'Unknown error (112)';
+          this.setState({error: `Card Error: ${msg}`});
           trackEvent('Subscribe', 'Add Card Error', `${planId} x ${quantity}`);
         }
 
@@ -295,7 +297,7 @@ class Subscribe extends Component {
         ) : null}
 
         {useExistingBilling ? (
-          <div></div>
+          <div/>
         ) : (
           <div>
             <div className="form-control">
@@ -325,18 +327,18 @@ class Subscribe extends Component {
                         title="expire month"
                         defaultValue={expireMonth}
                         onChange={this._handleUpdateInput}>
-                  <option value="01">January</option>
-                  <option value="02">February</option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">August</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                  <option value="01">January (01)</option>
+                  <option value="02">February (02)</option>
+                  <option value="03">March (03)</option>
+                  <option value="04">April (04)</option>
+                  <option value="05">May (05)</option>
+                  <option value="06">June (06)</option>
+                  <option value="07">July (07)</option>
+                  <option value="08">August (08)</option>
+                  <option value="09">September (09)</option>
+                  <option value="10">October (10)</option>
+                  <option value="11">November (11)</option>
+                  <option value="12">December (12)</option>
                 </select>
                 {" "}
                 <select name="expireYear"

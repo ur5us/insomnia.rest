@@ -6,7 +6,7 @@ module.exports = {
     shortName: 'Insomnia',
     name: 'Insomnia REST Client',
     author: 'Gregory Schier',
-    copyright: 'Floating Keyboard Software, Victoria BC, Canada',
+    copyright: 'Floating Keyboard Software',
     copyrightURL: 'https://floatingkeyboard.com'
   },
   plugins: [

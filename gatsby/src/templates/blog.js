@@ -126,11 +126,13 @@ export default ({data: {markdownRemark: {frontmatter, html}}}) => (
         <div className="row center">
           <div className="col-8">
             <p className="no-margin" style={{margin: '0.6rem'}}>
-              Ready to speed up your API testing workflow?
+              Need a better way to test APIs?
             </p>
           </div>
           <div className="col-4">
-            <DownloadButton/>
+            <DownloadButton>
+              Try Insomnia
+            </DownloadButton>
           </div>
         </div>
       </div>

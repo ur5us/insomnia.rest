@@ -248,14 +248,15 @@ article table tbody tr:nth-child(odd) {
 }
 
 article.article--preview {
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
 article.article--preview .article--preview__content {
 }
 
 article.article--preview .article--preview__footer {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
 }
@@ -851,8 +852,8 @@ small,
 
 .footer section {
   margin: 0;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: 4rem;
+  padding-top: 5rem;
 }
 
 .footer * {
@@ -864,9 +865,13 @@ small,
   text-decoration: none;
 }
 
+.footer__copy, .footer__copy * {
+  color: rgba(255, 255, 255, 0.3);
+}
+
 .footer__menu {
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem auto;
 }
 
 .footer__menu a {
@@ -1031,7 +1036,7 @@ body[data-pathname^='/terms'],
 body[data-pathname^='/support'],
 body[data-pathname^='/blog'] {
   main .container {
-    max-width: 40rem;
+    max-width: 37rem;
   }
 }
 

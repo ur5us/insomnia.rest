@@ -1,7 +1,7 @@
 export const site = {
   shortName: 'Insomnia',
   name: 'Insomnia REST Client',
-  copyright: 'Floating Keyboard Software, Victoria BC, Canada',
+  copyright: 'Floating Keyboard Software',
   copyrightURL: 'https://floatingkeyboard.com'
 };
 

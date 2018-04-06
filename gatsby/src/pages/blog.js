@@ -78,6 +78,7 @@ export const pageQuery = graphql`
             excerpt(pruneLength: 240)
             frontmatter {
               date(formatString: "MMMM DD, YYYY")
+              date_iso: date
               tags
               series
               slug

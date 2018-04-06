@@ -6,8 +6,8 @@ tags: ["announcement"]
 ---
 
 **Don't worry!**
-The Chrome version of Insomnia will be available until 2017, but you should upgrade to the
-[standalone version (3.0)](/download) as soon as possible.
+The Chrome version of Insomnia will be kept available for as long as necessary, but you 
+should upgrade to the [standalone version (3.0)](/download) as soon as possible.
 
 <!--more-->
 
