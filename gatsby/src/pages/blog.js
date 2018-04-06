@@ -5,21 +5,17 @@ import {links} from '../config';
 
 export default ({data: {allFile: {edges}}}) => (
   <React.Fragment>
-    <header className="container header--big">
-      <div className="row">
-        <div className="col-12">
-          <h1>Welcome to the Blog!</h1>
-          <p>
-            <a href={links.rss}
-               className="button"
-               type="application/rss+xml"
-               target="_blank"
-               title="RSS">
-              Subscribe via RSS
-            </a>
-          </p>
-        </div>
-      </div>
+    <header className="header--big container">
+      <h1>Welcome to the Blog!</h1>
+      <p>
+        <a href={links.rss}
+           className="button"
+           type="application/rss+xml"
+           target="_blank"
+           title="RSS">
+          Subscribe via RSS
+        </a>
+      </p>
     </header>
     {edges
       .sort((a, b) => {
@@ -29,50 +25,44 @@ export default ({data: {allFile: {edges}}}) => (
       })
       .map(({node: {childMarkdownRemark: {frontmatter, excerpt}}}) => (
         <article key={frontmatter.slug} className="article--preview container">
-          <header className="row">
-            <div className="col-12">
-              <BlogPostLink frontmatter={frontmatter}>
-                <h1>{frontmatter.title}</h1>
-              </BlogPostLink>
-              <div className="meta">
-                <time dateTime={frontmatter.date}>
-                  {frontmatter.date}
-                </time>
-                {frontmatter.series && frontmatter.series[0] && (
-                  <React.Fragment>
-                    &nbsp;–&nbsp;
-                    <Link to={`/series/${frontmatter.series[0]}`}
-                          title={`This post is part of the ${frontmatter.series[0]} series`}>
-                      {frontmatter.series[0]}
-                    </Link>
-                  </React.Fragment>
-                )}
-              </div>
+          <header>
+            <BlogPostLink frontmatter={frontmatter}>
+              <h1>{frontmatter.title}</h1>
+            </BlogPostLink>
+            <div className="meta">
+              <time dateTime={frontmatter.date}>
+                {frontmatter.date}
+              </time>
+              {frontmatter.series && frontmatter.series[0] && (
+                <React.Fragment>
+                  &nbsp;–&nbsp;
+                  <Link to={`/series/${frontmatter.series[0]}`}
+                        title={`This post is part of the ${frontmatter.series[0]} series`}>
+                    {frontmatter.series[0]}
+                  </Link>
+                </React.Fragment>
+              )}
             </div>
           </header>
           <section>
-            <div className="row">
-              <div className="col-12 article--preview__content">
-                <p>{excerpt}</p>
-              </div>
+            <div className="article--preview__content">
+              <p>{excerpt}</p>
             </div>
-            <div className="row article--preview__footer">
-              <div className="col-8">
+            <div className="article--preview__footer">
+              <div className="tags">
                 {(frontmatter.tags || []).map(tag => (
                   <Link key={tag} className="button tags__tag" to={`tags/${tag}`}>
                     {tag}
                   </Link>
                 ))}
               </div>
-              <div className="col-4 article--preview__read-more">
+              <div className="article--preview__read-more">
                 <BlogPostLink frontmatter={frontmatter}>
                   Continue Reading &raquo;
                 </BlogPostLink>
               </div>
             </div>
-            <div className="row">
-              <div className="col-12 article--preview__separator"/>
-            </div>
+            <div className="article--preview__separator"/>
           </section>
         </article>
       ))}

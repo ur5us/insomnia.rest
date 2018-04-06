@@ -8,21 +8,21 @@ import Footer from '../partials/footer';
 import DownloadButton from "../components/download-button";
 
 export default class extends React.Component {
-  _updateBodyAttrs () {
+  _updateBodyAttrs() {
     const {location} = this.props;
     document.body.setAttribute('data-pathname', location.pathname);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this._updateBodyAttrs();
     this.setupGA();
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this._updateBodyAttrs();
   }
 
-  setupGA () {
+  setupGA() {
     let disableGA = window.localStorage['disableGA'] ||
       window.location.hostname === 'localhost';
 
@@ -55,7 +55,7 @@ export default class extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const {children, location} = this.props;
     return (
       <React.Fragment>

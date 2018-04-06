@@ -256,14 +256,17 @@ article.article--preview .article--preview__content {
 
 article.article--preview .article--preview__footer {
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
 }
 
 article.article--preview .article--preview__footer .tags__tag {
-  margin: 0 1rem 0 0;
+  margin: 0 0.5rem 0.5rem 0;
 }
 
 article.article--preview .article--preview__read-more {
-  text-align: right;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 article.article--preview .article--preview__separator {
@@ -343,6 +346,10 @@ header.header--big {
   color: #222;
   border-color: rgb(209, 141, 43);
   background: rgba(223, 116, 10, 0.05);
+}
+
+article header {
+  margin-bottom: 3rem;
 }
 
 article header * {
@@ -1024,7 +1031,7 @@ body[data-pathname^='/terms'],
 body[data-pathname^='/support'],
 body[data-pathname^='/blog'] {
   main .container {
-    max-width: 44rem;
+    max-width: 40rem;
   }
 }
 
