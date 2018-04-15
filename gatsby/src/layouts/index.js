@@ -25,7 +25,7 @@ export default class extends React.Component {
     return (
       <React.Fragment>
         <Title/>
-        <Navbar floating={location.pathname === '/'}/>
+        <Navbar floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}/>
         <main role="main">
           {children()}
         </main>

@@ -2,7 +2,7 @@ import React from 'react';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
-import ShareButtons, {Facebook, GooglePlus, Twitter} from '../partials/share-buttons';
+import {Facebook, GooglePlus, Twitter} from '../partials/share-buttons';
 
 export default class extends React.Component {
   onClickDownload(e) {
