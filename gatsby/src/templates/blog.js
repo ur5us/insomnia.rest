@@ -39,9 +39,9 @@ export default class BlogTemplate extends React.Component {
             <section className="container">
               <p className="notice">
                 This post is part of the&nbsp;
-                <a href={`/series/${frontmatter.series[0]}`}>
+                <Link to={`/series/${frontmatter.series[0]}`}>
                   {frontmatter.series[0]}
-                </a> series
+                </Link> series
               </p>
             </section>
           )}
@@ -50,9 +50,9 @@ export default class BlogTemplate extends React.Component {
             <section className="container margin-top margin-bottom">
               <p className="notice">
                 This post is part of the&nbsp;
-                <a href={`/series/${frontmatter.series[0]}`}>
+                <Link to={`/series/${frontmatter.series[0]}`}>
                   {frontmatter.series[0]}
-                </a> series
+                </Link> series
               </p>
             </section>
           )}

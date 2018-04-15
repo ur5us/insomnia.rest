@@ -5,6 +5,7 @@ import baremetrics from '../assets/baremetrics.json';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
+import Link from '../components/link';
 
 export default class extends React.Component {
   constructor(props) {
@@ -315,10 +316,10 @@ export default class extends React.Component {
               <div className="col-12">
                 <p>
                   The purpose of this page is to give back to the indie hacker community by sharing the details of
-                  Insomnia’s progress over time. For more details, visit the <a
-                  href="https://insomnia.baremetrics.com/">Baremetrics
-                  Dashboard</a> or read the <a href="https://www.indiehackers.com/product/insomnia">Indie Hackers
-                  Interview</a>.
+                  Insomnia’s progress over time. For more details, visit the <Link
+                  to="https://insomnia.baremetrics.com/">Baremetrics
+                  Dashboard</Link> or read the <Link to="https://www.indiehackers.com/product/insomnia">Indie Hackers
+                  Interview</Link>.
                 </p>
                 <h2>Summary</h2>
                 <div className="stats">

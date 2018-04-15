@@ -22,7 +22,7 @@ export default ({data: {markdownRemark: {frontmatter, html}}}) => (
             <div className="col-12">
               <p className="notice">
                 This post is part of the&nbsp;
-                <a href="{{ $.Site.BaseURL }}series/{{ index . 0 | urlize }}">
+                <a href={`/series/${frontmatter.series[0]}`}>
                   {frontmatter.series[0]}
                 </a> series
               </p>

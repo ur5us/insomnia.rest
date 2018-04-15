@@ -2,6 +2,7 @@ import React from 'react';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
+import Link from '../components/link';
 
 export default () => (
   <React.Fragment>
@@ -31,13 +32,13 @@ export default () => (
                 <li>Mac/Windows/Linux App</li>
                 <li>Unlimited installations</li>
                 <li>Future updates</li>
-                <li><a href="https://github.com/getinsomnia/insomnia">Open source</a></li>
+                <li><Link to="https://github.com/getinsomnia/insomnia">Open source</Link></li>
               </ul>
             </div>
             <footer className="pricing__column__footer">
-              <a href="/download/" className="button button">
+              <Link to="/download/" className="button button">
                 Download Free App
-              </a>
+              </Link>
             </footer>
           </section>
 
@@ -52,16 +53,16 @@ export default () => (
               </h2>
               <ul>
                 <li><strong>All Free features</strong></li>
-                <li><a href="/documentation/security/">E2EE</a> Data Sync &#128272;</li>
+                <li><Link to="/documentation/security/">E2EE</Link> Data Sync &#128272;</li>
                 <li>Unlimited devices</li>
                 <li>Premium color themes</li>
                 <li><strong>Support future dev &#x1f4bb;</strong></li>
               </ul>
             </div>
             <footer className="pricing__column__footer">
-              <a href="/app/subscribe/#teams" className="button">
+              <Link to="/app/subscribe/#teams" className="button">
                 Start Free Trial
-              </a>
+              </Link>
             </footer>
           </section>
 
@@ -83,9 +84,9 @@ export default () => (
               </ul>
             </div>
             <footer className="pricing__column__footer">
-              <a href="/app/subscribe/#teams" className="button">
+              <Link to="/app/subscribe/#teams" className="button">
                 Start Free Trial
-              </a>
+              </Link>
             </footer>
           </section>
         </div>
@@ -94,7 +95,7 @@ export default () => (
           <section className="col-12 center small">
             <p>
               Please send any questions to&nbsp;
-              <a href="/documentation/support-and-feedback">support@insomnia.rest</a>
+              <Link to="/documentation/support-and-feedback">support@insomnia.rest</Link>
             </p>
           </section>
         </div>

@@ -3,6 +3,7 @@ import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
 import {Facebook, GooglePlus, Twitter} from '../partials/share-buttons';
+import Link from '../components/link';
 
 export default class extends React.Component {
   onClickDownload(e) {
@@ -31,7 +32,7 @@ export default class extends React.Component {
               <div className="col-4 platform-download">
                 <i className="platform-download__icon apple"/>
                 <p>
-                  <a href="https://builds.insomnia.rest/downloads/mac/latest"
+                  <Link to="https://builds.insomnia.rest/downloads/mac/latest"
                      data-ga="Download:Mac"
                      onClick={this.onClickDownload.bind(this)}
                      className="button">
@@ -41,7 +42,7 @@ export default class extends React.Component {
                     </svg>
                     {' '}
                     OS X 10.9+
-                  </a>
+                  </Link>
                 </p>
                 <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
                   or <code>brew cask install insomnia</code>
@@ -50,7 +51,7 @@ export default class extends React.Component {
               <div className="col-4 platform-download">
                 <i className="platform-download__icon windows"/>
                 <p>
-                  <a href="https://builds.insomnia.rest/downloads/windows/latest"
+                  <Link to="https://builds.insomnia.rest/downloads/windows/latest"
                      data-ga="Download:Windows"
                      onClick={this.onClickDownload.bind(this)}
                      className="button">
@@ -60,7 +61,7 @@ export default class extends React.Component {
                     </svg>
                     {' '}
                     Windows 7+
-                  </a>
+                  </Link>
                 </p>
                 <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
                   (64-bit only)
@@ -69,7 +70,7 @@ export default class extends React.Component {
               <div className="col-4 platform-download">
                 <i className="platform-download__icon linux bg-linux"/>
                 <p>
-                  <a href="https://support.insomnia.rest/article/23-installation#ubuntu"
+                  <Link to="https://support.insomnia.rest/article/23-installation#ubuntu"
                      data-ga="Download:Linux:Ubuntu"
                      onClick={this.onClickDownload.bind(this)}
                      className="button">
@@ -79,16 +80,16 @@ export default class extends React.Component {
                     </svg>
                     {' '}
                     Ubuntu 14.04+
-                  </a>
+                  </Link>
                 </p>
                 <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
                   or
                   {' '}
-                  <a href="https://support.insomnia.rest/article/23-installation#linux"
+                  <Link to="https://support.insomnia.rest/article/23-installation#linux"
                      onClick={this.onClickDownload.bind(this)}
                      data-ga="Download:Linux:AUR">
                     Other Linux Distros
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

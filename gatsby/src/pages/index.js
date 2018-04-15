@@ -3,6 +3,7 @@ import DownloadButton from '../components/download-button';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Img from 'gatsby-image';
+import Link from '../components/link';
 
 export default ({data}) => (
   <React.Fragment>
@@ -140,13 +141,13 @@ export default ({data}) => (
             <div className="col-12">
               <h2>Insomnia is for <i>everyone</i> &#10084;</h2>
               <p style={{maxWidth: '35rem', margin: 'auto'}} className="padding-bottom">
-                Insomnia is collaborative, free, <a href="https://github.com/getinsomnia/insomnia">
-                open source</a>, and cross-platform – making it the perfect companion for both
+                Insomnia is collaborative, free, <Link to="https://github.com/getinsomnia/insomnia">
+                open source</Link>, and cross-platform – making it the perfect companion for both
                 individuals and teams.
               </p>
               <DownloadButton/>
               &nbsp;
-              <a href="/teams" className="button button--no-outline">Learn About Teams</a>
+              <Link to="/teams" className="button button--no-outline">Learn About Teams</Link>
             </div>
           </div>
         </div>

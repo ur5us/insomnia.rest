@@ -1,6 +1,7 @@
 import React from 'react';
 import contributors from '../assets/contributors.json';
 import Waypoint from 'react-waypoint';
+import Link from '../components/link';
 
 class Contributors extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class Contributors extends React.Component {
     return (
       <section className="dark github-contributors">
         <div>
-          Thanks to all <a href="https://github.com/getinsomnia/insomnia/graphs/contributors">contributors</a>
+          Thanks to all <Link to="https://github.com/getinsomnia/insomnia/graphs/contributors">contributors</Link>
           {' '}
           🎉👏
         </div>
@@ -25,14 +26,14 @@ class Contributors extends React.Component {
             onEnter={this.load.bind(this)}
           />
           {contributors.map(c => (
-            <a key={c.login}
-               href={`https://github.com/${c.login}`}
+            <Link key={c.login}
+               to={`https://github.com/${c.login}`}
                title={`${c.contributions} contributions from ${c.login}`}
                target="_blank"
                className="github-contributors__avatar"
                style={{backgroundImage: `url('${c.avatar_url}&s=30')`}}>
               &nbsp;
-            </a>
+            </Link>
           ))}
         </div>
       </section>

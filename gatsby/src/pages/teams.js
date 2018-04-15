@@ -1,5 +1,6 @@
 import React from 'react';
 import mainSrc from '../assets/screens/sharing.png';
+import Link from '../components/link';
 
 export default () => (
   <React.Fragment>
@@ -11,7 +12,7 @@ export default () => (
             <h2 className="font-light">
               Share API workspaces, stay in sync
             </h2>
-            <a href="/pricing/" className="button">Start Free Trial</a>
+            <Link to="/pricing/" className="button">Start Free Trial</Link>
           </div>
         </div>
         <div className="jumbotron__img-container">
@@ -41,7 +42,7 @@ export default () => (
         </p>
         <p className="center">
           <br/>
-          <a className="button" href="/pricing/">Start Free Trial</a>
+          <Link className="button" to="/pricing/">Start Free Trial</Link>
         </p>
       </div>
     </section>
