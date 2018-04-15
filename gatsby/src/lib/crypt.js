@@ -315,8 +315,8 @@ function _b64UrlToHex (s) {
   return forge.util.bytesToHex(atob(b64));
 }
 
-window.b64urltohex = _b64UrlToHex;
-window.forge = forge;
+// window.b64urltohex = _b64UrlToHex;
+// window.forge = forge;
 
 /**
  * Derive key from password

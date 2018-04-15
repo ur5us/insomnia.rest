@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as session from '../../lib/session';
 import {trackEvent} from '../../lib/analytics';
-import App from './index';
+import App from '../../lib/app-wrapper';
 
 class Invoices extends React.Component {
   state = {

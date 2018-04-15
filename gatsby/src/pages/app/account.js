@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CancelLink from './common/cancel';
-import SignOutLink from './common/sign-out';
-import App from './index';
+import CancelLink from '../../lib/common/cancel';
+import SignOutLink from '../../lib/common/sign-out';
+import App from '../../lib/app-wrapper';
 
 class Home extends React.Component {
   renderNotice () {

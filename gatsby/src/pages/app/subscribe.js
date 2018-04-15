@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../../lib/session';
 import {trackEvent} from '../../lib/analytics';
-import App from './index';
+import App from '../../lib/app-wrapper';
 import {site} from '../../config';
 
 const planTypeTeam = 'team';

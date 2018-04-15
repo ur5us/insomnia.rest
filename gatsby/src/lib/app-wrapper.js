@@ -1,6 +1,6 @@
 import React from 'react';
-import * as session from '../../lib/session';
-import {setUserId} from '../../lib/analytics';
+import * as session from './session';
+import {setUserId} from './analytics';
 
 class App extends React.Component {
   state = {
@@ -11,7 +11,11 @@ class App extends React.Component {
     teams: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.init();
+  }
+
+  async init () {
     if (this.props.noAuth) {
       return;
     }

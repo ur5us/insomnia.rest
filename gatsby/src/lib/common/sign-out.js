@@ -1,6 +1,6 @@
 import React from 'react';
-import * as session from '../../../lib/session';
-import {trackEvent} from '../../../lib/analytics';
+import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class SignOutLink extends React.Component {
   _handleClick = async e => {

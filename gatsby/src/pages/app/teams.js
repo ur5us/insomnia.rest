@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LeaveTeamLink from './leave-link';
-import RemoveTeamAccountLink from './remove-account-link';
-import UpdateTeamNameForm from './update-name-form';
-import AddAccountToTeamForm from './add-account-form';
+import LeaveTeamLink from '../../lib/teams/leave-link';
+import RemoveTeamAccountLink from '../../lib/teams/remove-account-link';
+import UpdateTeamNameForm from '../../lib/teams/update-name-form';
+import AddAccountToTeamForm from '../../lib/teams/add-account-form';
+import App from '../../lib/app-wrapper';
 
 class Teams extends React.Component {
   state = {
-    loading: false,
     error: '',
   };
 
@@ -149,11 +149,6 @@ class Teams extends React.Component {
   }
 
   render () {
-    const {loading} = this.state;
-
-    if (loading) {
-      return <div>Loading...</div>
-    }
     return (
       <div>
         {this.renderEditTeam()}
@@ -188,4 +183,6 @@ Teams.propTypes = {
   })).isRequired,
 };
 
-export default Teams;
+export default () => (
+  <App>{props => <Teams {...props}/>}</App>
+);

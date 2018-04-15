@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as session from '../../../lib/session';
-import {trackEvent} from '../../../lib/analytics';
+import * as session from '../session';
+import {trackEvent} from '../analytics';
 
 class RemoveAccountLink extends React.Component {
   state = {
