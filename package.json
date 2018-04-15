@@ -41,7 +41,6 @@
     "webpack": "^3.5.1"
   },
   "dependencies": {
-    "gatsby-plugin-google-analytics": "^1.0.29",
     "hkdf": "0.0.2",
     "moment": "^2.19.3",
     "node-forge": "^0.7.1",
