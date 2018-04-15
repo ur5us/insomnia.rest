@@ -2,7 +2,10 @@ export const site = {
   shortName: 'Insomnia',
   name: 'Insomnia REST Client',
   copyright: 'Floating Keyboard Software',
-  copyrightURL: 'https://floatingkeyboard.com'
+  copyrightURL: 'https://floatingkeyboard.com',
+  stripePubKey: process.env.NODE_ENV === 'production'
+    ? 'pk_live_lntbVSXY3v1RAytACIQJ5BBH'
+    : 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH'
 };
 
 export const links = {

@@ -24,8 +24,12 @@
     "gatsby-source-filesystem": "^1.5.28",
     "gatsby-transformer-remark": "^1.7.39",
     "gatsby-transformer-sharp": "^1.6.22",
+    "hkdf": "^0.0.2",
+    "node-forge": "^0.7.5",
+    "prop-types": "^15.6.1",
     "react-helmet": "^5.2.0",
-    "react-waypoint": "^8.0.1"
+    "react-waypoint": "^8.0.1",
+    "srp-js": "^0.2.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1"
