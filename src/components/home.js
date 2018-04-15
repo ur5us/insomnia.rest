@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import SignOutLink from './common/sign-out';
 import CancelLink from './common/cancel';
-import VerifyButton from './common/reverify';
 
 class Home extends Component {
-  renderNotice () {
+  renderNotice() {
     const {billingDetails, whoami} = this.props;
 
     let notice = null;
@@ -15,6 +14,10 @@ class Home extends Component {
     const isTrialing = whoami.isTrialing;
     const isTrialOver = trialDays <= 0;
     const isPremium = whoami.isPremium;
+
+    if (billingDetails && !billingDetails.isBillingAdmin) {
+      return null;
+    }
 
     if (billingDetails) {
       // Credit card entered but needs to pay
@@ -29,7 +32,7 @@ class Home extends Component {
               Update Subscription
             </a>
           </p>
-        )
+        );
       } else if (billingDetails.subCancelled && billingDetails.subPeriodEnd * 1000 > Date.now()) {
         const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
         notice = (
@@ -41,7 +44,7 @@ class Home extends Component {
               Resubscribe
             </a>
           </p>
-        )
+        );
       } else if (billingDetails.subCancelled) {
         notice = (
           <p className="notice info">
@@ -52,7 +55,7 @@ class Home extends Component {
               Resubscribe
             </a>
           </p>
-        )
+        );
       }
     } else {
       if (isTrialing && !isTrialOver) {
@@ -66,7 +69,7 @@ class Home extends Component {
               Select a Plan
             </a>
           </p>
-        )
+        );
       } else if (!isPremium && isTrialOver) {
         notice = (
           <p className="notice warn">
@@ -78,14 +81,14 @@ class Home extends Component {
               Update Subscription
             </a>
           </p>
-        )
+        );
       }
     }
 
     return <div>{notice}<br/></div>;
   }
 
-  renderLoginNotice () {
+  renderLoginNotice() {
     if (this.props.whoami.appNumLaunches) {
       return null;
     }
@@ -94,10 +97,10 @@ class Home extends Component {
       <p className="notice info">
         You may now sign in to the app 💻
       </p>
-    )
+    );
   }
 
-  render () {
+  render() {
     const {whoami, billingDetails} = this.props;
     const description = billingDetails && billingDetails.description;
 
@@ -106,21 +109,34 @@ class Home extends Component {
     const totalAfterDiscount = total - discountAmount;
     const periodEnd = billingDetails && new Date(billingDetails.subPeriodEnd * 1000).toDateString();
 
+    let billingLink = null;
+    if (!billingDetails) {
+      billingLink = <a href="/app/subscribe/">Choose Plan</a>;
+    }
+    if (billingDetails && billingDetails.isBillingAdmin) {
+      billingLink = <a href="/app/subscribe/">Change Subscription</a>;
+    }
+
     return (
       <div>
         {this.renderLoginNotice()}
         {this.renderNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
         <p>Your email address is <code>{whoami.email}</code>.</p>
-        {description ? <p>You are subscribed to <strong>{description}</strong>!</p> : null}
-        {(billingDetails && !billingDetails.subCancelled) ? (
+        {description && billingDetails && billingDetails.isBillingAdmin
+          ? <p>You are subscribed to <strong>{description}</strong>!</p> : null
+        }
+        {description && billingDetails && !billingDetails.isBillingAdmin
+          ? <p>You are on a team that is subscribed to <strong>{description}</strong>!</p> : null
+        }
+        {(billingDetails && !billingDetails.subCancelled && billingDetails.isBillingAdmin) ? (
           <p>
             Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
-            {" "}
+            {' '}
             <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
             {billingDetails.subPercentOff ? (
               <span className="success bold">
-                {" "}
+                {' '}
                 (after {billingDetails.subPercentOff}% discount)
               </span>
             ) : null}
@@ -129,12 +145,7 @@ class Home extends Component {
         ) : null}
         <p>Here are some things you might want to do.</p>
         <ul>
-          <li>
-            {billingDetails
-              ? <a href="/app/subscribe/">Change Subscription</a>
-              : <a href="/app/subscribe/">Choose Plan</a>
-            }
-          </li>
+          {billingLink && <li>{billingLink}</li>}
           <li>
             <a href="/app/teams/">Manage Teams</a>
           </li>
@@ -147,13 +158,13 @@ class Home extends Component {
           <li>
             <a href="/app/invoices/">Invoices</a>
           </li>
-          {billingDetails ? <li><CancelLink/></li> : null}
+          {billingDetails && billingDetails.isBillingAdmin ? <li><CancelLink/></li> : null}
           <li>
             <SignOutLink/>
           </li>
         </ul>
       </div>
-    )
+    );
   }
 }
 
@@ -172,6 +183,7 @@ Home.propTypes = {
   billingDetails: PropTypes.shape({
     description: PropTypes.string.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
+    isBillingAdmin: PropTypes.bool.isRequired,
     subTrialing: PropTypes.bool.isRequired,
     subTrialEnd: PropTypes.number.isRequired,
     subCancelled: PropTypes.bool.isRequired,

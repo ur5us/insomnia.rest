@@ -198,6 +198,14 @@ class Subscribe extends Component {
     const trialEndMillis = trialEndDate.getTime() - Date.now();
     const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
 
+    if (billingDetails && !billingDetails.isBillingAdmin) {
+      return (
+        <p className="notice warn">
+          Since you are part of a paying team, you don't need to pay
+        </p>
+      )
+    }
+
     if (!billingDetails && trialDays > 0) {
       return (
         <p className="notice info">
@@ -225,6 +233,10 @@ class Subscribe extends Component {
     } = this.state;
 
     const {billingDetails} = this.props;
+
+    if (billingDetails && !billingDetails.isBillingAdmin) {
+      return this.renderBillingNotice();
+    }
 
     return (
       <form onSubmit={this._handleSubmit}>
@@ -420,6 +432,7 @@ Subscribe.propTypes = {
     subQuantity: PropTypes.number.isRequired,
     hasCard: PropTypes.bool.isRequired,
     lastFour: PropTypes.string.isRequired,
+    isBillingAdmin: PropTypes.string.isRequired,
   })
 };
 
