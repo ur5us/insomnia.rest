@@ -20,5 +20,8 @@
     "gatsby-source-filesystem": "^1.5.28",
     "gatsby-transformer-remark": "^1.7.39",
     "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.24.1"
   }
 }

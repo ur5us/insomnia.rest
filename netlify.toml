@@ -1,6 +1,6 @@
 [build]
     base = "gatsby"
-    publish = "public"
+    publish = "gatsby/public"
     command = "yarn run build"
 
 [context.production.environment]
