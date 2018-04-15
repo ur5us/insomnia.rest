@@ -2,7 +2,18 @@ import React from 'react';
 import contributors from '../assets/contributors.json';
 
 class Contributors extends React.Component {
+  state = {
+    contributors: []
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({contributors});
+    }, 3000);
+  }
+
   render() {
+    const {contributors} = this.state;
     return (
       <section className="dark github-contributors">
         <div>
@@ -12,8 +23,9 @@ class Contributors extends React.Component {
         </div>
         <div className="github-contributors__users">
           {contributors.map(c => (
-            <a href="https://github.com/BeeeQueue"
-               title="7 contributions from @BeeeQueue"
+            <a key={c.login}
+               href={`https://github.com/${c.login}`}
+               title={`${c.contributions} contributions from ${c.login}`}
                target="_blank"
                className="github-contributors__avatar"
                style={{backgroundImage: `url('${c.avatar_url}v=4&s=40')`}}>

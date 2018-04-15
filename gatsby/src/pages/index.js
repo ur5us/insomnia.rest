@@ -2,9 +2,11 @@ import React from 'react';
 import DownloadButton from '../components/download-button';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
+import Img from 'gatsby-image';
 
-export default () => (
+export default ({data}) => (
   <React.Fragment>
+    {console.log('DATA', data)}
     <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner />
     <div className="jumbotron">
       <div className="container">
@@ -20,7 +22,7 @@ export default () => (
           </div>
         </div>
         <div className="jumbotron__img-container">
-          <img src="/images/screens/main.png" className="jumbotron__img" alt="Insomnia REST Client"/>
+          <Img sizes={data.mainImg.childImageSharp.sizes} className="jumbotron__img" alt="Insomnia REST Client"/>
         </div>
       </div>
     </div>
@@ -40,7 +42,7 @@ export default () => (
           <div className="row">
             <div className="col-4 padding-top-lg">
               <div className="img--promo">
-                <img src="/images/screens/template.png" alt="Insomnia Request Templating"/>
+                <Img sizes={data.templateImg.childImageSharp.sizes} alt="Request Templating"/>
               </div>
               <h3>Create HTTP requests</h3>
               <p>
@@ -50,8 +52,7 @@ export default () => (
             </div>
             <div className="col-4 padding-top-lg">
               <div className="img--promo">
-                <img src="/images/screens/responses.png"
-                     alt="Insomnia Response Details"/>
+                <Img sizes={data.responsesImg.childImageSharp.sizes} alt="Response Details"/>
               </div>
               <h3>View entire transaction</h3>
               <p>
@@ -61,7 +62,7 @@ export default () => (
             </div>
             <div className="col-4 padding-top-lg">
               <div className="img--promo">
-                <img src="/images/screens/drag.png" alt="Insomnia Request Organization"/>
+                <Img sizes={data.dragImg.childImageSharp.sizes} alt="Request Organization"/>
               </div>
               <h3>Organize everything</h3>
               <p>
@@ -102,8 +103,7 @@ export default () => (
               </p>
             </div>
             <div className="col-7">
-              <img src="/images/screens/big/environments.png"
-                   alt="Insomnia REST Client Cookies"/>
+              <Img sizes={data.environmentsImg.childImageSharp.sizes} alt="Environments"/>
             </div>
           </div>
           <div className="row row-center-y padding-top-lg">
@@ -116,7 +116,7 @@ export default () => (
               </p>
             </div>
             <div className="col-7">
-              <img src="/images/screens/big/code.png" alt="Insomnia REST Client Cookies"/>
+              <Img sizes={data.codeImg.childImageSharp.sizes} alt="Code Generation"/>
             </div>
           </div>
           <div className="row row-center-y padding-top-lg">
@@ -129,7 +129,7 @@ export default () => (
               </p>
             </div>
             <div className="col-7">
-              <img src="/images/screens/big/themes.png" alt="Insomnia REST Client Themes"/>
+              <Img sizes={data.themesImg.childImageSharp.sizes} alt="Color Themes"/>
             </div>
           </div>
         </div>
@@ -210,3 +210,29 @@ export default () => (
     </main>
   </React.Fragment>
 );
+
+export const pageQuery = graphql`
+  query GatsbyImageQuery {
+    mainImg: file(relativePath: { eq: "screens/main.png" }) {
+      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    templateImg: file(relativePath: { eq: "screens/template.png" }) {
+      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    responsesImg: file(relativePath: { eq: "screens/responses.png" }) {
+      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    dragImg: file(relativePath: { eq: "screens/drag.png" }) {
+      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    environmentsImg: file(relativePath: { eq: "screens/big/environments.png" }) {
+      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    codeImg: file(relativePath: { eq: "screens/big/code.png" }) {
+      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+    themesImg: file(relativePath: { eq: "screens/big/themes.png" }) {
+      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+    }
+  }
+`;

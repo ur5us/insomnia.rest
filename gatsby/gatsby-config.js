@@ -64,11 +64,20 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'assets',
+        path: `${__dirname}/src/assets/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'page',
         path: `${__dirname}/content/pages/`,
       },
     },
     'gatsby-transformer-remark',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: 'gatsby-plugin-feed',
       options: {
