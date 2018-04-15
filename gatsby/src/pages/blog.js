@@ -51,7 +51,7 @@ export default ({data: {allFile: {edges}}}) => (
             <div className="article--preview__footer">
               <div className="tags">
                 {(frontmatter.tags || []).map(tag => (
-                  <Link key={tag} className="button tags__tag" to={`tags/${tag}`}>
+                  <Link key={tag} className="button tags__tag" to={`/tags/${tag}`}>
                     {tag}
                   </Link>
                 ))}

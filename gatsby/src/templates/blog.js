@@ -3,6 +3,7 @@ import DownloadButton from '../components/download-button';
 import SocialCards from '../components/social-cards';
 import ShareButtons from '../partials/share-buttons';
 import Title from '../partials/title';
+import Link from '../components/link';
 
 export default class BlogTemplate extends React.Component {
   componentDidMount() {
@@ -45,6 +46,28 @@ export default class BlogTemplate extends React.Component {
             </section>
           )}
           <section className="content container" dangerouslySetInnerHTML={{__html: html}}/>
+          {frontmatter.series && frontmatter.series.length && (
+            <section className="container margin-top margin-bottom">
+              <p className="notice">
+                This post is part of the&nbsp;
+                <a href={`/series/${frontmatter.series[0]}`}>
+                  {frontmatter.series[0]}
+                </a> series
+              </p>
+            </section>
+          )}
+          <section className="container margin-top">
+          {frontmatter.tags && frontmatter.tags.length > 0 && (
+            <div className="tags">
+              {(frontmatter.tags || []).map(tag => (
+                <Link key={tag} className="button tags__tag" to={`/tags/${tag}`}>
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          )}
+          <br/>
+          </section>
           <section className="section--bordered container share">
             <p>
               Share this post &#128522; &#128640;

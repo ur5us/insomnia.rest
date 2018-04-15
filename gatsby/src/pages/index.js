@@ -140,9 +140,9 @@ export default ({data}) => (
             <div className="col-12">
               <h2>Insomnia is for <i>everyone</i> &#10084;</h2>
               <p style={{maxWidth: '35rem', margin: 'auto'}} className="padding-bottom">
-                Insomnia is collaborative, free,
-                <a href="https://github.com/getinsomnia/insomnia">open source</a>, and
-                cross-platform – making it the perfect companion for both individuals and teams.
+                Insomnia is collaborative, free, <a href="https://github.com/getinsomnia/insomnia">
+                open source</a>, and cross-platform – making it the perfect companion for both
+                individuals and teams.
               </p>
               <DownloadButton/>
               &nbsp;
@@ -163,16 +163,18 @@ export default ({data}) => (
           <div className="row feature-list">
             <div className="col-6">
               <ul>
-                <li>OAuth 2.0 authentication</li>
-                <li>GraphQL editor</li>
+                <li>GraphQL support</li>
+                <li>OAuth 1.0 and 2.0 auth</li>
                 <li>Multipart form builder</li>
                 <li>Query parameter builder</li>
+                <li>Plugin System</li>
                 <li>SSL client certificates</li>
                 <li>JSONPath and XPath</li>
                 <li>Response history</li>
                 <li>Data import/export</li>
                 <li>Rendered HTML preview</li>
                 <li>Image and SVG preview</li>
+                <li>AWS authentication</li>
                 <li>Configurable proxy</li>
                 <li>Color themes</li>
                 <li>Cloud sync and sharing</li>
@@ -185,10 +187,12 @@ export default ({data}) => (
                 <li>Nunjucks templating</li>
                 <li>Configurable timeout</li>
                 <li>HAR import</li>
+                <li>Swagger import</li>
                 <li>Request filtering</li>
                 <li>Toggle SSL validation</li>
                 <li>Keyboard shortcuts</li>
                 <li>Usable at almost all sizes</li>
+                <li>NTLM authentication</li>
                 <li>Responsive interface</li>
                 <li>Autocomplete Hints</li>
                 <li>Redirect chain visualization</li>
