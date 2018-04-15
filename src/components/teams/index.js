@@ -28,7 +28,8 @@ class Teams extends Component {
     }
 
     let inner = null;
-    if (!whoami.isTrialing && !whoami.canManageTeams) {
+    const isOnPayingTeam = billingDetails && billingDetails.planId.includes('team');
+    if (!whoami.isTrialing && !isOnPayingTeam) {
       inner = (
         <div>
           <p>Manage who is on your team.</p>
