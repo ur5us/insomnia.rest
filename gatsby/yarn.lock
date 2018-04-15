@@ -9404,9 +9404,9 @@ srcset@^1.0.0:
     array-uniq "^1.0.2"
     number-is-nan "^1.0.0"
 
-srp-js@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/srp-js/-/srp-js-0.2.0.tgz#1b8d096f446f0d6ea28942f350148a98da5e7a69"
+srp-js@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/srp-js/-/srp-js-0.2.1.tgz#2b2dc7f6439df14d593bf447f664d44ed1f14ace"
   dependencies:
     buffer "^5.0.0"
     jsbn "^0.1.0"
