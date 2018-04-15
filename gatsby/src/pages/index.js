@@ -1,8 +1,10 @@
 import React from 'react';
 import DownloadButton from '../components/download-button';
+import SocialCards from '../components/social-cards';
 
 export default () => (
   <React.Fragment>
+    <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner />
     <div className="jumbotron">
       <div className="container">
         <div className="row">

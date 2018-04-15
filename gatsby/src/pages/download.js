@@ -1,7 +1,9 @@
 import React from 'react';
+import SocialCards from '../components/social-cards';
 
 export default () => (
   <article>
+    <SocialCards title="Insomnia" summary="Download the Insomnia app" isBanner />
     <header className="container header--big">
       <div className="row">
         <div className="col-12">

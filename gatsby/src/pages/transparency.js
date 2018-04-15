@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 
 import './transparency.less';
 import baremetrics from '../assets/baremetrics.json';
+import SocialCards from '../components/social-cards';
 
 export default class extends React.Component {
   constructor (props) {
@@ -321,6 +322,7 @@ export default class extends React.Component {
     const {metrics, plans, totals} = this.state;
     return (
       <article className="container">
+        <SocialCards title="Insomnia" summary="Sharing revenue, growth, and more" isBanner />
         <header className="container header--big">
           <div className="row">
             <div className="col-12">
