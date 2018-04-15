@@ -14,6 +14,12 @@ export default class extends React.Component {
 
   componentDidMount() {
     this._updateBodyAttrs();
+
+    // Add FontAwesome after first render
+    const s = document.createElement('script');
+    s.src = '//use.fontawesome.com/93839bed07.js';
+    s.async = true;
+    document.body.appendChild(s);
   }
 
   componentDidUpdate() {
@@ -24,9 +30,6 @@ export default class extends React.Component {
     const {children, location} = this.props;
     return (
       <React.Fragment>
-        <Helmet>
-          <script src="https://use.fontawesome.com/93839bed07.js" async/>
-        </Helmet>
         <Navbar floating={location.pathname === '/'}/>
         <main role="main">
           {children()}

@@ -1,15 +1,14 @@
 import React from 'react';
 import contributors from '../assets/contributors.json';
+import Waypoint from 'react-waypoint';
 
 class Contributors extends React.Component {
   state = {
     contributors: []
   };
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({contributors});
-    }, 3000);
+  load() {
+    this.setState({contributors});
   }
 
   render() {
@@ -22,13 +21,16 @@ class Contributors extends React.Component {
           🎉👏
         </div>
         <div className="github-contributors__users">
+          <Waypoint
+            onEnter={this.load.bind(this)}
+          />
           {contributors.map(c => (
             <a key={c.login}
                href={`https://github.com/${c.login}`}
                title={`${c.contributions} contributions from ${c.login}`}
                target="_blank"
                className="github-contributors__avatar"
-               style={{backgroundImage: `url('${c.avatar_url}v=4&s=40')`}}>
+               style={{backgroundImage: `url('${c.avatar_url}&s=30')`}}>
               &nbsp;
             </a>
           ))}

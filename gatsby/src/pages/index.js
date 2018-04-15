@@ -7,7 +7,7 @@ import Img from 'gatsby-image';
 export default ({data}) => (
   <React.Fragment>
     {console.log('DATA', data)}
-    <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner />
+    <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner/>
     <div className="jumbotron">
       <div className="container">
         <div className="row">
@@ -214,25 +214,25 @@ export default ({data}) => (
 export const pageQuery = graphql`
   query GatsbyImageQuery {
     mainImg: file(relativePath: { eq: "screens/main.png" }) {
-      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     templateImg: file(relativePath: { eq: "screens/template.png" }) {
-      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     responsesImg: file(relativePath: { eq: "screens/responses.png" }) {
-      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     dragImg: file(relativePath: { eq: "screens/drag.png" }) {
-      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     environmentsImg: file(relativePath: { eq: "screens/big/environments.png" }) {
-      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     codeImg: file(relativePath: { eq: "screens/big/code.png" }) {
-      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
     themesImg: file(relativePath: { eq: "screens/big/themes.png" }) {
-      childImageSharp { sizes(maxWidth: 500) { ...GatsbyImageSharpSizes_noBase64 } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
     }
   }
 `;

@@ -209,7 +209,6 @@ export default class extends React.Component {
     s.setAttribute('data-timestamp', Date.now());
     document.body.appendChild(s);
     s.addEventListener('load', () => {
-
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
       function printDate(yearMonthDay) {
