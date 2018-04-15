@@ -70,7 +70,7 @@ class Home extends Component {
             </a>
           </p>
         );
-      } else if (!isPremium && isTrialOver) {
+      } else if (isTrialOver) {
         notice = (
           <p className="notice warn">
             Your trial has ended. Please subscribe to a plan to continue using your account.
