@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-export default SocialCards = ({isBanner, title, summary}) => (
+const SocialCards = ({isBanner, title, summary}) => (
   isBanner ? (
     <Helmet>
       <meta name="twitter:card" content="summary_large_image"/>
@@ -29,5 +29,6 @@ export default SocialCards = ({isBanner, title, summary}) => (
       <meta property='og:image' content="https://insomnia.rest/images/twitter-card-icon.png"/>
     </Helmet>
   )
-)
-;
+);
+
+export default SocialCards;
