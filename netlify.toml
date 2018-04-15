@@ -1,7 +1,6 @@
 [build]
-    functions = "_functions"
-    publish = "_speedpack"
-    command = "npm run build"
+    publish = "gatsby/public"
+    command = "cd gatsby && npm run build"
 
 [context.production.environment]
     HUGO_VERSION = "0.30"

@@ -20,6 +20,15 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-9837747-12',
+        head: false,
+        respectDNT: true,
+        exclude: [],
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'changelog',

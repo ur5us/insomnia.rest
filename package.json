@@ -17,7 +17,6 @@
     "start:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "start:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
     "start": "npm run build:changelog && npm run build:metrics && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\" \"npm run start:functions\""
-
   },
   "repository": {
     "type": "git",
@@ -42,6 +41,7 @@
     "webpack": "^3.5.1"
   },
   "dependencies": {
+    "gatsby-plugin-google-analytics": "^1.0.29",
     "hkdf": "0.0.2",
     "moment": "^2.19.3",
     "node-forge": "^0.7.1",
