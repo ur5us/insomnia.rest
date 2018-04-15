@@ -17,10 +17,11 @@ class App extends React.Component {
 
   async init () {
     if (this.props.noAuth) {
+      this.setState({initialized: true});
       return;
     }
 
-    this.setState({initialized: true, loading: true});
+    this.setState({loading: true});
 
     let whoami;
 
