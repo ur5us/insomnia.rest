@@ -1,6 +1,7 @@
 import React from 'react';
 import DownloadButton from '../components/download-button';
 import SocialCards from '../components/social-cards';
+import Contributors from '../partials/contributors';
 
 export default () => (
   <React.Fragment>
@@ -205,6 +206,7 @@ export default () => (
           <br/>
         </div>
       </section>
+      <Contributors/>
     </main>
   </React.Fragment>
 );

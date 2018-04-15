@@ -5,6 +5,7 @@
   "scripts": {
     "develop.yarn": "yarn run develop",
     "develop": "gatsby develop",
+    "build:data": "node ./scripts/fetch-metrics.js src/assets",
     "build": "gatsby build",
     "serve": "gatsby serve"
   },

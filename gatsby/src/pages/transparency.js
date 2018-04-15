@@ -1,12 +1,12 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 
 import './transparency.less';
 import baremetrics from '../assets/baremetrics.json';
 import SocialCards from '../components/social-cards';
+import Contributors from '../partials/contributors';
 
 export default class extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       metrics: [],
@@ -15,12 +15,9 @@ export default class extends React.Component {
     };
   }
 
-  componentDidUpdate () {
-    console.log('UPDATE');
-  }
+  componentDidUpdate() {
+    const {totals, metrics, plans} = this.state;
 
-  componentDidMount () {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const colors = {
       green: [60, 190, 0],
       blue: [20, 150, 255],
@@ -31,118 +28,6 @@ export default class extends React.Component {
       gray: [220, 200, 210]
     };
     const pageWidth = document.body.getBoundingClientRect().width;
-
-    function printDate (yearMonthDay) {
-      const parts = yearMonthDay.split(/[-/]/);
-      const year = parts[0];
-      const month = months[parts[1] - 1];
-      const day = parts[2];
-      return month + ' ' + day + ', ' + year;
-    }
-
-    function isFirstOfMonth (yearMonthDay) {
-      return yearMonthDay.match(/\d{4}-\d{2}-01/);
-    }
-
-    function formatMoney (cents) {
-      return cents / 100;
-    }
-
-    function formatLabel (type, value, small) {
-      let suffix = '';
-      let prefix = '';
-      if (type === 'money' && value >= 1000 && small) {
-        prefix = '$';
-        suffix = 'k';
-        value = Math.round(value / 1000);
-      } else if (type === 'money') {
-        prefix = '$';
-      } else if (type === 'percent') {
-        suffix = '%';
-        value = value / 100;
-      }
-
-      return prefix + addCommas(value) + suffix;
-    }
-
-    function addCommas (number) {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-    }
-
-    const metrics = [];
-    const totals = {
-      mrr: 0,
-      new_customers: 0,
-      net_revenue: 0,
-      fees: 0,
-      cancellations: 0
-    };
-
-    let current = null;
-    for (const item of baremetrics.metrics) {
-      if (isFirstOfMonth(item.human_date)) {
-        current && metrics.push(current);
-        current = {
-          new_customers: 0,
-          net_revenue: 0,
-          fees: 0,
-          cancellations: 0,
-          label: printDate(item.human_date)
-        };
-      }
-
-      // Fixed values
-      current.mrr = item.mrr;
-      current.active_customers = item.active_customers;
-      current.user_churn = item.user_churn;
-      current.revenue_churn = item.revenue_churn;
-      current.ltv = item.ltv;
-      current.arpu = item.arpu;
-
-      // Fixed totals
-      totals.mrr = item.mrr;
-      totals.ltv = item.ltv;
-      totals.arpu = item.arpu;
-
-      // Update monthly
-      current.net_revenue += item.net_revenue;
-      current.new_customers += item.new_customers;
-      current.cancellations += item.cancellations;
-      current.fees += item.fees;
-
-      // Update totals
-      totals.net_revenue += item.net_revenue;
-      totals.new_customers += item.new_customers;
-      totals.cancellations += item.cancellations;
-      totals.fees += item.fees;
-    }
-    metrics.push(current);
-
-    // Populate plan data
-    const plans = {
-      plus: {monthly: 0, yearly: 0},
-      team: {monthly: 0, yearly: 0}
-    };
-
-    for (const item of baremetrics.plans.metrics) {
-      if (item.plan.oid.includes('plus-monthly')) {
-        plans.plus.monthly += item.value;
-      } else if (item.plan.oid.includes('team-monthly')) {
-        plans.team.monthly += item.value;
-      } else if (item.plan.oid.includes('plus-yearly')) {
-        plans.plus.yearly += item.value;
-      } else if (item.plan.oid.includes('team-yearly')) {
-        plans.team.yearly += item.value;
-      }
-    }
-
-    this.setState({
-      metrics: metrics,
-      plans: plans,
-      totals: totals
-    });
-
-    return;
 
     // Populate all stats boxes
     for (const key of Object.keys(totals)) {
@@ -166,13 +51,13 @@ export default class extends React.Component {
       el.style.borderColor = getColor(color, 0.7);
     }
 
-    function getColor (name, alpha) {
+    function getColor(name, alpha) {
       const color = colors[name] || [100, 200, 130];
       const a = typeof alpha === 'number' ? alpha : 1;
       return 'rgba(' + color.join(',') + ',' + a + ')';
     }
 
-    function drawMetric (id, chartType, type, datasets) {
+    function drawMetric(id, chartType, type, datasets) {
       const canv = document.getElementById('chart-' + id);
 
       // Doesn't matter what these widths are. ChartJS will resize
@@ -206,7 +91,7 @@ export default class extends React.Component {
                 return bar.datasets[info[0].datasetIndex].label;
               },
               label: function (info) {
-                return formatLabel(type, info.yLabel)
+                return formatLabel(type, info.yLabel);
               }
             }
           },
@@ -229,7 +114,7 @@ export default class extends React.Component {
       });
     }
 
-    function drawPlansPie (id) {
+    function drawPlansPie(id) {
       const canv = document.getElementById('chart-' + id);
 
       // Doesn't matter what these widths are. ChartJS will resize
@@ -315,101 +200,228 @@ export default class extends React.Component {
       key: 'mrr',
       label: 'Plus',
       color: 'purple'
-    }])
+    }]);
   }
 
-  render () {
-    const {metrics, plans, totals} = this.state;
+  componentDidMount() {
+    const s = document.createElement('script');
+    s.src = '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js';
+    s.setAttribute('data-timestamp', Date.now());
+    document.body.appendChild(s);
+    s.addEventListener('load', () => {
+
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      function printDate(yearMonthDay) {
+        const parts = yearMonthDay.split(/[-/]/);
+        const year = parts[0];
+        const month = months[parts[1] - 1];
+        const day = parts[2];
+        return month + ' ' + day + ', ' + year;
+      }
+
+      const metrics = [];
+      const totals = {
+        mrr: 0,
+        new_customers: 0,
+        net_revenue: 0,
+        fees: 0,
+        cancellations: 0
+      };
+
+      let current = null;
+      for (const item of baremetrics.metrics) {
+        if (isFirstOfMonth(item.human_date)) {
+          current && metrics.push(current);
+          current = {
+            new_customers: 0,
+            net_revenue: 0,
+            fees: 0,
+            cancellations: 0,
+            label: printDate(item.human_date)
+          };
+        }
+
+        // Fixed values
+        current.mrr = item.mrr;
+        current.active_customers = item.active_customers;
+        current.user_churn = item.user_churn;
+        current.revenue_churn = item.revenue_churn;
+        current.ltv = item.ltv;
+        current.arpu = item.arpu;
+
+        // Fixed totals
+        totals.mrr = item.mrr;
+        totals.ltv = item.ltv;
+        totals.arpu = item.arpu;
+
+        // Update monthly
+        current.net_revenue += item.net_revenue;
+        current.new_customers += item.new_customers;
+        current.cancellations += item.cancellations;
+        current.fees += item.fees;
+
+        // Update totals
+        totals.net_revenue += item.net_revenue;
+        totals.new_customers += item.new_customers;
+        totals.cancellations += item.cancellations;
+        totals.fees += item.fees;
+      }
+      metrics.push(current);
+
+      // Populate plan data
+      const plans = {
+        plus: {monthly: 0, yearly: 0},
+        team: {monthly: 0, yearly: 0}
+      };
+
+      for (const item of baremetrics.plans.metrics) {
+        if (item.plan.oid.includes('plus-monthly')) {
+          plans.plus.monthly += item.value;
+        } else if (item.plan.oid.includes('team-monthly')) {
+          plans.team.monthly += item.value;
+        } else if (item.plan.oid.includes('plus-yearly')) {
+          plans.plus.yearly += item.value;
+        } else if (item.plan.oid.includes('team-yearly')) {
+          plans.team.yearly += item.value;
+        }
+      }
+
+      this.setState({
+        metrics: metrics,
+        plans: plans,
+        totals: totals
+      });
+    });
+  }
+
+  render() {
     return (
-      <article className="container">
-        <SocialCards title="Insomnia" summary="Sharing revenue, growth, and more" isBanner />
-        <header className="container header--big">
-          <div className="row">
-            <div className="col-12">
-              <h1>Transparency {JSON.stringify(metrics[0])}</h1>
-            </div>
-          </div>
-        </header>
-
-        <section className="content container">
-          <div className="row">
-            <div className="col-12">
-              {/*{{ .Content }}*/}
-              <h2>Summary</h2>
-              <div className="stats">
-                <div className="stats__row">
-                  <div className="stats__stat" id="stat-new_customers" data-color="purple" data-type="number">
-                    <h2>All Customers</h2>
-                    <div>...</div>
-                  </div>
-                </div>
-                <div className="stats__row">
-                  <div className="stats__stat" id="stat-net_revenue" data-color="green" data-type="money">
-                    <h2>All Revenue</h2>
-                    <div>...</div>
-                  </div>
-                  <div className="stats__stat" id="stat-mrr" data-color="green" data-type="money">
-                    <h2>MRR</h2>
-                    <div>...</div>
-                  </div>
-                  <div className="stats__stat" id="stat-ltv" data-color="green" data-type="money">
-                    <h2>LTV</h2>
-                    <div>...</div>
-                  </div>
-                  <div className="stats__stat" id="stat-arpu" data-color="green" data-type="money">
-                    <h2>ARPU</h2>
-                    <div>...</div>
-                  </div>
-                </div>
-                <div className="stats__row">
-                  {/*{{$stats: = getJSON "https://api.github.com/repos/getinsomnia/insomnia"}}*/}
-                  {/*{{$u: = "https://api.github.com/repos/getinsomnia/insomnia/contributors"}}*/}
-                  {/*{{$contributors: = getJSON $u}}*/}
-                  <div className="stats__stat" data-color="blue">
-                    <h2>Contributors</h2>
-                    {/*<div>{{len $contributors}}</div>*/}
-                  </div>
-                  <div className="stats__stat" data-color="blue">
-                    <h2>Issues</h2>
-                    {/*<div>{{$stats.open_issues}}</div>*/}
-                  </div>
-                  <div className="stats__stat" data-color="blue">
-                    <h2>Stars &#9734;</h2>
-                    {/*<div>{{$stats.stargazers_count}}</div>*/}
-                  </div>
-                </div>
+      <React.Fragment>
+        <article className="container">
+          <SocialCards title="Insomnia" summary="Sharing revenue, growth, and more" isBanner/>
+          <header className="container header--big">
+            <div className="row">
+              <div className="col-12">
+                <h1>Transparency</h1>
+                <p>Sharing the Road to Insomnia</p>
               </div>
-              <div>
-                <small>**All revenue numbers are in Canadian dollars</small>
-              </div>
-
-              <br/>
-              <h2 id="plans">Plan Distribution</h2>
-              <p>The following pie chart shows the MRR distribution between plans.</p>
-              <canvas id='chart-plans'/>
-
-              <br/>
-              <h2 id="revenue">Revenue &#128176;</h2>
-              <p>The following bar chart shows various revenue metrics since Insomnia's
-                beginnings.</p>
-              <canvas id='chart-money'/>
-
-              <br/>
-              <h2 id="customers">Customers &#128188;</h2>
-              <p>The following bar chart shows customer growth over time.</p>
-              <canvas id='chart-customers'/>
-
-              <br/>
-              <h2 id="churn">Churn &#9760;</h2>
-              <p>The following bar chart shows how many customers leave Insomnia.</p>
-              <canvas id='chart-churn'/>
             </div>
-          </div>
-        </section>
-        <Helmet>
-          <script src='//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'></script>
-        </Helmet>
-      </article>
+          </header>
+
+          <section className="content container">
+            <div className="row">
+              <div className="col-12">
+                <p>
+                  The purpose of this page is to give back to the indie hacker community by sharing the details of
+                  Insomnia’s progress over time. For more details, visit the <a
+                  href="https://insomnia.baremetrics.com/">Baremetrics
+                  Dashboard</a> or read the <a href="https://www.indiehackers.com/product/insomnia">Indie Hackers
+                  Interview</a>.
+                </p>
+                <h2>Summary</h2>
+                <div className="stats">
+                  <div className="stats__row">
+                    <div className="stats__stat" id="stat-new_customers" data-color="purple" data-type="number">
+                      <h2>All Customers</h2>
+                      <div>...</div>
+                    </div>
+                  </div>
+                  <div className="stats__row">
+                    <div className="stats__stat" id="stat-net_revenue" data-color="green" data-type="money">
+                      <h2>All Revenue</h2>
+                      <div>...</div>
+                    </div>
+                    <div className="stats__stat" id="stat-mrr" data-color="green" data-type="money">
+                      <h2>MRR</h2>
+                      <div>...</div>
+                    </div>
+                    <div className="stats__stat" id="stat-ltv" data-color="green" data-type="money">
+                      <h2>LTV</h2>
+                      <div>...</div>
+                    </div>
+                    <div className="stats__stat" id="stat-arpu" data-color="green" data-type="money">
+                      <h2>ARPU</h2>
+                      <div>...</div>
+                    </div>
+                  </div>
+                  <div className="stats__row">
+                    {/*{{$stats: = getJSON "https://api.github.com/repos/getinsomnia/insomnia"}}*/}
+                    {/*{{$u: = "https://api.github.com/repos/getinsomnia/insomnia/contributors"}}*/}
+                    {/*{{$contributors: = getJSON $u}}*/}
+                    <div className="stats__stat" data-color="blue">
+                      <h2>Contributors</h2>
+                      {/*<div>{{len $contributors}}</div>*/}
+                    </div>
+                    <div className="stats__stat" data-color="blue">
+                      <h2>Issues</h2>
+                      {/*<div>{{$stats.open_issues}}</div>*/}
+                    </div>
+                    <div className="stats__stat" data-color="blue">
+                      <h2>Stars &#9734;</h2>
+                      {/*<div>{{$stats.stargazers_count}}</div>*/}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <small>**All revenue numbers are in Canadian dollars</small>
+                </div>
+
+                <br/>
+                <h2 id="plans">Plan Distribution</h2>
+                <p>The following pie chart shows the MRR distribution between plans.</p>
+                <canvas id='chart-plans'/>
+
+                <br/>
+                <h2 id="revenue">Revenue &#128176;</h2>
+                <p>The following bar chart shows various revenue metrics since Insomnia's
+                  beginnings.</p>
+                <canvas id='chart-money'/>
+
+                <br/>
+                <h2 id="customers">Customers &#128188;</h2>
+                <p>The following bar chart shows customer growth over time.</p>
+                <canvas id='chart-customers'/>
+
+                <br/>
+                <h2 id="churn">Churn &#9760;</h2>
+                <p>The following bar chart shows how many customers leave Insomnia.</p>
+                <canvas id='chart-churn'/>
+              </div>
+            </div>
+          </section>
+        </article>
+        <Contributors/>
+      </React.Fragment>
     );
   }
+}
+
+function addCommas(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function isFirstOfMonth(yearMonthDay) {
+  return yearMonthDay.match(/\d{4}-\d{2}-01/);
+}
+
+function formatMoney(cents) {
+  return cents / 100;
+}
+
+function formatLabel(type, value, small) {
+  let suffix = '';
+  let prefix = '';
+  if (type === 'money' && value >= 1000 && small) {
+    prefix = '$';
+    suffix = 'k';
+    value = Math.round(value / 1000);
+  } else if (type === 'money') {
+    prefix = '$';
+  } else if (type === 'percent') {
+    suffix = '%';
+    value = value / 100;
+  }
+
+  return prefix + addCommas(value) + suffix;
 }
