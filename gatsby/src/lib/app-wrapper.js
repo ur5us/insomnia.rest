@@ -12,7 +12,12 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.init();
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/node-forge@0.7.5/dist/forge.min.js';
+    document.body.appendChild(s);
+    s.addEventListener('load', () => {
+      this.init();
+    });
   }
 
   async init () {
