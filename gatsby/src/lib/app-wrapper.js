@@ -21,7 +21,7 @@ class App extends React.Component {
       return;
     }
 
-    this.setState({loading: true});
+    this.setState({initialized: true, loading: true});
 
     let whoami;
 
