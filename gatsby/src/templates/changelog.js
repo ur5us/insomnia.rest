@@ -3,6 +3,8 @@ import ChangelogListItem from '../components/changelog-list-item';
 import DownloadButton from '../components/download-button';
 import Link from '../components/link';
 import SocialCards from '../components/social-cards';
+import ShareButtons from '../partials/share-buttons';
+import Title from '../partials/title';
 
 
 export default class BlogTemplate extends React.Component {
@@ -20,6 +22,7 @@ export default class BlogTemplate extends React.Component {
     const summary = `Release notes for version ${frontmatter.slug}`;
     return (
       <React.Fragment>
+        <Title>{title}</Title>
         <article>
           <SocialCards title={title} summary={summary}/>
           <header>
@@ -93,84 +96,10 @@ export default class BlogTemplate extends React.Component {
           </section>
         </article>
         <section className="section--bordered container share">
-          <p className="subtle">
+          <p>
             Share this post &#128522; &#128640;
           </p>
-          <div className="share-buttons">
-            <a
-              href="http://twitter.com/share?url={{ .Permalink | safeURL }}&text={{ .Title | safeURL }}&via={{ .Site.Params.twitter }}"
-              onClick={e => {
-                e.preventDefault();
-                window.open(e.currentTarget.href, 'twitter-share', 'width=800,height=600');
-              }}
-              title="Share on Twitter"
-              className="button--share button twitter">
-              <i className="fa fa-twitter"/>
-            </a>
-
-            <a href="https://plus.google.com/share?url={{ .Permalink | safeURL }}"
-               onClick={e => {
-                 e.preventDefault();
-                 window.open(e.currentTarget.href, 'google-plus-share');
-               }}
-               title="Share on Google+"
-               className="button--share button google-plus">
-              <i className="fa fa-google-plus"/>
-            </a>
-
-            <a href="http://reddit.com/submit?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}"
-               onClick={e => {
-                 e.preventDefault();
-                 window.open(e.currentTarget.href, 'reddit-share', 'width=900,height=600');
-               }}
-               title="Post to Reddit"
-               className="button--share button reddit">
-              <i className="fa fa-reddit"/>
-            </a>
-
-            <a href="http://www.facebook.com/sharer/sharer.php?u={{ .Permalink | safeURL }}"
-               onClick={e => {
-                 e.preventDefault();
-                 window.open(e.currentTarget.href, 'facebook-share', 'width=800,height=600');
-               }}
-               title="Share on Facebook"
-               className="button--share button facebook">
-              <i className="fa fa-facebook"/>
-            </a>
-
-            <a
-              href="http://www.stumbleupon.com/submit?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}"
-              onClick={e => {
-                e.preventDefault();
-                window.open(e.currentTarget.href, 'stumbleupon-share', 'width=800,height=600');
-              }}
-              title="Post to StumbleUpon"
-              className="button--share button stumbleupon">
-              <i className="fa fa-stumbleupon"/>
-            </a>
-
-            <a
-              href="http://www.linkedin.com/shareArticle?url={{ .Permalink | safeURL }}&title={{ .Title | safeURL }}"
-              onClick={e => {
-                e.preventDefault();
-                window.open(e.currentTarget.href, 'linkedin-share', 'width=800,height=600');
-              }}
-              title="Share on LinkedIn"
-              className="button--share button linkedin">
-              <i className="fa fa-linkedin"/>
-            </a>
-
-            <a href="mailto:?subject={{ .Title | safeURL }}"
-               target="_blank"
-               title="Share via email"
-               onClick={e => {
-                 e.preventDefault();
-                 window.open(e.currentTarget.href, 'email-share', 'width=800,height=600');
-               }}
-               className="button--share button email">
-              <i className="fa fa-envelope"/>
-            </a>
-          </div>
+          <ShareButtons title={title}/>
         </section>
         <section className="comments">
           <div className="container">

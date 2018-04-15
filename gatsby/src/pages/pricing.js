@@ -1,10 +1,12 @@
 import React from 'react';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
+import Title from '../partials/title';
 
 export default () => (
   <React.Fragment>
     <article>
+      <Title>Pricing</Title>
       <SocialCards title="Insomnia" summary="Enhance the power of the app" isBanner/>
       <header className="container header--big">
         <div className="row">

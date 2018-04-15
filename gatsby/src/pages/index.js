@@ -6,7 +6,6 @@ import Img from 'gatsby-image';
 
 export default ({data}) => (
   <React.Fragment>
-    {console.log('DATA', data)}
     <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner/>
     <div className="jumbotron">
       <div className="container">

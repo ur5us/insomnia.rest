@@ -4,6 +4,7 @@ import './transparency.less';
 import baremetrics from '../assets/baremetrics.json';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
+import Title from '../partials/title';
 
 export default class extends React.Component {
   constructor(props) {
@@ -297,6 +298,7 @@ export default class extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Title>Transparency</Title>
         <article className="container">
           <SocialCards title="Insomnia" summary="Sharing revenue, growth, and more" isBanner/>
           <header className="container header--big">

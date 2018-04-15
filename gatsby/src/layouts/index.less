@@ -5,6 +5,9 @@
 a, .button {
   color: #745be6;
   font-weight: 400 !important;
+  path {
+    fill: #745be6;
+  }
 }
 
 a:hover, .button:hover {
@@ -154,14 +157,37 @@ article a > img:hover {
   background: #ccc;
   width: 10rem;
   height: 10rem;
+  display: block;
+  margin: auto;
 }
 
-.platform-download__icon::before {
-  display: block;
-  line-height: 10rem;
-  font-size: 4rem !important;
-  text-align: center;
-  color: #fff;
+.platform-download__icon.apple {
+  background: #bbb url("../assets/icons/apple.svg") no-repeat center;
+  background-size: 50%;
+}
+
+.platform-download__icon.windows {
+  background: #00bcf2 url("../assets/icons/windows.svg") no-repeat center;
+  background-size: 50%;
+}
+
+.platform-download__icon.linux {
+  background: #333 url("../assets/icons/linux.svg") no-repeat center;
+  background-size: 50%;
+}
+
+/* ICONS */
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: inherit;
+  line-height: 1em;
+}
+
+.button .icon {
+  height: 100%;
 }
 
 /* ~~~~~~ */
@@ -177,22 +203,6 @@ article a > img:hover {
   max-height: 12rem;
   margin: 1rem auto;
   width: 100%;
-}
-
-/* ~~~~~~ */
-/* COLORS */
-/* ~~~~~~ */
-
-.bg-mac {
-  background-color: #bbb;
-}
-
-.bg-windows {
-  background-color: #00bcf2;
-}
-
-.bg-linux {
-  background-color: #333;
 }
 
 /* ~~~~~~~~~~~~~ */

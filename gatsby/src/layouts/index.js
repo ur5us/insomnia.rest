@@ -1,10 +1,10 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import './simple-grid.min.css';
 import './base.less';
 import './index.less';
 import Navbar from '../partials/navbar';
 import Footer from '../partials/footer';
+import Title from '../partials/title';
 
 export default class extends React.Component {
   _updateBodyAttrs() {
@@ -14,12 +14,6 @@ export default class extends React.Component {
 
   componentDidMount() {
     this._updateBodyAttrs();
-
-    // Add FontAwesome after first render
-    const s = document.createElement('script');
-    s.src = '//use.fontawesome.com/93839bed07.js';
-    s.async = true;
-    document.body.appendChild(s);
   }
 
   componentDidUpdate() {
@@ -30,6 +24,7 @@ export default class extends React.Component {
     const {children, location} = this.props;
     return (
       <React.Fragment>
+        <Title/>
         <Navbar floating={location.pathname === '/'}/>
         <main role="main">
           {children()}
