@@ -54,7 +54,7 @@ export default class BlogTemplate extends React.Component {
         </article>
         <section className="comments">
           <div className="container">
-            <div id="disqus_thread">Loading comments...</div>
+            <div id="disqus_thread"/>
           </div>
         </section>
         <section className="dark no-margin padding-bottom padding-top">

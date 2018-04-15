@@ -103,7 +103,7 @@ export default class BlogTemplate extends React.Component {
         </section>
         <section className="comments">
           <div className="container">
-            <div id="disqus_thread">Loading comments...</div>
+            <div id="disqus_thread"/>
           </div>
         </section>
       </React.Fragment>
