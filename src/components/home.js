@@ -73,8 +73,7 @@ class Home extends Component {
       } else if (!isPremium && isTrialOver) {
         notice = (
           <p className="notice warn">
-            Your trial ended <strong>{-1 * trialDays}</strong> day{trialDays === 1 ? '' : 's'} ago.
-            Please subscribe to a plan to continue using your account.
+            Your trial has ended. Please subscribe to a plan to continue using your account.
             <br/>
             <br/>
             <a href="/app/subscribe/" className="button button--compact">
