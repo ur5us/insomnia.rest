@@ -5,9 +5,13 @@ import './index.less';
 import Navbar from '../partials/navbar';
 import Footer from '../partials/footer';
 import Title from '../partials/title';
-import * as session from '../lib/session';
+import {isLoggedIn} from '../lib/session';
 
 export default class extends React.Component {
+  state = {
+    isLoggedIn: false
+  };
+
   _updateBodyAttrs() {
     const {location} = this.props;
     document.body.setAttribute('data-pathname', location.pathname);
@@ -15,6 +19,7 @@ export default class extends React.Component {
 
   componentDidMount() {
     this._updateBodyAttrs();
+    this.setState({isLoggedIn: isLoggedIn()})
   }
 
   componentDidUpdate() {
@@ -23,11 +28,12 @@ export default class extends React.Component {
 
   render() {
     const {children, location} = this.props;
+    const {isLoggedIn} = this.state;
     return (
       <React.Fragment>
         <Title/>
         <Navbar
-          loggedIn={session.isLoggedIn()}
+          loggedIn={isLoggedIn()}
           floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}
         />
         <main role="main">
