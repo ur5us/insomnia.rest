@@ -21,42 +21,54 @@ export const menus = {
   }, {
     name: 'Pricing',
     key: 'pricing',
-    url: '/pricing'
+    url: '/pricing/'
   }, {
-    name: 'Blog',
-    key: 'blog',
-    url: '/blog'
+    name: 'Account',
+    key: 'account',
+    url: '/app/account/',
+    loggedIn: true
+  }, {
+    name: 'Signup',
+    key: 'signup',
+    url: '/app/signup/',
+    loggedIn: false,
+  }],
+  footer: [{
+    name: 'Support',
+    key: 'support',
+    url: '/support/',
+  }, {
+    name: 'Slack',
+    key: 'slack',
+    url: 'https://chat.insomnia.rest'
   }, {
     name: 'GitHub',
     key: 'github',
     url: 'https://github.com/getinsomnia/insomnia'
   }, {
-    name: 'Account',
-    key: 'account',
-    url: '/app/account',
-    loggedIn: true
+    name: 'Twitter',
+    key: 'twitter',
+    url: 'https://twitter.com/GetInsomnia'
   }, {
-    name: 'Signup',
-    key: 'signup',
-    url: '/app/signup',
-    loggedIn: false,
-  }],
-  footer: [{
-    name: 'Contact',
-    key: 'support',
-    url: '/support',
+    name: 'Blog',
+    key: 'blog',
+    url: '/blog/'
   }, {
     name: 'Transparency',
     key: 'transparency',
-    url: '/transparency',
+    url: '/transparency/',
   }, {
     name: 'Changelog',
     key: 'changelog',
-    url: '/changelog',
+    url: '/changelog/',
+  }, {
+      name: 'Download',
+      key: 'download',
+      url: '/download/',
   }, {
     name: 'Terms',
     key: 'terms',
-    url: '/terms',
+    url: '/terms/',
   }, {
     name: 'License',
     key: 'license',

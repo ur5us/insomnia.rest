@@ -43,7 +43,7 @@ class App extends React.Component {
       whoami = await session.whoami();
     } catch (err) {
       // If not logged in, logout and redirect to login page
-      if (err.statusCode === 403) {
+      if (!err.statusCode || err.statusCode === 403) {
         await session.logout();
       }
 
