@@ -221,22 +221,22 @@ export const pageQuery = graphql`
       childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_withWebp } }
     }
     templateImg: file(relativePath: { eq: "screens/template.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 250) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
     responsesImg: file(relativePath: { eq: "screens/responses.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 250) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
     dragImg: file(relativePath: { eq: "screens/drag.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 250) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
     environmentsImg: file(relativePath: { eq: "screens/big/environments.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 400) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
     codeImg: file(relativePath: { eq: "screens/big/code.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 400) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
     themesImg: file(relativePath: { eq: "screens/big/themes.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
+      childImageSharp { sizes(maxWidth: 400) { ...GatsbyImageSharpSizes_withWebp_tracedSVG } }
     }
   }
 `;

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Link from '../components/link';
 import DownloadButton from '../components/download-button';
 import {site, menus} from '../config';
-import iconSrc from '../assets/icon-small.png';
+import iconSrc from '../assets/icon.svg';
 
 class Navbar extends React.Component {
   static defaultProps = {
