@@ -28,8 +28,14 @@ class Subscribe extends React.Component {
 
     const quantity = Math.max(minTeamSize, billingDetails ? billingDetails.subQuantity : 5);
 
-    const planDescription = window.location.hash === '#teams' ?
-      planIdMap['team-monthly-1'] : planIdMap[whoami.planId];
+    let planDescription;
+    if (window.location.hash === '#teams') {
+      planDescription = planIdMap['team-monthly-1'];
+    } else if (window.location.hash === '#plus') {
+      planDescription = planIdMap['plus-monthly-1'];
+    } else {
+      planDescription = planIdMap[whoami.planId];
+    }
 
     const fullName = `${whoami.firstName} ${whoami.lastName}`.trim();
 

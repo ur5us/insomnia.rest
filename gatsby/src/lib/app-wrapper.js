@@ -37,15 +37,10 @@ class App extends React.Component {
       this.setState({initialized: true, loading: true});
     }
 
-    let whoami;
-
-    const whoamiTask = session.whoami();
-    const billingDetailsTask = session.billingDetails();
-    const teamsTask = session.listTeams();
-
     // Fetch Account info
+    let whoami;
     try {
-      whoami = await whoamiTask;
+      whoami = await session.whoami();
     } catch (err) {
       // If not logged in, logout and redirect to login page
       if (err.statusCode === 403) {
@@ -60,8 +55,8 @@ class App extends React.Component {
     setUserId(whoami.accountId);
 
     // Fetch the things
-    const teams = await teamsTask;
-    const billingDetails = await billingDetailsTask;
+    const billingDetails = await session.billingDetails();
+    const teams = await session.listTeams();
 
     this.setState({whoami, teams, billingDetails, loading: false});
   };
@@ -74,8 +69,6 @@ class App extends React.Component {
         </div>
       );
     }
-
-    const {title, subTitle} = this.props;
 
     return (
       <section className="container container--skinny">

@@ -60,7 +60,7 @@ export default () => (
               </ul>
             </div>
             <footer className="pricing__column__footer">
-              <Link to="/app/subscribe/#teams" className="button">
+              <Link to="/app/subscribe/#plus" className="button">
                 Start Free Trial
               </Link>
             </footer>
