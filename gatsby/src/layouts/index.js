@@ -33,7 +33,7 @@ export default class extends React.Component {
       <React.Fragment>
         <Title/>
         <Navbar
-          loggedIn={isLoggedIn()}
+          loggedIn={isLoggedIn}
           floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}
         />
         <main role="main">
