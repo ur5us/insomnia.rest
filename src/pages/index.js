@@ -218,25 +218,25 @@ export default ({data}) => (
 export const pageQuery = graphql`
   query GatsbyImageQuery {
     mainImg: file(relativePath: { eq: "screens/main.png" }) {
-      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 880) { ...GatsbyImageSharpSizes_withWebp } }
     }
     templateImg: file(relativePath: { eq: "screens/template.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
     responsesImg: file(relativePath: { eq: "screens/responses.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
     dragImg: file(relativePath: { eq: "screens/drag.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
     environmentsImg: file(relativePath: { eq: "screens/big/environments.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
     codeImg: file(relativePath: { eq: "screens/big/code.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
     themesImg: file(relativePath: { eq: "screens/big/themes.png" }) {
-      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_tracedSVG } }
+      childImageSharp { sizes(maxWidth: 600) { ...GatsbyImageSharpSizes_withWebp } }
     }
   }
 `;
