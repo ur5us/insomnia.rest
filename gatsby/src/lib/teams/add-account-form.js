@@ -4,7 +4,7 @@ import * as session from '../session';
 import {trackEvent} from '../analytics';
 
 class AddTeamAccountForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -15,11 +15,11 @@ class AddTeamAccountForm extends React.Component {
     };
   }
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
-  };
+  }
 
-  _handleSubmit = async e => {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     const {teamId, onAdd} = this.props;
@@ -36,23 +36,23 @@ class AddTeamAccountForm extends React.Component {
       this.setState({error: err.message, loading: false});
       trackEvent('Teams', 'Add Member Error');
     }
-  };
+  }
 
-  render () {
+  render() {
     const {membersRemaining} = this.props;
     const {loading, error} = this.state;
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit.bind(this)}>
         <strong>{error ? <small className="error">({error})</small> : null}</strong>
         <div className="form-row">
           <div className="form-control">
             <label>Add by Email
-              {" "}
+              {' '}
               <small>({membersRemaining} remaining)</small>
               <input type="email"
                      placeholder="amy@company.com"
                      name="newMemberEmail"
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      required/>
             </label>
           </div>
@@ -61,7 +61,7 @@ class AddTeamAccountForm extends React.Component {
               <input type="password"
                      placeholder="•••••••••••••"
                      name="password"
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      required/>
             </label>
           </div>

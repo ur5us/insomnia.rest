@@ -14,11 +14,11 @@ class ChangePassword extends React.Component {
     error: '',
   };
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
-  };
+  }
 
-  _handleUpdateConfirmPasswordInput = e => {
+  _handleUpdateConfirmPasswordInput(e) {
     this._handleUpdateInput(e);
 
     if (this.state.newPassword !== e.target.value) {
@@ -28,7 +28,7 @@ class ChangePassword extends React.Component {
     }
   };
 
-  _handleSubmit = async e => {
+  async _handleSubmit (e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -58,17 +58,17 @@ class ChangePassword extends React.Component {
     }
   };
 
-  render () {
+  render() {
     const {error, loginError, loading} = this.state;
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit.bind(this)}>
         <div className="form-control">
           <label>Old Password {loginError ? <small className="error">({loginError})</small> : null}
             <input type="password"
                    name="oldPassword"
                    required
                    autoFocus
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    placeholder="••••••••••"/>
           </label>
         </div>
@@ -78,7 +78,7 @@ class ChangePassword extends React.Component {
                    pattern=".{8,}"
                    name="newPassword"
                    required
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    placeholder="•••••••••••••••"/>
           </label>
         </div>
@@ -87,7 +87,7 @@ class ChangePassword extends React.Component {
             <input type="password"
                    name="confirmNewPassword"
                    required
-                   onChange={this._handleUpdateConfirmPasswordInput}
+                   onChange={this._handleUpdateConfirmPasswordInput.bind(this)}
                    placeholder="•••••••••••••••"/>
           </label>
         </div>
@@ -99,7 +99,7 @@ class ChangePassword extends React.Component {
           }
         </div>
       </form>
-    )
+    );
   }
 }
 

@@ -54,10 +54,10 @@ class Subscribe extends React.Component {
     document.body.appendChild(s);
     s.addEventListener('load', () => {
       window.Stripe.setPublishableKey(site.stripePubKey);
-    })
+    });
   }
 
-  _handleCardNumberChange = e => {
+  _handleCardNumberChange(e) {
     // Using timeout or else target.value will not have been updated yet
     const value = e.target.value.trim();
     if (!value) {
@@ -126,17 +126,17 @@ class Subscribe extends React.Component {
     }
 
     this._handleUpdateInput(e);
-  };
+  }
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     const value = e.target.type === 'checkbox' ?
       e.target.checked :
       e.target.value;
 
     this.setState({[e.target.name]: value, error: ''});
-  };
+  }
 
-  _handleSubmit = async e => {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -238,7 +238,7 @@ class Subscribe extends React.Component {
     const {billingDetails} = this.props;
 
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit.bind(this)}>
         {this.renderBillingNotice()}
         <div className="form-control">
           <label>Plan Type
@@ -246,7 +246,7 @@ class Subscribe extends React.Component {
                     name="planType"
                     defaultValue={planType}
                     autoFocus
-                    onChange={this._handleUpdateInput}>
+                    onChange={this._handleUpdateInput.bind(this)}>
               <option value={planTypePlus}>Plus (Individual)</option>
               <option value={planTypeTeam}>Teams</option>
             </select>
@@ -261,7 +261,7 @@ class Subscribe extends React.Component {
               ) : null}
               <input type="number"
                      defaultValue={quantity}
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      min="1"
                      max="500"
                      title="Number of Team Members"
@@ -275,7 +275,7 @@ class Subscribe extends React.Component {
               <input type="radio"
                      name="planCycle"
                      checked={planCycle === planCycleMonthly}
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      value={planCycleMonthly}/>
               {this._getPlanDescription(planType, planCycleMonthly, quantity)}
             </label>
@@ -285,7 +285,7 @@ class Subscribe extends React.Component {
               <input type="radio"
                      name="planCycle"
                      checked={planCycle === planCycleYearly}
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      value={planCycleYearly}/>
               {this._getPlanDescription(planType, planCycleYearly, quantity)}
             </label>
@@ -298,7 +298,7 @@ class Subscribe extends React.Component {
             <label>
               <input type="checkbox"
                      name="useExistingBilling"
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      defaultChecked={useExistingBilling}/>
               Use card ending in <code>{billingDetails.lastFour}</code>
             </label>
@@ -315,7 +315,7 @@ class Subscribe extends React.Component {
                        name="fullName"
                        placeholder="Maria Garcia"
                        defaultValue={fullName}
-                       onChange={this._handleUpdateInput}
+                       onChange={this._handleUpdateInput.bind(this)}
                        required/>
               </label>
             </div>
@@ -324,7 +324,7 @@ class Subscribe extends React.Component {
                 <input type="text"
                        name="cardNumber"
                        placeholder="4012 0000 8888 1881"
-                       onChange={this._handleCardNumberChange}
+                       onChange={this._handleCardNumberChange.bind(this)}
                        required/>
               </label>
             </div>
@@ -335,7 +335,7 @@ class Subscribe extends React.Component {
                 <select name="expireMonth"
                         title="expire month"
                         defaultValue={expireMonth}
-                        onChange={this._handleUpdateInput}>
+                        onChange={this._handleUpdateInput.bind(this)}>
                   <option value="01">January (01)</option>
                   <option value="02">February (02)</option>
                   <option value="03">March (03)</option>
@@ -353,7 +353,7 @@ class Subscribe extends React.Component {
                 <select name="expireYear"
                         title="expire year"
                         defaultValue={expireYear}
-                        onChange={this._handleUpdateInput}>
+                        onChange={this._handleUpdateInput.bind(this)}>
                   <option value="2016">2016</option>
                   <option value="2017">2017</option>
                   <option value="2018">2018</option>
@@ -385,7 +385,7 @@ class Subscribe extends React.Component {
                   <input type="text"
                          name="cvc"
                          placeholder="013"
-                         onChange={this._handleUpdateInput}
+                         onChange={this._handleUpdateInput.bind(this)}
                          required/>
                 </label>
               </div>
@@ -396,7 +396,7 @@ class Subscribe extends React.Component {
                 <input type="text"
                        name="zip"
                        placeholder="94301"
-                       onChange={this._handleUpdateInput}
+                       onChange={this._handleUpdateInput.bind(this)}
                 />
               </label>
             </div>

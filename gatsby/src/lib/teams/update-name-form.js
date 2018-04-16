@@ -4,7 +4,7 @@ import * as session from '../session';
 import {trackEvent} from '../analytics';
 
 class UpdateTeamNameForm extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -14,11 +14,11 @@ class UpdateTeamNameForm extends React.Component {
     };
   }
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
-  };
+  }
 
-  _handleSubmit = async e => {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     const {teamId, onUpdate} = this.props;
@@ -36,13 +36,13 @@ class UpdateTeamNameForm extends React.Component {
     }
 
     this.setState({loading: false});
-  };
+  }
 
-  render () {
+  render() {
     const {teamName} = this.props;
     const {loading, error} = this.state;
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit.bind(this)}>
         <div className="form-row">
           <div className="form-control">
             <label>Team Name
@@ -50,7 +50,7 @@ class UpdateTeamNameForm extends React.Component {
                      name="teamName"
                      placeholder="Mud Dogs"
                      defaultValue={teamName}
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      required/>
             </label>
           </div>

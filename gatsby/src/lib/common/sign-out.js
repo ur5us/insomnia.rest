@@ -1,17 +1,22 @@
 import React from 'react';
 import * as session from '../session';
 import {trackEvent} from '../analytics';
+import Link from '../../components/link';
 
 class SignOutLink extends React.Component {
-  _handleClick = async e => {
+  async _handleClick(e) {
     e.preventDefault();
     await session.logout();
     trackEvent('Account', 'Logout');
     window.location = '/app/logout/';
   };
 
-  render () {
-    return <a href="#" onClick={this._handleClick}>Sign Out</a>
+  render() {
+    return (
+      <Link to="#" onClick={this._handleClick.bind(this)}>
+        Sign Out
+      </Link>
+    );
   }
 }
 

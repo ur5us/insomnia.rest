@@ -10,18 +10,18 @@ class Invoices extends React.Component {
     invoices: null
   };
 
-  async componentDidMount () {
+  async componentDidMount() {
     const invoices = await session.invoices();
     this.setState({invoices});
   };
 
-  _handleDownloadInvoice = async invoiceId => {
+  async _handleDownloadInvoice(invoiceId) {
     const {downloadLink} = await session.getInvoice(invoiceId);
     trackEvent('Account', 'Invoice Download');
     window.location = downloadLink;
   };
 
-  render () {
+  render() {
     const {invoices} = this.state;
 
     if (!invoices) {
@@ -63,7 +63,7 @@ class Invoices extends React.Component {
               <td>
                 {invoice.paid ? (
                   <button className="button button--super-compact"
-                          onClick={() => this._handleDownloadInvoice(invoice.id)}>
+                          onClick={this._handleDownloadInvoice.bind(this, invoice.id)}>
                     Download
                   </button>
                 ) : null}
@@ -73,7 +73,7 @@ class Invoices extends React.Component {
         })}
         </tbody>
       </table>
-    )
+    );
   }
 }
 

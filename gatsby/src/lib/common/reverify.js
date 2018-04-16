@@ -1,6 +1,7 @@
 import React from 'react';
 import * as session from '../session';
 import {trackEvent} from '../analytics';
+import Link from '../../components/link';
 
 const STATE_DEFAULT = 'default';
 const STATE_LOADING = 'loading';
@@ -12,9 +13,11 @@ class VerifyButton extends React.Component {
     error: '',
   };
 
-  _noOp = e => e.preventDefault();
+  static _noOp(e) {
+    e.preventDefault();
+  }
 
-  _handleClick = async e => {
+  async _handleClick(e) {
     e.preventDefault();
     this.setState({state: STATE_LOADING});
 
@@ -23,39 +26,39 @@ class VerifyButton extends React.Component {
       trackEvent('Account', 'Resend Verification Email');
       this.setState({state: STATE_DONE});
     } catch (err) {
-      this.setState({error: err.message})
+      this.setState({error: err.message});
     }
-  };
+  }
 
-  render () {
+  render() {
     const {state, error} = this.state;
 
     if (error) {
       return (
-        <a href="#" onClick={this._noOp} {...this.props}>
+        <Link to="#" onClick={VerifyButton._noOp} {...this.props}>
           {error}
-        </a>
-      )
+        </Link>
+      );
     }
 
     if (state === STATE_LOADING) {
       return (
-        <a href="#" onClick={this._noOp} disabled {...this.props}>
+        <Link to="#" onClick={VerifyButton._noOp} disabled {...this.props}>
           Loading...
-        </a>
-      )
+        </Link>
+      );
     } else if (state === STATE_DONE) {
       return (
-        <a href="#" onClick={this._noOp} {...this.props}>
+        <Link to="#" onClick={VerifyButton._noOp} {...this.props}>
           Verification Email Sent
-        </a>
-      )
+        </Link>
+      );
     } else {
       return (
-        <a href="#" onClick={this._handleClick} {...this.props}>
+        <Link to="#" onClick={this._handleClick.bind(this)} {...this.props}>
           Resend Verification Email
-        </a>
-      )
+        </Link>
+      );
     }
   }
 }

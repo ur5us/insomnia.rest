@@ -120,6 +120,10 @@ export function getCurrentSessionId () {
   return localStorage.getItem('currentSessionId') || '';
 }
 
+export function isLoggedIn () {
+  return !!getCurrentSessionId();
+}
+
 export async function logout () {
   try {
     await util.post('/auth/logout');

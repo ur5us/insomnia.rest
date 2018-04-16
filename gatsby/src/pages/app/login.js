@@ -11,11 +11,11 @@ class Login extends React.Component {
     error: '',
   };
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
   };
 
-  _handleSubmit = async e => {
+  async _handleSubmit (e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -32,19 +32,19 @@ class Login extends React.Component {
       this.setState({error: err.message, loading: false});
       trackEvent('Account', 'Login Error');
     }
-  };
+  }
 
   render () {
     const {loading, error} = this.state;
 
     return (
-      <form onSubmit={this._handleSubmit} method="POST">
+      <form onSubmit={this._handleSubmit.bind(this)} method="POST">
         <div className="form-control">
           <label>Email Address
             <input type="email"
                    name="email"
                    placeholder="name@domain.com"
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    autoFocus
                    required/>
           </label>
@@ -53,7 +53,7 @@ class Login extends React.Component {
           <label>Password
             <input type="password"
                    name="password"
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    placeholder="•••••••••••••"
                    required/>
           </label>

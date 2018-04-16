@@ -13,11 +13,11 @@ class ChangeEmail extends React.Component {
     error: '',
   };
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput (e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
-  };
+  }
 
-  _handleSubmit = async e => {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -50,14 +50,14 @@ class ChangeEmail extends React.Component {
     const {whoami} = this.props;
     const {error, loginError, loading} = this.state;
     return (
-      <form onSubmit={this._handleSubmit}>
+      <form onSubmit={this._handleSubmit.bind(this)}>
         <p>Your current email is <code>{whoami.email}</code></p>
         <div className="form-control">
           <label>New Email
             <input type="email"
                    name="newEmail"
                    required
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    placeholder="new@domain.com"/>
           </label>
         </div>
@@ -67,7 +67,7 @@ class ChangeEmail extends React.Component {
                    name="password"
                    required
                    autoFocus
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    placeholder="••••••••••"/>
           </label>
         </div>

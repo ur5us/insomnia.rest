@@ -39,6 +39,7 @@ export const menus = {
     name: 'Signup',
     key: 'signup',
     url: '/app/signup',
+    loggedIn: false,
   }],
   footer: [{
     name: 'Contact',

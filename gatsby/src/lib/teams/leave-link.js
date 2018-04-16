@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../session';
 import {trackEvent} from '../analytics';
+import Link from '../../components/link';
 
 class LeaveTeamLink extends React.Component {
   state = {
     loading: false,
   };
 
-  _handleClick = async e => {
+  async _handleClick(e) {
     e.preventDefault();
 
     const {teamName, teamId, onLeave} = this.props;
@@ -30,13 +31,13 @@ class LeaveTeamLink extends React.Component {
     }
   };
 
-  render () {
+  render() {
     const {children, className} = this.props;
     const {loading} = this.state;
     return (
-      <a href="#" onClick={this._handleClick} className={className}>
+      <Link to="#" onClick={this._handleClick.bind(this)} className={className}>
         {loading ? 'leaving...' : children}
-      </a>
+      </Link>
     );
   }
 }

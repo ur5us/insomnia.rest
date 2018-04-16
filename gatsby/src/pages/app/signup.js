@@ -17,12 +17,12 @@ class SignUp extends React.Component {
     error: '',
   };
 
-  _handleUpdateInput = e => {
+  _handleUpdateInput(e) {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     this.setState({[e.target.name]: value, error: ''});
-  };
+  }
 
-  _handleUpdatePasswordConfirm = e => {
+  _handleUpdatePasswordConfirm(e) {
     this._handleUpdateInput(e);
 
     if (this.state.password !== e.target.value) {
@@ -30,14 +30,14 @@ class SignUp extends React.Component {
     } else {
       e.target.setCustomValidity('');
     }
-  };
+  }
 
-  _handleBack = e => {
+  _handleBack(e) {
     e.preventDefault();
     this.setState({step: this.state.step - 1});
-  };
+  }
 
-  _handleSubmit = async e => {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     if (this.state.step < 2) {
@@ -73,7 +73,7 @@ class SignUp extends React.Component {
     }
   };
 
-  renderStep1 () {
+  renderStep1() {
     const {error, loading} = this.state;
     return (
       <div key="step-1">
@@ -84,7 +84,7 @@ class SignUp extends React.Component {
                      name="firstName"
                      placeholder="Maria"
                      defaultValue={this.state.firstName}
-                     onChange={this._handleUpdateInput}
+                     onChange={this._handleUpdateInput.bind(this)}
                      autoFocus
                      required/>
             </label>
@@ -95,7 +95,7 @@ class SignUp extends React.Component {
                      name="lastName"
                      placeholder="Garcia"
                      defaultValue={this.state.lastName}
-                     onChange={this._handleUpdateInput}/>
+                     onChange={this._handleUpdateInput.bind(this)}/>
             </label>
           </div>
         </div>
@@ -105,7 +105,7 @@ class SignUp extends React.Component {
                    name="email"
                    placeholder="name@domain.com"
                    defaultValue={this.state.email}
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    required/>
           </label>
         </div>
@@ -113,13 +113,13 @@ class SignUp extends React.Component {
           <label>Password * <span className="subtle">(minimum 8 characters)</span>
             <input type="password"
                    name="password"
-                   onChange={this._handleUpdateInput}
+                   onChange={this._handleUpdateInput.bind(this)}
                    defaultValue={this.state.password}
                    placeholder="•••••••••••••"
                    pattern=".{8,}"
                    required/>
           </label>
-        </div  >
+        </div>
         {error ? <div className="form-control error">** {error}</div> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
@@ -133,10 +133,10 @@ class SignUp extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
-  renderStep2 () {
+  renderStep2() {
     const {error, loading, agreeToTerms, agreeToEmails} = this.state;
     return (
       <div key="step-2">
@@ -154,7 +154,7 @@ class SignUp extends React.Component {
                    name="passwordConfirm"
                    placeholder="•••••••••••••"
                    defaultValue={this.state.passwordConfirm}
-                   onChange={this._handleUpdatePasswordConfirm}
+                   onChange={this._handleUpdatePasswordConfirm.bind(this)}
                    autoFocus/>
           </label>
         </div>
@@ -163,7 +163,7 @@ class SignUp extends React.Component {
             <input type="checkbox"
                    name="agreeToEmails"
                    defaultChecked={agreeToEmails}
-                   onChange={this._handleUpdateInput}/>
+                   onChange={this._handleUpdateInput.bind(this)}/>
             Send occasional news via email
           </label>
         </div>
@@ -173,16 +173,16 @@ class SignUp extends React.Component {
                    name="agreeToTerms"
                    required
                    defaultChecked={agreeToTerms}
-                   onChange={this._handleUpdateInput}/>
+                   onChange={this._handleUpdateInput.bind(this)}/>
             I agree to the
-            {" "}
+            {' '}
             <a href="https://insomnia.rest/terms/" target="_blank">Terms</a>
           </label>
         </div>
         {error ? <small className="form-control error">** {error}</small> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
-            <a href="#" onClick={this._handleBack}>&lt; Back</a>
+            <a href="#" onClick={this._handleBack.bind(this)}>&lt; Back</a>
           </div>
           <div className="form-control right">
             {loading ?
@@ -192,10 +192,10 @@ class SignUp extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
-  render () {
+  render() {
     const {step} = this.state;
 
     let inner;
@@ -206,14 +206,14 @@ class SignUp extends React.Component {
     }
 
     return (
-      <form onSubmit={this._handleSubmit} method="POST">
+      <form onSubmit={this._handleSubmit.bind(this)} method="POST">
         {inner}
         <hr/>
         <div className="center">
           <a href="/terms/">Terms of Service</a>
         </div>
       </form>
-    )
+    );
   }
 }
 

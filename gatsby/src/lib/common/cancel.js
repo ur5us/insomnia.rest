@@ -1,6 +1,7 @@
 import React from 'react';
 import * as session from '../session';
 import {trackEvent} from '../analytics';
+import Link from '../../components/link';
 
 class CancelLink extends React.Component {
   _handleClick = async e => {
@@ -22,7 +23,7 @@ class CancelLink extends React.Component {
   };
 
   render () {
-    return <a href="#" onClick={this._handleClick}>Cancel Subscription</a>
+    return <Link to="#" onClick={this._handleClick}>Cancel Subscription</Link>
   }
 }
 

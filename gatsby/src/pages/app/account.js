@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import CancelLink from '../../lib/common/cancel';
 import SignOutLink from '../../lib/common/sign-out';
 import App from '../../lib/app-wrapper';
+import Link from '../../components/link';
 
 class Home extends React.Component {
-  renderNotice () {
+  renderNotice() {
     const {billingDetails, whoami} = this.props;
 
     let notice = null;
@@ -26,11 +27,11 @@ class Home extends React.Component {
             using Insomnia.
             <br/>
             <br/>
-            <a href="/app/subscribe/" className="button button--compact">
+            <Link to="/app/subscribe/" className="button button--compact">
               Update Subscription
-            </a>
+            </Link>
           </p>
-        )
+        );
       } else if (billingDetails.subCancelled && billingDetails.subPeriodEnd * 1000 > Date.now()) {
         const dateString = (new Date(billingDetails.subPeriodEnd * 1000)).toDateString();
         notice = (
@@ -38,22 +39,22 @@ class Home extends React.Component {
             Subscription <strong>Cancelled</strong> and will end <strong>{dateString}</strong>
             <br/>
             <br/>
-            <a href="/app/subscribe/" className="button button--compact">
+            <Link to="/app/subscribe/" className="button button--compact">
               Resubscribe
-            </a>
+            </Link>
           </p>
-        )
+        );
       } else if (billingDetails.subCancelled) {
         notice = (
           <p className="notice info">
             Your subscription is <strong>Cancelled</strong>
             <br/>
             <br/>
-            <a href="/app/subscribe/" className="button button--compact">
+            <Link to="/app/subscribe/" className="button button--compact">
               Resubscribe
-            </a>
+            </Link>
           </p>
-        )
+        );
       }
     } else {
       if (isTrialing && !isTrialOver) {
@@ -63,11 +64,11 @@ class Home extends React.Component {
             on your free trial
             <br/>
             <br/>
-            <a href="/app/subscribe/" className="button button--compact">
+            <Link to="/app/subscribe/" className="button button--compact">
               Select a Plan
-            </a>
+            </Link>
           </p>
-        )
+        );
       } else if (!isPremium && isTrialOver) {
         notice = (
           <p className="notice warn">
@@ -75,18 +76,18 @@ class Home extends React.Component {
             Please subscribe to a plan to continue using your account.
             <br/>
             <br/>
-            <a href="/app/subscribe/" className="button button--compact">
+            <Link to="/app/subscribe/" className="button button--compact">
               Update Subscription
-            </a>
+            </Link>
           </p>
-        )
+        );
       }
     }
 
     return <div>{notice}<br/></div>;
   }
 
-  renderLoginNotice () {
+  renderLoginNotice() {
     if (this.props.whoami.appNumLaunches) {
       return null;
     }
@@ -95,11 +96,10 @@ class Home extends React.Component {
       <p className="notice info">
         You may now sign in to the app 💻
       </p>
-    )
+    );
   }
 
-  render () {
-    console.log('PROPS', this.props);
+  render() {
     const {whoami, billingDetails} = this.props;
     const description = billingDetails && billingDetails.description;
 
@@ -118,11 +118,11 @@ class Home extends React.Component {
         {(billingDetails && !billingDetails.subCancelled) ? (
           <p>
             Your next invoice is scheduled for <strong>{periodEnd}</strong> and will be
-            {" "}
+            {' '}
             <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
             {billingDetails.subPercentOff ? (
               <span className="success bold">
-                {" "}
+                {' '}
                 (after {billingDetails.subPercentOff}% discount)
               </span>
             ) : null}
@@ -133,21 +133,21 @@ class Home extends React.Component {
         <ul>
           <li>
             {billingDetails
-              ? <a href="/app/subscribe/">Change Subscription</a>
-              : <a href="/app/subscribe/">Choose Plan</a>
+              ? <Link to="/app/subscribe/">Change Subscription</Link>
+              : <Link to="/app/subscribe/">Choose Plan</Link>
             }
           </li>
           <li>
-            <a href="/app/teams/">Manage Teams</a>
+            <Link to="/app/teams/">Manage Teams</Link>
           </li>
           <li>
-            <a href="/app/change-password/">Change Password</a>
+            <Link to="/app/change-password/">Change Password</Link>
           </li>
           <li>
-            <a href="/app/change-email/">Change Email</a>
+            <Link to="/app/change-email/">Change Email</Link>
           </li>
           <li>
-            <a href="/app/invoices/">Invoices</a>
+            <Link to="/app/invoices/">Invoices</Link>
           </li>
           {billingDetails ? <li><CancelLink/></li> : null}
           <li>
@@ -155,7 +155,7 @@ class Home extends React.Component {
           </li>
         </ul>
       </div>
-    )
+    );
   }
 }
 

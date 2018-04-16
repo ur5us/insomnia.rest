@@ -5,6 +5,7 @@ import './index.less';
 import Navbar from '../partials/navbar';
 import Footer from '../partials/footer';
 import Title from '../partials/title';
+import * as session from '../lib/session';
 
 export default class extends React.Component {
   _updateBodyAttrs() {
@@ -25,7 +26,10 @@ export default class extends React.Component {
     return (
       <React.Fragment>
         <Title/>
-        <Navbar floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}/>
+        <Navbar
+          loggedIn={session.isLoggedIn()}
+          floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}
+        />
         <main role="main">
           {children()}
         </main>

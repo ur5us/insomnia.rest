@@ -11,11 +11,10 @@ class Navbar extends React.Component {
     loggedIn: false
   };
 
-  render () {
-    const {floating, loggedIn} = this.props;
+  render() {
     return (
       <nav className={classnames('navbar', {
-        'navbar--floating': floating
+        'navbar--floating': this.props.floating
       })}>
         <div className="container">
           <div className="row">
@@ -28,11 +27,15 @@ class Navbar extends React.Component {
               </Link>
 
               <ul className="navbar__items">
-                {menus.main.map(item => (
+                {menus.main.filter(({loggedIn}) => {
+                  if (typeof loggedIn !== 'boolean') {
+                    return true;
+                  }
+
+                  return loggedIn === this.props.loggedIn;
+                }).map(item => (
                   <li key={item.key} data-menu-item={item.key}>
-                    {!item.loggedIn || (item.loggedIn && loggedIn) ? (
-                      <Link to={item.url}>{item.name}</Link>
-                    ) : null}
+                    <Link to={item.url}>{item.name}</Link>
                   </li>
                 ))}
                 <li data-menu-item="download">
@@ -47,4 +50,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar
+export default Navbar;

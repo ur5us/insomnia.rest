@@ -2,6 +2,8 @@ import React from 'react';
 import * as session from './session';
 import {setUserId} from './analytics';
 
+let stateCache = null;
+
 class App extends React.Component {
   state = {
     initialized: false,
@@ -12,16 +14,26 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.init();
+    if (stateCache) {
+      this.setState(stateCache);
+    } else {
+      this.init();
+    }
   }
 
-  async init() {
+  componentDidUpdate(prevProps, prevStat, snapshot) {
+    stateCache = this.state;
+  }
+
+  async init(isReloading) {
     if (this.props.noAuth) {
       this.setState({initialized: true});
       return;
     }
 
-    this.setState({initialized: true, loading: true});
+    if (!isReloading) {
+      this.setState({initialized: true, loading: true});
+    }
 
     let whoami;
 
@@ -67,6 +79,7 @@ class App extends React.Component {
           whoami: this.state.whoami,
           billingDetails: this.state.billingDetails,
           teams: this.state.teams,
+          handleReload: this.init.bind(this, true)
         })}
       </section>
     );
