@@ -102,6 +102,7 @@ function generateChangelog () {
     const content = fs.readFileSync(p, 'utf8');
     const frontmatter = matter(content).data;
     items.push({
+      date: frontmatter.date,
       version: frontmatter.slug,
       channel: frontmatter.channel || 'stable',
       link: frontmatter.link || null,
@@ -110,5 +111,7 @@ function generateChangelog () {
       fixes: frontmatter.fixes || [],
     });
   }
-  return items;
+  return items.sort((a, b) => (
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  ));
 }
