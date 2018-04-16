@@ -1,8 +1,10 @@
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
 
-const dirname = process.argv[2];
+const assets = 'src/assets';
+const static = 'static';
 
 /** Returns last day of last month in YYYY-MM-DD format */
 function endDate () {
@@ -13,15 +15,10 @@ function endDate () {
   )).join('-');
 }
 
-
-if (!dirname) {
-  console.log('No pathname specified');
-  process.exit(1);
-}
-
 (async function run () {
   const baremetricsData = await fetchBaremetrics();
   const planData = await fetchPlans();
+  const changelog = generateChangelog();
   const metricsBody = JSON.stringify({
     metrics: baremetricsData.metrics,
     plans: planData
@@ -29,11 +26,13 @@ if (!dirname) {
 
   const contributors = await fetchContributors();
   const contributorsBody = JSON.stringify(contributors, null, '\t');
+  const changelogBody = JSON.stringify(changelog, null, '\t');
 
-  fs.writeFileSync(path.join(dirname, 'baremetrics.json'), metricsBody);
-  fs.writeFileSync(path.join(dirname, 'contributors.json'), contributorsBody);
+  fs.writeFileSync(path.join(assets, 'baremetrics.json'), metricsBody);
+  fs.writeFileSync(path.join(assets, 'contributors.json'), contributorsBody);
+  fs.writeFileSync(path.join(static, 'changelog-json.html'), changelogBody);
 
-  console.log('Wrote metrics to ' + dirname);
+  console.log('Wrote metrics to ' + assets);
 })();
 
 function fetchBaremetrics () {
@@ -90,4 +89,26 @@ function fetchContributors () {
       resolve(JSON.parse(body));
     });
   });
+}
+
+function generateChangelog () {
+  const root = path.join(__dirname, '..', 'content', 'changelog');
+  const items = [];
+  for (const name of fs.readdirSync(root)) {
+    const p = path.join(root, name);
+    if (path.extname(p) !== '.md') {
+      continue;
+    }
+    const content = fs.readFileSync(p, 'utf8');
+    const frontmatter = matter(content).data;
+    items.push({
+      version: frontmatter.slug,
+      channel: frontmatter.channel || 'stable',
+      link: frontmatter.link || null,
+      major: frontmatter.major || [],
+      minor: frontmatter.minor || [],
+      fixes: frontmatter.fixes || [],
+    });
+  }
+  return items;
 }
