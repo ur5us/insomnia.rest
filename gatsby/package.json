@@ -6,7 +6,7 @@
     "develop.yarn": "yarn run develop",
     "develop": "gatsby develop --port 8001",
     "build:data": "node ./scripts/fetch-metrics.js",
-    "build": "gatsby build",
+    "build": "yarn run build:data && gatsby build",
     "serve": "gatsby serve"
   },
   "dependencies": {
