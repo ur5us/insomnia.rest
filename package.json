@@ -17,7 +17,6 @@
     "start:app": "NODE_ENV=development webpack --config webpack.config.babel.js --watch",
     "start:hugo": "hugo --source site serve --buildDrafts --buildFuture --bind 0.0.0.0",
     "start": "npm run build:changelog && npm run build:metrics && concurrently --kill-others \"npm run start:hugo\" \"npm run start:app\" \"npm run start:functions\""
-
   },
   "repository": {
     "type": "git",
