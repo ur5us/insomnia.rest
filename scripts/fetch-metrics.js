@@ -1,8 +1,10 @@
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
 
-const pathname = process.argv[2];
+const dirAssets = 'src/assets';
+const dirChangelog = 'static';
 
 /** Returns last day of last month in YYYY-MM-DD format */
 function endDate () {
@@ -13,22 +15,24 @@ function endDate () {
   )).join('-');
 }
 
-
-if (!pathname) {
-  console.log('No pathname specified');
-  process.exit(1);
-}
-
-
 (async function run () {
   const baremetricsData = await fetchBaremetrics();
   const planData = await fetchPlans();
-  const body = JSON.stringify({
+  const changelog = generateChangelog();
+  const metricsBody = JSON.stringify({
     metrics: baremetricsData.metrics,
     plans: planData
   }, null, '\t');
-  fs.writeFileSync(pathname, `window.__metrics = ${body}`);
-  console.log('Wrote metrics to ' + pathname);
+
+  const contributors = await fetchContributors();
+  const contributorsBody = JSON.stringify(contributors, null, '\t');
+  const changelogBody = JSON.stringify(changelog, null, '\t');
+
+  fs.writeFileSync(path.join(dirAssets, 'baremetrics.json'), metricsBody);
+  fs.writeFileSync(path.join(dirAssets, 'contributors.json'), contributorsBody);
+  fs.writeFileSync(path.join(dirChangelog, 'changelog.json'), changelogBody);
+
+  console.log('Wrote metrics to ' + dirAssets);
 })();
 
 function fetchBaremetrics () {
@@ -67,4 +71,47 @@ function fetchPlans () {
       resolve(JSON.parse(body));
     });
   });
+}
+
+function fetchContributors () {
+  return new Promise((resolve, reject) => {
+    const options = {
+      method: 'GET',
+      url: 'https://api.github.com/repos/getinsomnia/insomnia/contributors',
+      headers: {'User-Agent': `insomnia/website`}
+    };
+
+    request(options, function (err, response, body) {
+      if (response.statusCode !== 200) {
+        return reject(new Error('Plans request failed: ' + response.body));
+      }
+
+      resolve(JSON.parse(body));
+    });
+  });
+}
+
+function generateChangelog () {
+  const root = path.join(__dirname, '..', 'content', 'changelog');
+  const items = [];
+  for (const name of fs.readdirSync(root)) {
+    const p = path.join(root, name);
+    if (path.extname(p) !== '.md') {
+      continue;
+    }
+    const content = fs.readFileSync(p, 'utf8');
+    const frontmatter = matter(content).data;
+    items.push({
+      date: frontmatter.date,
+      version: frontmatter.slug,
+      channel: frontmatter.channel || 'stable',
+      link: frontmatter.link || null,
+      major: frontmatter.major || [],
+      minor: frontmatter.minor || [],
+      fixes: frontmatter.fixes || [],
+    });
+  }
+  return items.sort((a, b) => (
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  ));
 }
