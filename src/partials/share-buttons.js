@@ -4,7 +4,7 @@ import Link from '../components/link';
 export const Twitter = ({title}) => (
   <Link to="#" onClick={e => {
     e.preventDefault();
-    const href = `http://twitter.com/share?url=${encodeURIComponent(window.location.url)}&text=${encodeURIComponent(title || document.title)}&via=GetInsomnia`;
+    const href = `http://twitter.com/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(title || document.title)}&via=GetInsomnia`;
     window.open(href, 'twitter-share', 'width=800,height=600');
   }}
      title="Share on Twitter"
