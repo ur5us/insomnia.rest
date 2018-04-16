@@ -184,6 +184,8 @@ Home.propTypes = {
 };
 
 export default () => (
-  <App>{props => <Home {...props}/>}</App>
+  <App hideFooter title="Account" subTitle="Manage your Insomnia account">
+    {props => <Home {...props}/>}
+  </App>
 );
 

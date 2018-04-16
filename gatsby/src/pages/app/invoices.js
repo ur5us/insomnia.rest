@@ -84,6 +84,8 @@ Invoices.propTypes = {
 };
 
 export default () => (
-  <App>{props => <Invoices {...props}/>}</App>
+  <App title="Invoices" subTitle="View past invoices">
+    {props => <Invoices {...props}/>}
+  </App>
 );
 

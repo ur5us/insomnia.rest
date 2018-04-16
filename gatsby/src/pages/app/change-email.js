@@ -13,7 +13,7 @@ class ChangeEmail extends React.Component {
     error: '',
   };
 
-  _handleUpdateInput (e) {
+  _handleUpdateInput(e) {
     this.setState({[e.target.name]: e.target.value, error: ''});
   }
 
@@ -46,7 +46,7 @@ class ChangeEmail extends React.Component {
     }
   };
 
-  render () {
+  render() {
     const {whoami} = this.props;
     const {error, loginError, loading} = this.state;
     return (
@@ -79,7 +79,7 @@ class ChangeEmail extends React.Component {
           }
         </div>
       </form>
-    )
+    );
   }
 }
 
@@ -90,6 +90,8 @@ ChangeEmail.propTypes = {
 };
 
 export default () => (
-  <App>{props => <ChangeEmail {...props}/>}</App>
+  <App title="Update Email Address" subTitle="Your communication link with Insomnia">
+    {props => <ChangeEmail {...props}/>}
+  </App>
 );
 

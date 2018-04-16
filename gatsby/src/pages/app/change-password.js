@@ -28,7 +28,7 @@ class ChangePassword extends React.Component {
     }
   };
 
-  async _handleSubmit (e) {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -110,6 +110,8 @@ ChangePassword.propTypes = {
 };
 
 export default () => (
-  <App>{props => <ChangePassword {...props}/>}</App>
+  <App title="Change Password" subTitle="Your safe and secret key to Insomnia">
+    {props => <ChangePassword {...props}/>}
+  </App>
 );
 

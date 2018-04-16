@@ -2,6 +2,7 @@ import React from 'react';
 import * as session from '../../lib/session';
 import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
+import Link from '../../components/link';
 
 class SignUp extends React.Component {
   state = {
@@ -123,7 +124,7 @@ class SignUp extends React.Component {
         {error ? <div className="form-control error">** {error}</div> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
-            or, <a href="/app/login/">Log In</a>
+            or, <Link to="/app/login/">Log In</Link>
           </div>
           <div className="form-control right">
             {loading ?
@@ -144,7 +145,7 @@ class SignUp extends React.Component {
           <p className="notice info small">
             Keep your password safe because it cannot be recovered.
             <br/>
-            <a href="https://insomnia.rest/documentation/plus/">Read More</a> about
+            <Link to="https://insomnia.rest/documentation/plus/">Read More</Link> about
             how your password is used to encrypt your data.
           </p>
         </div>
@@ -176,13 +177,13 @@ class SignUp extends React.Component {
                    onChange={this._handleUpdateInput.bind(this)}/>
             I agree to the
             {' '}
-            <a href="https://insomnia.rest/terms/" target="_blank">Terms</a>
+            <Link to="https://insomnia.rest/terms/" target="_blank">Terms</Link>
           </label>
         </div>
         {error ? <small className="form-control error">** {error}</small> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
-            <a href="#" onClick={this._handleBack.bind(this)}>&lt; Back</a>
+            <Link to="#" onClick={this._handleBack.bind(this)}>&lt; Back</Link>
           </div>
           <div className="form-control right">
             {loading ?
@@ -210,7 +211,7 @@ class SignUp extends React.Component {
         {inner}
         <hr/>
         <div className="center">
-          <a href="/terms/">Terms of Service</a>
+          <Link to="/terms/">Terms of Service</Link>
         </div>
       </form>
     );
@@ -220,6 +221,8 @@ class SignUp extends React.Component {
 SignUp.propTypes = {};
 
 export default () => (
-  <App noAuth>{props => <SignUp {...props}/>}</App>
+  <App noAuth title="Sign Up" subTitle="Access data sync and other features 🌥">
+    {props => <SignUp {...props}/>}
+  </App>
 );
 

@@ -2,6 +2,7 @@ import React from 'react';
 import * as session from '../../lib/session';
 import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
+import Link from '../../components/link';
 
 class Login extends React.Component {
   state = {
@@ -15,7 +16,7 @@ class Login extends React.Component {
     this.setState({[e.target.name]: e.target.value, error: ''});
   };
 
-  async _handleSubmit (e) {
+  async _handleSubmit(e) {
     e.preventDefault();
 
     this.setState({loading: true});
@@ -34,7 +35,7 @@ class Login extends React.Component {
     }
   }
 
-  render () {
+  render() {
     const {loading, error} = this.state;
 
     return (
@@ -61,7 +62,7 @@ class Login extends React.Component {
         {error ? <small className="form-control error">** {error}</small> : null}
         <div className="form-row padding-top-sm">
           <div className="form-control">
-            Or, <a href="/app/signup">Sign Up</a>
+            Or, <Link to="/app/signup">Sign Up</Link>
           </div>
           <div className="form-control right">
             {loading ?
@@ -72,16 +73,18 @@ class Login extends React.Component {
         </div>
         <hr className="hr--skinny"/>
         <p className="center text-sm">
-          <a href="/documentation/forgot-password/" target="_blank">Forgot your password?</a>
+          <Link to="/documentation/forgot-password/" target="_blank">Forgot your password?</Link>
         </p>
       </form>
-    )
+    );
   }
 }
 
 Login.propTypes = {};
 
 export default () => (
-  <App noAuth>{props => <Login {...props}/>}</App>
+  <App noAuth title="Login" subTitle="Access your account 😀">
+    {props => <Login {...props}/>}
+  </App>
 );
 

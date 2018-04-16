@@ -5,18 +5,19 @@ import RemoveTeamAccountLink from '../../lib/teams/remove-account-link';
 import UpdateTeamNameForm from '../../lib/teams/update-name-form';
 import AddAccountToTeamForm from '../../lib/teams/add-account-form';
 import App from '../../lib/app-wrapper';
+import Link from '../../components/link';
 
 class Teams extends React.Component {
   state = {
     error: '',
   };
 
-  _getOwnedTeam () {
+  _getOwnedTeam() {
     const {teams, whoami} = this.props;
     return teams.find(t => t.ownerAccountId === whoami.accountId);
   };
 
-  renderEditTeam () {
+  renderEditTeam() {
     const {whoami, billingDetails} = this.props;
     const ownedTeam = this._getOwnedTeam();
 
@@ -36,12 +37,12 @@ class Teams extends React.Component {
           <p className="notice info">
             <strong>Upgrade to Teams</strong> to manage your own team
             <br/><br/>
-            <a href="/app/subscribe/#teams" className="button button--compact">
+            <Link to="/app/subscribe/#teams" className="button button--compact">
               Upgrade to Teams
-            </a>
+            </Link>
           </p>
         </div>
-      )
+      );
     } else if (ownedTeam) {
       const {handleReload} = this.props;
 
@@ -71,9 +72,9 @@ class Teams extends React.Component {
                 {accounts.map(account => (
                   <li key={account.id}>
                     {account.firstName} {account.lastName}
-                    {" "}
+                    {' '}
                     <small>({account.email})</small>
-                    {" "}
+                    {' '}
                     {account.id !== whoami.accountId ? (
                       <RemoveTeamAccountLink onRemove={this.props.handleReload}
                                              teamId={ownedTeam.id}
@@ -92,7 +93,7 @@ class Teams extends React.Component {
             </label>
           </div>
         </div>
-      )
+      );
     } else {
       // This should never happen...
       inner = (
@@ -100,7 +101,7 @@ class Teams extends React.Component {
           Uh oh! Your account does not have a default team. Please
           contact <strong>support@insomnia.rest</strong>
         </p>
-      )
+      );
     }
 
     return (
@@ -108,10 +109,10 @@ class Teams extends React.Component {
         <h2>Your Team</h2>
         {inner}
       </div>
-    )
+    );
   }
 
-  renderTeams () {
+  renderTeams() {
     const {teams, whoami} = this.props;
 
     return (
@@ -125,7 +126,7 @@ class Teams extends React.Component {
             {teams.map(team => (
               <li key={team.id}>
                 {team.name}
-                {" "}
+                {' '}
                 {team.ownerAccountId === whoami.accountId ? (
                   <span className="small pull-right">(your team)</span>
                 ) : (
@@ -145,17 +146,17 @@ class Teams extends React.Component {
           </p>
         )}
       </div>
-    )
+    );
   }
 
-  render () {
+  render() {
     return (
       <div>
         {this.renderEditTeam()}
         <hr/>
         {this.renderTeams()}
       </div>
-    )
+    );
   }
 }
 
@@ -184,5 +185,7 @@ Teams.propTypes = {
 };
 
 export default () => (
-  <App>{props => <Teams {...props}/>}</App>
+  <App title="Manage Teams" subTitle="Collaborate within Insomnia">
+    {props => <Teams {...props}/>}
+  </App>
 );

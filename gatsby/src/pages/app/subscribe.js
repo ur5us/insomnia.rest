@@ -4,6 +4,7 @@ import * as session from '../../lib/session';
 import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 import {site} from '../../config';
+import Link from '../../components/link';
 
 const planTypeTeam = 'team';
 const planTypePlus = 'plus';
@@ -416,7 +417,7 @@ class Subscribe extends React.Component {
 
         <hr className="hr--skinny"/>
         <p className="small subtle center">
-          Payments secured by <a href="https://stripe.com" target="_blank">Stripe</a>
+          Payments secured by <Link to="https://stripe.com" target="_blank">Stripe</Link>
         </p>
       </form>
     );
@@ -435,6 +436,8 @@ Subscribe.propTypes = {
 };
 
 export default () => (
-  <App>{props => <Subscribe {...props}/>}</App>
+  <App title="Subscribe to Plan" subTitle="Visa, MasterCard, or American Express">
+    {props => <Subscribe {...props}/>}
+  </App>
 );
 

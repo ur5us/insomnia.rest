@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as session from './session';
 import {setUserId} from './analytics';
+import Link from '../components/link';
 
 let stateCache = null;
 
@@ -64,7 +66,7 @@ class App extends React.Component {
     this.setState({whoami, teams, billingDetails, loading: false});
   };
 
-  render() {
+  renderBody() {
     if (!this.state.initialized || this.state.loading) {
       return (
         <div className="center text-lg subtle">
@@ -72,6 +74,8 @@ class App extends React.Component {
         </div>
       );
     }
+
+    const {title, subTitle} = this.props;
 
     return (
       <section className="container container--skinny">
@@ -84,6 +88,34 @@ class App extends React.Component {
       </section>
     );
   }
+
+  render() {
+    return (
+      <React.Fragment>
+        <article style={{minHeight: '25rem'}}>
+          <header className="container container--skinny header--big">
+            <h1>{this.props.title}</h1>
+            <p className="text-lg">{this.props.subTitle}</p>
+          </header>
+          {this.renderBody()}
+        </article>
+        {!this.props.hideFooter && (
+          <footer className="dark padding-bottom padding-top">
+            <div className="container container--skinny">
+              <Link to="/app/account/">&laquo; Back to Account</Link>
+            </div>
+          </footer>
+        )}
+      </React.Fragment>
+    );
+  }
 }
+
+App.propTypes = {
+  title: PropTypes.string.isRequired,
+  subTitle: PropTypes.string.isRequired,
+  noAuth: PropTypes.bool,
+  hideFooter: PropTypes.bool,
+};
 
 export default App;
