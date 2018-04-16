@@ -62,9 +62,9 @@ export const menus = {
     key: 'changelog',
     url: '/changelog/',
   }, {
-      name: 'Download',
-      key: 'download',
-      url: '/download/',
+    name: 'Download',
+    key: 'download',
+    url: '/download/',
   }, {
     name: 'Terms',
     key: 'terms',

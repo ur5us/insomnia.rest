@@ -113,10 +113,10 @@ class Home extends React.Component {
 
     let billingLink = null;
     if (!billingDetails) {
-      billingLink = <a href="/app/subscribe/">Choose Plan</a>;
+      billingLink = <Link to="/app/subscribe/">Choose Plan</Link>;
     }
     if (billingDetails && billingDetails.isBillingAdmin) {
-      billingLink = <a href="/app/subscribe/">Change Subscription</a>;
+      billingLink = <Link to="/app/subscribe/">Change Subscription</Link>;
     }
 
     return (
