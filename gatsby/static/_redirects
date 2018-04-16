@@ -23,6 +23,7 @@
 /license/                                                        https://github.com/getinsomnia/insomnia/blob/master/LICENSE
 
 # Updated Changelogs
+/changelog-json/                                                 /changelog.json
 /changelog/5.12.0/                                               /changelog/5.12.1/
 /changelog/5.14.3/                                               /changelog/5.14.6/
 

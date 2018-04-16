@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const assets = 'src/assets';
-const static = 'static';
+const dirAssets = 'src/assets';
+const dirChangelog = 'static';
 
 /** Returns last day of last month in YYYY-MM-DD format */
 function endDate () {
@@ -28,11 +28,11 @@ function endDate () {
   const contributorsBody = JSON.stringify(contributors, null, '\t');
   const changelogBody = JSON.stringify(changelog, null, '\t');
 
-  fs.writeFileSync(path.join(assets, 'baremetrics.json'), metricsBody);
-  fs.writeFileSync(path.join(assets, 'contributors.json'), contributorsBody);
-  fs.writeFileSync(path.join(static, 'changelog-json.html'), changelogBody);
+  fs.writeFileSync(path.join(dirAssets, 'baremetrics.json'), metricsBody);
+  fs.writeFileSync(path.join(dirAssets, 'contributors.json'), contributorsBody);
+  fs.writeFileSync(path.join(dirChangelog, 'changelog.json'), changelogBody);
 
-  console.log('Wrote metrics to ' + assets);
+  console.log('Wrote metrics to ' + dirAssets);
 })();
 
 function fetchBaremetrics () {
