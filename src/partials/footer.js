@@ -1,12 +1,14 @@
 import React from 'react';
 import {links, menus, site} from '../config';
 import Link from '../components/link';
+import iconSrc from '../assets/icon.svg';
 
 class Footer extends React.Component {
   render () {
     return (
       <footer className="footer">
         <section>
+          <img src={iconSrc} alt="Insomnia REST Client logo"/>
           <p className="footer__menu">
             <Link to={links.rss} type="application/rss+xml" target="_blank" title="RSS">
               RSS

@@ -1,7 +1,6 @@
 import React from 'react';
 import DownloadButton from '../components/download-button';
 import SocialCards from '../components/social-cards';
-import Contributors from '../partials/contributors';
 import Img from 'gatsby-image';
 import Link from '../components/link';
 
@@ -78,9 +77,12 @@ export default ({data}) => (
         <div className="container center">
           <div className="row">
             <div className="col-12">
-              <h2 className="text-xxl">Get more done, faster</h2>
+              <h2 className="text-xxl">
+                More than an HTTP client
+              </h2>
               <p className="text-lg" style={{maxWidth: '35rem', margin: 'auto'}}>
-                Insomnia is more than <i>just</i> an HTTP client
+                Use advanced authentication schemes, request templates, or custom plugins to
+                get things done.
                 <br/>
                 <br/>
                 <DownloadButton/>
@@ -94,9 +96,9 @@ export default ({data}) => (
         <div className="container">
           <div className="row row-center-y">
             <div className="col-5">
-              <h3 className="text-xl">Never repeat yourself</h3>
+              <h3 className="text-xl">Reuse Common Values</h3>
               <p>
-                <strong>Reuse common values</strong> like API keys or
+                Reuse API keys or
                 session IDs. Define environment variables globally or
                 switch between sub-environments for a seamless
                 development/production workflow.
@@ -108,9 +110,9 @@ export default ({data}) => (
           </div>
           <div className="row row-center-y padding-top-lg">
             <div className="col-5">
-              <h3 className="text-xl">Write less code</h3>
+              <h3 className="text-xl">Generate Code Snippets</h3>
               <p>
-                <strong>Generate code snippets</strong> for over thirty
+                Generate http code for over thirty
                 language libraries, including Curl, NodeJS, Go, Swift,
                 Python, Java, C, and others.
               </p>
@@ -121,9 +123,9 @@ export default ({data}) => (
           </div>
           <div className="row row-center-y padding-top-lg">
             <div className="col-5">
-              <h3 className="text-xl">Love the experience</h3>
+              <h3 className="text-xl">A Beautiful Interface</h3>
               <p>
-                <strong>Get started quickly</strong> with Insomnia's
+                Get started quickly with Insomnia's
                 intuitive interface, and choose from nine unique color themes
                 to tailor the experience to <i>you</i>.
               </p>
@@ -165,14 +167,21 @@ export default ({data}) => (
                   </div>
                 ))}
               </div>
+              <p className="padding-top">
+                <DownloadButton/>
+              </p>
             </div>
           </div>
         </div>
       </section>
-      <section className="dark no-margin padding-bottom-lg padding-top-lg">
+      <section className="dark no-margin padding-bottom-lg">
         <div className="container">
           <div className="row">
             <div className="col-12 center">
+              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
+              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
+              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
+              <br/>
               <h2 className="text-xl">Still not convinced?</h2>
               <p>Maybe this big ol' list of features will help</p>
             </div>
@@ -226,7 +235,6 @@ export default ({data}) => (
           <br/>
         </div>
       </section>
-      <Contributors/>
     </main>
   </React.Fragment>
 );
