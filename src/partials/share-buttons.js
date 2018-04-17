@@ -71,9 +71,13 @@ export const Email = ({title}) => (
 const ShareButtons = ({title}) => (
   <div className="share-buttons">
     <Twitter title={title}/>
+    &nbsp;
     <GooglePlus title={title}/>
+    &nbsp;
     <Reddit title={title}/>
+    &nbsp;
     <Facebook title={title}/>
+    &nbsp;
     <Email title={title}/>
   </div>
 );

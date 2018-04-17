@@ -101,13 +101,15 @@ export default class extends React.Component {
             <div className="row center">
               <div className="col-3"/>
               <div className="col-6">
-                <h2>Thanks for choosing Insomnia</h2>
+                <h2>One more thing before you go?</h2>
                 <p>
                   Help out by spreading the word &#128522;
                 </p>
                 <div className="share-buttons">
                   <Twitter title="I just downloaded Insomnia! https://insomnia.rest"/>
+                  &nbsp;
                   <Facebook title="I just downloaded Insomnia! https://insomnia.rest"/>
+                  &nbsp;
                   <GooglePlus title="I just downloaded Insomnia! https://insomnia.rest"/>
                 </div>
               </div>
