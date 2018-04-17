@@ -1,6 +1,7 @@
 import React from 'react';
 import mainSrc from '../assets/screens/sharing.png';
 import Link from '../components/link';
+import Companies from '../partials/companies';
 
 export default () => (
   <React.Fragment>
@@ -42,9 +43,16 @@ export default () => (
         </p>
         <p className="center">
           <br/>
-          <Link className="button" to="/pricing/">Start Free Trial</Link>
+          <Link className="button button--big" to="/pricing/">Start Free Trial</Link>
         </p>
       </div>
+    </section>
+    <section className="dark no-margin padding-top padding-bottom center">
+      <h2>Hundreds of teams trust Insomnia</h2>
+      <br/>
+      <Companies/>
+      <br/>
+      <Link to="/pricing/" className="button button--big">Get Started</Link>
     </section>
   </React.Fragment>
 );
