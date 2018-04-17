@@ -74,16 +74,16 @@ export default ({data}) => (
         </div>
       </section>
 
-      <section className="dark no-margin padding-bottom padding-top-lg">
+      <section className="dark no-margin padding-bottom-lg padding-top-lg">
         <div className="container center">
           <div className="row">
             <div className="col-12">
               <h2 className="text-xxl">
-                More than an HTTP client
+                Much more than an HTTP client
               </h2>
               <p className="text-lg" style={{maxWidth: '35rem', margin: 'auto'}}>
-                Use advanced authentication schemes, request templates, or custom plugins to
-                get things done.
+                Advanced authentication helpers, templating, and request chaining help
+                get things done faster.
                 <br/>
                 <br/>
                 <DownloadButton className="button--big"/>
@@ -158,7 +158,7 @@ export default ({data}) => (
         <div className="container">
           <div className="row">
             <div className="col-12 center">
-              <h2>More than 100,000 developers trust Insomnia</h2>
+              <h2>More than 300,000 developers trust Insomnia</h2>
               <p className="padding-top">
                 <Companies/>
                 <br/>
