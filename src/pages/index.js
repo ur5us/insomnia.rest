@@ -136,24 +136,6 @@ export default ({data}) => (
           </div>
         </div>
       </section>
-
-      <section className="light no-margin padding-bottom-lg padding-top-lg">
-        <div className="container center">
-          <div className="row">
-            <div className="col-12">
-              <h2>Insomnia is for <i>everyone</i> &#10084;</h2>
-              <p style={{maxWidth: '35rem', margin: 'auto'}} className="padding-bottom">
-                Insomnia is collaborative, free, <Link to="https://github.com/getinsomnia/insomnia">
-                open source</Link>, and cross-platform – making it the perfect companion for both
-                individuals and teams.
-              </p>
-              <DownloadButton/>
-              &nbsp;
-              <Link to="/teams" className="button button--no-outline">Learn About Teams</Link>
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="dark no-margin padding-bottom padding-top-lg">
         <div className="container">
           <div className="row">
@@ -163,7 +145,13 @@ export default ({data}) => (
                 <Companies/>
                 <br/>
                 <br/>
-                <DownloadButton className="button--big"/>
+                <DownloadButton className="button--big">
+                  Download App
+                </DownloadButton>
+                &nbsp;&nbsp;
+                <Link to="/teams" className="button button--big button--no-outline">
+                  Team Edition
+                </Link>
               </p>
             </div>
           </div>
@@ -173,9 +161,13 @@ export default ({data}) => (
         <div className="container">
           <div className="row">
             <div className="col-12 center">
-              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
-              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
-              <div className="subtle padding-top padding-bottom-lg">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
+              <div className="subtle padding-top padding-bottom">&#9675;</div>
               <br/>
               <h2 className="text-xl">Still not convinced?</h2>
               <p>Maybe this big ol' list of features will help</p>
