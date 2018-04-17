@@ -12,8 +12,9 @@ class DownloadButton extends React.Component {
   }
 
   componentDidMount() {
+    const isMobile = window.innerWidth <= 800 && window.innerHeight <= 600;
     this.setState({
-      platform: navigator.platform.toLowerCase()
+      platform: isMobile ? 'Mobile' : navigator.platform.toLowerCase(),
     });
   }
 
@@ -32,7 +33,7 @@ class DownloadButton extends React.Component {
       href = '/download/#windows';
     } else if (platform.indexOf('linux') !== -1) {
       platformName = 'Linux';
-      href = '/download/#ubuntu';
+      href = '/download/#linux';
     }
 
     const message = children || `Download for ${platformName}`;
