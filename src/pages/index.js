@@ -96,11 +96,10 @@ export default ({data}) => (
         <div className="container">
           <div className="row row-center-y">
             <div className="col-5">
-              <h3 className="text-xl">Reuse Common Values</h3>
+              <h3 className="text-xl">Reusable Values</h3>
               <p>
-                Reuse API keys or
-                session IDs. Define environment variables globally or
-                switch between sub-environments for a seamless
+                Reuse API keys or session IDs. <strong>Define environment
+                variables</strong> globally or switch between sub-environments for a seamless
                 development/production workflow.
               </p>
             </div>
@@ -110,10 +109,10 @@ export default ({data}) => (
           </div>
           <div className="row row-center-y padding-top-lg">
             <div className="col-5">
-              <h3 className="text-xl">Generate Code Snippets</h3>
+              <h3 className="text-xl">Code Snippet Generation</h3>
               <p>
-                Generate http code for over thirty
-                language libraries, including Curl, NodeJS, Go, Swift,
+                Generate http code for <strong>over thirty
+                language libraries</strong>, including Curl, NodeJS, Go, Swift,
                 Python, Java, C, and others.
               </p>
             </div>
@@ -123,11 +122,11 @@ export default ({data}) => (
           </div>
           <div className="row row-center-y padding-top-lg">
             <div className="col-5">
-              <h3 className="text-xl">A Beautiful Interface</h3>
+              <h3 className="text-xl">Beautiful Interface</h3>
               <p>
                 Get started quickly with Insomnia's
-                intuitive interface, and choose from nine unique color themes
-                to tailor the experience to <i>you</i>.
+                intuitive interface, and choose from <strong>nine unique
+                themes</strong> to tailor the experience to <i>you</i>.
               </p>
             </div>
             <div className="col-7">
