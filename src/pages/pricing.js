@@ -90,8 +90,44 @@ export default () => (
             </footer>
           </section>
         </div>
-
+        <div className="padding-top-sm center">
+          <small><em className="subtle">*All prices listed in US dollars</em></small>
+        </div>
+      </section>
+      <section className="container padding-top">
         <div className="row">
+          <div className="col-6">
+            <p>
+              <strong>Can I add and remove team members?</strong><br/>
+              Yes, at any time you can adjust your plan limits to add or remove team members and
+              your next invoice will be adjusted accordingly.
+            </p>
+          </div>
+          <div className="col-6">
+            <p>
+              <strong>Do team members receive any benefits?</strong><br/>
+              All members of a paying team automatically receive the benefits included in
+              the Plus plan.
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <p>
+              <strong>Can I switch plans after subscribing?</strong><br/>
+              Yes, at any time. When upgrading or downgrading your plan, you will
+              receive either a pro-rated charge or refund, depending on the cost of your new plan.
+            </p>
+          </div>
+          <div className="col-6">
+            <p>
+              <strong>Is there a discount for subscribing annually?</strong><br/>
+              Yes, annual subscriptions include two free months of service per year, which is
+              roughly a 15% discount.
+            </p>
+          </div>
+        </div>
+        <div className="row padding-top">
           <section className="col-12 center small">
             <p>
               Please send any questions to&nbsp;
