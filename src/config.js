@@ -66,6 +66,10 @@ export const menus = {
     key: 'download',
     url: '/download/',
   }, {
+    name: 'Teams',
+    key: 'teams',
+    url: '/teams/',
+  }, {
     name: 'Terms',
     key: 'terms',
     url: '/terms/',
