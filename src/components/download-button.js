@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import {links} from '../config';
 import Link from './link';
 
@@ -18,6 +19,7 @@ class DownloadButton extends React.Component {
 
   render() {
     const {platform} = this.state;
+    const {className, children} = this.props;
 
     let href = links.download;
 
@@ -33,10 +35,10 @@ class DownloadButton extends React.Component {
       href = '/download/#ubuntu';
     }
 
-    const message = this.props.children || `Download for ${platformName}`;
+    const message = children || `Download for ${platformName}`;
 
     return (
-      <Link to={href} className="button">
+      <Link to={href} className={classnames('button', className)}>
         {message}
       </Link>
     );

@@ -32,7 +32,7 @@ export default ({data}) => (
           <div className="row">
             <div className="col-12">
               <h2 className="text-xxl">
-                Powerful HTTP toolbelt, in one intuitive app
+                Powerful HTTP tool belt, in one intuitive app
               </h2>
               <p className="text-lg" style={{maxWidth: '35rem', margin: 'auto'}}>
                 <strong>Free</strong> and <strong>open source</strong> on Mac, Windows, and Linux
@@ -40,7 +40,7 @@ export default ({data}) => (
             </div>
           </div>
           <div className="row">
-            <div className="col-4 padding-top-lg">
+            <div className="col-4 padding-top">
               <div className="img--promo">
                 <Img sizes={data.templateImg.childImageSharp.sizes} alt="Request Templating"/>
               </div>
@@ -50,7 +50,7 @@ export default ({data}) => (
                 just hit send.
               </p>
             </div>
-            <div className="col-4 padding-top-lg">
+            <div className="col-4 padding-top">
               <div className="img--promo">
                 <Img sizes={data.responsesImg.childImageSharp.sizes} alt="Response Details"/>
               </div>
@@ -60,7 +60,7 @@ export default ({data}) => (
                 headers, cookies, and more!
               </p>
             </div>
-            <div className="col-4 padding-top-lg">
+            <div className="col-4 padding-top">
               <div className="img--promo">
                 <Img sizes={data.dragImg.childImageSharp.sizes} alt="Request Organization"/>
               </div>
@@ -74,7 +74,7 @@ export default ({data}) => (
         </div>
       </section>
 
-      <section className="dark no-margin padding-bottom-lg padding-top-lg">
+      <section className="dark no-margin padding-bottom padding-top-lg">
         <div className="container center">
           <div className="row">
             <div className="col-12">
@@ -86,7 +86,7 @@ export default ({data}) => (
                 get things done.
                 <br/>
                 <br/>
-                <DownloadButton/>
+                <DownloadButton className="button--big"/>
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default ({data}) => (
               <Img sizes={data.environmentsImg.childImageSharp.sizes} alt="Environments"/>
             </div>
           </div>
-          <div className="row row-center-y padding-top-lg">
+          <div className="row row-center-y padding-top">
             <div className="col-5">
               <h3 className="text-xl">Code Snippet Generation</h3>
               <p>
@@ -121,7 +121,7 @@ export default ({data}) => (
               <Img sizes={data.codeImg.childImageSharp.sizes} alt="Code Generation"/>
             </div>
           </div>
-          <div className="row row-center-y padding-top-lg">
+          <div className="row row-center-y padding-top">
             <div className="col-5">
               <h3 className="text-xl">Beautiful Interface</h3>
               <p>
@@ -159,10 +159,11 @@ export default ({data}) => (
           <div className="row">
             <div className="col-12 center">
               <h2>More than 100,000 developers trust Insomnia</h2>
-              <br/>
               <p className="padding-top">
                 <Companies/>
-                <DownloadButton/>
+                <br/>
+                <br/>
+                <DownloadButton className="button--big"/>
               </p>
             </div>
           </div>
@@ -224,7 +225,7 @@ export default ({data}) => (
           <div className="center">
             <p>Go on, give it a try. You won't regret it.</p>
             <br/>
-            <DownloadButton/>
+            <DownloadButton className="button--big"/>
           </div>
           <br/>
         </div>
