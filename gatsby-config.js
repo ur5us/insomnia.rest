@@ -76,15 +76,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'assets',
-        path: `${__dirname}/src/assets/`,
+        name: 'page',
+        path: `${__dirname}/content/pages/`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'page',
-        path: `${__dirname}/content/pages/`,
+        name: 'assets',
+        path: `${__dirname}/src/assets/`,
       },
     },
     'gatsby-transformer-remark',
