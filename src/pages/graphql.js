@@ -36,7 +36,7 @@ export default () => (
         <div className="row">
           <div className="col-12">
             <h2 className="text-xxl">
-              Not only for GraphQL 🚀
+              GraphQL and Beyond 🚀
             </h2>
             <p className="text-lg">
               GraphQL <strong>autocomplete</strong> and <strong>linting</strong> plus
