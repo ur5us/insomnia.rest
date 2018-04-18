@@ -36,10 +36,10 @@ export default () => (
         <div className="row">
           <div className="col-12">
             <h2 className="text-xxl">
-              Way more than just GraphQL 🚀
+              Not only for GraphQL 🚀
             </h2>
             <p className="text-lg">
-              GraphQL <strong>autocomplete</strong> and <strong>linting</strong>, with
+              GraphQL <strong>autocomplete</strong> and <strong>linting</strong> plus
               Insomnia's HTTP tool belt
             </p>
           </div>
