@@ -39,7 +39,7 @@ export default () => (
               Way more than just GraphQL 🚀
             </h2>
             <p className="text-lg">
-              GraphQL <strong>Autocomplete</strong> and <strong>linting</strong>, with
+              GraphQL <strong>autocomplete</strong> and <strong>linting</strong>, with
               Insomnia's HTTP tool belt
             </p>
           </div>
@@ -51,7 +51,7 @@ export default () => (
             </div>
             <h3>Query Completion</h3>
             <p>
-              Autocompletion of field names and arguments makes constructing GraphQL queries
+              Autocomplete of field names and arguments makes constructing GraphQL queries
               a breeze.
             </p>
           </div>
@@ -70,7 +70,7 @@ export default () => (
             </div>
             <h3>Advanced Features</h3>
             <p>
-              Access Insomnia's existing features like template tags, environment variables, and plugins.
+              Insomnia's existing features like template tags, environments, and plugins improve productivity.
             </p>
           </div>
         </div>
