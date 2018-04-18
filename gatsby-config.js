@@ -21,18 +21,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'Insomnia REST Client',
-        short_name: 'Insomnia',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#675BC0',
-        display: 'minimal-ui',
-        icon: 'src/assets/favicon.png'
-      },
-    },
-    {
       resolve: 'gatsby-plugin-favicon',
       options: {
         logo: './src/assets/favicon.png',
@@ -90,6 +78,18 @@ module.exports = {
     'gatsby-transformer-remark',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Insomnia REST Client',
+        short_name: 'Insomnia',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#675BC0',
+        display: 'minimal-ui',
+        icon: 'src/assets/favicon.png'
+      },
+    },
     {
       resolve: 'gatsby-plugin-feed',
       options: {
