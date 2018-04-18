@@ -44,30 +44,6 @@ export default () => (
 
           <section className="col-6 pricing__column pricing__column--best">
             <header className="pricing__column__header">
-              <h1>Plus</h1>
-            </header>
-            <div className="pricing__column__body">
-              <h2>
-                $5 / month<br/>
-                <span className="subtle small">or $50 / year</span>
-              </h2>
-              <ul>
-                <li><strong>All Free features</strong></li>
-                <li><Link to="/documentation/security/">E2EE</Link> Data Sync &#128272;</li>
-                <li>Unlimited devices</li>
-                <li>Premium color themes</li>
-                <li><strong>Support future dev &#x1f4bb;</strong></li>
-              </ul>
-            </div>
-            <footer className="pricing__column__footer">
-              <Link to="/app/subscribe/#plus" className="button">
-                Start Free Trial
-              </Link>
-            </footer>
-          </section>
-
-          <section className="col-6 pricing__column pricing__column--better">
-            <header className="pricing__column__header">
               <h1>Teams</h1>
             </header>
             <div className="pricing__column__body">
@@ -85,6 +61,30 @@ export default () => (
             </div>
             <footer className="pricing__column__footer">
               <Link to="/app/subscribe/#teams" className="button">
+                Start Free Trial
+              </Link>
+            </footer>
+          </section>
+
+          <section className="col-6 pricing__column pricing__column--better">
+            <header className="pricing__column__header">
+              <h1>Plus</h1>
+            </header>
+            <div className="pricing__column__body">
+              <h2>
+                $5 / month<br/>
+                <span className="subtle small">or $50 / year</span>
+              </h2>
+              <ul>
+                <li><strong>All Free features</strong></li>
+                <li><Link to="/documentation/security/">E2EE</Link> Data Sync &#128272;</li>
+                <li>Unlimited devices</li>
+                <li>Premium color themes</li>
+                <li><strong>Support future dev &#x1f4bb;</strong></li>
+              </ul>
+            </div>
+            <footer className="pricing__column__footer">
+              <Link to="/app/subscribe/#plus" className="button">
                 Start Free Trial
               </Link>
             </footer>
