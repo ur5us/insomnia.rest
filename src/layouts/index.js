@@ -19,7 +19,7 @@ export default class extends React.Component {
 
   componentDidMount() {
     this._updateBodyAttrs();
-    this.setState({isLoggedIn: isLoggedIn()})
+    this.setState({isLoggedIn: isLoggedIn()});
   }
 
   componentDidUpdate() {
@@ -27,15 +27,12 @@ export default class extends React.Component {
   }
 
   render() {
-    const {children, location} = this.props;
+    const {children} = this.props;
     const {isLoggedIn} = this.state;
     return (
       <React.Fragment>
         <Title/>
-        <Navbar
-          loggedIn={isLoggedIn}
-          floating={location.pathname.match(/^\/(|plus|teams)\/?$/)}
-        />
+        <Navbar loggedIn={isLoggedIn}/>
         <main role="main">
           {children()}
         </main>

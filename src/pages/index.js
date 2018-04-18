@@ -4,9 +4,13 @@ import SocialCards from '../components/social-cards';
 import Img from 'gatsby-image';
 import Link from '../components/link';
 import Companies from '../partials/companies';
+import Helmet from 'react-helmet';
 
 export default ({data}) => (
   <React.Fragment>
+    <Helmet>
+      <body data-navbar="floating"/>
+    </Helmet>
     <SocialCards title="Insomnia" summary="Debug APIs like a human, not a robot" isBanner/>
     <div className="jumbotron">
       <div className="container">

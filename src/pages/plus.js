@@ -1,9 +1,14 @@
 import React from 'react';
 import mainSrc from '../assets/screens/main.png';
+import Helmet from 'react-helmet';
 import Link from '../components/link';
+import Companies from '../partials/companies';
 
 export default () => (
   <React.Fragment>
+    <Helmet>
+      <body data-template="skinny" data-navbar="floating"/>
+    </Helmet>
     <div className="jumbotron">
       <div className="container container--skinny">
         <div className="row">
@@ -47,5 +52,13 @@ export default () => (
         </p>
       </div>
     </section>
+    <section className="dark no-margin padding-top padding-bottom center">
+      <h2>Over 300,000 developers trust Insomnia</h2>
+      <br/>
+      <Companies/>
+      <br/>
+      <Link to="/pricing/" className="button button--big">Get Started</Link>
+    </section>
   </React.Fragment>
 );
+

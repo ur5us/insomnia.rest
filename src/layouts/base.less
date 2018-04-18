@@ -765,20 +765,18 @@ small,
 /* NAV BAR */
 /* ~~~~~~~ */
 
-.navbar.navbar--floating {
+body[data-navbar="floating"] .navbar {
   float: left;
   width: 100%;
-}
-
-.navbar.navbar--floating a {
-  opacity: 0.5;
-  transition: opacity 200ms;
-  color: #fff !important;
-}
-
-.navbar.navbar--floating a:hover {
-  color: #fff;
-  opacity: 1;
+  a {
+    opacity: 0.5;
+    transition: opacity 200ms;
+    color: #fff !important;
+  }
+  a:hover {
+    color: #fff;
+    opacity: 1;
+  }
 }
 
 .navbar * {
@@ -1073,6 +1071,7 @@ a.tags__tag:hover {
 /*margin-top: 4rem;*/
 /*}*/
 
+body[data-template="skinny"],
 body[data-pathname^='/changelog'],
 body[data-pathname^='/terms'],
 body[data-pathname^='/support'],

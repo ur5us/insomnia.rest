@@ -1,10 +1,14 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import mainSrc from '../assets/screens/sharing.png';
 import Link from '../components/link';
 import Companies from '../partials/companies';
 
 export default () => (
   <React.Fragment>
+    <Helmet>
+      <body data-template="skinny" data-navbar="floating"/>
+    </Helmet>
     <div className="jumbotron">
       <div className="container container--skinny">
         <div className="row">

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import Link from '../components/link';
 import DownloadButton from '../components/download-button';
 import {site, menus} from '../config';
@@ -7,15 +6,12 @@ import iconSrc from '../assets/icon.svg';
 
 class Navbar extends React.Component {
   static defaultProps = {
-    floating: false,
     loggedIn: false
   };
 
   render() {
     return (
-      <nav className={classnames('navbar', {
-        'navbar--floating': this.props.floating
-      })}>
+      <nav className="navbar">
         <div className="container">
           <div className="row">
             <div className="col-12 navbar__container">
