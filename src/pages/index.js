@@ -180,7 +180,7 @@ export default ({data}) => (
           <div className="row feature-list">
             <div className="col-6">
               <ul>
-                <li>GraphQL support</li>
+                <li><Link to="/graphql/">GraphQL</Link> support</li>
                 <li>OAuth 1.0 and 2.0 auth</li>
                 <li>Multipart form builder</li>
                 <li>Query parameter builder</li>
