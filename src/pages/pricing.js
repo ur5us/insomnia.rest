@@ -42,30 +42,6 @@ export default () => (
             </footer>
           </section>
 
-          <section className="col-6 pricing__column pricing__column--best">
-            <header className="pricing__column__header">
-              <h1>Teams</h1>
-            </header>
-            <div className="pricing__column__body">
-              <h2>
-                $8 / user / month<br/>
-                <span className="subtle small">or $80 / user / year</span>
-                <br/>
-              </h2>
-              <ul>
-                <li><strong>All Plus features</strong></li>
-                <li>Workspace sharing &#x1f64c;</li>
-                <li>Team management</li>
-                <li>Priority email support</li>
-              </ul>
-            </div>
-            <footer className="pricing__column__footer">
-              <Link to="/app/subscribe/#teams" className="button">
-                Start Free Trial
-              </Link>
-            </footer>
-          </section>
-
           <section className="col-6 pricing__column pricing__column--better">
             <header className="pricing__column__header">
               <h1>Plus</h1>
@@ -85,6 +61,30 @@ export default () => (
             </div>
             <footer className="pricing__column__footer">
               <Link to="/app/subscribe/#plus" className="button">
+                Start Free Trial
+              </Link>
+            </footer>
+          </section>
+
+          <section className="col-6 pricing__column pricing__column--best">
+            <header className="pricing__column__header">
+              <h1>Teams</h1>
+            </header>
+            <div className="pricing__column__body">
+              <h2>
+                $8 / user / month<br/>
+                <span className="subtle small">or $80 / user / year</span>
+                <br/>
+              </h2>
+              <ul>
+                <li><strong>All Plus features</strong></li>
+                <li>Workspace sharing &#x1f64c;</li>
+                <li>Team management</li>
+                <li>Priority email support</li>
+              </ul>
+            </div>
+            <footer className="pricing__column__footer">
+              <Link to="/app/subscribe/#teams" className="button">
                 Start Free Trial
               </Link>
             </footer>
