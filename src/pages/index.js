@@ -36,7 +36,7 @@ export default ({data}) => (
           <div className="row">
             <div className="col-12">
               <h2 className="text-xxl">
-                Powerful HTTP tool belt, in one intuitive app
+                Powerful HTTP and GraphQL tool belt
               </h2>
               <p className="text-lg" style={{maxWidth: '35rem', margin: 'auto'}}>
                 <strong>Free</strong> and <strong>open source</strong> on Mac, Windows, and Linux
