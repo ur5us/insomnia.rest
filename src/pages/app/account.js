@@ -16,7 +16,7 @@ class Home extends React.Component {
     const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
     const isTrialing = whoami.isTrialing;
     const isTrialOver = trialDays <= 0;
-    const isPremium = whoami.isPremium;
+    const isPaymentRequired = whoami.isPaymentRequired;
 
     if (billingDetails && !billingDetails.isBillingAdmin) {
       return null;
@@ -73,7 +73,7 @@ class Home extends React.Component {
             </Link>
           </p>
         );
-      } else if (isTrialOver) {
+      } else if (isTrialOver && isPaymentRequired) {
         notice = (
           <p className="notice warn">
             Your trial has ended. Please subscribe to a plan to continue using your account.
