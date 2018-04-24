@@ -145,7 +145,7 @@ export default ({data}) => (
           <div className="row">
             <div className="col-12 center">
               <h2>More than 300,000 developers trust Insomnia</h2>
-              <p className="padding-top">
+              <div className="padding-top">
                 <Companies/>
                 <br/>
                 <br/>
@@ -156,7 +156,7 @@ export default ({data}) => (
                 <Link to="/teams" className="button button--big button--no-outline">
                   Team Edition
                 </Link>
-              </p>
+              </div>
             </div>
           </div>
         </div>
