@@ -129,9 +129,9 @@ export function decryptAES (jwkOrKey, message) {
   decipher.update(forge.util.createBuffer(forge.util.hexToBytes(message.d)));
 
   if (decipher.finish()) {
-    return decodeURIComponent(decipher.output.toString())
+    return decodeURIComponent(decipher.output.toString());
   } else {
-    throw new Error('Failed to decrypt data')
+    throw new Error('Failed to decrypt data');
   }
 }
 
@@ -177,10 +177,10 @@ export function srpGenKey () {
       if (err) {
         reject(err);
       } else {
-        resolve(secret1Buffer.toString('hex'))
+        resolve(secret1Buffer.toString('hex'));
       }
     });
-  })
+  });
 }
 
 /**
@@ -284,7 +284,7 @@ function _hkdfSalt (rawSalt, rawEmail) {
   return new Promise(resolve => {
     const hkdf = new HKDF('sha256', rawSalt, rawEmail);
     hkdf.derive('', DEFAULT_BYTE_LENGTH, buffer => resolve(buffer.toString('hex')));
-  })
+  });
 }
 
 /**
@@ -325,37 +325,39 @@ function _b64UrlToHex (s) {
  * @param salt hex representation of salt
  */
 async function _pbkdf2Passphrase (passphrase, salt) {
-  if (window.crypto && window.crypto.subtle) {
-    console.log('-- Using native PBKDF2 --');
+  // TODO: Add this check back when we can find a more reliable one
+  // Microsoft edge has crypto.subtle but does NOT support PBKDF2
+  // if (window.crypto && window.crypto.subtle) {
+  //   console.log('-- Using native PBKDF2 --');
+  //
+  //   const k = await window.crypto.subtle.importKey(
+  //     'raw',
+  //     Buffer.from(passphrase, 'utf8'),
+  //     {name: 'PBKDF2'},
+  //     false,
+  //     ['deriveBits']
+  //   );
+  //
+  //   const algo = {
+  //     name: 'PBKDF2',
+  //     salt: new Buffer(salt, 'hex'),
+  //     iterations: DEFAULT_PBKDF2_ITERATIONS,
+  //     hash: 'SHA-256'
+  //   };
+  //
+  //   const derivedKeyRaw = await window.crypto.subtle.deriveBits(algo, k, DEFAULT_BYTE_LENGTH * 8);
+  //   return new Buffer(derivedKeyRaw).toString('hex');
+  // } else {
+  console.log('-- Using Forge PBKDF2 --');
 
-    const k = await window.crypto.subtle.importKey(
-      'raw',
-      Buffer.from(passphrase, 'utf8'),
-      {name: 'PBKDF2'},
-      false,
-      ['deriveBits']
-    );
+  const derivedKeyRaw = forge.pkcs5.pbkdf2(
+    passphrase,
+    forge.util.hexToBytes(salt),
+    DEFAULT_PBKDF2_ITERATIONS,
+    DEFAULT_BYTE_LENGTH,
+    forge.md.sha256.create()
+  );
 
-    const algo = {
-      name: 'PBKDF2',
-      salt: new Buffer(salt, 'hex'),
-      iterations: DEFAULT_PBKDF2_ITERATIONS,
-      hash: 'SHA-256'
-    };
-
-    const derivedKeyRaw = await window.crypto.subtle.deriveBits(algo, k, DEFAULT_BYTE_LENGTH * 8);
-    return new Buffer(derivedKeyRaw).toString('hex');
-  } else {
-    console.log('-- Using Forge PBKDF2 --');
-
-    const derivedKeyRaw = forge.pkcs5.pbkdf2(
-      passphrase,
-      forge.util.hexToBytes(salt),
-      DEFAULT_PBKDF2_ITERATIONS,
-      DEFAULT_BYTE_LENGTH,
-      forge.md.sha256.create()
-    );
-
-    return forge.util.bytesToHex(derivedKeyRaw);
-  }
+  return forge.util.bytesToHex(derivedKeyRaw);
+  // }
 }
