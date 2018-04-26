@@ -18,7 +18,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, location} = this.props;
     const {isLoggedIn} = this.state;
     return (
       <React.Fragment>
