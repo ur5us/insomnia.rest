@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import './simple-grid.min.css';
 import './base.less';
 import './index.less';
@@ -12,18 +13,8 @@ export default class extends React.Component {
     isLoggedIn: false
   };
 
-  _updateBodyAttrs() {
-    const {location} = this.props;
-    document.body.setAttribute('data-pathname', location.pathname);
-  }
-
   componentDidMount() {
-    this._updateBodyAttrs();
     this.setState({isLoggedIn: isLoggedIn()});
-  }
-
-  componentDidUpdate() {
-    this._updateBodyAttrs();
   }
 
   render() {
@@ -32,6 +23,9 @@ export default class extends React.Component {
     return (
       <React.Fragment>
         <Title/>
+        <Helmet>
+          <body data-pathname={location.pathname}/>
+        </Helmet>
         <Navbar loggedIn={isLoggedIn}/>
         <main role="main">
           {children()}
