@@ -1,5 +1,47 @@
 [
 	{
+		"date": "2018-04-26T00:00:00.000Z",
+		"version": "5.16.1",
+		"channel": "stable",
+		"link": null,
+		"major": [],
+		"minor": [],
+		"fixes": [
+			"Fix Insomnia Plus/Teams login form error"
+		]
+	},
+	{
+		"date": "2018-04-25T00:00:00.000Z",
+		"version": "5.16.0",
+		"channel": "stable",
+		"link": null,
+		"major": [
+			"Insomnia now available as a Snap package (Linux)!",
+			"Autocomplete support in GraphQL variables editor",
+			"Support HMAC-SHA256 for OAuth 1.0",
+			"Linux builds now include statically linked libcurl (removes libcurl3 dependency)",
+			"Response hooks can now access the request API context"
+		],
+		"minor": [
+			"Reloading plugins now traverses all files in plugin's directory",
+			"Add ability for {% prompt %} tag to cache values in memory",
+			"Add application/graphql and text/xml to content-type autocomplete",
+			"Mention Swagger support on import dialog (PR:863:scop)",
+			"GraphQL schema now fetched whenever the request is modified",
+			"Change default interface font to use native OS fonts instead of Open Sans",
+			"No longer constrain height of URL preview on Query tab (PR:873:j-collier)",
+			"Spelling fixes (PR:862:scop)",
+			"Upgrade to Electron 1.8"
+		],
+		"fixes": [
+			"Handle charsets correctly in webview preview",
+			"Fix unsupported charset decoding failures",
+			"Fix parameter replacement in Swagger imports (PR:861:avdv)",
+			"Header tab now refreshes properly after switching content-type",
+			"Response audio viewer no longer shows stale response"
+		]
+	},
+	{
 		"date": "2018-04-02T00:00:00.000Z",
 		"version": "5.15.0",
 		"channel": "stable",
