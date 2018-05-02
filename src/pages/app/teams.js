@@ -25,6 +25,8 @@ class Teams extends React.Component {
 
     if (billingDetails && ownedTeam) {
       membersRemaining = billingDetails.subQuantity - ownedTeam.accounts.length;
+    } else if (whoami.quantityOverride) {
+      membersRemaining = whoami.quantityOverride - ownedTeam.accounts.length;
     } else if (whoami.isTrialing && ownedTeam) {
       membersRemaining = 5 - ownedTeam.accounts.length;
     }
@@ -169,6 +171,7 @@ Teams.propTypes = {
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     canManageTeams: PropTypes.bool.isRequired,
+    quantityOverride: PropTypes.number,
   }).isRequired,
   billingDetails: PropTypes.shape({
     subQuantity: PropTypes.number.isRequired,
