@@ -208,7 +208,6 @@ export default class extends React.Component {
   componentDidMount() {
     const s = document.createElement('script');
     s.src = '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js';
-    s.setAttribute('data-timestamp', Date.now());
     document.body.appendChild(s);
     s.addEventListener('load', () => {
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -231,7 +230,8 @@ export default class extends React.Component {
       };
 
       let current = null;
-      for (const item of baremetrics.metrics) {
+      for (let i = 0; i < baremetrics.metrics.length; i++) {
+        const item = baremetrics.metrics[i];
         if (isFirstOfMonth(item.human_date)) {
           current && metrics.push(current);
           current = {
@@ -261,6 +261,7 @@ export default class extends React.Component {
         current.new_customers += item.new_customers;
         current.cancellations += item.cancellations;
         current.fees += item.fees;
+        console.log('CURRENT', item.human_date, current.net_revenue);
 
         // Update totals
         totals.net_revenue += item.net_revenue;
@@ -269,6 +270,7 @@ export default class extends React.Component {
         totals.fees += item.fees;
       }
       metrics.push(current);
+      console.log('METRICS', metrics);
 
       // Populate plan data
       const plans = {

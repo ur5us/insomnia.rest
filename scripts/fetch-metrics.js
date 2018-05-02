@@ -2,17 +2,14 @@ const request = require('request');
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
+const moment = require('moment');
 
 const dirAssets = 'src/assets';
 const dirChangelog = 'static';
 
 /** Returns last day of last month in YYYY-MM-DD format */
 function endDate () {
-  const d = new Date();
-  d.setUTCDate(-1); // Reset to last day of last month
-  return [d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()].map(n => (
-    n.toString().length === 1 ? `0${n}` : n.toString()
-  )).join('-');
+  return moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
 }
 
 (async function run () {
@@ -51,7 +48,7 @@ function fetchBaremetrics () {
 
       resolve(JSON.parse(body));
     });
-  })
+  });
 }
 
 function fetchPlans () {
