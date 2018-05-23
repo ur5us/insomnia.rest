@@ -14,26 +14,27 @@ function endDate () {
 
 (async function run () {
   try {
+    // Do this first in case another one fails
+    const changelog = generateChangelog();
+    fs.writeFileSync(path.join(dirChangelog, 'changelog.json'), JSON.stringify(changelog));
+
+    // Fetch contributors
+    const contributors = await fetchContributors();
+    const contributorsBody = JSON.stringify(contributors, null, '\t');
+    fs.writeFileSync(path.join(dirAssets, 'contributors.json'), contributorsBody);
+
+    // Do Baremetrics (most likely to fail)
     const baremetricsData = await fetchBaremetrics();
     const planData = await fetchPlans();
-    const changelog = generateChangelog();
     const metricsBody = JSON.stringify({
       metrics: baremetricsData.metrics,
       plans: planData
     }, null, '\t');
 
-    const contributors = await fetchContributors();
-    const contributorsBody = JSON.stringify(contributors, null, '\t');
-    const changelogBody = JSON.stringify(changelog, null, '\t');
-
     fs.writeFileSync(path.join(dirAssets, 'baremetrics.json'), metricsBody);
-    fs.writeFileSync(path.join(dirAssets, 'contributors.json'), contributorsBody);
-    fs.writeFileSync(path.join(dirChangelog, 'changelog.json'), changelogBody);
-
     console.log('Wrote metrics to ' + dirAssets);
   } catch (err) {
     console.log('Failed to fetch metrics:', err.message);
-    // process.exit(1);
   }
 })();
 
