@@ -1,6 +1,5 @@
 import React from 'react';
 import * as session from '../../lib/session';
-import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 import Link from '../../components/link';
 
@@ -66,11 +65,9 @@ class SignUp extends React.Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
-      trackEvent('Account', 'Signup Success');
     } catch (err) {
       console.error('Failed to sign up', err);
       this.setState({error: err.message, loading: false});
-      trackEvent('Account', 'Signup Error');
     }
   };
 
@@ -162,22 +159,13 @@ class SignUp extends React.Component {
         <div className="form-control right">
           <label>
             <input type="checkbox"
-                   name="agreeToEmails"
-                   defaultChecked={agreeToEmails}
-                   onChange={this._handleUpdateInput.bind(this)}/>
-            Send occasional news via email
-          </label>
-        </div>
-        <div className="form-control right">
-          <label>
-            <input type="checkbox"
                    name="agreeToTerms"
                    required
                    defaultChecked={agreeToTerms}
                    onChange={this._handleUpdateInput.bind(this)}/>
             I agree to the
             {' '}
-            <Link to="https://insomnia.rest/terms/" target="_blank">Terms</Link>
+            <Link to="https://insomnia.rest/terms/" target="_blank">Terms of Service</Link>
           </label>
         </div>
         {error ? <small className="form-control error">** {error}</small> : null}

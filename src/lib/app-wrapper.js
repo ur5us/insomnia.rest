@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from './session';
-import {setUserId} from './analytics';
 import Link from '../components/link';
 
 let stateCache = null;
@@ -51,8 +50,6 @@ class App extends React.Component {
       window.location = '/app/signup/';
       return;
     }
-
-    setUserId(whoami.accountId);
 
     // Fetch the things
     const billingDetails = await session.billingDetails();

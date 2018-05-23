@@ -1,5 +1,20 @@
 [
 	{
+		"date": "2018-05-04T00:00:00.000Z",
+		"version": "5.16.2",
+		"channel": "stable",
+		"link": null,
+		"major": [],
+		"minor": [
+			"Headers with empty values are now sent"
+		],
+		"fixes": [
+			"Remove debounce for OAuth forms (was causing issues)",
+			"Fix AWS auth not applying some settings",
+			"Include nghttp2lib dependency in Linux builds"
+		]
+	},
+	{
 		"date": "2018-04-26T00:00:00.000Z",
 		"version": "5.16.1",
 		"channel": "stable",

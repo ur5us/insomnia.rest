@@ -475,6 +475,10 @@ pre > code {
   font-size: 1.2rem;
 }
 
+.button.danger {
+  color: red;
+}
+
 .button--super-compact {
   padding: 0.05rem 0.8rem;
   font-size: 0.8em;
@@ -489,7 +493,12 @@ button[disabled],
 
 .button:not([disabled]):focus,
 .button:not([disabled]):hover {
-  background: #675BC0;
+  background-color: #675BC0;
+}
+
+.button.danger:not([disabled]):focus,
+.button.danger:not([disabled]):hover {
+  background-color: #ff3136;
 }
 
 .button:not([disabled]):focus,
@@ -1074,6 +1083,7 @@ a.tags__tag:hover {
 body[data-template="skinny"],
 body[data-pathname^='/changelog'],
 body[data-pathname^='/terms'],
+body[data-pathname^='/privacy'],
 body[data-pathname^='/support'],
 body[data-pathname^='/tags'],
 body[data-pathname^='/series'],

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as session from '../../lib/session';
-import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 
 class Invoices extends React.Component {
@@ -17,7 +16,6 @@ class Invoices extends React.Component {
 
   async _handleDownloadInvoice(invoiceId) {
     const {downloadLink} = await session.getInvoice(invoiceId);
-    trackEvent('Account', 'Invoice Download');
     window.location = downloadLink;
   };
 

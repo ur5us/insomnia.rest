@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../../lib/session';
-import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 import {site} from '../../config';
 import Link from '../../components/link';
@@ -175,16 +174,13 @@ class Subscribe extends React.Component {
 
     if (this.state.useExistingBilling) {
       await finishBilling();
-      trackEvent('Subscribe', 'Existing Billing Success', `${planId} x ${quantity}`);
     } else {
       window.Stripe.card.createToken(params, async (status, response) => {
         if (status === 200) {
           await finishBilling(response.id);
-          trackEvent('Subscribe', 'New Billing Success', `${planId} x ${quantity}`);
         } else {
           const msg = response.error ? response.error.message : 'Unknown error (112)';
           this.setState({error: `Card Error: ${msg}`});
-          trackEvent('Subscribe', 'Add Card Error', `${planId} x ${quantity}`);
         }
 
         this.setState({loading: false});

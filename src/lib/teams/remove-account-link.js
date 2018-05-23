@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../session';
-import {trackEvent} from '../analytics';
 import Link from '../../components/link';
 
 class RemoveAccountLink extends React.Component {
@@ -23,11 +22,9 @@ class RemoveAccountLink extends React.Component {
     try {
       await session.removeFromTeam(teamId, accountId);
       await onRemove();
-      trackEvent('Teams', 'Remove Member Success');
     } catch (err) {
       alert(`Failed to remove from team: ${err.message}`);
       this.setState({loading: false});
-      trackEvent('Teams', 'Remove Member Error');
     }
   };
 

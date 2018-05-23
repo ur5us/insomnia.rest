@@ -1,6 +1,5 @@
 import React from 'react';
 import * as session from '../session';
-import {trackEvent} from '../analytics';
 import Link from '../../components/link';
 
 const STATE_DEFAULT = 'default';
@@ -23,7 +22,6 @@ class VerifyButton extends React.Component {
 
     try {
       await session.verify();
-      trackEvent('Account', 'Resend Verification Email');
       this.setState({state: STATE_DONE});
     } catch (err) {
       this.setState({error: err.message});

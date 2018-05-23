@@ -31,14 +31,14 @@ Violation of any of the terms below may result in immediate termination of your 
 
 - A valid credit card is required for paying accounts. A credit card is not required upon initial sign up.
 - The Service charges it's transaction fee immediately at the point of each transaction. Transaction fees vary depending on the account plan you sign up for.
-- For accounts that are signed up to a plan that charges a monthly fee, the Service bills on a monthly basis and that fee is non-refundable. Accounts are not prorated. There will be no refunds or credits or upgrade/downgrade refunds.
+- For accounts that are signed up to a plan that charges a monthly fee, the Service bills on a monthly basis and that fee is non-refundable. Subscription changes are prorated. 
 - All fees exclude any taxes, levies, or duties imposed by taxing authorities, and you shall be responsible for payment of all such taxes, levies, or duties.
 
-## Cancellation and Termination
+## Account Deletion and Termination
 
-- It is your responsibility to ensure that your account has been properly canceled. An email requesting an account to be canceled is not considered a cancellation. You can cancel your account at any time from the "Account" section within the Service.
-- All of your Content will be immediately removed from the Service should you initiate cancellation. This information can not be recovered once your account is canceled.
-- Your cancellation will be effective immediately once initiated. You will not be charged again from that point forward.
+- It is your responsibility to ensure that your account has been properly canceled. An email requesting an account to be canceled is not considered a cancellation. You can delete your account at any time from the "Account" section within the Service.
+- All of your Content will be immediately removed from the Service should you initiate deletion. This information can not be recovered once your account is deleted.
+- Your deletion will be effective immediately once initiated. You will not be charged again from that point forward.
 - Insomnia has the right to suspend or terminate your account and refuse any and all current or future use of the Service for any reason at any time. Insomnia, in it's sole discretion, reserves the right to refuse service to anyone for any reason at any time.
 
 ## Modifications to the Service and Prices
@@ -49,7 +49,7 @@ Violation of any of the terms below may result in immediate termination of your 
 
 ## Copyright and Content Ownership
 
-- The Service itself including the use of the Insomnia name, logos, domain names and other distinctive brand features are protected by copyright and other laws: © Insomnia, All rights reserved. You may not duplicate, copy, or reuse any portion of the code (HTML/CSS/Javascript) or visual design elements.
+- The Service itself including the use of the Insomnia name, logos, domain names and other distinctive brand features are protected by copyright and other laws: © Insomnia, All rights reserved.
 - You retain your rights to any content you submit, post or display on or through the Service. Insomnia claims no ownership to any content you post to the Service.
 
 ## General Conditions
@@ -64,4 +64,14 @@ Violation of any of the terms below may result in immediate termination of your 
 - You expressly understand and agree that Insomnia shall not be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data or other intangible losses (even if Insomnia has been advised of the possibility of such damages), resulting from: (i) the use or the inability to use the service; (ii) the cost of procurement of substitute goods and services resulting from any goods, data, information or services purchased or obtained or messages received or transactions entered into through or from the service; (iii) unauthorized access to or alteration of your transmissions or data; (iv) statements or conduct of any third party on the service; (v) or any other matter relating to the service.
 - You expressly understand and agree that Insomnia shall not be liable for any payments and monetary transactions that occur through your use of the Service. You expressly understand and agree that all payments and monetary transactions are handled by the 3rd party payment platform the Service uses: Stripe (https://stripe.com). You agree Insomnia shall not be liable for any issues regrading financial and monetary transactions between you and any other party.
 - The failure of Insomnia to aggressively enforce any right or provision of the Terms of Service shall not be construed as a waiver of such right or provision. The Terms of Service outlines the entire agreement between you and Insomnia and supersedes any prior agreements between you and Insomnia including prior iterations of the Terms of Service.
+
+## Changes
+
+If we decide to change our terms of service, we will post those changes on this page. Summary of changes so far:
+
+**May 22, 2018**<br>
+Clarify account deletion and subscription proration
+
+**April 1, 2017**<br>
+Original version
 

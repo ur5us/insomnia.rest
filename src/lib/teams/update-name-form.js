@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../session';
-import {trackEvent} from '../analytics';
 
 class UpdateTeamNameForm extends React.Component {
   constructor(props) {
@@ -29,10 +28,8 @@ class UpdateTeamNameForm extends React.Component {
     try {
       await session.changeTeamName(teamId, teamName);
       await onUpdate();
-      trackEvent('Teams', 'Update Name Success');
     } catch (err) {
       alert(`Failed to update team: ${err.message}`);
-      trackEvent('Teams', 'Update Name Error');
     }
 
     this.setState({loading: false});

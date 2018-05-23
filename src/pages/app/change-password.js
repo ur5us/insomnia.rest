@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../../lib/session';
-import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 
 class ChangePassword extends React.Component {
@@ -39,7 +38,6 @@ class ChangePassword extends React.Component {
       await session.login(whoami.email, this.state.oldPassword);
     } catch (err) {
       this.setState({loginError: err.message, error: '', loading: false});
-      trackEvent('Account', 'Change Password Error Logging In');
       return;
     }
 
@@ -50,11 +48,9 @@ class ChangePassword extends React.Component {
         whoami.email
       );
       window.location = '/app/account/';
-      trackEvent('Account', 'Change Password Success');
     } catch (err) {
       console.error('Failed to update password', err.stack);
       this.setState({error: err.message, loading: false});
-      trackEvent('Account', 'Change Password Error');
     }
   };
 

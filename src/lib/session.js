@@ -8,7 +8,6 @@ export async function signup (
   lastName,
   rawEmail,
   rawPassphrase,
-  emailsOk = true,
   loginAfter = false
 ) {
   const email = _sanitizeEmail(rawEmail);
@@ -41,7 +40,6 @@ export async function signup (
   account.publicKey = JSON.stringify(publicKey);
   account.encPrivateKey = JSON.stringify(encPrivateJWKMessage);
   account.encSymmetricKey = JSON.stringify(encSymmetricJWKMessage);
-  account.emailNewsletter = emailsOk;
 
   const signupData = await util.post('/auth/signup', account);
 
@@ -52,8 +50,12 @@ export async function signup (
   return signupData;
 }
 
-export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase, emailsOk) {
-  return signup(firstName, lastName, rawEmail, rawPassphrase, emailsOk, true);
+export function deleteAccount () {
+  return util.del('/auth/delete-account');
+}
+
+export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase) {
+  return signup(firstName, lastName, rawEmail, rawPassphrase, true);
 }
 
 /** Create a new session for the user */

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../session';
-import {trackEvent} from '../analytics';
 import Link from '../../components/link';
 
 class LeaveTeamLink extends React.Component {
@@ -23,11 +22,9 @@ class LeaveTeamLink extends React.Component {
     try {
       await session.leaveTeam(teamId);
       await onLeave();
-      trackEvent('Teams', 'Leave Success');
     } catch (err) {
       alert(`Failed to leave team: ${err.message}`);
       this.setState({loading: false});
-      trackEvent('Teams', 'Leave Error');
     }
   };
 

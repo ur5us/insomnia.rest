@@ -158,11 +158,11 @@ class Home extends React.Component {
             <Link to="/app/change-email/">Change Email</Link>
           </li>
           <li>
-            <Link to="/app/invoices/">Invoices</Link>
+            <Link to="/app/invoices/">Invoice History</Link>
           </li>
           {billingDetails && billingDetails.isBillingAdmin ? <li><CancelLink/></li> : null}
           <li>
-            <SignOutLink/>
+            <Link to="/app/delete-account/">Delete Account</Link>
           </li>
         </ul>
       </div>

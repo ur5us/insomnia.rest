@@ -1,6 +1,5 @@
 import React from 'react';
 import * as session from '../../lib/session';
-import {trackEvent} from '../../lib/analytics';
 import App from '../../lib/app-wrapper';
 import Link from '../../components/link';
 
@@ -28,10 +27,8 @@ class Login extends React.Component {
       localStorage.removeItem('login.next');
 
       window.location = nextUrl;
-      trackEvent('Account', 'Login Success');
     } catch (err) {
       this.setState({error: err.message, loading: false});
-      trackEvent('Account', 'Login Error');
     }
   }
 
