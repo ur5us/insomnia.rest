@@ -48,9 +48,6 @@ class DeleteAccount extends React.Component {
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
         <p>Really delete account for <code>{whoami.email}</code>? Once deleted, your account cannot be recovered.</p>
-        <p>
-          Your account will be immediately deleted
-        </p>
         <div className="form-control">
           <label>Confirm Password {loginError ? <small className="error">({loginError})</small> : null}
             <input type="password"
