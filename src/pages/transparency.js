@@ -20,6 +20,10 @@ export default class extends React.Component {
   }
 
   componentDidUpdate() {
+    if (!this.loaded) {
+      return;
+    }
+
     const {totals, metrics, plans} = this.state;
 
     const colors = {
@@ -212,6 +216,8 @@ export default class extends React.Component {
     s.src = '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js';
     document.body.appendChild(s);
     s.addEventListener('load', () => {
+      this.loaded = true;
+
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
       function printDate(yearMonthDay) {
@@ -271,7 +277,6 @@ export default class extends React.Component {
         totals.fees += item.fees;
       }
       metrics.push(current);
-      console.log('METRICS', metrics);
 
       // Populate plan data
       const plans = {
