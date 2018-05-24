@@ -1240,7 +1240,7 @@
 			"net_revenue": 628,
 			"new_customers": 0,
 			"new_subscriptions": 1,
-			"other_revenue": -19,
+			"other_revenue": 0,
 			"reactivations": 1,
 			"refunds": 0,
 			"revenue_churn": 5976,
@@ -11250,7 +11250,7 @@
 			"net_revenue": 22326,
 			"new_customers": 2,
 			"new_subscriptions": 2,
-			"other_revenue": -98,
+			"other_revenue": 0,
 			"reactivations": 0,
 			"refunds": 0,
 			"revenue_churn": 494,
@@ -11770,7 +11770,7 @@
 			"net_revenue": 17629,
 			"new_customers": 2,
 			"new_subscriptions": 2,
-			"other_revenue": -989,
+			"other_revenue": 0,
 			"reactivations": 0,
 			"refunds": 0,
 			"revenue_churn": 370,
@@ -13416,5 +13416,8 @@
 			"upgrades": 0,
 			"user_churn": 261
 		}
-	]
+	],
+	"plans": {
+		"metrics": []
+	}
 }

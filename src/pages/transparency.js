@@ -2,6 +2,8 @@ import React from 'react';
 
 import './transparency.less';
 import baremetrics from '../assets/baremetrics.json';
+import repoStats from '../assets/repository.json';
+import contributors from '../assets/contributors.json';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
@@ -261,7 +263,6 @@ export default class extends React.Component {
         current.new_customers += item.new_customers;
         current.cancellations += item.cancellations;
         current.fees += item.fees;
-        console.log('CURRENT', item.human_date, current.net_revenue);
 
         // Update totals
         totals.net_revenue += item.net_revenue;
@@ -350,20 +351,17 @@ export default class extends React.Component {
                     </div>
                   </div>
                   <div className="stats__row">
-                    {/*{{$stats: = getJSON "https://api.github.com/repos/getinsomnia/insomnia"}}*/}
-                    {/*{{$u: = "https://api.github.com/repos/getinsomnia/insomnia/contributors"}}*/}
-                    {/*{{$contributors: = getJSON $u}}*/}
                     <div className="stats__stat" data-color="blue">
                       <h2>Contributors</h2>
-                      {/*<div>{{len $contributors}}</div>*/}
+                      <div>{contributors.length}</div>
                     </div>
                     <div className="stats__stat" data-color="blue">
                       <h2>Issues</h2>
-                      {/*<div>{{$stats.open_issues}}</div>*/}
+                      <div>{repoStats.open_issues}</div>
                     </div>
                     <div className="stats__stat" data-color="blue">
                       <h2>Stars &#9734;</h2>
-                      {/*<div>{{$stats.stargazers_count}}</div>*/}
+                      <div>{repoStats.stargazers_count}</div>
                     </div>
                   </div>
                 </div>
