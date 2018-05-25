@@ -79,7 +79,7 @@ export default class extends React.Component {
                 </p>
                 <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
                   or&nbsp;
-                  <code style={{lineBreak: 'no-wrap'}}>sudo snapcraft install insomnia</code>
+                  <code style={{lineBreak: 'no-wrap'}}>sudo snap install insomnia</code>
                   <br/>
                   or&nbsp;
                   <Link to="https://support.insomnia.rest/article/23-installation#linux">
