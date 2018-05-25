@@ -63,16 +63,16 @@
 	"releases_url": "https://api.github.com/repos/getinsomnia/insomnia/releases{/id}",
 	"deployments_url": "https://api.github.com/repos/getinsomnia/insomnia/deployments",
 	"created_at": "2016-04-23T03:54:26Z",
-	"updated_at": "2018-05-25T01:23:15Z",
-	"pushed_at": "2018-05-23T08:48:01Z",
+	"updated_at": "2018-05-25T01:44:58Z",
+	"pushed_at": "2018-05-25T01:44:56Z",
 	"git_url": "git://github.com/getinsomnia/insomnia.git",
 	"ssh_url": "git@github.com:getinsomnia/insomnia.git",
 	"clone_url": "https://github.com/getinsomnia/insomnia.git",
 	"svn_url": "https://github.com/getinsomnia/insomnia",
 	"homepage": "https://insomnia.rest",
 	"size": 27027,
-	"stargazers_count": 7099,
-	"watchers_count": 7099,
+	"stargazers_count": 7101,
+	"watchers_count": 7101,
 	"language": "JavaScript",
 	"has_issues": true,
 	"has_projects": false,
@@ -82,7 +82,7 @@
 	"forks_count": 351,
 	"mirror_url": null,
 	"archived": false,
-	"open_issues_count": 124,
+	"open_issues_count": 123,
 	"license": {
 		"key": "mit",
 		"name": "MIT License",
@@ -90,8 +90,8 @@
 		"url": "https://api.github.com/licenses/mit"
 	},
 	"forks": 351,
-	"open_issues": 124,
-	"watchers": 7099,
+	"open_issues": 123,
+	"watchers": 7101,
 	"default_branch": "develop",
 	"organization": {
 		"login": "getinsomnia",
@@ -113,5 +113,5 @@
 		"site_admin": false
 	},
 	"network_count": 351,
-	"subscribers_count": 124
+	"subscribers_count": 125
 }

@@ -7,18 +7,11 @@ import Link from '../components/link';
 import {links} from '../config';
 
 export default class extends React.Component {
-  onClickDownload(e) {
-    const args = e.currentTarget.getAttribute('data-ga').split(':');
-    ga('send', 'event', args[0], args[1], args[2]);
-  }
-
   componentDidMount() {
     if (window.location.hash === '#mac') {
       window.location = links.builds.mac;
-      ga('send', 'event', 'Download', 'Mac');
     } else if (window.location.hash === '#windows') {
       window.location = links.builds.windows;
-      ga('send', 'event', 'Download', 'Windows');
     }
   }
 
@@ -45,7 +38,6 @@ export default class extends React.Component {
                 <p>
                   <Link to={links.builds.mac}
                         data-ga="Download:Mac"
-                        onClick={this.onClickDownload.bind(this)}
                         className="button">
                     <svg className="icon" viewBox="0 0 512 512">
                       <path
@@ -64,7 +56,6 @@ export default class extends React.Component {
                 <p>
                   <Link to={links.builds.windows}
                         data-ga="Download:Windows"
-                        onClick={this.onClickDownload.bind(this)}
                         className="button">
                     <svg className="icon" viewBox="0 0 512 512">
                       <path
@@ -83,7 +74,6 @@ export default class extends React.Component {
                 <p>
                   <Link to="https://support.insomnia.rest/article/23-installation#ubuntu"
                         data-ga="Download:Linux:Ubuntu"
-                        onClick={this.onClickDownload.bind(this)}
                         className="button">
                     <svg className="icon" viewBox="0 0 512 512">
                       <path
@@ -96,9 +86,7 @@ export default class extends React.Component {
                 <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
                   or
                   {' '}
-                  <Link to="https://support.insomnia.rest/article/23-installation#linux"
-                        onClick={this.onClickDownload.bind(this)}
-                        data-ga="Download:Linux:AUR">
+                  <Link to="https://support.insomnia.rest/article/23-installation#linux" data-ga="Download:Linux:AUR">
                     Other Linux Distros
                   </Link>
                 </p>
