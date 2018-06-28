@@ -61,4 +61,5 @@ typings/
 public
 yarn-error.log
 .idea
+.vscode
 .DS_Store
