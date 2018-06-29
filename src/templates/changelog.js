@@ -8,14 +8,6 @@ import Title from '../partials/title';
 
 
 export default class BlogTemplate extends React.Component {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'production') {
-      const s = document.createElement('script');
-      s.src = 'https://insomnia-rest.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', Date.now());
-      document.body.appendChild(s);
-    }
-  }
   render () {
     const {data: {markdownRemark: {frontmatter, html}}} = this.props;
     const title = `Insomnia v${frontmatter.slug}`;
@@ -100,11 +92,6 @@ export default class BlogTemplate extends React.Component {
             Share this post &#128522; &#128640;
           </p>
           <ShareButtons title={title}/>
-        </section>
-        <section className="comments">
-          <div className="container">
-            <div id="disqus_thread"/>
-          </div>
         </section>
       </React.Fragment>
     )

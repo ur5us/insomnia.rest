@@ -6,15 +6,6 @@ import Title from '../partials/title';
 import Link from '../components/link';
 
 export default class BlogTemplate extends React.Component {
-  componentDidMount() {
-    if (process.env.NODE_ENV === 'production') {
-      const s = document.createElement('script');
-      s.src = 'https://insomnia-rest.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', Date.now());
-      document.body.appendChild(s);
-    }
-  }
-
   render() {
     const {data: {markdownRemark: {frontmatter, html, excerpt}}} = this.props;
     return (
@@ -75,11 +66,6 @@ export default class BlogTemplate extends React.Component {
             <ShareButtons title={frontmatter.title}/>
           </section>
         </article>
-        <section className="comments">
-          <div className="container">
-            <div id="disqus_thread"/>
-          </div>
-        </section>
         <section className="dark no-margin padding-bottom padding-top">
           <div className="container">
             <div className="row center">
