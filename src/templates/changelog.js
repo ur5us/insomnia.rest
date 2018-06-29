@@ -5,6 +5,7 @@ import Link from '../components/link';
 import SocialCards from '../components/social-cards';
 import ShareButtons from '../partials/share-buttons';
 import Title from '../partials/title';
+import Contributors from '../partials/contributors';
 
 
 export default class BlogTemplate extends React.Component {
@@ -93,6 +94,7 @@ export default class BlogTemplate extends React.Component {
           </p>
           <ShareButtons title={title}/>
         </section>
+        <Contributors/>
       </React.Fragment>
     )
   }

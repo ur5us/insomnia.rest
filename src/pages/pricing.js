@@ -1,6 +1,5 @@
 import React from 'react';
 import SocialCards from '../components/social-cards';
-import Contributors from '../partials/contributors';
 import Title from '../partials/title';
 import Link from '../components/link';
 
@@ -137,6 +136,5 @@ export default () => (
         </div>
       </section>
     </article>
-    <Contributors/>
   </React.Fragment>
 );
