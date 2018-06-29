@@ -35,15 +35,16 @@ module.exports.createPages = async function (data) {
               frontmatter {
                 date(formatString: "MMMM DD, YYYY")
                 date_iso: date
-                slug
-                series
-                tags
-                title
-                major
-                minor
+                channel
                 fixes
                 link
+                major
+                minor
+                series
+                slug
                 summary
+                tags
+                title
               }
             }
           }

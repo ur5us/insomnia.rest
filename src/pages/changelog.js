@@ -1,22 +1,28 @@
-import React from 'react';
-import Link from '../components/link';
-import {links} from '../config';
+import React from "react";
+import Link from "../components/link";
+import { links } from "../config";
 import ChangelogLink from "../components/changelog-link";
 import ChangelogListItem from "../components/changelog-list-item";
 import DownloadButton from "../components/download-button";
 
-export default ({data: {allFile: {edges}}}) => (
+export default ({
+  data: {
+    allFile: { edges }
+  }
+}) => (
   <React.Fragment>
     <header className="container header--big">
       <div className="row">
         <div className="col-12">
           <h1>Insomnia Changelog</h1>
           <p>
-            <a href={links.rss}
-               className="button"
-               type="application/rss+xml"
-               target="_blank"
-               title="RSS">
+            <a
+              href={links.rss}
+              className="button"
+              type="application/rss+xml"
+              target="_blank"
+              title="RSS"
+            >
               Subscribe via RSS
             </a>
           </p>
@@ -24,12 +30,23 @@ export default ({data: {allFile: {edges}}}) => (
       </div>
     </header>
     {edges
+      .filter(
+        ({
+          node: {
+            childMarkdownRemark: { frontmatter }
+          }
+        }) => frontmatter.channel !== "beta" && frontmatter.channel !== "alpha"
+      )
       .sort((a, b) => {
-        const tsA = new Date(a.node.childMarkdownRemark.frontmatter.date_iso).getTime();
-        const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date_iso).getTime();
+        const tsA = new Date(
+          a.node.childMarkdownRemark.frontmatter.date_iso
+        ).getTime();
+        const tsB = new Date(
+          b.node.childMarkdownRemark.frontmatter.date_iso
+        ).getTime();
         return tsB - tsA;
       })
-      .map(({node: {childMarkdownRemark: {frontmatter, excerpt}}}) => (
+      .map(({ node: { childMarkdownRemark: { frontmatter, excerpt } } }) => (
         <article key={frontmatter.slug} className="article--preview container">
           <header className="row">
             <div className="col-12">
@@ -37,9 +54,7 @@ export default ({data: {allFile: {edges}}}) => (
                 <h1>Insomnia v{frontmatter.slug}</h1>
               </ChangelogLink>
               <div className="meta">
-                <time dateTime={frontmatter.date}>
-                  {frontmatter.date}
-                </time>
+                <time dateTime={frontmatter.date}>{frontmatter.date}</time>
               </div>
             </div>
           </header>
@@ -51,7 +66,7 @@ export default ({data: {allFile: {edges}}}) => (
                   <ul className="ul--decorated">
                     {frontmatter.major.map(c => (
                       <li key={c} className="li--major">
-                        <ChangelogListItem text={c}/>
+                        <ChangelogListItem text={c} />
                       </li>
                     ))}
                   </ul>
@@ -60,7 +75,7 @@ export default ({data: {allFile: {edges}}}) => (
                   <ul className="ul--decorated">
                     {frontmatter.minor.map(c => (
                       <li key={c} className="li--minor">
-                        <ChangelogListItem text={c}/>
+                        <ChangelogListItem text={c} />
                       </li>
                     ))}
                   </ul>
@@ -69,7 +84,7 @@ export default ({data: {allFile: {edges}}}) => (
                   <ul className="ul--decorated">
                     {frontmatter.fixes.map(c => (
                       <li key={c} className="li--fix">
-                        <ChangelogListItem text={c}/>
+                        <ChangelogListItem text={c} />
                       </li>
                     ))}
                   </ul>
@@ -79,7 +94,11 @@ export default ({data: {allFile: {edges}}}) => (
             <div className="row article--preview__footer">
               <div className="col-8">
                 {(frontmatter.tags || []).map(tag => (
-                  <Link key={tag} className="button tags__tag" to={`tags/${tag}`}>
+                  <Link
+                    key={tag}
+                    className="button tags__tag"
+                    to={`tags/${tag}`}
+                  >
                     {tag}
                   </Link>
                 ))}
@@ -91,7 +110,7 @@ export default ({data: {allFile: {edges}}}) => (
               </div>
             </div>
             <div className="row">
-              <div className="col-12 article--preview__separator"/>
+              <div className="col-12 article--preview__separator" />
             </div>
           </section>
         </article>
@@ -101,7 +120,7 @@ export default ({data: {allFile: {edges}}}) => (
 
 export const pageQuery = graphql`
   query ChangelogIndexQuery {
-    allFile(filter: {sourceInstanceName: {eq: "changelog"}}) {
+    allFile(filter: { sourceInstanceName: { eq: "changelog" } }) {
       edges {
         node {
           childMarkdownRemark {
@@ -109,13 +128,14 @@ export const pageQuery = graphql`
             frontmatter {
               date(formatString: "MMMM DD, YYYY")
               date_iso: date
-              slug
+              channel
+              fixes
+              link
               major
-						  minor
-				  		fixes
-				  		slug
-				  		link
-				  		summary
+              minor
+              slug
+              slug
+              summary
             }
           }
         }
