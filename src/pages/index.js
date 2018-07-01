@@ -58,7 +58,7 @@ export default ({data}) => (
               <div className="img--promo">
                 <Img sizes={data.responsesImg.childImageSharp.sizes} alt="Response Details"/>
               </div>
-              <h3>View entire transaction</h3>
+              <h3>View response details</h3>
               <p>
                 Get all the details on every response. View status code, body,
                 headers, cookies, and more!
