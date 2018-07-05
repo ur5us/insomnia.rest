@@ -54,14 +54,8 @@ class Invoices extends React.Component {
     }
   }
 
-  render() {
-    const {
-      invoices,
-      invoiceExtra,
-      invoiceExtraLoading,
-      invoiceExtraError,
-      invoiceExtraDirty
-    } = this.state;
+  renderInvoices() {
+    const { invoices } = this.state;
 
     if (!invoices) {
       return <div>Fetching Invoices...</div>;
@@ -72,50 +66,63 @@ class Invoices extends React.Component {
     }
 
     return (
+      <table>
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {invoices.map(invoice => {
+            const start = moment(invoice.periodStart).format('MMM D');
+            const end = moment(invoice.periodEnd).format('MMM D');
+            return (
+              <tr key={invoice.id}>
+                <td>
+                  {start} to {end}
+                </td>
+                <td>${(invoice.total / 100).toFixed(2)}</td>
+                <td>
+                  {invoice.paid ? (
+                    <span style={{ color: '#0A0' }}>Paid</span>
+                  ) : (
+                    <span style={{ color: '#AAA' }}>Pending</span>
+                  )}
+                </td>
+                <td>
+                  {invoice.paid ? (
+                    <button
+                      className="button button--super-compact"
+                      onClick={this._handleDownloadInvoice.bind(
+                        this,
+                        invoice.id
+                      )}>
+                      Download
+                    </button>
+                  ) : null}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  }
+
+  render() {
+    const {
+      invoiceExtra,
+      invoiceExtraLoading,
+      invoiceExtraError,
+      invoiceExtraDirty
+    } = this.state;
+
+    return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            {invoices.map(invoice => {
-              const start = moment(invoice.periodStart).format('MMM D');
-              const end = moment(invoice.periodEnd).format('MMM D');
-              return (
-                <tr key={invoice.id}>
-                  <td>
-                    {start} to {end}
-                  </td>
-                  <td>${(invoice.total / 100).toFixed(2)}</td>
-                  <td>
-                    {invoice.paid ? (
-                      <span style={{ color: '#0A0' }}>Paid</span>
-                    ) : (
-                      <span style={{ color: '#AAA' }}>Pending</span>
-                    )}
-                  </td>
-                  <td>
-                    {invoice.paid ? (
-                      <button
-                        className="button button--super-compact"
-                        onClick={this._handleDownloadInvoice.bind(
-                          this,
-                          invoice.id
-                        )}>
-                        Download
-                      </button>
-                    ) : null}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {this.renderInvoices()}
         <hr />
         <form onSubmit={this._handleInvoiceExtraSubmit.bind(this)}>
           <div className="form-control">
@@ -141,6 +148,8 @@ class Invoices extends React.Component {
         </form>
       </div>
     );
+
+    return <div>{invoiceTable}</div>;
   }
 }
 
