@@ -466,23 +466,23 @@ pre > code {
   display: inline-block;
 }
 
-.button--compact {
-  padding: 0.25rem 0.8rem;
-}
-
 .button--big {
   padding: 0.9rem 1.8rem;
   font-size: 1.2rem;
 }
 
-.button.danger {
-  color: red;
+.button--compact {
+  padding: 0.25rem 0.8rem;
 }
 
 .button--super-compact {
   padding: 0.05rem 0.8rem;
   font-size: 0.8em;
   min-width: 2rem;
+}
+
+.button.danger {
+  color: red;
 }
 
 button[disabled],
@@ -569,6 +569,7 @@ button[disabled],
 }
 
 .form-control input,
+.form-control textarea,
 .form-control select {
   font-size: 1rem;
   display: block;
@@ -607,6 +608,7 @@ button[disabled],
   width: auto;
 }
 
+.form-control.error textarea,
 .form-control.error input,
 .form-control.error input:focus {
   color: #ff3138;
@@ -614,11 +616,13 @@ button[disabled],
 }
 
 .form-control input:focus,
+.form-control textarea:focus,
 .form-control select:focus {
   border: 1px solid #aaa;
   background: #fff;
 }
 
+.form-control textarea:focus,
 .form-control input:not([type="radio"]):not([type="checkbox"]):focus,
 .form-control select:focus {
   outline: 0;

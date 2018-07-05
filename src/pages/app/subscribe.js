@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as session from '../../lib/session';
 import App from '../../lib/app-wrapper';
-import {site} from '../../config';
+import { site } from '../../config';
 import Link from '../../components/link';
 
 const planTypeTeam = 'team';
@@ -16,16 +16,19 @@ const planIdMap = {
   'plus-monthly-1': [planTypePlus, planCycleMonthly, 1],
   'plus-yearly-1': [planTypePlus, planCycleYearly, 1],
   'team-monthly-1': [planTypeTeam, planCycleMonthly, 5],
-  'team-yearly-1': [planTypeTeam, planCycleYearly, 5],
+  'team-yearly-1': [planTypeTeam, planCycleYearly, 5]
 };
 
 class Subscribe extends React.Component {
   constructor(props) {
     super(props);
 
-    const {billingDetails, whoami} = props;
+    const { billingDetails, whoami } = props;
 
-    const quantity = Math.max(minTeamSize, billingDetails ? billingDetails.subQuantity : 5);
+    const quantity = Math.max(
+      minTeamSize,
+      billingDetails ? billingDetails.subQuantity : 5
+    );
 
     let planDescription;
     if (window.location.hash === '#teams') {
@@ -50,7 +53,7 @@ class Subscribe extends React.Component {
       expireYear: '2018',
       cvc: '',
       zip: '',
-      error: '',
+      error: ''
     };
   }
 
@@ -115,9 +118,9 @@ class Subscribe extends React.Component {
 
     // this.setState({cardType: cardType === 'Unknown' ? '' : cardType});
     if (cardType.toLowerCase() !== 'unknown') {
-      this.setState({cardType});
+      this.setState({ cardType });
     } else {
-      this.setState({cardType: ''});
+      this.setState({ cardType: '' });
     }
 
     // Only update number if it changed from the user's original to prevent cursor jump
@@ -135,24 +138,23 @@ class Subscribe extends React.Component {
   }
 
   _handleUpdateInput(e) {
-    const value = e.target.type === 'checkbox' ?
-      e.target.checked :
-      e.target.value;
+    const value =
+      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    this.setState({[e.target.name]: value, error: ''});
+    this.setState({ [e.target.name]: value, error: '' });
   }
 
   async _handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     const params = {
       name: this.state.fullName,
       number: this.state.cardNumber.replace(/ /g, ''),
       cvc: this.state.cvc,
       exp_month: parseInt(this.state.expireMonth, 10),
-      exp_year: parseInt(this.state.expireYear, 10),
+      exp_year: parseInt(this.state.expireYear, 10)
     };
 
     if (this.state.zip) {
@@ -168,7 +170,7 @@ class Subscribe extends React.Component {
         await session.subscribe(tokenId, planId, quantity);
         window.location = '/app/account/';
       } catch (err) {
-        this.setState({error: err.message});
+        this.setState({ error: err.message });
       }
     };
 
@@ -179,21 +181,24 @@ class Subscribe extends React.Component {
         if (status === 200) {
           await finishBilling(response.id);
         } else {
-          const msg = response.error ? response.error.message : 'Unknown error (112)';
-          this.setState({error: `Card Error: ${msg}`});
+          const msg = response.error
+            ? response.error.message
+            : 'Unknown error (112)';
+          this.setState({ error: `Card Error: ${msg}` });
         }
 
-        this.setState({loading: false});
+        this.setState({ loading: false });
       });
     }
-  };
+  }
 
   _calculatePrice(planType, planCycle, quantity) {
     quantity = Math.max(quantity, minTeamSize);
     const priceIndex = planCycle === planCycleMonthly ? 0 : 1;
-    const price = planType === planTypePlus ?
-      [5, 50] :
-      [pricePerMember * quantity, pricePerMember * 10 * quantity];
+    const price =
+      planType === planTypePlus
+        ? [5, 50]
+        : [pricePerMember * quantity, pricePerMember * 10 * quantity];
 
     return price[priceIndex];
   }
@@ -206,7 +211,7 @@ class Subscribe extends React.Component {
   }
 
   renderBillingNotice() {
-    const {whoami, billingDetails} = this.props;
+    const { whoami, billingDetails } = this.props;
 
     const trialEndDate = new Date(whoami.trialEnd * 1000);
     const trialEndMillis = trialEndDate.getTime() - Date.now();
@@ -217,14 +222,16 @@ class Subscribe extends React.Component {
         <p className="notice warn">
           Since you are part of a paying team, you don't need to pay
         </p>
-      )
+      );
     }
 
     if (!billingDetails && trialDays > 0) {
       return (
         <p className="notice info">
-          You still have <strong>{trialDays}</strong> day{trialDays === 1 ? '' : 's'} left
-          on your free trial
+          You still have <strong>{trialDays}</strong> day{trialDays === 1
+            ? ''
+            : 's'}{' '}
+          left on your free trial
         </p>
       );
     }
@@ -243,10 +250,10 @@ class Subscribe extends React.Component {
       expireYear,
       quantity,
       useExistingBilling,
-      fullName,
+      fullName
     } = this.state;
 
-    const {billingDetails} = this.props;
+    const { billingDetails } = this.props;
 
     if (billingDetails && !billingDetails.isBillingAdmin) {
       return this.renderBillingNotice();
@@ -256,12 +263,14 @@ class Subscribe extends React.Component {
       <form onSubmit={this._handleSubmit.bind(this)}>
         {this.renderBillingNotice()}
         <div className="form-control">
-          <label>Plan Type
-            <select className="wide"
-                    name="planType"
-                    defaultValue={planType}
-                    autoFocus
-                    onChange={this._handleUpdateInput.bind(this)}>
+          <label>
+            Plan Type
+            <select
+              className="wide"
+              name="planType"
+              defaultValue={planType}
+              autoFocus
+              onChange={this._handleUpdateInput.bind(this)}>
               <option value={planTypePlus}>Plus (Individual)</option>
               <option value={planTypeTeam}>Teams</option>
             </select>
@@ -269,106 +278,123 @@ class Subscribe extends React.Component {
         </div>
         {planType === planTypeTeam ? (
           <div className="form-control">
-            <label>Team Size
-              {' '}
+            <label>
+              Team Size{' '}
               {quantity < minTeamSize ? (
-                <small>&#40;billed for a minimum of {minTeamSize} members&#41;</small>
+                <small>
+                  &#40;billed for a minimum of {minTeamSize} members&#41;
+                </small>
               ) : null}
-              <input type="number"
-                     defaultValue={quantity}
-                     onChange={this._handleUpdateInput.bind(this)}
-                     min="1"
-                     max="500"
-                     title="Number of Team Members"
-                     name="quantity"/>
+              <input
+                type="number"
+                defaultValue={quantity}
+                onChange={this._handleUpdateInput.bind(this)}
+                min="1"
+                max="500"
+                title="Number of Team Members"
+                name="quantity"
+              />
             </label>
           </div>
         ) : null}
         <div className="form-row center">
           <div className="form-control">
             <label>
-              <input type="radio"
-                     name="planCycle"
-                     checked={planCycle === planCycleMonthly}
-                     onChange={this._handleUpdateInput.bind(this)}
-                     value={planCycleMonthly}/>
+              <input
+                type="radio"
+                name="planCycle"
+                checked={planCycle === planCycleMonthly}
+                onChange={this._handleUpdateInput.bind(this)}
+                value={planCycleMonthly}
+              />
               {this._getPlanDescription(planType, planCycleMonthly, quantity)}
             </label>
           </div>
           <div className="form-control">
             <label>
-              <input type="radio"
-                     name="planCycle"
-                     checked={planCycle === planCycleYearly}
-                     onChange={this._handleUpdateInput.bind(this)}
-                     value={planCycleYearly}/>
+              <input
+                type="radio"
+                name="planCycle"
+                checked={planCycle === planCycleYearly}
+                onChange={this._handleUpdateInput.bind(this)}
+                value={planCycleYearly}
+              />
               {this._getPlanDescription(planType, planCycleYearly, quantity)}
             </label>
           </div>
         </div>
-        <hr className="hr--skinny"/>
+        <hr className="hr--skinny" />
         <h2 className="text-lg">Billing Information</h2>
         {billingDetails && billingDetails.hasCard ? (
           <div className="form-control">
             <label>
-              <input type="checkbox"
-                     name="useExistingBilling"
-                     onChange={this._handleUpdateInput.bind(this)}
-                     defaultChecked={useExistingBilling}/>
+              <input
+                type="checkbox"
+                name="useExistingBilling"
+                onChange={this._handleUpdateInput.bind(this)}
+                defaultChecked={useExistingBilling}
+              />
               Use card ending in <code>{billingDetails.lastFour}</code>
             </label>
           </div>
         ) : null}
 
         {useExistingBilling ? (
-          <div/>
+          <div />
         ) : (
           <div>
             <div className="form-control">
-              <label>Full Name
-                <input type="text"
-                       name="fullName"
-                       placeholder="Maria Garcia"
-                       defaultValue={fullName}
-                       onChange={this._handleUpdateInput.bind(this)}
-                       required/>
+              <label>
+                Full Name
+                <input
+                  type="text"
+                  name="fullName"
+                  placeholder="Maria Garcia"
+                  defaultValue={fullName}
+                  onChange={this._handleUpdateInput.bind(this)}
+                  required
+                />
               </label>
             </div>
             <div className="form-control">
-              <label>Card Number {cardType ? `(${cardType})` : null}
-                <input type="text"
-                       name="cardNumber"
-                       placeholder="4012 0000 8888 1881"
-                       onChange={this._handleCardNumberChange.bind(this)}
-                       required/>
+              <label>
+                Card Number {cardType ? `(${cardType})` : null}
+                <input
+                  type="text"
+                  name="cardNumber"
+                  placeholder="XXXX XXXX XXXX XXXX"
+                  onChange={this._handleCardNumberChange.bind(this)}
+                  required
+                />
               </label>
             </div>
             <div className="form-row">
               <div className="form-control">
                 <label>Expiration Date</label>
-                <br/>
-                <select name="expireMonth"
-                        title="expire month"
-                        defaultValue={expireMonth}
-                        onChange={this._handleUpdateInput.bind(this)}>
-                  <option value="01">January (01)</option>
-                  <option value="02">February (02)</option>
-                  <option value="03">March (03)</option>
-                  <option value="04">April (04)</option>
-                  <option value="05">May (05)</option>
-                  <option value="06">June (06)</option>
-                  <option value="07">July (07)</option>
-                  <option value="08">August (08)</option>
-                  <option value="09">September (09)</option>
-                  <option value="10">October (10)</option>
-                  <option value="11">November (11)</option>
-                  <option value="12">December (12)</option>
-                </select>
-                {' '}
-                <select name="expireYear"
-                        title="expire year"
-                        defaultValue={expireYear}
-                        onChange={this._handleUpdateInput.bind(this)}>
+                <br />
+                <select
+                  name="expireMonth"
+                  title="expire month"
+                  defaultValue={expireMonth}
+                  onChange={this._handleUpdateInput.bind(this)}>
+                  <option value="01">01 – January</option>
+                  <option value="02">02 – February</option>
+                  <option value="03">03 – March</option>
+                  <option value="04">04 – April</option>
+                  <option value="05">05 – May</option>
+                  <option value="06">06 – June</option>
+                  <option value="07">07 – July</option>
+                  <option value="08">08 – August</option>
+                  <option value="09">09 – September</option>
+                  <option value="10">10 – October</option>
+                  <option value="11">11 – November</option>
+                  <option value="12">12 – December</option>
+                </select>{' '}
+                <select
+                  name="expireYear"
+                  title="expire year"
+                  defaultValue={expireYear}
+                  onChange={this._handleUpdateInput.bind(this)}>
                   <option value="2016">2016</option>
                   <option value="2017">2017</option>
                   <option value="2018">2018</option>
@@ -396,42 +422,54 @@ class Subscribe extends React.Component {
                 </select>
               </div>
               <div className="form-control">
-                <label>Security Code (CVC)
-                  <input type="text"
-                         name="cvc"
-                         placeholder="013"
-                         onChange={this._handleUpdateInput.bind(this)}
-                         required/>
+                <label>
+                  Security Code (CVC)
+                  <input
+                    type="text"
+                    name="cvc"
+                    onChange={this._handleUpdateInput.bind(this)}
+                    required
+                  />
                 </label>
               </div>
             </div>
 
             <div className="form-control">
-              <label>Zip/Postal Code <span className="faint">(Optional)</span>
-                <input type="text"
-                       name="zip"
-                       placeholder="94301"
-                       onChange={this._handleUpdateInput.bind(this)}
+              <label>
+                Zip/Postal Code <span className="faint">(Optional)</span>
+                <input
+                  type="text"
+                  name="zip"
+                  onChange={this._handleUpdateInput.bind(this)}
                 />
               </label>
             </div>
           </div>
         )}
 
-        {error ? <small className="form-control error">** {error}</small> : null}
+        {error ? (
+          <small className="form-control error">** {error}</small>
+        ) : null}
 
         <div className="form-control right padding-top-sm">
-          {loading ?
-            <button type="button" disabled className="button">Subscribing...</button> :
-            <button type="submit" className="button">
-              Subscribe for {this._getPlanDescription(planType, planCycle, quantity)}
+          {loading ? (
+            <button type="button" disabled className="button">
+              Subscribing...
             </button>
-          }
+          ) : (
+            <button type="submit" className="button">
+              Subscribe for{' '}
+              {this._getPlanDescription(planType, planCycle, quantity)}
+            </button>
+          )}
         </div>
 
-        <hr className="hr--skinny"/>
+        <hr className="hr--skinny" />
         <p className="small subtle center">
-          Payments secured by <Link to="https://stripe.com" target="_blank">Stripe</Link>
+          Payments secured by{' '}
+          <Link to="https://stripe.com" target="_blank">
+            Stripe
+          </Link>
         </p>
       </form>
     );
@@ -440,19 +478,20 @@ class Subscribe extends React.Component {
 
 Subscribe.propTypes = {
   whoami: PropTypes.shape({
-    planId: PropTypes.string.isRequired,
+    planId: PropTypes.string.isRequired
   }).isRequired,
   billingDetails: PropTypes.shape({
     subQuantity: PropTypes.number.isRequired,
     hasCard: PropTypes.bool.isRequired,
     lastFour: PropTypes.string.isRequired,
-    isBillingAdmin: PropTypes.string.isRequired,
+    isBillingAdmin: PropTypes.string.isRequired
   })
 };
 
 export default () => (
-  <App title="Subscribe to Plan" subTitle="Visa, MasterCard, or American Express">
-    {props => <Subscribe {...props}/>}
+  <App
+    title="Subscribe to Plan"
+    subTitle="Visa, MasterCard, or American Express">
+    {props => <Subscribe {...props} />}
   </App>
 );
-

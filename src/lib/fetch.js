@@ -19,6 +19,10 @@ export function post(path, obj) {
   return _fetch('POST', path, obj);
 }
 
+export function put(path, obj, sessionId = null) {
+  return _fetch('PUT', path, obj, sessionId);
+}
+
 export function patch(path, obj) {
   return _fetch('PATCH', path, obj);
 }
@@ -27,17 +31,12 @@ export function get(path, sessionId = null) {
   return _fetch('GET', path, null, sessionId);
 }
 
-export function to(path) {
-  window.location = _getUrl(path);
-}
-
-/** Send an HTTP DELETE request */
 export function del(path, sessionId = null) {
   return _fetch('DELETE', path, null, sessionId);
 }
 
-export function put(path, sessionId = null) {
-  return _fetch('PUT', path, null, sessionId);
+export function to(path) {
+  window.location = _getUrl(path);
 }
 
 async function _fetch(method, path, json, sessionId = null) {

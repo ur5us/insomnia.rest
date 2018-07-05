@@ -154,6 +154,10 @@ export async function getInvoice (invoiceId) {
   return util.get('/api/billing/invoices/' + invoiceId);
 }
 
+export async function updateInvoiceExtra (invoiceExtra) {
+  return util.put('/api/billing/invoice-extra', {invoiceExtra});
+}
+
 export async function verify () {
   return util.post('/auth/verify');
 }
