@@ -69,7 +69,7 @@ class Invoices extends React.Component {
       <table>
         <thead>
           <tr>
-            <th>Period</th>
+            <th>Date</th>
             <th>Total</th>
             <th>Status</th>
             <th>&nbsp;</th>
@@ -77,12 +77,11 @@ class Invoices extends React.Component {
         </thead>
         <tbody>
           {invoices.map(invoice => {
-            const start = moment(invoice.periodStart).format('MMM D');
-            const end = moment(invoice.periodEnd).format('MMM D');
+            const date = moment(invoice.date).format('MMM D');
             return (
               <tr key={invoice.id}>
                 <td>
-                  {start} to {end}
+                  {date}
                 </td>
                 <td>${(invoice.total / 100).toFixed(2)}</td>
                 <td>
