@@ -77,7 +77,7 @@ class Invoices extends React.Component {
         </thead>
         <tbody>
           {invoices.map(invoice => {
-            const date = moment(invoice.date).format('MMM D');
+            const date = moment(invoice.date).format('MMMM D');
             return (
               <tr key={invoice.id}>
                 <td>
