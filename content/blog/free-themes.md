@@ -3,6 +3,7 @@ date: 2018-07-09
 title: Sustainable Profit == Free Themes!
 slug: free-themes
 tags: ["announcement"]
+draft: true
 ---
 
 __*All colorschemes are now free as of Insomnia 6.0*__ &#128079;

@@ -36,6 +36,7 @@ module.exports.createPages = async function (data) {
                 date(formatString: "MMMM DD, YYYY")
                 date_iso: date
                 channel
+                draft
                 fixes
                 link
                 major

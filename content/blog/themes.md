@@ -3,7 +3,6 @@ date: 2017-01-23
 title: Introducing Color Themes!
 slug: introducing-color-themes
 tags: ["announcement", "feature"]
-draft: true
 ---
 
 Superb design has always been treated as a core feature of Insomnia. However, I recently

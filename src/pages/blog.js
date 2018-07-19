@@ -23,6 +23,7 @@ export default ({data: {allFile: {edges}}}) => (
         const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date_iso).getTime();
         return tsB - tsA;
       })
+      .filter(({node: {childMarkdownRemark: {frontmatter}}}) => !frontmatter.draft)
       .map(({node: {childMarkdownRemark: {frontmatter, excerpt}}}) => (
         <article key={frontmatter.slug} className="article--preview container">
           <header>
@@ -79,6 +80,7 @@ export const pageQuery = graphql`
             frontmatter {
               date(formatString: "MMMM DD, YYYY")
               date_iso: date
+              draft
               tags
               series
               slug
