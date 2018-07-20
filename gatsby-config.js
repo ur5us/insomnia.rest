@@ -118,6 +118,7 @@ function feedOptions(name) {
           const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date).getTime();
           return tsB - tsA;
         })
+        .filter(({node: {childMarkdownRemark: {frontmatter}}}) => !frontmatter.draft)
         .map(({node: {childMarkdownRemark: {html, frontmatter}}}) => {
           const urlPath = `${name}/${frontmatter.slug}`;
           return {
@@ -138,6 +139,7 @@ function feedOptions(name) {
                 frontmatter {
                   date
                   slug
+                  draft
                   title
                 }
               }
