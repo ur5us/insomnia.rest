@@ -78,7 +78,7 @@ export default () => (
               <ul>
                 <li><strong>All Plus features +</strong></li>
                 <li><Link to="/documentation/security/">E2EE</Link> team sync &#x1f64c;</li>
-                <li>Real-time collaboration</li>
+                <li>Workspace collaboration</li>
                 <li>User management</li>
                 <li>Priority support</li>
               </ul>
