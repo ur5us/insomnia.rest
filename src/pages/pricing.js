@@ -11,8 +11,11 @@ export default () => (
       <header className="container header--big">
         <div className="row">
           <div className="col-12">
-            <h1>Insomnia Addons</h1>
-            <p className="text-lg">Enhance the power of the app &#x1f680;</p>
+            <h1>Pricing Guide</h1>
+            <p className="text-lg">
+              Insomnia is free to use forever, but can be enhanced to
+              meet the needs of you or your team. &#x1f680;
+            </p>
           </div>
         </div>
       </header>
@@ -30,13 +33,12 @@ export default () => (
               <ul>
                 <li>Mac/Windows/Linux App</li>
                 <li>Unlimited installations</li>
-                <li>Future updates</li>
-                <li><Link to="https://github.com/getinsomnia/insomnia">Open source</Link></li>
+                <li>Free updates forever</li>
               </ul>
             </div>
             <footer className="pricing__column__footer">
               <Link to="/download/" className="button button">
-                Download Free App
+                Download App
               </Link>
             </footer>
           </section>
@@ -48,14 +50,12 @@ export default () => (
             <div className="pricing__column__body">
               <h2>
                 $5 / month<br/>
-                <span className="subtle small">or $50 / year</span>
+                <span className="subtle small">or $50 / year</span><br/>
               </h2>
               <ul>
-                <li><strong>All Free features</strong></li>
+                <li><strong>All Free features +</strong></li>
                 <li><Link to="/documentation/security/">E2EE</Link> Data Sync &#128272;</li>
                 <li>Unlimited devices</li>
-                <li>Premium color themes</li>
-                <li><strong>Support future dev &#x1f4bb;</strong></li>
               </ul>
             </div>
             <footer className="pricing__column__footer">
@@ -76,9 +76,9 @@ export default () => (
                 <br/>
               </h2>
               <ul>
-                <li><strong>All Plus features</strong></li>
-                <li>Workspace sharing &#x1f64c;</li>
-                <li>Team management</li>
+                <li><strong>All Plus features +</strong></li>
+                <li>Team collaboration &#x1f64c;</li>
+                <li>User management</li>
                 <li>Priority email support</li>
               </ul>
             </div>
@@ -97,6 +97,22 @@ export default () => (
         <div className="row">
           <div className="col-6">
             <p>
+              <strong>What payment methods are supported?</strong><br/>
+              Visa, MasterCard, and American Express credit cards are accepted. All payments
+              are processed and secured by <a href="https://stripe.com/">Stripe</a>.
+            </p>
+          </div>
+          <div className="col-6">
+            <p>
+              <strong>Can I switch plans after subscribing?</strong><br/>
+              Yes, at any time. When upgrading or downgrading your plan, you will
+              receive either a pro-rated charge or refund, depending on the cost of your new plan.
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6">
+            <p>
               <strong>Can I add and remove team members?</strong><br/>
               Yes, at any time you can adjust your plan limits to add or remove team members and
               your next invoice will be adjusted accordingly.
@@ -111,13 +127,6 @@ export default () => (
           </div>
         </div>
         <div className="row">
-          <div className="col-6">
-            <p>
-              <strong>Can I switch plans after subscribing?</strong><br/>
-              Yes, at any time. When upgrading or downgrading your plan, you will
-              receive either a pro-rated charge or refund, depending on the cost of your new plan.
-            </p>
-          </div>
           <div className="col-6">
             <p>
               <strong>Is there a discount for subscribing annually?</strong><br/>

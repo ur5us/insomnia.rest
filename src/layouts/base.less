@@ -317,6 +317,11 @@ article iframe {
 header.header--big {
   text-align: center;
   padding: 3rem 0 2rem 0;
+  & > * {
+    max-width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ~~~~~~~ */
@@ -679,6 +684,10 @@ button[disabled],
   opacity: 0.7;
 }
 
+.super-subtle {
+  opacity: 0.5;
+}
+
 .hide {
   display: none;
 }
@@ -686,6 +695,10 @@ button[disabled],
 small,
 .small {
   font-size: 0.85em !important;
+}
+
+.tiny {
+  font-size: 0.75em !important;
 }
 
 .italic {
