@@ -54,7 +54,7 @@ export default () => (
               </h2>
               <ul>
                 <li><strong>All Free features +</strong></li>
-                <li><Link to="/documentation/security/">E2EE</Link> Data Sync &#128272;</li>
+                <li><Link to="/documentation/security/">E2EE</Link> data sync &#128272;</li>
                 <li>Unlimited devices</li>
               </ul>
             </div>
@@ -77,9 +77,10 @@ export default () => (
               </h2>
               <ul>
                 <li><strong>All Plus features +</strong></li>
-                <li>Team collaboration &#x1f64c;</li>
+                <li><Link to="/documentation/security/">E2EE</Link> team sync &#x1f64c;</li>
+                <li>Real-time collaboration</li>
                 <li>User management</li>
-                <li>Priority email support</li>
+                <li>Priority support</li>
               </ul>
             </div>
             <footer className="pricing__column__footer">
