@@ -329,6 +329,10 @@ export default class extends React.Component {
                   Dashboard</Link> or read the <Link to="https://www.indiehackers.com/product/insomnia">Indie Hackers
                   Interview</Link>.
                 </p>
+                <p className="italic text-sm">
+                  There is also a discontinued blog series of <Link to="/series/transparency/">
+                  Monthly Progress Reports</Link> that ended at the end of 2017
+                </p>
                 <h2>Summary</h2>
                 <div className="stats">
                   <div className="stats__row">

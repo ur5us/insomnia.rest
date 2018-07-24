@@ -61,9 +61,6 @@ export default class BlogTemplate extends React.Component {
           <br/>
           </section>
           <section className="section--bordered container share">
-            <p>
-              Share this post &#128522; &#128640;
-            </p>
             <ShareButtons title={frontmatter.title}/>
           </section>
         </article>
