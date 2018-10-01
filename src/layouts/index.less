@@ -207,6 +207,69 @@ article a > img:hover {
   width: 100%;
 }
 
+/* ~~~~~~~~~~~~~~~ */
+/* RUN IN INSOMNIA */
+/* ~~~~~~~~~~~~~~~ */
+
+.run-in {
+  box-sizing: border-box;
+  border: 1px solid #6a57d5;
+  position: relative;
+  padding-bottom: 5rem;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 8rem auto;
+  max-width: 30rem;
+  box-shadow: 0 0 2em rgba(91, 79, 169, 0.3);
+
+  .run-in__header {
+    padding: 1rem 1.5rem;
+    background: #6a57d5;
+    margin-bottom: 0;
+    border-bottom: 1px solid #6a57d5;
+
+    h1 {
+      font-size: 1.4rem;
+      color: #fff;
+    }
+  }
+
+  .run-in__body {
+    padding: 1.5rem;
+    text-align: center;
+
+    .run-in__body__preview {
+      font-size: 0;
+      max-width: 15rem;
+      margin: auto auto 1.5rem;
+      padding: 1rem 0;
+      svg {
+        border-radius: 5px;
+        border: 1px solid rgba(130, 130, 130, 0.2);
+      }
+    }
+
+    & > * {
+      margin: 0.5rem 0 0 0;
+    }
+  }
+
+  .run-in__footer {
+    border-top: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    padding: .5rem 1.5rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    &, * {
+      font-size: 0.95em;
+    }
+  }
+}
+
 /* ~~~~~~~~~~~~~ */
 /* PRICING PAGE  */
 /* ~~~~~~~~~~~~~ */

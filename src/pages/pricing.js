@@ -37,7 +37,7 @@ export default () => (
               </ul>
             </div>
             <footer className="pricing__column__footer">
-              <Link to="/download/" className="button button">
+              <Link to="/download/" className="button">
                 Download App
               </Link>
             </footer>
