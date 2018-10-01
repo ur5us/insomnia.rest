@@ -1,9 +1,10 @@
 import React from 'react';
 import SocialCards from '../components/social-cards';
 import Title from '../partials/title';
-import Link from '../components/link';
 import DownloadButton from '../components/download-button';
 import ImportButton from '../components/import-button';
+import CreateRunLink from '../components/create-run-link';
+import Link from '../components/link';
 
 export default () => (
   <React.Fragment>
@@ -45,6 +46,9 @@ export default () => (
             <DownloadButton className="button--subtle">Download</DownloadButton>
           </footer>
         </div>
+        <p className="small center">
+          Or, <Link to="/create-run-button">create your own</Link> run button
+        </p>
       </section>
     </article>
   </React.Fragment>

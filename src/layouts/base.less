@@ -531,6 +531,19 @@ button[disabled],
 /* FORMS */
 /* ~~~~~ */
 
+.form--style-invalid {
+  input, textarea {
+    &:invalid {
+      border-color: #e96764 !important;
+    }
+  }
+}
+
+.form--skinny {
+  max-width: 30rem;
+  margin: auto;
+}
+
 .form-control {
   font-size: 1.1rem;
   border: 0;
@@ -731,12 +744,22 @@ small,
   margin: 0;
 }
 
+.margin-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .no-margin-bottom {
   margin-bottom: 0;
 }
 
 .no-wrap {
   white-space: nowrap;
+}
+
+.force-wrap {
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .padding-top {
@@ -765,6 +788,11 @@ small,
 
 .margin-bottom {
   margin-top: 3rem;
+}
+
+.well {
+  background: #fafafa;
+  padding: 1rem;
 }
 
 /* ~~~~~~ */
