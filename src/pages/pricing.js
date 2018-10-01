@@ -15,6 +15,10 @@ export default () => (
             <p className="text-lg">
               Insomnia is free to use forever, but can be enhanced to
               meet the needs of you or your team. &#x1f680;
+              <a href="https://insomnia.rest/run/?label=Twitter%20API&uri=https://gist.githubusercontent.com/gschier/06c1f06699d772d66a9b51cc221352d9/raw/77445a4fd5f1c31bdab17b39130a1ac392c244c5/insomnia-export.json"
+                 target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"/></a>
+              <a href="https://www.getpostman.com/run-collection/:collection_id" target="_blank"><img src="https://run.pstmn.io/button.svg" alt="Run in Postman"/></a>
+
             </p>
           </div>
         </div>
