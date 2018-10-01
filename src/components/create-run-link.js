@@ -65,7 +65,7 @@ class CreateRunLink extends React.Component {
           <form action="#" className="form--style-invalid form--skinny">
             <div className="form-control">
               <label>API Name <small>(will display during import flow)</small>
-                <input type="text" placeholder="Dog Food API" required autoFocus
+                <input type="text" placeholder="Awesome API" required autoFocus
                        onChange={this.changeLabel.bind(this)}/>
               </label>
             </div>
