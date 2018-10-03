@@ -20,7 +20,7 @@ under the GPLv3 license! The source code is hosted on
 I launched Insomnia more than two years ago with no expectation that it would grow to
 over 30,000 monthly users. This growth motivated me to leave my job in July of 2016 
 and is still the main reason I wake up every morning. Before the transition to full-time,
-I set a goal of [documenting the journey](/transparency) as transparently as 
+I set a goal of [documenting the journey](/open) as transparently as 
 possible so that others could benefit from my mistakes and successes.
 Now, ten months later, it's time to fit the open-source piece into the 
 transparency puzzle.

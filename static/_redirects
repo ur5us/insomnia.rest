@@ -22,6 +22,7 @@
 /eula/                                                           https://github.com/getinsomnia/insomnia/blob/master/LICENSE
 /license/                                                        https://github.com/getinsomnia/insomnia/blob/master/LICENSE
 /app/                                                            /app/account/
+/transparency/                                                   /open/
 
 # Updated Changelogs
 /changelog-json/                                                 /changelog.json

@@ -12,7 +12,7 @@ remains a single-person company – just as it began – but app development is 
 of [30+ open-source contributors](https://github.com/getinsomnia/insomnia/graphs/contributors). 
 I'm still amazed at the overwhelming positivity and support I see almost every day! 💕
 
-As shown on the [Transparency Page](/transparency), growth isn't slowing down. Annual recurring revenue 
+As shown on the [Transparency Page](/open), growth isn't slowing down. Annual recurring revenue 
 recently passed **$100,000** and continues to climb 📈. Not only is this an impressive number but it also marks a
 significant point in time: **Insomnia is now sustainable**! This means that growth no longer has to be the
 number one priority.

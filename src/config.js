@@ -61,9 +61,9 @@ export const menus = {
       key: 'blog',
       url: '/blog/'
     }, {
-      name: 'Transparency',
-      key: 'transparency',
-      url: '/transparency/',
+      name: 'Open Startup',
+      key: 'open',
+      url: '/open/',
     }, {
       name: 'Changelog',
       key: 'changelog',

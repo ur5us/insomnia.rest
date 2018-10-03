@@ -18,7 +18,7 @@ Inspired by the last
 I decided to throw in a few more metrics into this post, making it longer than usual. Let me
 know if you like it more or less.
 
-_I also added a [Transparency Page](/transparency/) if you want to follow progress 
+_I also added a [Transparency Page](/open/) if you want to follow progress 
 throughout the month._
 
 ## January Overview

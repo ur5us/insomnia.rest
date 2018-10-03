@@ -313,7 +313,7 @@ export default class extends React.Component {
           <header className="container header--big">
             <div className="row">
               <div className="col-12">
-                <h1>Transparency</h1>
+                <h1>Open Startup</h1>
                 <p>Sharing the Road to Insomnia</p>
               </div>
             </div>
