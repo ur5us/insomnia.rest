@@ -140,7 +140,7 @@ export default ({data}) => (
           </div>
         </div>
       </section>
-      <section className="light no-margin padding-bottom padding-top-lg">
+      <section className="light no-margin padding-bottom-lg padding-top-lg">
         <div className="container">
           <div className="row">
             <div className="col-12 center">
