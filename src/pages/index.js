@@ -140,11 +140,11 @@ export default ({data}) => (
           </div>
         </div>
       </section>
-      <section className="dark no-margin padding-bottom padding-top-lg">
+      <section className="light no-margin padding-bottom padding-top-lg">
         <div className="container">
           <div className="row">
             <div className="col-12 center">
-              <h2>More than 300,000 developers trust Insomnia</h2>
+              <h2>More than 400,000 developers trust Insomnia</h2>
               <div className="padding-top">
                 <Companies/>
                 <br/>
@@ -161,18 +161,10 @@ export default ({data}) => (
           </div>
         </div>
       </section>
-      <section className="dark no-margin padding-bottom-lg">
+      <section className="dark no-margin padding-bottom-lg padding-top-lg">
         <div className="container">
           <div className="row">
             <div className="col-12 center">
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <div className="subtle padding-top padding-bottom">&#9675;</div>
-              <br/>
               <h2 className="text-xl">Still not convinced?</h2>
               <p>Maybe this big ol' list of features will help</p>
             </div>
