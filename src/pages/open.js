@@ -307,7 +307,7 @@ export default class extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Title>Transparency</Title>
+        <Title>Open Startup</Title>
         <article className="container">
           <SocialCards title="Insomnia" summary="Sharing revenue, growth, and more" isBanner/>
           <header className="container header--big">
