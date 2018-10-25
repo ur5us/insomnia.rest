@@ -54,7 +54,7 @@ export default () => (
             </h2>
             <ul>
               <li><strong>All Free features +</strong></li>
-              <li><Link to="/documentation/security/">E2EE</Link> data sync &#128272;</li>
+              <li><Link to="https://support.insomnia.rest/article/57-encryption">E2EE</Link> data sync &#128272;</li>
               <li>Unlimited devices</li>
             </ul>
           </div>
@@ -77,7 +77,7 @@ export default () => (
             </h2>
             <ul>
               <li><strong>All Plus features +</strong></li>
-              <li><Link to="/documentation/security/">E2EE</Link> team sync &#x1f64c;</li>
+              <li><Link to="https://support.insomnia.rest/article/57-encryption">E2EE</Link> team sync &#x1f64c;</li>
               <li>Workspace collaboration</li>
               <li>User management</li>
               <li>Priority support</li>
@@ -140,7 +140,7 @@ export default () => (
         <section className="col-12 center small">
           <p>
             Please send any questions to&nbsp;
-            <Link to="/documentation/support-and-feedback">support@insomnia.rest</Link>
+            <Link to="/support">support@insomnia.rest</Link>
           </p>
         </section>
       </div>

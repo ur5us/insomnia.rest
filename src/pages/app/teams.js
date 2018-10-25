@@ -9,24 +9,22 @@ import Link from '../../components/link';
 
 class Teams extends React.Component {
   state = {
-    error: '',
+    error: ''
   };
 
   _getOwnedTeam() {
-    const {teams, whoami} = this.props;
+    const { teams, whoami } = this.props;
     return teams.find(t => t.ownerAccountId === whoami.accountId);
   };
 
   renderEditTeam() {
-    const {whoami, billingDetails} = this.props;
+    const { whoami, billingDetails } = this.props;
     const ownedTeam = this._getOwnedTeam();
 
     let membersRemaining = 0;
 
     if (billingDetails && ownedTeam) {
-      membersRemaining = billingDetails.subQuantity - ownedTeam.accounts.length;
-    } else if (whoami.quantityOverride) {
-      membersRemaining = whoami.quantityOverride - ownedTeam.accounts.length;
+      membersRemaining = whoami.maxTeamMembers - ownedTeam.accounts.length;
     } else if (whoami.isTrialing && ownedTeam) {
       membersRemaining = 5 - ownedTeam.accounts.length;
     }
@@ -47,13 +45,11 @@ class Teams extends React.Component {
         </div>
       );
     } else if (ownedTeam) {
-      const {handleReload} = this.props;
+      const { handleReload } = this.props;
 
       // Sort the accounts to put the user first. NOTE: We're making a copy since
       // sort modifies the original.
-      const accounts = [...ownedTeam.accounts].sort((a, b) =>
-        a.id === whoami.accountId ? -1 : 1
-      );
+      const accounts = [...ownedTeam.accounts].sort(a => a.id === whoami.accountId ? -1 : 1);
 
       inner = (
         <div>
@@ -116,7 +112,7 @@ class Teams extends React.Component {
   }
 
   renderTeams() {
-    const {teams, whoami} = this.props;
+    const { teams, whoami } = this.props;
 
     return (
       <div>
@@ -172,10 +168,8 @@ Teams.propTypes = {
     email: PropTypes.string.isRequired,
     canManageTeams: PropTypes.bool.isRequired,
     quantityOverride: PropTypes.number,
+    maxTeamMembers: PropTypes.number.isRequired
   }).isRequired,
-  billingDetails: PropTypes.shape({
-    subQuantity: PropTypes.number.isRequired,
-  }),
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     ownerAccountId: PropTypes.string.isRequired,
@@ -183,9 +177,9 @@ Teams.propTypes = {
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    })).isRequired,
-  })).isRequired,
+      id: PropTypes.string.isRequired
+    })).isRequired
+  })).isRequired
 };
 
 export default () => (

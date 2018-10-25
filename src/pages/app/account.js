@@ -116,11 +116,6 @@ class Home extends React.Component {
     const { whoami, billingDetails } = this.props;
     const description = billingDetails && billingDetails.description;
 
-    const total = billingDetails && billingDetails.subTotal;
-    const discountAmount = billingDetails
-      ? total * (billingDetails.subPercentOff / 100)
-      : 0;
-    const totalAfterDiscount = total - discountAmount;
     const periodEnd =
       billingDetails &&
       new Date(billingDetails.subPeriodEnd * 1000).toDateString();
@@ -156,13 +151,11 @@ class Home extends React.Component {
         !billingDetails.subCancelled &&
         billingDetails.isBillingAdmin ? (
           <p>
-            Your next invoice is scheduled for <strong>{periodEnd}</strong> and
-            will be{" "}
-            <strong>${(totalAfterDiscount / 100).toFixed(2)} USD</strong>
+            Your next invoice is scheduled for <strong>{periodEnd}</strong>
             {billingDetails.subPercentOff ? (
               <span className="success bold">
                 {" "}
-                (after {billingDetails.subPercentOff}% discount)
+                (with {billingDetails.subPercentOff}% discount)
               </span>
             ) : null}
             .
@@ -220,8 +213,7 @@ Home.propTypes = {
     subTrialEnd: PropTypes.number.isRequired,
     subCancelled: PropTypes.bool.isRequired,
     subPeriodEnd: PropTypes.number.isRequired,
-    subPercentOff: PropTypes.number.isRequired,
-    subTotal: PropTypes.number.isRequired
+    subPercentOff: PropTypes.number.isRequired
   })
 };
 
