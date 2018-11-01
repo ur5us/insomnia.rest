@@ -85,7 +85,7 @@ function fetchContributors () {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
-      url: 'https://api.github.com/repos/getinsomnia/insomnia/contributors',
+      url: 'https://gschier:@api.github.com/repos/getinsomnia/insomnia/contributors',
       headers: {'User-Agent': `insomnia/website`}
     };
 
@@ -103,7 +103,7 @@ function fetchRepositoryStats () {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
-      url: 'https://api.github.com/repos/getinsomnia/insomnia',
+      url: 'https://gschier:@api.github.com/repos/getinsomnia/insomnia',
       headers: {'User-Agent': `insomnia/website`}
     };
 
