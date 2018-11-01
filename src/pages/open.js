@@ -15,7 +15,7 @@ export default class extends React.Component {
     this.state = {
       metrics: [],
       plans: [],
-      totals: {},
+      totals: {}
     };
   }
 
@@ -24,7 +24,7 @@ export default class extends React.Component {
       return;
     }
 
-    const {totals, metrics, plans} = this.state;
+    const { totals, metrics, plans } = this.state;
 
     const colors = {
       green: [60, 190, 0],
@@ -95,10 +95,10 @@ export default class extends React.Component {
         options: {
           tooltips: {
             callbacks: {
-              title: function (info, bar) {
+              title: function(info, bar) {
                 return bar.datasets[info[0].datasetIndex].label;
               },
-              label: function (info) {
+              label: function(info) {
                 return formatLabel(type, info.yLabel);
               }
             }
@@ -107,12 +107,12 @@ export default class extends React.Component {
             xAxes: [{
               barPercentage: 1,
               categoryPercentage: 0.75,
-              ticks: {autoSkip: pageWidth < 500}
+              ticks: { autoSkip: pageWidth < 500 }
             }],
             yAxes: [{
               ticks: {
                 beginAtZero: true,
-                callback: function (value) {
+                callback: function(value) {
                   return formatLabel(type, value, true);
                 }
               }
@@ -144,28 +144,28 @@ export default class extends React.Component {
               formatMoney(plans.plus.monthly),
               formatMoney(plans.plus.yearly),
               formatMoney(plans.team.monthly),
-              formatMoney(plans.team.yearly),
+              formatMoney(plans.team.yearly)
             ],
             backgroundColor: [
               getColor('purple', 0.6),
               getColor('purple', 0.4),
               getColor('blue', 0.6),
-              getColor('blue', 0.4),
+              getColor('blue', 0.4)
             ],
             borderWidth: 0
           }]
         },
         options: {
           cutoutPercentage: 50,
-          animation: {duration: 0},
+          animation: { duration: 0 },
           tooltips: {
             callbacks: {
-              title: function (info, data) {
+              title: function(info, data) {
                 let v = 'Insomnia ' + data.labels[info[0].index];
                 v = v.replace('/ Mo', 'Monthly').replace('/ Yr', 'Annually');
                 return v;
               },
-              label: function (info, data) {
+              label: function(info, data) {
                 return formatLabel('money', data.datasets[0].data[info.index]);
               }
             }
@@ -218,14 +218,26 @@ export default class extends React.Component {
     s.addEventListener('load', () => {
       this.loaded = true;
 
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
 
       function printDate(yearMonthDay) {
         const parts = yearMonthDay.split(/[-/]/);
         const year = parts[0];
         const month = months[parts[1] - 1];
-        const day = parts[2];
-        return month + ' ' + day + ', ' + year;
+        return month + ' ' + year.substring(2);
       }
 
       const metrics = [];
@@ -280,8 +292,8 @@ export default class extends React.Component {
 
       // Populate plan data
       const plans = {
-        plus: {monthly: 0, yearly: 0},
-        team: {monthly: 0, yearly: 0}
+        plus: { monthly: 0, yearly: 0 },
+        team: { monthly: 0, yearly: 0 }
       };
 
       for (const item of baremetrics.plans.metrics) {
