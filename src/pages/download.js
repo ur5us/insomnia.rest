@@ -7,14 +7,6 @@ import Link from '../components/link';
 import {links} from '../config';
 
 export default class extends React.Component {
-  componentDidMount() {
-    if (window.location.hash === '#mac') {
-      window.location = links.builds.mac;
-    } else if (window.location.hash === '#windows') {
-      window.location = links.builds.windows;
-    }
-  }
-
   render() {
     return (
       <React.Fragment>
