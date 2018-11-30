@@ -6,7 +6,8 @@ import './index.less';
 import Navbar from '../partials/navbar';
 import Footer from '../partials/footer';
 import Title from '../partials/title';
-import {isLoggedIn} from '../lib/session';
+import { isLoggedIn } from '../lib/session';
+import { site } from '../config';
 
 export default class extends React.Component {
   state = {
@@ -14,16 +15,17 @@ export default class extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({isLoggedIn: isLoggedIn()});
+    this.setState({ isLoggedIn: isLoggedIn() });
   }
 
   render() {
-    const {children, location} = this.props;
-    const {isLoggedIn} = this.state;
+    const { children, location } = this.props;
+    const { isLoggedIn } = this.state;
     return (
       <React.Fragment>
         <Title/>
         <Helmet>
+          <meta name="description" content={site.description}/>
           <body data-pathname={location.pathname}/>
         </Helmet>
         <Navbar loggedIn={isLoggedIn}/>

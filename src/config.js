@@ -1,6 +1,7 @@
 export const site = {
   shortName: 'Insomnia',
   name: 'Insomnia REST Client',
+  description: 'Insomnia is a cross-platform GraphQL and REST client, available for Mac, Windows, and Linux',
   copyright: 'Floating Keyboard Software',
   copyrightURL: 'https://floatingkeyboard.com',
   stripePubKey: process.env.NODE_ENV === 'production'
