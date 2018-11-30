@@ -17,6 +17,7 @@ function endDate () {
     // Do this first in case another one fails
     const changelog = generateChangelog();
     fs.writeFileSync(path.join(dirChangelog, 'changelog.json'), JSON.stringify(changelog));
+    fs.writeFileSync(path.join(dirAssets, 'changelog.json'), JSON.stringify(changelog));
 
     // Fetch contributors
     const contributors = await fetchContributors();

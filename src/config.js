@@ -11,11 +11,7 @@ export const site = {
 
 export const links = {
   download: '/download',
-  rss: '/blog/index.xml',
-  builds: {
-    mac: 'https://builds.insomnia.rest/downloads/mac/latest',
-    windows: 'https://builds.insomnia.rest/downloads/windows/latest',
-  }
+  rss: '/blog/index.xml'
 };
 
 export const menus = {

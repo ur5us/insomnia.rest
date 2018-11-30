@@ -1,9 +1,8 @@
-import React from "react";
-import Link from "../components/link";
-import { links } from "../config";
-import ChangelogLink from "../components/changelog-link";
-import ChangelogListItem from "../components/changelog-list-item";
-import DownloadButton from "../components/download-button";
+import React from 'react';
+import Link from '../components/link';
+import { links } from '../config';
+import ChangelogLink from '../components/changelog-link';
+import ChangelogListItem from '../components/changelog-list-item';
 
 export default ({
   data: {
