@@ -436,8 +436,9 @@ class Subscribe extends React.Component {
 
             <div className="form-control">
               <label>
-                Zip/Postal Code <span className="faint">(Optional)</span>
+                Zip/Postal Code
                 <input
+                  required
                   type="text"
                   name="zip"
                   onChange={this._handleUpdateInput.bind(this)}
