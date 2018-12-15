@@ -8,11 +8,11 @@ const dirAssets = 'src/assets';
 const dirChangelog = 'static';
 
 /** Returns last day of last month in YYYY-MM-DD format */
-function endDate () {
+function endDate() {
   return moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD');
 }
 
-(async function run () {
+(async function run() {
   try {
     // Do this first in case another one fails
     const changelog = generateChangelog();
@@ -44,16 +44,16 @@ function endDate () {
   }
 })();
 
-function fetchBaremetrics () {
+function fetchBaremetrics() {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
       url: 'https://api.baremetrics.com/v1/metrics',
-      qs: {start_date: '2016-12-01', end_date: endDate()},
-      headers: {'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}`}
+      qs: { start_date: '2016-12-01', end_date: endDate() },
+      headers: { 'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}` }
     };
 
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
       if (response.statusCode !== 200) {
         return reject(new Error('Metrics request failed: ' + response.body));
       }
@@ -63,16 +63,16 @@ function fetchBaremetrics () {
   });
 }
 
-function fetchPlans () {
+function fetchPlans() {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
       url: 'https://api.baremetrics.com/v1/metrics/mrr/plans',
-      qs: {start_date: '2018-04-28', end_date: '2018-04-29'},
-      headers: {'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}`}
+      qs: { start_date: '2018-04-28', end_date: '2018-04-29' },
+      headers: { 'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}` }
     };
 
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
       if (response.statusCode !== 200) {
         return reject(new Error('Plans request failed: ' + response.body));
       }
@@ -82,33 +82,49 @@ function fetchPlans () {
   });
 }
 
-function fetchContributors () {
+async function fetchContributors() {
   return new Promise((resolve, reject) => {
-    const options = {
-      method: 'GET',
-      url: 'https://gschier:@api.github.com/repos/getinsomnia/insomnia/contributors',
-      headers: {'User-Agent': `insomnia/website`}
-    };
+    let contributors = [];
 
-    request(options, function (err, response, body) {
-      if (response.statusCode !== 200) {
-        return reject(new Error('Contributors request failed: ' + response.body));
-      }
+    function next(page = 1) {
+      const options = {
+        method: 'GET',
+        url: 'https://gschier:@api.github.com/repos/getinsomnia/insomnia/contributors',
+        qs: { page },
+        headers: { 'User-Agent': `insomnia/website` }
+      };
 
-      resolve(JSON.parse(body));
-    });
+      request(options, function(err, response, body) {
+        if (response.statusCode < 200 || response.statusCode >= 300) {
+          return reject(new Error('Contributors request failed: ' + response.body));
+        }
+
+        const newContributors = JSON.parse(body);
+
+        // No-Content means page is empty
+        if (newContributors.length === 0) {
+          resolve(contributors);
+          return;
+        }
+
+        contributors = [...contributors, ...newContributors];
+        next(page + 1);
+      });
+    }
+
+    next();
   });
 }
 
-function fetchRepositoryStats () {
+function fetchRepositoryStats() {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
       url: 'https://gschier:@api.github.com/repos/getinsomnia/insomnia',
-      headers: {'User-Agent': `insomnia/website`}
+      headers: { 'User-Agent': `insomnia/website` }
     };
 
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
       if (response.statusCode !== 200) {
         return reject(new Error('Repository stats request failed: ' + response.body));
       }
@@ -118,7 +134,7 @@ function fetchRepositoryStats () {
   });
 }
 
-function generateChangelog () {
+function generateChangelog() {
   const root = path.join(__dirname, '..', 'content', 'changelog');
   const items = [];
   for (const name of fs.readdirSync(root)) {
@@ -135,7 +151,7 @@ function generateChangelog () {
       link: frontmatter.link || null,
       major: frontmatter.major || [],
       minor: frontmatter.minor || [],
-      fixes: frontmatter.fixes || [],
+      fixes: frontmatter.fixes || []
     });
   }
   return items.sort((a, b) => (
