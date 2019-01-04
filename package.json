@@ -40,8 +40,7 @@
     "prop-types": "^15.6.1",
     "react-helmet": "^5.2.0",
     "react-waypoint": "^8.0.1",
-    "srp-js": "^0.2.1",
-    "whatwg-fetch": "^3.0.0"
+    "srp-js": "^0.2.1"
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
