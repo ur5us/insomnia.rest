@@ -1,7 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: 'Insomnia',
-    description: 'A powerful REST API Client with cookie management, environment variables, code generation, and authentication for Mac, Window, and Linux',
+    description: 'A powerful REST API Client with cookie management, ' +
+      'environment variables, code generation, and authentication for Mac, ' +
+      'Window, and Linux',
     siteUrl: 'https://insomnia.rest/',
     shortName: 'Insomnia',
     name: 'Insomnia REST Client',
@@ -116,9 +118,9 @@ function feedOptions(name) {
       // Check on this later
       return allFile.edges
         .sort((a, b) => {
-          const tsA = new Date(a.node.childMarkdownRemark.frontmatter.date).getTime();
-          const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date).getTime();
-          return tsB - tsA;
+          const tsA = new Date(a.node.childMarkdownRemark.frontmatter.date);
+          const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date);
+          return tsB.getTime() - tsA.getTime();
         })
         .map(({node: {childMarkdownRemark: {html, frontmatter}}}) => {
           const urlPath = `${name}/${frontmatter.slug}`;
