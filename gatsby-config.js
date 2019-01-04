@@ -97,7 +97,6 @@ module.exports = {
             ...rest
           };
         },
-        feed_url: `https://insomnia.rest${output}`,
         site_url: module.exports.siteMetadata.siteUrl,
         feeds: [
           feedOptions('blog'),
