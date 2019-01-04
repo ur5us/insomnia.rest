@@ -1,16 +1,18 @@
+const siteMetadata = {
+  title: 'Insomnia',
+  description: 'A powerful REST API Client with cookie management, ' +
+    'environment variables, code generation, and authentication for Mac, ' +
+    'Window, and Linux',
+  siteUrl: 'https://insomnia.rest/',
+  shortName: 'Insomnia',
+  name: 'Insomnia REST Client',
+  author: 'Gregory Schier',
+  copyright: 'Floating Keyboard Software',
+  copyrightURL: 'https://floatingkeyboard.com'
+};
+
 module.exports = {
-  siteMetadata: {
-    title: 'Insomnia',
-    description: 'A powerful REST API Client with cookie management, ' +
-      'environment variables, code generation, and authentication for Mac, ' +
-      'Window, and Linux',
-    siteUrl: 'https://insomnia.rest/',
-    shortName: 'Insomnia',
-    name: 'Insomnia REST Client',
-    author: 'Gregory Schier',
-    copyright: 'Floating Keyboard Software',
-    copyrightURL: 'https://floatingkeyboard.com'
-  },
+  siteMetadata,
   plugins: [
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
@@ -19,8 +21,8 @@ module.exports = {
       options: {
         theme: {
           // Override Less variables here
-        },
-      },
+        }
+      }
     },
     {
       resolve: 'gatsby-plugin-favicon',
@@ -44,29 +46,29 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'changelog',
-        path: `${__dirname}/content/changelog/`,
-      },
+        path: `${__dirname}/content/changelog/`
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'blog',
-        path: `${__dirname}/content/blog/`,
-      },
+        path: `${__dirname}/content/blog/`
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'page',
-        path: `${__dirname}/content/pages/`,
-      },
+        path: `${__dirname}/content/pages/`
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: `${__dirname}/src/assets/`,
-      },
+        path: `${__dirname}/src/assets/`
+      }
     },
     'gatsby-transformer-remark',
     `gatsby-transformer-sharp`,
@@ -81,37 +83,37 @@ module.exports = {
         theme_color: '#675BC0',
         display: 'minimal-ui',
         icon: 'src/assets/favicon.png'
-      },
+      }
     },
     {
       resolve: 'gatsby-plugin-feed',
       options: {
-        setup: function setup({query}) {
-          const {site, ...rest} = query;
+        setup: function setup({ query }) {
+          const { site, ...rest } = query;
           // NOTE: We should be getting siteMetadata from the query results
           // but the feed plugin is too shitty to work with multiple feeds.
           // Check on this later
 
           return {
-            ...module.exports.siteMetadata,
+            ...siteMetadata,
             ...rest
           };
         },
-        site_url: module.exports.siteMetadata.siteUrl,
+        site_url: siteMetadata.siteUrl,
         feeds: [
           feedOptions('blog'),
-          feedOptions('changelog'),
+          feedOptions('changelog')
         ]
       }
     }
-  ],
+  ]
 };
 
 function feedOptions(name) {
   return {
     output: `/${name}/index.xml`,
     serialize: result => {
-      const {query: {site, allFile}} = result;
+      const { query: { site, allFile } } = result;
       // NOTE: We should be getting siteMetadata from the query results
       // but the feed plugin is too shitty to work with multiple feeds.
       // Check on this later
@@ -121,12 +123,12 @@ function feedOptions(name) {
           const tsB = new Date(b.node.childMarkdownRemark.frontmatter.date);
           return tsB.getTime() - tsA.getTime();
         })
-        .map(({node: {childMarkdownRemark: {html, frontmatter}}}) => {
+        .map(({ node: { childMarkdownRemark: { html, frontmatter } } }) => {
           const urlPath = `${name}/${frontmatter.slug}`;
           return {
             ...frontmatter,
             description: html,
-            url: module.exports.siteMetadata.siteUrl + urlPath,
+            url: siteMetadata.siteUrl + urlPath,
             guid: urlPath
           };
         });
@@ -149,5 +151,5 @@ function feedOptions(name) {
         }
       }
     `
-  }
+  };
 }
