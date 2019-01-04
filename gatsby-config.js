@@ -97,6 +97,8 @@ module.exports = {
             ...rest
           };
         },
+        feed_url: `https://insomnia.rest${output}`,
+        site_url: module.exports.siteMetadata.siteUrl,
         feeds: [
           feedOptions('blog'),
           feedOptions('changelog'),
@@ -107,10 +109,8 @@ module.exports = {
 };
 
 function feedOptions(name) {
-  const output = `/${name}/index.xml`;
   return {
-    output,
-    feed_url: `https://insomnia.rest${output}`,
+    output: `/${name}/index.xml`,
     serialize: result => {
       const {query: {site, allFile}} = result;
       // NOTE: We should be getting siteMetadata from the query results
