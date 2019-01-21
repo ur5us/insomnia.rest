@@ -7,7 +7,7 @@ const siteMetadata = {
   shortName: 'Insomnia',
   name: 'Insomnia REST Client',
   author: 'Gregory Schier',
-  copyright: 'Floating Keyboard Software',
+  copyright: 'Floating Keyboard Software Inc.',
   copyrightURL: 'https://floatingkeyboard.com'
 };
 
