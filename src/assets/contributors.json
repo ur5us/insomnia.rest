@@ -756,27 +756,6 @@
 		"contributions": 1
 	},
 	{
-		"login": "evanslify",
-		"id": 13075218,
-		"node_id": "MDQ6VXNlcjEzMDc1MjE4",
-		"avatar_url": "https://avatars2.githubusercontent.com/u/13075218?v=4",
-		"gravatar_id": "",
-		"url": "https://api.github.com/users/evanslify",
-		"html_url": "https://github.com/evanslify",
-		"followers_url": "https://api.github.com/users/evanslify/followers",
-		"following_url": "https://api.github.com/users/evanslify/following{/other_user}",
-		"gists_url": "https://api.github.com/users/evanslify/gists{/gist_id}",
-		"starred_url": "https://api.github.com/users/evanslify/starred{/owner}{/repo}",
-		"subscriptions_url": "https://api.github.com/users/evanslify/subscriptions",
-		"organizations_url": "https://api.github.com/users/evanslify/orgs",
-		"repos_url": "https://api.github.com/users/evanslify/repos",
-		"events_url": "https://api.github.com/users/evanslify/events{/privacy}",
-		"received_events_url": "https://api.github.com/users/evanslify/received_events",
-		"type": "User",
-		"site_admin": false,
-		"contributions": 1
-	},
-	{
 		"login": "fabiomargarido",
 		"id": 649114,
 		"node_id": "MDQ6VXNlcjY0OTExNA==",
