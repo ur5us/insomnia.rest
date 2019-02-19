@@ -3,10 +3,7 @@ export const site = {
   name: 'Insomnia REST Client',
   description: 'Insomnia is a cross-platform GraphQL and REST client, available for Mac, Windows, and Linux',
   copyright: 'Floating Keyboard Software Inc.',
-  copyrightURL: 'https://floatingkeyboard.com',
-  stripePubKey: process.env.NODE_ENV === 'production'
-    ? 'pk_live_lntbVSXY3v1RAytACIQJ5BBH'
-    : 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH'
+  copyrightURL: 'https://floatingkeyboard.com'
 };
 
 export const links = {

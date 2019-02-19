@@ -77,9 +77,9 @@ async function _fetch(method, path, json, sessionId = null) {
 }
 
 export function _getUrl(path) {
-  if (window.location.host === 'staging.insomnia.rest') {
+  if (window.location.hostname === 'staging.insomnia.rest') {
     return `https://api.staging.insomnia.rest${path}`;
-  } else if (window.location.host === 'localhost:8001') {
+  } else if (window.location.hostname === 'localhost') {
     return `https://localhost:8000${path}`;
   } else {
     return `https://api.insomnia.rest${path}`;

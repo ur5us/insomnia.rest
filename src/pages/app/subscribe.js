@@ -62,7 +62,16 @@ class Subscribe extends React.Component {
     s.src = 'https://js.stripe.com/v2/';
     document.body.appendChild(s);
     s.addEventListener('load', () => {
-      window.Stripe.setPublishableKey(site.stripePubKey);
+      let key;
+      if (window.location.hostname === 'staging.insomnia.rest') {
+        key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
+      } else if (window.location.hostname === 'localhost') {
+        key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH'
+      } else {
+        key = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH'
+      }
+
+      window.Stripe.setPublishableKey(key);
     });
   }
 
