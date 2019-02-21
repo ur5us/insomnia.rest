@@ -115,8 +115,9 @@ export default () => (
         <div className="col-6">
           <p>
             <strong>Can I add and remove team members?</strong><br/>
-            Yes, at any time you can adjust your plan limits to add or remove team members and
-            your next invoice will be adjusted accordingly.
+            Yes, at any time you can adjust your plan limits to add or remove team members. Upgrades
+            are billed immediately for the difference and downgrades will be credited on the next
+            invoice.
           </p>
         </div>
         <div className="col-6">
