@@ -41,8 +41,15 @@ class App extends React.Component {
     try {
       whoami = await session.whoami();
     } catch (err) {
+      if (!err.statusCode) {
+        console.log('[app] whoami failed', err);
+        alert('Failed to contact server');
+        return;
+      }
+
       // If not logged in, logout and redirect to login page
-      if (!err.statusCode || err.statusCode === 403) {
+      if (err.statusCode === 403) {
+        console.log('[app] invalid session. Logging out', err);
         await session.logout();
       }
 

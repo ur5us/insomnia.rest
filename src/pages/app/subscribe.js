@@ -163,12 +163,9 @@ class Subscribe extends React.Component {
       number: this.state.cardNumber.replace(/ /g, ''),
       cvc: this.state.cvc,
       exp_month: parseInt(this.state.expireMonth, 10),
-      exp_year: parseInt(this.state.expireYear, 10)
+      exp_year: parseInt(this.state.expireYear, 10),
+      address_zip: this.state.zip,
     };
-
-    if (this.state.zip) {
-      params['address_zip'] = this.state.zip;
-    }
 
     const teamSize = Math.max(minTeamSize, this.state.quantity);
     const quantity = this.state.planType === planTypePlus ? 1 : teamSize;

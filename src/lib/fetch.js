@@ -80,7 +80,7 @@ export function _getUrl(path) {
   if (window.location.hostname === 'staging.insomnia.rest') {
     return `https://api.staging.insomnia.rest${path}`;
   } else if (window.location.hostname === 'localhost') {
-    return `https://localhost:8000${path}`;
+    return `http://localhost:8000${path}`;
   } else {
     return `https://api.insomnia.rest${path}`;
   }

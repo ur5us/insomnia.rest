@@ -10,7 +10,8 @@ class Invoices extends React.Component {
     invoiceExtra: '',
     invoiceExtraDirty: false,
     invoiceExtraLoading: false,
-    invoiceExtraError: ''
+    invoiceExtraError: '',
+    hasSaved: false
   };
 
   async componentDidMount() {
@@ -43,7 +44,8 @@ class Invoices extends React.Component {
       this.setState({
         invoiceExtraDirty: false,
         invoiceExtraError: '',
-        invoiceExtraLoading: false
+        invoiceExtraLoading: false,
+        hasSaved: true,
       });
     } catch (err) {
       this.setState({
@@ -116,8 +118,18 @@ class Invoices extends React.Component {
       invoiceExtra,
       invoiceExtraLoading,
       invoiceExtraError,
-      invoiceExtraDirty
+      invoiceExtraDirty,
+      hasSaved
     } = this.state;
+
+    let btnText = '';
+    if (invoiceExtraLoading) {
+      btnText = 'Updating...';
+    } else if (hasSaved && !invoiceExtraDirty) {
+      btnText = 'Updated';
+    } else {
+      btnText = 'Save';
+    }
 
     return (
       <div>
@@ -141,7 +153,7 @@ class Invoices extends React.Component {
             <button
               className="button"
               disabled={!invoiceExtraDirty || invoiceExtraLoading}>
-              {invoiceExtraLoading ? 'Saving...' : 'Save'}
+              {btnText}
             </button>
           </div>
         </form>
