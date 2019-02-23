@@ -176,7 +176,7 @@ class Subscribe extends React.Component {
         await session.subscribe(tokenId, planId, quantity);
         window.location = '/app/account/';
       } catch (err) {
-        this.setState({ error: err.message });
+        this.setState({ error: err.message, loading: false });
       }
     };
 

@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import CancelLink from "../../lib/common/cancel";
-import SignOutLink from "../../lib/common/sign-out";
-import App from "../../lib/app-wrapper";
-import Link from "../../components/link";
+import React from 'react';
+import PropTypes from 'prop-types';
+import CancelLink from '../../lib/common/cancel';
+import SignOutLink from '../../lib/common/sign-out';
+import App from '../../lib/app-wrapper';
+import Link from '../../components/link';
 
 class Home extends React.Component {
   renderNotice() {
@@ -29,8 +29,8 @@ class Home extends React.Component {
           <p className="notice info">
             <strong>Payment Required</strong>. Please subscribe to a plan to
             continue using Insomnia.
-            <br />
-            <br />
+            <br/>
+            <br/>
             <Link to="/app/subscribe/" className="button button--compact">
               Update Subscription
             </Link>
@@ -38,17 +38,15 @@ class Home extends React.Component {
         );
       } else if (
         billingDetails.subCancelled &&
-        billingDetails.subPeriodEnd * 1000 > Date.now()
+        new Date(billingDetails.subPeriodEnd).getTime() > Date.now()
       ) {
-        const dateString = new Date(
-          billingDetails.subPeriodEnd * 1000
-        ).toDateString();
+        const dateString = new Date(billingDetails.subPeriodEnd).toDateString();
         notice = (
           <p className="notice info">
-            Subscription <strong>Cancelled</strong> and will end{" "}
+            Subscription <strong>canceled</strong> and will end{' '}
             <strong>{dateString}</strong>
-            <br />
-            <br />
+            <br/>
+            <br/>
             <Link to="/app/subscribe/" className="button button--compact">
               Resubscribe
             </Link>
@@ -57,9 +55,9 @@ class Home extends React.Component {
       } else if (billingDetails.subCancelled) {
         notice = (
           <p className="notice info">
-            Your subscription is <strong>Cancelled</strong>
-            <br />
-            <br />
+            Your subscription is <strong>canceled</strong>
+            <br/>
+            <br/>
             <Link to="/app/subscribe/" className="button button--compact">
               Resubscribe
             </Link>
@@ -71,11 +69,11 @@ class Home extends React.Component {
         notice = (
           <p className="notice info">
             You still have <strong>{trialDays}</strong> day{trialDays === 1
-              ? ""
-              : "s"}{" "}
+            ? ''
+            : 's'}{' '}
             left on your free trial
-            <br />
-            <br />
+            <br/>
+            <br/>
             <Link to="/app/subscribe/" className="button button--compact">
               Select a Plan
             </Link>
@@ -86,8 +84,8 @@ class Home extends React.Component {
           <p className="notice warn">
             Your trial has ended. Please subscribe to a plan to continue using
             your account.
-            <br />
-            <br />
+            <br/>
+            <br/>
             <Link to="/app/subscribe/" className="button button--compact">
               Update Subscription
             </Link>
@@ -99,7 +97,7 @@ class Home extends React.Component {
     return (
       <div>
         {notice}
-        <br />
+        <br/>
       </div>
     );
   }
@@ -116,9 +114,7 @@ class Home extends React.Component {
     const { whoami, billingDetails } = this.props;
     const description = billingDetails && billingDetails.description;
 
-    const periodEnd =
-      billingDetails &&
-      new Date(billingDetails.subPeriodEnd * 1000).toDateString();
+    const periodEnd = billingDetails && new Date(billingDetails.subPeriodEnd).toDateString();
 
     let billingLink = null;
     if (!billingDetails) {
@@ -143,7 +139,7 @@ class Home extends React.Component {
         ) : null}
         {description && billingDetails && !billingDetails.isBillingAdmin ? (
           <p>
-            You are on a team that is subscribed to{" "}
+            You are on a team that is subscribed to{' '}
             <strong>{description}</strong>!
           </p>
         ) : null}
@@ -154,7 +150,7 @@ class Home extends React.Component {
             Your next invoice is scheduled for <strong>{periodEnd}</strong>
             {billingDetails.subPercentOff ? (
               <span className="success bold">
-                {" "}
+                {' '}
                 (with {billingDetails.subPercentOff}% discount)
               </span>
             ) : null}
@@ -178,11 +174,11 @@ class Home extends React.Component {
           </li>
           {billingDetails && billingDetails.isBillingAdmin ? (
             <li>
-              <CancelLink />
+              <CancelLink/>
             </li>
           ) : null}
           <li>
-            <SignOutLink />
+            <SignOutLink/>
           </li>
           <li>
             <Link to="/app/delete-account/">Delete Account</Link>
@@ -210,9 +206,9 @@ Home.propTypes = {
     isPaymentRequired: PropTypes.bool.isRequired,
     isBillingAdmin: PropTypes.bool.isRequired,
     subTrialing: PropTypes.bool.isRequired,
-    subTrialEnd: PropTypes.number.isRequired,
+    subTrialEnd: PropTypes.string.isRequired,
     subCancelled: PropTypes.bool.isRequired,
-    subPeriodEnd: PropTypes.number.isRequired,
+    subPeriodEnd: PropTypes.string.isRequired,
     subPercentOff: PropTypes.number.isRequired
   })
 };

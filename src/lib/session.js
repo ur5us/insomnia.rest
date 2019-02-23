@@ -268,7 +268,7 @@ export function removeFromTeam (teamId, accountId) {
 }
 
 export function listTeams () {
-  return util.get('/api/teams');
+  return util.get('/api/teams/');
 }
 
 

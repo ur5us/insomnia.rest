@@ -194,7 +194,7 @@ export default class extends React.Component {
       color: 'pink'
     }, {
       key: 'cancellations',
-      label: 'Cancelled',
+      label: 'Canceled',
       color: 'red'
     }]);
 
