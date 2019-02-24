@@ -9,4 +9,4 @@ steps:
       - "BAREMETRICS_KEY=${_BAREMETRICS_KEY}"
   - name: 'gcr.io/cloud-builders/gsutil'
     id: Upload Assets
-    args: ['-m', 'cp', '-r', 'public/*', 'gs://website-insomnia-rest']
+    args: ['-m', 'cp', '-r', 'public/*', 'gs://website-insomnia-rest/public']
