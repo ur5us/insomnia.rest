@@ -3,7 +3,9 @@ steps:
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
     args: ['build']
+    env:
+      - "BAREMETRICS_KEY=${_BAREMETRICS_KEY}"
 artifacts:
   objects:
-    location: 'gs://$PROJECT_ID/website-insomnia-rest'
+    location: 'gs://website-insomnia-rest'
     paths: ['public/*']
