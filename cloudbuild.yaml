@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['build']
+    artifacts:
+      objects:
+        location: 'gs://$PROJECT_ID/website-insomnia-rest'
+        paths: ['public/*']
