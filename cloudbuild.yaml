@@ -1,11 +1,12 @@
 steps:
   - name: 'gcr.io/cloud-builders/npm'
+    id: Install NodeJS Dependencies
     args: ['install']
   - name: 'gcr.io/cloud-builders/npm'
+    id: Build Website
     args: ['build']
     env:
       - "BAREMETRICS_KEY=${_BAREMETRICS_KEY}"
-artifacts:
-  objects:
-    location: 'gs://website-insomnia-rest'
-    paths: ['public/*']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    id: Upload Assets
+    args: ['-m', 'cp', '-r', 'public/*', 'gs://website-insomnia-rest']
