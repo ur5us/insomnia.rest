@@ -50,7 +50,7 @@ class Subscribe extends React.Component {
       fullName: fullName,
       cardNumber: '',
       expireMonth: '01',
-      expireYear: '2018',
+      expireYear: new Date().getFullYear() + 1,
       cvc: '',
       zip: '',
       error: ''
@@ -383,6 +383,7 @@ class Subscribe extends React.Component {
                   title="expire month"
                   defaultValue={expireMonth}
                   onChange={this._handleUpdateInput.bind(this)}>
+                  <option value="--">-- Month --</option>
                   <option value="01">01 – January</option>
                   <option value="02">02 – February</option>
                   <option value="03">03 – March</option>
@@ -401,6 +402,7 @@ class Subscribe extends React.Component {
                   title="expire year"
                   defaultValue={expireYear}
                   onChange={this._handleUpdateInput.bind(this)}>
+                  <option value="--">-- Year --</option>
                   <option value="2016">2016</option>
                   <option value="2017">2017</option>
                   <option value="2018">2018</option>
@@ -491,7 +493,7 @@ Subscribe.propTypes = {
     subQuantity: PropTypes.number.isRequired,
     hasCard: PropTypes.bool.isRequired,
     lastFour: PropTypes.string.isRequired,
-    isBillingAdmin: PropTypes.string.isRequired
+    isBillingAdmin: PropTypes.bool.isRequired
   })
 };
 

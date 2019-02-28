@@ -11,7 +11,7 @@ class Home extends React.Component {
 
     let notice = null;
 
-    const trialEndDate = new Date(whoami.trialEnd * 1000);
+    const trialEndDate = new Date(whoami.trialEnd);
     const trialEndMillis = trialEndDate.getTime() - Date.now();
     const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
     const isTrialing = whoami.isTrialing;
@@ -61,6 +61,20 @@ class Home extends React.Component {
             <Link to="/app/subscribe/" className="button button--compact">
               Resubscribe
             </Link>
+          </p>
+        );
+      } else if (
+        billingDetails.subTrialing &&
+        new Date(billingDetails.subTrialEnd).getTime() > Date.now()
+      ) {
+        const trialEndDate = new Date(billingDetails.subTrialEnd);
+        const trialEndMillis = trialEndDate.getTime() - Date.now();
+        const trialDays = Math.ceil(trialEndMillis / 1000 / 60 / 60 / 24);
+        notice = (
+          <p className="notice info">
+            You have <strong>{trialDays}</strong> day{trialDays === 1
+            ? ''
+            : 's'} on your trial
           </p>
         );
       }
@@ -193,7 +207,7 @@ Home.propTypes = {
   whoami: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     planName: PropTypes.string.isRequired,
-    trialEnd: PropTypes.number.isRequired,
+    trialEnd: PropTypes.string.isRequired,
     isTrialing: PropTypes.bool.isRequired,
     isPaymentRequired: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
