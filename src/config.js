@@ -18,6 +18,10 @@ export const menus = {
       key: 'docs',
       url: 'https://support.insomnia.rest'
     }, {
+      name: 'Store',
+      key: 'store',
+      url: 'https://store.insomnia.rest'
+    }, {
       name: 'Pricing',
       key: 'pricing',
       url: '/pricing/'
