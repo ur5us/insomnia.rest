@@ -456,7 +456,8 @@ pre > code {
   text-align: center;
   min-width: 6em;
   box-sizing: border-box;
-  padding: 0.5em 0.8em;
+  padding: 0 1em;
+  line-height: 2.4em;
   margin: auto;
   font-size: 1rem;
   background: transparent;
@@ -475,23 +476,25 @@ pre > code {
   border: none;
 }
 
-.button--small {
-  padding: 0.4rem 0.7rem;
-  font-size: 0.9rem;
-}
-
 .button--big {
-  padding: 0.9rem 1.8rem;
+  padding-left: 1.8rem;
+  padding-right: 1.8rem;
+  line-height: 2.6em;
   font-size: 1.2rem;
+  border-radius: 0.3em;
 }
 
 .button--compact {
-  padding: 0.25rem 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  line-height: 1.3rem;
 }
 
 .button--super-compact {
-  padding: 0.05rem 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   font-size: 0.8em;
+  line-height: 1.9em;
   min-width: 2rem;
 }
 
@@ -660,7 +663,6 @@ button[disabled],
 
 .form-control > .button {
   white-space: nowrap;
-  padding: 0.3rem 1rem;
 }
 
 .form-pair {
@@ -703,6 +705,10 @@ button[disabled],
 
 .text-sm {
   font-size: 0.95rem;
+}
+
+.text-xs {
+  font-size: 0.9rem;
 }
 
 .subtle {

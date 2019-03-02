@@ -66,9 +66,9 @@ class Subscribe extends React.Component {
       if (window.location.hostname === 'staging.insomnia.rest') {
         key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
       } else if (window.location.hostname === 'localhost') {
-        key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH'
+        key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
       } else {
-        key = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH'
+        key = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
       }
 
       window.Stripe.setPublishableKey(key);
@@ -164,7 +164,7 @@ class Subscribe extends React.Component {
       cvc: this.state.cvc,
       exp_month: parseInt(this.state.expireMonth, 10),
       exp_year: parseInt(this.state.expireYear, 10),
-      address_zip: this.state.zip,
+      address_zip: this.state.zip
     };
 
     const teamSize = Math.max(minTeamSize, this.state.quantity);
@@ -235,8 +235,8 @@ class Subscribe extends React.Component {
       return (
         <p className="notice info">
           You still have <strong>{trialDays}</strong> day{trialDays === 1
-            ? ''
-            : 's'}{' '}
+          ? ''
+          : 's'}{' '}
           left on your free trial
         </p>
       );
@@ -263,6 +263,41 @@ class Subscribe extends React.Component {
 
     if (billingDetails && !billingDetails.isBillingAdmin) {
       return this.renderBillingNotice();
+    }
+
+    let subscribeBtn = null;
+    if (loading && billingDetails) {
+      subscribeBtn = (
+        <button type="button" disabled className="button">
+          Updating...
+        </button>
+      );
+    } else if (loading && !billingDetails) {
+      subscribeBtn = (
+        <button type="button" disabled className="button">
+          Subscribing...
+        </button>
+      );
+    } else if (!loading && billingDetails) {
+      subscribeBtn = (
+        <React.Fragment>
+          <button type="submit" className="button">
+            Change to {' '}
+            {this._getPlanDescription(planType, planCycle, quantity)}
+          </button>
+          <p className="text-xs subtle">
+            *Upgrades are billed immediately and downgrades will apply
+            a credit on the next invoice
+          </p>
+        </React.Fragment>
+      );
+    } else if (!loading && !billingDetails) {
+      subscribeBtn = (
+        <button type="submit" className="button">
+          Subscribe for{' '}
+          {this._getPlanDescription(planType, planCycle, quantity)}
+        </button>
+      );
     }
 
     return (
@@ -329,7 +364,7 @@ class Subscribe extends React.Component {
             </label>
           </div>
         </div>
-        <hr className="hr--skinny" />
+        <hr className="hr--skinny"/>
         <h2 className="text-lg">Billing Information</h2>
         {billingDetails && billingDetails.hasCard ? (
           <div className="form-control">
@@ -346,7 +381,7 @@ class Subscribe extends React.Component {
         ) : null}
 
         {useExistingBilling ? (
-          <div />
+          <div/>
         ) : (
           <div>
             <div className="form-control">
@@ -377,7 +412,7 @@ class Subscribe extends React.Component {
             <div className="form-row">
               <div className="form-control">
                 <label>Expiration Date</label>
-                <br />
+                <br/>
                 <select
                   name="expireMonth"
                   title="expire month"
@@ -395,7 +430,7 @@ class Subscribe extends React.Component {
                   <option value="09">09 – September</option>
                   <option value="10">10 – October</option>
                   <option value="11">11 – November</option>
-                  <option value="12">12 – December</option>
+                  <option value="12">12 – December</option>
                 </select>{' '}
                 <select
                   name="expireYear"
@@ -461,19 +496,10 @@ class Subscribe extends React.Component {
         ) : null}
 
         <div className="form-control right padding-top-sm">
-          {loading ? (
-            <button type="button" disabled className="button">
-              Subscribing...
-            </button>
-          ) : (
-            <button type="submit" className="button">
-              Subscribe for{' '}
-              {this._getPlanDescription(planType, planCycle, quantity)}
-            </button>
-          )}
+          {subscribeBtn}
         </div>
 
-        <hr className="hr--skinny" />
+        <hr className="hr--skinny"/>
         <p className="small subtle center">
           Payments secured by{' '}
           <Link to="https://stripe.com" target="_blank">

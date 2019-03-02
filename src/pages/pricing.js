@@ -106,8 +106,8 @@ export default () => (
         <div className="col-6">
           <p>
             <strong>Can I switch plans after subscribing?</strong><br/>
-            Yes, at any time. When upgrading or downgrading your plan, you will
-            receive either a pro-rated charge or refund, depending on the cost of your new plan.
+            Yes, at any time. Upgrade differences will be billed immediately and downgrades will appear
+            as a credit on the next invoice.
           </p>
         </div>
       </div>

@@ -93,7 +93,7 @@ class Invoices extends React.Component {
                     <span style={{ color: '#AAA' }}>Pending</span>
                   )}
                 </td>
-                <td>
+                <td className="center">
                   {invoice.paid ? (
                     <button
                       className="button button--super-compact"
