@@ -10,9 +10,6 @@ class Footer extends React.Component {
         <section>
           <img src={iconSrc} alt="Insomnia REST Client logo"/>
           <p className="footer__menu">
-            <Link to={links.rss} type="application/rss+xml" target="_blank" title="RSS">
-              RSS
-            </Link>
             {menus.footer && menus.footer.map(item => (
               <Link key={item.key} to={item.url}>{item.name}</Link>
             ))}

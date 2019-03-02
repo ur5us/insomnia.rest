@@ -35,6 +35,10 @@ export const menus = {
   ],
   footer: [
     {
+      name: 'Store',
+      key: 'store',
+      url: 'https://store.insomnia.rest'
+    }, {
       name: 'Support',
       key: 'support',
       url: '/support/',
@@ -55,25 +59,13 @@ export const menus = {
       key: 'blog',
       url: '/blog/'
     }, {
-      name: 'Open Startup',
-      key: 'open',
-      url: '/open/',
-    }, {
       name: 'Changelog',
       key: 'changelog',
       url: '/changelog/',
     }, {
-      name: 'Download',
-      key: 'download',
-      url: '/download/',
-    }, {
-      name: 'Teams',
-      key: 'teams',
-      url: '/teams/',
-    }, {
-      name: 'GraphQL',
-      key: 'graphql',
-      url: '/graphql/',
+      name: 'Open',
+      key: 'open',
+      url: '/open/',
     }, {
       name: 'Terms',
       key: 'terms',
