@@ -995,12 +995,16 @@ body[data-navbar="floating"] .navbar {
 
 .button--share {
   text-align: center;
-  display: inline-block;
   color: #ffffff;
   outline: none;
   margin: 0.5rem 0.1rem;
-  padding: 0.3rem 0;
+  padding: 0;
   min-width: 4.5rem;
+
+  &, svg {
+    display: inline-block;
+    height: 3rem;
+  }
 }
 
 .button--share.twitter {
