@@ -180,7 +180,7 @@ export default class extends React.Component {
       color: 'blue'
     }, {
       key: 'net_revenue',
-      label: 'Net Revenue',
+      label: 'Revenue',
       color: 'green'
     }, {
       key: 'ltv',
