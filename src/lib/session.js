@@ -1,4 +1,5 @@
 import srp from 'srp-js';
+import * as unorm from 'unorm';
 import * as crypt from './crypt';
 import * as util from './fetch';
 
@@ -297,5 +298,5 @@ function _sanitizeEmail (email) {
 }
 
 function _sanitizePassphrase (passphrase) {
-  return passphrase.trim().normalize('NFKD');
+  return unorm.nfkd(passphrase.trim());
 }
