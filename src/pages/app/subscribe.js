@@ -67,7 +67,7 @@ class Subscribe extends React.Component {
       } else if (window.location.hostname === 'localhost') {
         key = 'pk_test_MbOhGu5jCPvr7Jt4VC6oySdH';
       } else {
-        key = 'pk_live_lntbVSXY3v1RAytACIQJ5BBH';
+        key = 'pk_live_L8TkSkePPugJj7o73EclQFUI00JnQyPegW';
       }
 
       window.Stripe.setPublishableKey(key);
