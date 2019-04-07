@@ -25,7 +25,7 @@ export default class extends React.Component {
       <React.Fragment>
         <Title/>
         <Helmet>
-          <meta name="description" content={site.description}/>
+          <meta name="description" content={site && site.description}/>
           <body data-pathname={location.pathname}/>
         </Helmet>
         <Navbar loggedIn={isLoggedIn}/>
