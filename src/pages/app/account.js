@@ -4,6 +4,7 @@ import CancelLink from '../../lib/common/cancel';
 import SignOutLink from '../../lib/common/sign-out';
 import App from '../../lib/app-wrapper';
 import Link from '../../components/link';
+import VerifyButton from '../../lib/common/reverify';
 
 class Home extends React.Component {
   renderNotice() {
@@ -124,6 +125,14 @@ class Home extends React.Component {
     return <p className="notice info">You may now sign in to the app 💻</p>;
   }
 
+  renderVerifyNotice() {
+    if (this.props.whoami.isVerified) {
+      return null;
+    }
+
+    return <p className="notice info">Please verify your account <VerifyButton/></p>;
+  }
+
   render() {
     const { whoami, billingDetails } = this.props;
     const description = billingDetails && billingDetails.description;
@@ -142,6 +151,7 @@ class Home extends React.Component {
       <div>
         {this.renderLoginNotice()}
         {this.renderNotice()}
+        {this.renderVerifyNotice()}
         <p className="bold text-lg">Hi {whoami.firstName},</p>
         <p>
           Your email address is <code>{whoami.email}</code>.
