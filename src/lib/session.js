@@ -4,7 +4,7 @@ import * as crypt from './crypt';
 import * as util from './fetch';
 
 /** Create a new Account for the user */
-export async function signup (
+export async function signup(
   firstName,
   lastName,
   rawEmail,
@@ -22,7 +22,7 @@ export async function signup (
   const derivedSymmetricKey = await crypt.deriveKey(passphrase, account.email, account.saltEnc);
 
   // Generate public/private keypair and symmetric key for Account
-  const {publicKey, privateKey} = await crypt.generateKeyPairJWK();
+  const { publicKey, privateKey } = await crypt.generateKeyPairJWK();
   const symmetricKeyJWK = await crypt.generateAES256Key();
 
   // Compute the verifier key and add it to the Account object
@@ -51,16 +51,16 @@ export async function signup (
   return signupData;
 }
 
-export function deleteAccount () {
+export function deleteAccount() {
   return util.del('/auth/delete-account');
 }
 
-export function signupAndLogin (firstName, lastName, rawEmail, rawPassphrase) {
+export function signupAndLogin(firstName, lastName, rawEmail, rawPassphrase) {
   return signup(firstName, lastName, rawEmail, rawPassphrase, true);
 }
 
 /** Create a new session for the user */
-export async function login (rawEmail, rawPassphrase, authSecret = null) {
+export async function login(rawEmail, rawPassphrase, authSecret = null) {
 
   // ~~~~~~~~~~~~~~~ //
   // Sanitize Inputs //
@@ -73,7 +73,7 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
   // Fetch Salt and Submit A To Server //
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
-  const {saltKey, saltAuth} = await getAuthSalts(email);
+  const { saltKey, saltAuth } = await getAuthSalts(email);
   authSecret = authSecret || await crypt.deriveKey(passphrase, email, saltKey);
   const secret1 = await crypt.srpGenKey();
   const c = new srp.Client(
@@ -84,7 +84,7 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
     Buffer.from(secret1, 'hex')
   );
   const srpA = c.computeA().toString('hex');
-  const {sessionStarterId, srpB} = await util.post('/auth/login-a', {srpA, email});
+  const { sessionStarterId, srpB } = await util.post('/auth/login-a', { srpA, email });
 
   // ~~~~~~~~~~~~~~~~~~~~~ //
   // Compute and Submit M1 //
@@ -92,7 +92,7 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
 
   c.setB(new Buffer(srpB, 'hex'));
   const srpM1 = c.computeM1().toString('hex');
-  const {srpM2} = await util.post('/auth/login-m1', {srpM1, sessionStarterId,});
+  const { srpM2 } = await util.post('/auth/login-m1', { srpM1, sessionStarterId });
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~ //
   // Verify Server Identity M2 //
@@ -111,23 +111,23 @@ export async function login (rawEmail, rawPassphrase, authSecret = null) {
   localStorage.setItem('currentSessionId', sessionId);
 }
 
-export function subscribe (tokenId, planId, quantity) {
+export function subscribe(tokenId, planId, quantity) {
   return util.post('/api/billing/subscriptions', {
     token: tokenId,
     quantity: quantity,
-    plan: planId,
+    plan: planId
   });
 }
 
-export function getCurrentSessionId () {
+export function getCurrentSessionId() {
   return localStorage.getItem('currentSessionId') || '';
 }
 
-export function isLoggedIn () {
+export function isLoggedIn() {
   return !!getCurrentSessionId();
 }
 
-export async function logout () {
+export async function logout() {
   try {
     await util.post('/auth/logout');
   } catch (e) {
@@ -139,31 +139,31 @@ export async function logout () {
   localStorage.removeItem('currentSessionId');
 }
 
-export async function cancelAccount () {
+export async function cancelAccount() {
   await util.del('/api/billing/subscriptions');
 }
 
-export async function whoami () {
+export async function whoami() {
   return util.get('/auth/whoami');
 }
 
-export async function invoices () {
+export async function invoices() {
   return util.get('/api/billing/invoices');
 }
 
-export async function getInvoice (invoiceId) {
+export async function getInvoice(invoiceId) {
   return util.get('/api/billing/invoices/' + invoiceId);
 }
 
-export async function updateInvoiceExtra (invoiceExtra) {
-  return util.put('/api/billing/invoice-extra', {invoiceExtra});
+export async function updateInvoiceExtra(invoiceExtra) {
+  return util.put('/api/billing/invoice-extra', { invoiceExtra });
 }
 
-export async function verify () {
+export async function verify() {
   return util.post('/auth/verify');
 }
 
-export async function billingDetails () {
+export async function billingDetails() {
   try {
     return await util.get('/api/billing/details');
   } catch (e) {
@@ -171,19 +171,19 @@ export async function billingDetails () {
   }
 }
 
-export function getAuthSalts (email) {
-  return util.post('/auth/login-s', {email})
+export function getAuthSalts(email) {
+  return util.post('/auth/login-s', { email });
 }
 
-export async function changePasswordAndEmail (rawOldPassphrase, rawNewPassphrase, rawNewEmail) {
+export async function changePasswordAndEmail(rawOldPassphrase, rawNewPassphrase, rawNewEmail) {
   // Sanitize inputs
   const oldPassphrase = _sanitizePassphrase(rawOldPassphrase);
   const newPassphrase = _sanitizePassphrase(rawNewPassphrase);
   const newEmail = _sanitizeEmail(rawNewEmail);
 
   // Fetch some things
-  const {email: oldEmail, saltEnc, encSymmetricKey} = await whoami();
-  const {saltKey, saltAuth} = await getAuthSalts(oldEmail);
+  const { email: oldEmail, saltEnc, encSymmetricKey } = await whoami();
+  const { saltKey, saltAuth } = await getAuthSalts(oldEmail);
 
   // Generate some secrets for the user base'd on password
   const oldSecret = await crypt.deriveKey(oldPassphrase, oldEmail, saltEnc);
@@ -215,18 +215,18 @@ export async function changePasswordAndEmail (rawOldPassphrase, rawNewPassphrase
     newEmail: newEmail,
     encSymmetricKey: encSymmetricKey,
     newVerifier,
-    newEncSymmetricKey,
+    newEncSymmetricKey
   });
 }
 
-export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
+async function _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase) {
   // Ask the server what we need to do to invite the member
-  const inviteInstructions = await util.post(`/api/teams/${teamId}/invite-a`, {email: emailToInvite});
-  const {accountPublicKey, resourceGroupKeys, accountId} = inviteInstructions;
+  const inviteInstructions = await util.post(`/api/teams/${teamId}/invite-a`, { email: emailToInvite });
+  const { accountPublicKey, resourceGroupKeys, accountId } = inviteInstructions;
 
   // Compute keys necessary to invite the member
   const passPhrase = _sanitizePassphrase(rawPassphrase);
-  const {email, saltEnc, encPrivateKey, encSymmetricKey} = await whoami();
+  const { email, saltEnc, encPrivateKey, encSymmetricKey } = await whoami();
   const secret = await crypt.deriveKey(passPhrase, email, saltEnc);
   let symmetricKey;
   try {
@@ -252,23 +252,132 @@ export async function inviteToTeam (teamId, emailToInvite, rawPassphrase) {
   // Actually invite the member
   await util.post(`/api/teams/${teamId}/invite-b`, {
     accountId,
-    resourceGroupKeys: newResourceGroupKeys,
+    resourceGroupKeys: newResourceGroupKeys
   });
 }
 
-export function leaveTeam (teamId) {
+export async function inviteToTeam(teamId, emailToInvite, rawPassphrase) {
+  // Ask the server what we need to do to invite the member
+  const { data, errors } = await util.post(`/graphql?teamAddInstructions`, {
+    variables: {
+      teamId,
+      email: emailToInvite
+    },
+    query: `
+      query ($email: String!, $teamId: ID!) {
+         teamAddInstructions(email: $email, teamId: $teamId) {
+            projectId
+            accountId
+            encSymmetricKey
+            encWithPublicKey
+         }
+      }
+    `
+  });
+
+  if (errors && errors.length) {
+    throw new Error('Failed to add to team');
+  }
+
+  const { teamAddInstructions } = data;
+
+  // Compute keys necessary to invite the member
+  const passPhrase = _sanitizePassphrase(rawPassphrase);
+  const { email, saltEnc, encPrivateKey, encSymmetricKey } = await whoami();
+  const secret = await crypt.deriveKey(passPhrase, email, saltEnc);
+  let symmetricKey;
+  try {
+    symmetricKey = crypt.decryptAES(secret, JSON.parse(encSymmetricKey));
+  } catch (err) {
+    console.log('Failed to decrypt key', err.stack);
+    throw new Error('Invalid password');
+  }
+  const privateKey = crypt.decryptAES(JSON.parse(symmetricKey), JSON.parse(encPrivateKey));
+  const privateKeyJWK = JSON.parse(privateKey);
+
+  // Build the invite data request
+  const nextKeys = [];
+  for (const instruction of teamAddInstructions) {
+    const publicKeyJWK = JSON.parse(instruction.encWithPublicKey);
+    const encSymmetricKey = crypt.recryptRSAWithJWK(
+      privateKeyJWK,
+      publicKeyJWK,
+      instruction.encSymmetricKey
+    );
+    nextKeys.push({
+      encSymmetricKey,
+      accountId: instruction.accountId,
+      projectId: instruction.projectId
+    });
+  }
+
+  // Actually invite the member
+  // Ask the server what we need to do to invite the member
+  const { errors: errorsMutation } = await util.post(`/graphql?teamAdd`, {
+    variables: {
+      keys: nextKeys
+    },
+    query: `
+      mutation ($keys: [TeamAddKeyInput!]!) {
+        teamAdd(keys: $keys) 
+      }
+    `
+  });
+
+  if (errorsMutation && errorsMutation.length) {
+    throw new Error('Failed to add user');
+  }
+
+  // Invite using legacy method too
+  await _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase);
+}
+
+export async function leaveTeam(teamId) {
+  const { errors } = await util.post(`/graphql?teamLeave`, {
+    variables: {
+      teamId,
+    },
+    query: `
+      mutation ($teamId: ID!) {
+        teamLeave(teamId: $teamId) 
+      }
+    `
+  });
+
+  if (errors && errors.length) {
+    throw new Error('Failed to leave team');
+  }
+
+  // Do legacy stuff
   return util.del(`/api/teams/${teamId}/leave`);
 }
 
-export function changeTeamName (teamId, name) {
-  return util.patch(`/api/teams/${teamId}`, {name});
-}
+export async function removeFromTeam(teamId, accountId) {
+  const { errors } = await util.post(`/graphql?teamRemove`, {
+    variables: {
+      accountIdToRemove: accountId,
+      teamId,
+    },
+    query: `
+      mutation ($accountIdToRemove: ID!, $teamId: ID!) {
+        teamRemove(accountIdToRemove: $accountIdToRemove, teamId: $teamId) 
+      }
+    `
+  });
 
-export function removeFromTeam (teamId, accountId) {
+  if (errors && errors.length) {
+    throw new Error('Failed to remove member');
+  }
+
+  // Do legacy stuff
   return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
 }
 
-export function listTeams () {
+export async function changeTeamName(teamId, name) {
+  return util.patch(`/api/teams/${teamId}`, { name });
+}
+
+export async function listTeams() {
   return util.get('/api/teams/');
 }
 
@@ -277,7 +386,7 @@ export function listTeams () {
 // Helper Functions //
 // ~~~~~~~~~~~~~~~~ //
 
-async function _initAccount (firstName, lastName, email) {
+async function _initAccount(firstName, lastName, email) {
   return {
     email,
     firstName,
@@ -285,18 +394,18 @@ async function _initAccount (firstName, lastName, email) {
     id: await crypt.generateAccountId(),
     saltEnc: await crypt.getRandomHex(),
     saltAuth: await crypt.getRandomHex(),
-    saltKey: await crypt.getRandomHex(),
+    saltKey: await crypt.getRandomHex()
   };
 }
 
-function _getSrpParams () {
+function _getSrpParams() {
   return srp.params[2048];
 }
 
-function _sanitizeEmail (email) {
+function _sanitizeEmail(email) {
   return email.trim().toLowerCase();
 }
 
-function _sanitizePassphrase (passphrase) {
+function _sanitizePassphrase(passphrase) {
   return unorm.nfkd(passphrase.trim());
 }
