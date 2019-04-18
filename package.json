@@ -9,7 +9,6 @@
     "develop": "npm run build:data && gatsby develop --port 8001",
     "build:data": "node ./scripts/fetch-metrics.js",
     "build": "npm run build:data && gatsby build",
-    "serve": "gatsby serve",
     "format-code": "prettier --write \"**/*.js\""
   },
   "husky": {

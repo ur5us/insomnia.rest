@@ -155,35 +155,48 @@ class Subscribe extends React.Component {
   async _handleSubmit(e) {
     e.preventDefault();
 
-    if (!this.state.fullName.trim()) {
-      this.setState({error: 'Card Error: No name provided'});
+    const {
+      useExistingBilling,
+      cardNumber,
+      fullName,
+      cvc,
+      expireMonth,
+      expireYear,
+      zip,
+      planType,
+      planCycle,
+      quantity: quantityRaw,
+    } = this.state;
+
+    if (!useExistingBilling && !fullName.trim()) {
+      this.setState({ error: 'Card Error: No name provided' });
       return;
     }
 
-    if (!this.state.zip.trim()) {
-      this.setState({error: 'Card Error: No zip/postal provided'});
+    if (!useExistingBilling && !zip.trim()) {
+      this.setState({ error: 'Card Error: No zip/postal provided' });
       return;
     }
 
-    if (!this.state.cvc.trim()) {
-      this.setState({error: 'Card Error: No cvc provided'});
+    if (!useExistingBilling && !cvc.trim()) {
+      this.setState({ error: 'Card Error: No cvc provided' });
       return;
     }
 
     this.setState({ loading: true });
 
     const params = {
-      name: this.state.fullName,
-      number: this.state.cardNumber.replace(/ /g, ''),
-      cvc: this.state.cvc,
-      exp_month: parseInt(this.state.expireMonth, 10),
-      exp_year: parseInt(this.state.expireYear, 10),
-      address_zip: this.state.zip
+      cvc,
+      name: fullName,
+      number: cardNumber.replace(/ /g, ''),
+      exp_month: parseInt(expireMonth, 10),
+      exp_year: parseInt(expireYear, 10),
+      address_zip: zip
     };
 
-    const teamSize = Math.max(minTeamSize, this.state.quantity);
-    const quantity = this.state.planType === planTypePlus ? 1 : teamSize;
-    const planId = `${this.state.planType}-${this.state.planCycle}-1`;
+    const teamSize = Math.max(minTeamSize, quantityRaw);
+    const quantity = planType === planTypePlus ? 1 : teamSize;
+    const planId = `${planType}-${planCycle}-1`;
 
     const d = new Date();
     const subErrorKey = `subErrors_${d.getFullYear()}-${d.getMonth()}-${d.getDay()}`;
@@ -199,7 +212,7 @@ class Subscribe extends React.Component {
       }
     };
 
-    if (this.state.useExistingBilling) {
+    if (useExistingBilling) {
       await finishBilling();
     } else if (subErrors > 10) {
       setTimeout(() => {
