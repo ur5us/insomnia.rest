@@ -41,6 +41,7 @@ export async function signup(
   account.publicKey = JSON.stringify(publicKey);
   account.encPrivateKey = JSON.stringify(encPrivateJWKMessage);
   account.encSymmetricKey = JSON.stringify(encSymmetricJWKMessage);
+  account.signupSource = localStorage.signupSource || null;
 
   const signupData = await util.post('/auth/signup', account);
 
