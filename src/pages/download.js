@@ -2,7 +2,6 @@ import React from 'react';
 import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
-import { Facebook, GooglePlus, Twitter } from '../partials/share-buttons';
 import Link from '../components/link';
 import changelog from '../assets/changelog.json';
 
