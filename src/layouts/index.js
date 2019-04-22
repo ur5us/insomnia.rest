@@ -8,7 +8,7 @@ import Footer from '../partials/footer';
 import Title from '../partials/title';
 import { isLoggedIn } from '../lib/session';
 import { site } from '../config';
-import {parse as urlParse } from  'url';
+import { parse as urlParse } from 'url';
 
 export default class extends React.Component {
   state = {
@@ -17,13 +17,24 @@ export default class extends React.Component {
 
   componentDidMount() {
     this.setState({ isLoggedIn: isLoggedIn() });
+    this.trackSignupSource();
+  }
+
+  trackSignupSource() {
     const url = urlParse(document.location.href, true);
 
-    if (url.query && url.query.ref) {
-      localStorage.signupSource = url.query.ref;
-    } else if (!localStorage.signupSourcee && document.referrer) {
-      localStorage.signupSource = document.referrer;
+    const src = url.query.ref || document.referrer;
+
+    if (!src) {
+      return;
     }
+
+    // Don't track self-referrals
+    if (src.indexOf('https://insomnia.rest') === 0) {
+      return;
+    }
+
+    localStorage.signupSource = document.referrer;
   }
 
   render() {
@@ -47,12 +58,12 @@ export default class extends React.Component {
 }
 
 export const pageQuery = graphql`
-query MetadataQuery {
-  site {
-    siteMetadata {
-      title
-      author
+  query MetadataQuery {
+    site {
+      siteMetadata {
+        title
+        author
+      }
     }
   }
-}
 `;
