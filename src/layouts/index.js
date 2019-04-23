@@ -39,7 +39,7 @@ export default class extends React.Component {
       return;
     }
 
-    localStorage.signupSource = document.referrer;
+    localStorage.signupSource = src;
   }
 
   render() {
