@@ -29,10 +29,10 @@ export default class extends React.Component {
       return;
     }
 
-    // Fallback to referrer but don't track self-referrals
-    if (document.referrer && document.referrer.indexOf('https://insomnia.rest') !== 0) {
+    // Fallback to referrer but don't track self-referrals. Also don't set referrer
+    // if signupSource already exists. We don't want to accidentally overwrite the ref
+    if (!localStorage.signupSource && document.referrer && document.referrer.indexOf('https://insomnia.rest') !== 0) {
       localStorage.signupSource = document.referrer;
-      return;
     }
   }
 
