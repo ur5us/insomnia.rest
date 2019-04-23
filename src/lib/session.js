@@ -258,6 +258,9 @@ async function _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase) {
 }
 
 export async function inviteToTeam(teamId, emailToInvite, rawPassphrase) {
+  // Do legacy stuff first because the error handling is better
+  await _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase);
+
   // Ask the server what we need to do to invite the member
   const { data, errors } = await util.post(`/graphql?teamAddInstructions`, {
     variables: {
@@ -328,12 +331,12 @@ export async function inviteToTeam(teamId, emailToInvite, rawPassphrase) {
   if (errorsMutation && errorsMutation.length) {
     throw new Error('Failed to add user');
   }
-
-  // Invite using legacy method too
-  await _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase);
 }
 
 export async function leaveTeam(teamId) {
+  // Do legacy stuff first because the error handling is better
+  return util.del(`/api/teams/${teamId}/leave`);
+
   const { errors } = await util.post(`/graphql?teamLeave`, {
     variables: {
       teamId,
@@ -348,12 +351,12 @@ export async function leaveTeam(teamId) {
   if (errors && errors.length) {
     throw new Error('Failed to leave team');
   }
-
-  // Do legacy stuff
-  return util.del(`/api/teams/${teamId}/leave`);
 }
 
 export async function removeFromTeam(teamId, accountId) {
+  // Do legacy stuff first because the error handling is better
+  return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
+
   const { errors } = await util.post(`/graphql?teamRemove`, {
     variables: {
       accountIdToRemove: accountId,
@@ -369,9 +372,6 @@ export async function removeFromTeam(teamId, accountId) {
   if (errors && errors.length) {
     throw new Error('Failed to remove member');
   }
-
-  // Do legacy stuff
-  return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
 }
 
 export async function changeTeamName(teamId, name) {
