@@ -23,23 +23,17 @@ export default class extends React.Component {
   trackSignupSource() {
     const url = urlParse(document.location.href, true);
 
-    const src = url.query.ref || document.referrer;
-
-    if (!src) {
+    // Override signup source with ref non matter what
+    if (url.query.ref) {
+      localStorage.signupSource = url.query.ref;
       return;
     }
 
-    // Don't track self-referrals
-    if (src.indexOf('https://insomnia.rest') === 0) {
+    // Fallback to referrer but don't track self-referrals
+    if (document.referrer && document.referrer.indexOf('https://insomnia.rest') !== 0) {
+      localStorage.signupSource = document.referrer;
       return;
     }
-
-    // Always keep the original source
-    if (localStorage.signupSource) {
-      return;
-    }
-
-    localStorage.signupSource = src;
   }
 
   render() {
