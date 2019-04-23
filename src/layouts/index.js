@@ -34,6 +34,11 @@ export default class extends React.Component {
       return;
     }
 
+    // Always keep the original source
+    if (localStorage.signupSource) {
+      return;
+    }
+
     localStorage.signupSource = document.referrer;
   }
 
