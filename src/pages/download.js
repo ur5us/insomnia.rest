@@ -3,14 +3,11 @@ import SocialCards from '../components/social-cards';
 import Contributors from '../partials/contributors';
 import Title from '../partials/title';
 import Link from '../components/link';
-import changelog from '../assets/changelog.json';
 
 export default class extends React.Component {
   render() {
-    const latestVersion = changelog.find(entry => !entry.channel || entry.channel === 'stable');
-    const v = latestVersion.version;
-    const macLink = `https://github.com/getinsomnia/insomnia/releases/download/v${v}/Insomnia-${v}.dmg`;
-    const winLink = `https://github.com/getinsomnia/insomnia/releases/download/v${v}/Insomnia.Setup.${v}.exe`;
+    const macLink = 'https://updates.insomnia.rest/downloads/mac/latest';
+    const winLink = 'https://updates.insomnia.rest/downloads/windows/latest';
     return (
       <React.Fragment>
         <Title>Download</Title>
