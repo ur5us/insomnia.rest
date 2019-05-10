@@ -5,10 +5,22 @@ import Title from '../partials/title';
 import Link from '../components/link';
 
 export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ref: ''
+    };
+  }
+
+  componentDidMount() {
+    const ref = encodeURIComponent(localStorage.signupSource || '');
+    this.setState({ ref });
+  }
+
   render() {
-    const source = encodeURIComponent(localStorage.signupSource || '');
-    const macLink = `https://updates.insomnia.rest/downloads/mac/latest?ref=${source}`;
-    const winLink = `https://updates.insomnia.rest/downloads/windows/latest?ref=${source}`;
+    const { ref } = this.state;
+    const macLink = `https://updates.insomnia.rest/downloads/mac/latest?ref=${ref}`;
+    const winLink = `https://updates.insomnia.rest/downloads/windows/latest?ref=${ref}`;
 
     return (
       <React.Fragment>
@@ -39,7 +51,7 @@ export default class extends React.Component {
                     OS X 10.9+
                   </Link>
                 </p>
-                <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
+                <p className="subtle small" style={{ maxWidth: '12rem', margin: 'auto' }}>
                   or <code>brew cask install insomnia</code>
                 </p>
               </div>
@@ -55,7 +67,7 @@ export default class extends React.Component {
                     Windows 7+
                   </Link>
                 </p>
-                <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
+                <p className="subtle small" style={{ maxWidth: '12rem', margin: 'auto' }}>
                   (64-bit only)
                 </p>
               </div>
@@ -71,9 +83,9 @@ export default class extends React.Component {
                     Ubuntu 14.04+
                   </Link>
                 </p>
-                <p className="subtle small" style={{maxWidth: '12rem', margin: 'auto'}}>
+                <p className="subtle small" style={{ maxWidth: '12rem', margin: 'auto' }}>
                   or&nbsp;
-                  <code style={{lineBreak: 'no-wrap'}}>sudo snap install insomnia</code>
+                  <code style={{ lineBreak: 'no-wrap' }}>sudo snap install insomnia</code>
                   <br/>
                   or&nbsp;
                   <Link to="https://support.insomnia.rest/article/23-installation#linux">
