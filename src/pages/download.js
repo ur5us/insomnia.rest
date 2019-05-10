@@ -6,8 +6,10 @@ import Link from '../components/link';
 
 export default class extends React.Component {
   render() {
-    const macLink = 'https://updates.insomnia.rest/downloads/mac/latest';
-    const winLink = 'https://updates.insomnia.rest/downloads/windows/latest';
+    const source = encodeURIComponent(localStorage.signupSource || '');
+    const macLink = `https://updates.insomnia.rest/downloads/mac/latest?ref=${source}`;
+    const winLink = `https://updates.insomnia.rest/downloads/windows/latest?ref=${source}`;
+
     return (
       <React.Fragment>
         <Title>Download</Title>
