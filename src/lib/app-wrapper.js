@@ -12,6 +12,7 @@ class App extends React.Component {
     whoami: null,
     billingDetails: null,
     teams: [],
+    reloadCount: 0,
   };
 
   componentDidMount() {
@@ -62,7 +63,8 @@ class App extends React.Component {
     const billingDetails = await session.billingDetails();
     const teams = await session.listTeams();
 
-    this.setState({whoami, teams, billingDetails, loading: false});
+    const reloadCount = this.state.reloadCount + 1;
+    this.setState({reloadCount, whoami, teams, billingDetails, loading: false});
   };
 
   renderBody() {
@@ -75,7 +77,7 @@ class App extends React.Component {
     }
 
     return (
-      <section className="container container--skinny">
+      <section className="container container--skinny" key={this.state.reloadCount}>
         {this.props.children({
           whoami: this.state.whoami,
           billingDetails: this.state.billingDetails,

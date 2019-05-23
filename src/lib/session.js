@@ -280,6 +280,7 @@ export async function inviteToTeam(teamId, emailToInvite, rawPassphrase) {
   });
 
   if (errors && errors.length) {
+    console.log('[teams] Failed to add to team, errors');
     throw new Error('Failed to add to team');
   }
 

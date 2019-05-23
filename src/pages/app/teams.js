@@ -1,4 +1,5 @@
 import React from 'react';
+import { parse as urlParse } from 'url';
 import PropTypes from 'prop-types';
 import LeaveTeamLink from '../../lib/teams/leave-link';
 import RemoveTeamAccountLink from '../../lib/teams/remove-account-link';
@@ -9,24 +10,55 @@ import Link from '../../components/link';
 
 class Teams extends React.Component {
   state = {
-    error: ''
+    error: '',
+    activeTeam: null
   };
 
-  _getOwnedTeam() {
-    const { teams, whoami } = this.props;
-    return teams.find(t => t.ownerAccountId === whoami.accountId);
-  };
+  componentDidMount() {
+    this._checkUrl();
+  }
 
-  renderEditTeam() {
+  componentDidUpdate() {
+    this._checkUrl();
+  }
+
+  _checkUrl() {
+    const { teams } = this.props;
+    const { activeTeam } = this.state;
+
+    const { query } = urlParse(window.location.href, true);
+    const teamId = query.id || null;
+    const activeTeamId = activeTeam ? activeTeam.id : null;
+
+    if (teamId === activeTeamId) {
+      return;
+    }
+
+    if (!teamId) {
+      this.setState({ activeTeam: null });
+      return;
+    }
+
+    const team = teams.find(t => t.id === teamId);
+
+    // Team doesn't exist, so just redirect back
+    if (!team) {
+      window.location = '/app/teams';
+      return;
+    }
+
+    this.setState({ activeTeam: team });
+  }
+
+  renderEditTeam(activeTeam) {
     const { whoami, billingDetails } = this.props;
-    const ownedTeam = this._getOwnedTeam();
 
     let membersRemaining = 0;
 
-    if (billingDetails && ownedTeam) {
-      membersRemaining = whoami.maxTeamMembers - ownedTeam.accounts.length;
-    } else if (whoami.isTrialing && ownedTeam) {
-      membersRemaining = 5 - ownedTeam.accounts.length;
+    if (billingDetails && activeTeam) {
+      membersRemaining = whoami.maxTeamMembers - activeTeam.accounts.length;
+    } else if (whoami.isTrialing && activeTeam) {
+      membersRemaining = 5 - activeTeam.accounts.length;
     }
 
     let inner = null;
@@ -44,25 +76,24 @@ class Teams extends React.Component {
           </p>
         </div>
       );
-    } else if (ownedTeam) {
+    } else if (activeTeam) {
       const { handleReload } = this.props;
 
       // Sort the accounts to put the user first. NOTE: We're making a copy since
       // sort modifies the original.
-      const accounts = [...ownedTeam.accounts].sort(a => a.id === whoami.accountId ? -1 : 1);
+      const accounts = [...activeTeam.accounts].sort(a => a.id === whoami.accountId ? -1 : 1);
 
       inner = (
         <div>
-          <p>Manage who is on <strong>{ownedTeam.name}</strong>.</p>
           <UpdateTeamNameForm
             onUpdate={handleReload}
-            teamId={ownedTeam.id}
-            teamName={ownedTeam.name}
+            teamId={activeTeam.id}
+            teamName={activeTeam.name}
           />
           <AddAccountToTeamForm
             key={membersRemaining}
             onAdd={handleReload}
-            teamId={ownedTeam.id}
+            teamId={activeTeam.id}
             membersRemaining={membersRemaining}
           />
           <div className="form-control">
@@ -74,17 +105,17 @@ class Teams extends React.Component {
                     {' '}
                     <small>({account.email})</small>
                     {' '}
-                    {account.id !== whoami.accountId ? (
+                    {account.isAdmin ? (
+                      <strong className="small pull-right">(admin)</strong>
+                    ) : (
                       <RemoveTeamAccountLink onRemove={this.props.handleReload}
-                                             teamId={ownedTeam.id}
-                                             teamName={ownedTeam.name}
+                                             teamId={activeTeam.id}
+                                             teamName={activeTeam.name}
                                              className="small pull-right"
                                              accountId={account.id}
                                              accountName={`${account.firstName} ${account.lastName}`.trim()}>
                         remove
                       </RemoveTeamAccountLink>
-                    ) : (
-                      <strong className="small pull-right">(you)</strong>
                     )}
                   </li>
                 ))}
@@ -105,20 +136,52 @@ class Teams extends React.Component {
 
     return (
       <div>
-        <h2>Your Team</h2>
+        <h2>{activeTeam.name}</h2>
         {inner}
       </div>
     );
   }
 
+  renderTeamActionLink(team) {
+    const { whoami } = this.props;
+
+    const isAdmin = team.accounts.find(a => a.isAdmin && a.id === whoami.accountId);
+
+    if (!isAdmin) {
+      return (
+        <LeaveTeamLink onLeave={this.props.handleReload}
+                       teamId={team.id}
+                       teamName={team.name}
+                       className="small pull-right">
+          leave
+        </LeaveTeamLink>
+      );
+    }
+
+    const { activeTeam } = this.state;
+    const activeTeamId = activeTeam ? activeTeam.id : null;
+
+    if (activeTeamId !== team.id) {
+      return (
+        <span className="small pull-right">
+          <Link to={`/app/teams?id=${team.id}`}>(Manage Team)</Link>
+        </span>
+      );
+    }
+
+    return  (
+      <span className="small pull-right">(Editing)</span>
+    );
+  }
+
   renderTeams() {
-    const { teams, whoami } = this.props;
+    const { teams } = this.props;
 
     return (
       <div>
-        <h2>Teams You're On</h2>
+        <h2>Your Teams</h2>
         <p>
-          These are the teams you've been invited to.
+          These are the teams you are on.
         </p>
         {teams.length ? (
           <ul>
@@ -126,16 +189,7 @@ class Teams extends React.Component {
               <li key={team.id}>
                 {team.name}
                 {' '}
-                {team.ownerAccountId === whoami.accountId ? (
-                  <span className="small pull-right">(your team)</span>
-                ) : (
-                  <LeaveTeamLink onLeave={this.props.handleReload}
-                                 teamId={team.id}
-                                 teamName={team.name}
-                                 className="small pull-right">
-                    leave
-                  </LeaveTeamLink>
-                )}
+                {this.renderTeamActionLink(team)}
               </li>
             ))}
           </ul>
@@ -149,10 +203,15 @@ class Teams extends React.Component {
   }
 
   render() {
+    const { activeTeam } = this.state;
     return (
       <div>
-        {this.renderEditTeam()}
-        <hr/>
+        {activeTeam && (
+          <React.Fragment>
+            {this.renderEditTeam(activeTeam)}
+            <hr/>
+          </React.Fragment>
+        )}
         {this.renderTeams()}
       </div>
     );
@@ -172,8 +231,8 @@ Teams.propTypes = {
   }).isRequired,
   teams: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    ownerAccountId: PropTypes.string.isRequired,
     accounts: PropTypes.arrayOf(PropTypes.shape({
+      isAdmin: PropTypes.bool.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
@@ -182,8 +241,8 @@ Teams.propTypes = {
   })).isRequired
 };
 
-export default () => (
+export default (pageProps) => (
   <App title="Manage Teams" subTitle="Collaborate within Insomnia">
-    {props => <Teams {...props}/>}
+    {props => <Teams {...props} {...pageProps}/>}
   </App>
 );

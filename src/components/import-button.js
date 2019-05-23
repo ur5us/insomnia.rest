@@ -1,7 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import { links } from '../config';
-import Link from './link';
 
 class ImportButton extends React.Component {
   constructor(props) {

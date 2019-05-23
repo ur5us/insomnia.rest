@@ -3,7 +3,6 @@ import SocialCards from '../components/social-cards';
 import Title from '../partials/title';
 import DownloadButton from '../components/download-button';
 import ImportButton from '../components/import-button';
-import CreateRunLink from '../components/create-run-link';
 import Link from '../components/link';
 
 export default () => (
@@ -15,7 +14,7 @@ export default () => (
       <section className="container header--big run-in-container">
         <div className="run-in">
           <header className="run-in__header">
-            <h1>Explore API</h1>
+            <h1>Run API</h1>
           </header>
           <div className="run-in__body">
             <div className="run-in__body__preview">
@@ -42,8 +41,8 @@ export default () => (
             <ImportButton/>
           </div>
           <footer className="run-in__footer">
-            Don't have the app installed?&nbsp;
-            <DownloadButton className="button--subtle">Download</DownloadButton>
+            Don't have the Insomnia?&nbsp;
+            <DownloadButton className="button--subtle button--compact"/>
           </footer>
         </div>
         <p className="small center">
