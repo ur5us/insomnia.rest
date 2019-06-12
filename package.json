@@ -40,7 +40,8 @@
     "react-helmet": "^5.2.0",
     "react-waypoint": "^8.0.1",
     "srp-js": "^0.2.1",
-    "unorm": "^1.5.0"
+    "unorm": "^1.5.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
