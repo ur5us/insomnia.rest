@@ -35,10 +35,6 @@ export const menus = {
   ],
   footer: [
     {
-      name: 'Store',
-      key: 'store',
-      url: 'https://store.insomnia.rest'
-    }, {
       name: 'Support',
       key: 'support',
       url: '/support/',
