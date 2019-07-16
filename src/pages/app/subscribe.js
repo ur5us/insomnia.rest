@@ -407,7 +407,6 @@ class Subscribe extends React.Component {
           </div>
         </div>
         <hr className="hr--skinny"/>
-        <h2 className="text-lg">Billing Information</h2>
         {billingDetails && billingDetails.hasCard ? (
           <div className="form-control">
             <label>
@@ -530,20 +529,21 @@ class Subscribe extends React.Component {
                 />
               </label>
             </div>
-
-            <div className="form-control">
-              <label>
-                Additional Information to Include (Address, VAT, etc)
-                <textarea
-                  rows="5"
-                  value={memo}
-                  name="memo"
-                  onChange={this._handleUpdateInput.bind(this)}
-                />
-              </label>
-            </div>
           </div>
         )}
+
+        <hr className="hr--skinny"/>
+        <div className="form-control">
+          <label>
+            Additional Information for invoice (Address, VAT, etc)
+            <textarea
+              rows="3"
+              value={memo}
+              name="memo"
+              onChange={this._handleUpdateInput.bind(this)}
+            />
+          </label>
+        </div>
 
         {error ? (
           <small className="form-control error">** {error}</small>
