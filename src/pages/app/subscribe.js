@@ -19,10 +19,10 @@ const planIdMap = {
 };
 
 class Subscribe extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
 
-    const { billingDetails, whoami } = props;
+    const {billingDetails, whoami} = props;
 
     const quantity = Math.max(
       minTeamSize,
@@ -52,11 +52,12 @@ class Subscribe extends React.Component {
       expireYear: new Date().getFullYear() + 1,
       cvc: '',
       zip: '',
-      error: ''
+      error: '',
+      memo: billingDetails.subMemo,
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const s = document.createElement('script');
     s.src = 'https://js.stripe.com/v2/';
     document.body.appendChild(s);
@@ -74,7 +75,7 @@ class Subscribe extends React.Component {
     });
   }
 
-  _handleCardNumberChange(e) {
+  _handleCardNumberChange (e) {
     // Using timeout or else target.value will not have been updated yet
     const value = e.target.value.trim();
     if (!value) {
@@ -126,9 +127,9 @@ class Subscribe extends React.Component {
 
     // this.setState({cardType: cardType === 'Unknown' ? '' : cardType});
     if (cardType.toLowerCase() !== 'unknown') {
-      this.setState({ cardType });
+      this.setState({cardType});
     } else {
-      this.setState({ cardType: '' });
+      this.setState({cardType: ''});
     }
 
     // Only update number if it changed from the user's original to prevent cursor jump
@@ -145,14 +146,14 @@ class Subscribe extends React.Component {
     this._handleUpdateInput(e);
   }
 
-  _handleUpdateInput(e) {
+  _handleUpdateInput (e) {
     const value =
       e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    this.setState({ [e.target.name]: value, error: '' });
+    this.setState({[e.target.name]: value, error: ''});
   }
 
-  async _handleSubmit(e) {
+  async _handleSubmit (e) {
     e.preventDefault();
 
     const {
@@ -165,25 +166,26 @@ class Subscribe extends React.Component {
       zip,
       planType,
       planCycle,
+      memo,
       quantity: quantityRaw,
     } = this.state;
 
     if (!useExistingBilling && !fullName.trim()) {
-      this.setState({ error: 'Card Error: No name provided' });
+      this.setState({error: 'Card Error: No name provided'});
       return;
     }
 
     if (!useExistingBilling && !zip.trim()) {
-      this.setState({ error: 'Card Error: No zip/postal provided' });
+      this.setState({error: 'Card Error: No zip/postal provided'});
       return;
     }
 
     if (!useExistingBilling && !cvc.trim()) {
-      this.setState({ error: 'Card Error: No cvc provided' });
+      this.setState({error: 'Card Error: No cvc provided'});
       return;
     }
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     const params = {
       cvc,
@@ -204,10 +206,10 @@ class Subscribe extends React.Component {
 
     const finishBilling = async tokenId => {
       try {
-        await session.subscribe(tokenId, planId, quantity);
+        await session.subscribe(tokenId, planId, quantity, memo);
         window.location = '/app/account/';
       } catch (err) {
-        this.setState({ error: err.message, loading: false });
+        this.setState({error: err.message, loading: false});
         localStorage.setItem(subErrorKey, subErrors + 1);
       }
     };
@@ -229,15 +231,15 @@ class Subscribe extends React.Component {
           const msg = response.error
             ? response.error.message
             : 'Unknown error (112)';
-          this.setState({ error: `Card Error: ${msg}` });
+          this.setState({error: `Card Error: ${msg}`});
         }
 
-        this.setState({ loading: false });
+        this.setState({loading: false});
       });
     }
   }
 
-  _calculatePrice(planType, planCycle, quantity) {
+  static _calculatePrice (planType, planCycle, quantity) {
     quantity = Math.max(quantity, minTeamSize);
     const priceIndex = planCycle === planCycleMonthly ? 0 : 1;
     const price =
@@ -248,15 +250,15 @@ class Subscribe extends React.Component {
     return price[priceIndex];
   }
 
-  _getPlanDescription(planType, planCycle, quantity) {
+  static _getPlanDescription (planType, planCycle, quantity) {
     const cycle = planCycle === planCycleMonthly ? 'month' : 'year';
-    const price = this._calculatePrice(planType, planCycle, quantity);
+    const price = Subscribe._calculatePrice(planType, planCycle, quantity);
 
     return `$${price} / ${cycle}`;
   }
 
-  renderBillingNotice() {
-    const { whoami, billingDetails } = this.props;
+  renderBillingNotice () {
+    const {whoami, billingDetails} = this.props;
 
     const trialEndDate = new Date(whoami.trialEnd * 1000);
     const trialEndMillis = trialEndDate.getTime() - Date.now();
@@ -284,7 +286,7 @@ class Subscribe extends React.Component {
     return null;
   }
 
-  render() {
+  render () {
     const {
       loading,
       error,
@@ -295,10 +297,11 @@ class Subscribe extends React.Component {
       expireYear,
       quantity,
       useExistingBilling,
-      fullName
+      fullName,
+      memo,
     } = this.state;
 
-    const { billingDetails } = this.props;
+    const {billingDetails} = this.props;
 
     if (billingDetails && !billingDetails.isBillingAdmin) {
       return this.renderBillingNotice();
@@ -322,7 +325,7 @@ class Subscribe extends React.Component {
         <React.Fragment>
           <button type="submit" className="button">
             Change to {' '}
-            {this._getPlanDescription(planType, planCycle, quantity)}
+            {Subscribe._getPlanDescription(planType, planCycle, quantity)}
           </button>
           <p className="text-xs subtle">
             *Upgrades are billed immediately and downgrades will apply
@@ -334,7 +337,7 @@ class Subscribe extends React.Component {
       subscribeBtn = (
         <button type="submit" className="button">
           Subscribe for{' '}
-          {this._getPlanDescription(planType, planCycle, quantity)}
+          {Subscribe._getPlanDescription(planType, planCycle, quantity)}
         </button>
       );
     }
@@ -387,7 +390,7 @@ class Subscribe extends React.Component {
                 onChange={this._handleUpdateInput.bind(this)}
                 value={planCycleMonthly}
               />
-              {this._getPlanDescription(planType, planCycleMonthly, quantity)}
+              {Subscribe._getPlanDescription(planType, planCycleMonthly, quantity)}
             </label>
           </div>
           <div className="form-control">
@@ -399,7 +402,7 @@ class Subscribe extends React.Component {
                 onChange={this._handleUpdateInput.bind(this)}
                 value={planCycleYearly}
               />
-              {this._getPlanDescription(planType, planCycleYearly, quantity)}
+              {Subscribe._getPlanDescription(planType, planCycleYearly, quantity)}
             </label>
           </div>
         </div>
@@ -527,6 +530,18 @@ class Subscribe extends React.Component {
                 />
               </label>
             </div>
+
+            <div className="form-control">
+              <label>
+                Additional Information to Include (Address, VAT, etc)
+                <textarea
+                  rows="5"
+                  value={memo}
+                  name="memo"
+                  onChange={this._handleUpdateInput.bind(this)}
+                />
+              </label>
+            </div>
           </div>
         )}
 
@@ -556,9 +571,10 @@ Subscribe.propTypes = {
   }).isRequired,
   billingDetails: PropTypes.shape({
     subQuantity: PropTypes.number.isRequired,
+    subMemo: PropTypes.string.isRequired,
     hasCard: PropTypes.bool.isRequired,
     lastFour: PropTypes.string.isRequired,
-    isBillingAdmin: PropTypes.bool.isRequired
+    isBillingAdmin: PropTypes.bool.isRequired,
   })
 };
 

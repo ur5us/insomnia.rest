@@ -6,7 +6,7 @@
   "author": "Gregory Schier <gschier1990@gmail.com>",
   "licence": "MIT",
   "scripts": {
-    "develop": "npm run build:data && gatsby develop --port 8001",
+    "start": "npm run build:data && gatsby develop --port 8001",
     "build:data": "node ./scripts/fetch-metrics.js",
     "build": "npm run build:data && gatsby build",
     "format-code": "prettier --write \"**/*.js\""

@@ -1,5 +1,5 @@
 import React from 'react';
-import { parse as urlParse } from 'url';
+import {parse as urlParse} from 'url';
 import PropTypes from 'prop-types';
 import LeaveTeamLink from '../../lib/teams/leave-link';
 import RemoveTeamAccountLink from '../../lib/teams/remove-account-link';
@@ -14,19 +14,19 @@ class Teams extends React.Component {
     activeTeam: null
   };
 
-  componentDidMount() {
+  componentDidMount () {
     this._checkUrl();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     this._checkUrl();
   }
 
-  _checkUrl() {
-    const { teams } = this.props;
-    const { activeTeam } = this.state;
+  _checkUrl () {
+    const {teams} = this.props;
+    const {activeTeam} = this.state;
 
-    const { query } = urlParse(window.location.href, true);
+    const {query} = urlParse(window.location.href, true);
     const teamId = query.id || null;
     const activeTeamId = activeTeam ? activeTeam.id : null;
 
@@ -35,7 +35,7 @@ class Teams extends React.Component {
     }
 
     if (!teamId) {
-      this.setState({ activeTeam: null });
+      this.setState({activeTeam: null});
       return;
     }
 
@@ -47,11 +47,11 @@ class Teams extends React.Component {
       return;
     }
 
-    this.setState({ activeTeam: team });
+    this.setState({activeTeam: team});
   }
 
-  renderEditTeam(activeTeam) {
-    const { whoami, billingDetails } = this.props;
+  renderEditTeam (activeTeam) {
+    const {whoami, billingDetails} = this.props;
 
     let membersRemaining = 0;
 
@@ -77,7 +77,7 @@ class Teams extends React.Component {
         </div>
       );
     } else if (activeTeam) {
-      const { handleReload } = this.props;
+      const {handleReload} = this.props;
 
       // Sort the accounts to put the user first. NOTE: We're making a copy since
       // sort modifies the original.
@@ -108,14 +108,16 @@ class Teams extends React.Component {
                     {account.isAdmin ? (
                       <strong className="small pull-right">(admin)</strong>
                     ) : (
-                      <RemoveTeamAccountLink onRemove={this.props.handleReload}
-                                             teamId={activeTeam.id}
-                                             teamName={activeTeam.name}
-                                             className="small pull-right"
-                                             accountId={account.id}
-                                             accountName={`${account.firstName} ${account.lastName}`.trim()}>
-                        remove
-                      </RemoveTeamAccountLink>
+                      <React.Fragment>
+                        <RemoveTeamAccountLink onRemove={this.props.handleReload}
+                                               teamId={activeTeam.id}
+                                               teamName={activeTeam.name}
+                                               className="small pull-right"
+                                               accountId={account.id}
+                                               accountName={`${account.firstName} ${account.lastName}`.trim()}>
+                          remove
+                        </RemoveTeamAccountLink>
+                      </React.Fragment>
                     )}
                   </li>
                 ))}
@@ -142,8 +144,8 @@ class Teams extends React.Component {
     );
   }
 
-  renderTeamActionLink(team) {
-    const { whoami } = this.props;
+  renderTeamActionLink (team) {
+    const {whoami} = this.props;
 
     const isAdmin = team.accounts.find(a => a.isAdmin && a.id === whoami.accountId);
 
@@ -158,7 +160,7 @@ class Teams extends React.Component {
       );
     }
 
-    const { activeTeam } = this.state;
+    const {activeTeam} = this.state;
     const activeTeamId = activeTeam ? activeTeam.id : null;
 
     if (activeTeamId !== team.id) {
@@ -169,13 +171,13 @@ class Teams extends React.Component {
       );
     }
 
-    return  (
+    return (
       <span className="small pull-right">(Editing)</span>
     );
   }
 
-  renderTeams() {
-    const { teams } = this.props;
+  renderTeams () {
+    const {teams} = this.props;
 
     return (
       <div>
@@ -202,8 +204,8 @@ class Teams extends React.Component {
     );
   }
 
-  render() {
-    const { activeTeam } = this.state;
+  render () {
+    const {activeTeam} = this.state;
     return (
       <div>
         {activeTeam && (

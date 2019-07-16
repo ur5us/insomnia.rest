@@ -112,11 +112,12 @@ export async function login(rawEmail, rawPassphrase, authSecret = null) {
   localStorage.setItem('currentSessionId', sessionId);
 }
 
-export function subscribe(tokenId, planId, quantity) {
+export function subscribe(tokenId, planId, quantity, memo) {
   return util.post('/api/billing/subscriptions', {
     token: tokenId,
     quantity: quantity,
-    plan: planId
+    plan: planId,
+    memo: memo,
   });
 }
 
@@ -154,10 +155,6 @@ export async function invoices() {
 
 export async function getInvoice(invoiceId) {
   return util.get('/api/billing/invoices/' + invoiceId);
-}
-
-export async function updateInvoiceExtra(invoiceExtra) {
-  return util.put('/api/billing/invoice-extra', { invoiceExtra });
 }
 
 export async function verify() {
@@ -336,7 +333,7 @@ export async function inviteToTeam(teamId, emailToInvite, rawPassphrase) {
 
 export async function leaveTeam(teamId) {
   // Do legacy stuff first because the error handling is better
-  return util.del(`/api/teams/${teamId}/leave`);
+  await util.del(`/api/teams/${teamId}/leave`);
 
   const { errors } = await util.post(`/graphql?teamLeave`, {
     variables: {
@@ -354,9 +351,30 @@ export async function leaveTeam(teamId) {
   }
 }
 
+export async function toggleAdminStatus(teamId, accountId) {
+  // Do legacy stuff first because the error handling is better
+  await util.del(`/api/teams/${teamId}/accounts/${accountId}`);
+
+  const { errors } = await util.post(`/graphql?teamRemove`, {
+    variables: {
+      accountIdToRemove: accountId,
+      teamId,
+    },
+    query: `
+      mutation ($accountIdToRemove: ID!, $teamId: ID!) {
+        teamRemove(accountIdToRemove: $accountIdToRemove, teamId: $teamId) 
+      }
+    `
+  });
+
+  if (errors && errors.length) {
+    throw new Error('Failed to remove member');
+  }
+}
+
 export async function removeFromTeam(teamId, accountId) {
   // Do legacy stuff first because the error handling is better
-  return util.del(`/api/teams/${teamId}/accounts/${accountId}`);
+  await util.del(`/api/teams/${teamId}/accounts/${accountId}`);
 
   const { errors } = await util.post(`/graphql?teamRemove`, {
     variables: {
