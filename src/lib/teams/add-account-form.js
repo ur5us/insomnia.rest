@@ -31,6 +31,7 @@ class AddTeamAccountForm extends React.Component {
       await onAdd();
       this.setState({loading: false});
     } catch (err) {
+      console.log(`Failed to invite to team ${err}`, err);
       this.setState({error: err.message, loading: false});
     }
   }
