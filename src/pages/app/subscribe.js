@@ -53,7 +53,7 @@ class Subscribe extends React.Component {
       cvc: '',
       zip: '',
       error: '',
-      memo: billingDetails.subMemo,
+      memo: billingDetails ? billingDetails.subMemo : '',
     };
   }
 
@@ -575,7 +575,7 @@ Subscribe.propTypes = {
     hasCard: PropTypes.bool.isRequired,
     lastFour: PropTypes.string.isRequired,
     isBillingAdmin: PropTypes.bool.isRequired,
-  })
+  }),
 };
 
 export default () => (
