@@ -233,7 +233,11 @@ async function _inviteToTeamLegacy(teamId, emailToInvite, rawPassphrase) {
     console.log('Failed to decrypt key', err.stack);
     throw new Error('Invalid password');
   }
-  const privateKey = crypt.decryptAES(JSON.parse(symmetricKey), JSON.parse(encPrivateKey));
+
+  const symmetricKeyObj = JSON.parse(symmetricKey);
+  const encPrivateKeyObj = JSON.parse(encPrivateKey);
+
+  const privateKey = crypt.decryptAES(symmetricKeyObj, encPrivateKeyObj);
   const privateKeyJWK = JSON.parse(privateKey);
   const publicKeyJWK = JSON.parse(accountPublicKey);
 
