@@ -5,7 +5,7 @@ slug: graphql-explorer
 tags: ["feature"]
 ---
 
-Starting in version [6.6.0](/changelog/6.6.0/), it is now possible to browse documentation for 
+Starting in version [6.6.2](/changelog/6.6.2/), it is now possible to browse documentation for 
 [GraphQL](http://graphql.org/) APIs without leaving Insomnia! 🤗🔥
 
 ![GraphQL explorer demo using GatsbyJS API](/images/screens/gql-explorer.gif)
