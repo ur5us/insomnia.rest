@@ -28,40 +28,11 @@ function endDate() {
     const repoStats = await fetchRepositoryStats();
     const repoStatsBody = JSON.stringify(repoStats, null, '\t');
     fs.writeFileSync(path.join(dirAssets, 'repository.json'), repoStatsBody);
-
-    // Do Baremetrics (most likely to fail)
-    const baremetricsData = await fetchBaremetrics();
-    const planData = await fetchPlans();
-    const metricsBody = JSON.stringify({
-      metrics: baremetricsData.metrics,
-      plans: planData
-    }, null, '\t');
-
-    fs.writeFileSync(path.join(dirAssets, 'baremetrics.json'), metricsBody);
     console.log('Wrote metrics to ' + dirAssets);
   } catch (err) {
     console.log('Failed to fetch metrics:', err.message);
   }
 })();
-
-function fetchBaremetrics() {
-  return new Promise((resolve, reject) => {
-    const options = {
-      method: 'GET',
-      url: 'https://api.baremetrics.com/v1/metrics',
-      qs: { start_date: '2016-12-01', end_date: endDate() },
-      headers: { 'Authorization': `Bearer ${process.env.BAREMETRICS_KEY}` }
-    };
-
-    request(options, function(err, response, body) {
-      if (response.statusCode !== 200) {
-        return reject(new Error('Metrics request failed: ' + response.body));
-      }
-
-      resolve(JSON.parse(body));
-    });
-  });
-}
 
 function fetchPlans() {
   return new Promise((resolve, reject) => {

@@ -2,8 +2,8 @@ export const site = {
   shortName: 'Insomnia',
   name: 'Insomnia REST Client',
   description: 'Insomnia is a cross-platform GraphQL and REST client, available for Mac, Windows, and Linux',
-  copyright: 'Floating Keyboard Software Inc.',
-  copyrightURL: 'https://floatingkeyboard.com'
+  copyright: 'Kong Inc.',
+  copyrightURL: 'https://konghq.com'
 };
 
 export const links = {
@@ -58,10 +58,6 @@ export const menus = {
       name: 'Changelog',
       key: 'changelog',
       url: '/changelog/',
-    }, {
-      name: 'Open',
-      key: 'open',
-      url: '/open/',
     }, {
       name: 'Terms',
       key: 'terms',
